@@ -15,12 +15,37 @@ import os
 from datetime import timedelta
 
 
+def _normalized_database_url() -> str:
+    """Read DATABASE_URL and make sure SQLAlchemy picks the psycopg (v3)
+    dialect this project is actually built on, not psycopg2.
+
+    requirements.txt only ever installs psycopg[binary] (v3) — psycopg2
+    is never installed, deliberately, per API_DOCS.md/DEPLOYMENT.md. But
+    a bare "postgresql://" URL (the format .env.production.example always
+    documented as needing the "+psycopg" suffix, and the exact format
+    Render's managed-Postgres "connectionString" property provides,
+    unprefixed) makes SQLAlchemy default to the psycopg2 dialect and
+    crash on import — the deploy actually hit this on Render. Rewriting
+    only the scheme here means DATABASE_URL can be pasted verbatim from
+    any Postgres host's dashboard (Render, Heroku-style, etc.) without
+    everyone who ever sets it having to remember to hand-edit the URL.
+    A URL that already specifies a driver (or isn't Postgres at all,
+    e.g. the sqlite URI TestingConfig uses below) is left untouched.
+    """
+    url = os.environ.get("DATABASE_URL", "")
+    if url.startswith("postgres://"):
+        url = "postgresql://" + url[len("postgres://"):]
+    if url.startswith("postgresql://"):
+        url = "postgresql+psycopg://" + url[len("postgresql://"):]
+    return url
+
+
 class BaseConfig:
     """Shared defaults. Subclassed per environment below."""
 
     SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "")
+    SQLALCHEMY_DATABASE_URI = _normalized_database_url()
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
         "pool_pre_ping": True,
