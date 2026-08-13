@@ -25,7 +25,7 @@ const CONFIG = {
     if (host === "127.0.0.1" || host === "localhost" || host === "") {
       return "http://127.0.0.1:5000/api/earncash";
     }
-    return "https://gti-backend.onrender.com/api/earncash";
+    return "https://gti-backend-zh4t.onrender.com/api/earncash";
   })(),
 
   // Base URL of the main Germaine Training Institute site, derived from

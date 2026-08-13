@@ -45,7 +45,7 @@
            <script>window.GERMAINE_API_BASE_URL = "https://api.germaineinstitute.com";</script>
            <script defer src="assets/js/api-client.js"></script>
     --------------------------------------------------------------- */
-    var PRODUCTION_API_BASE_URL = "https://gti-backend.onrender.com";
+    var PRODUCTION_API_BASE_URL = "https://gti-backend-zh4t.onrender.com";
     var API_BASE_URL = window.GERMAINE_API_BASE_URL || (function () {
         var host = window.location.hostname;
         if (host === "127.0.0.1" || host === "localhost" || host === "") {
