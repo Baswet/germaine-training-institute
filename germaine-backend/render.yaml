@@ -1,0 +1,66 @@
+# Render Blueprint — germaine-backend production deployment.
+#
+# Defines two resources together: the Flask web service and a managed
+# PostgreSQL database. Render reads this file automatically when you
+# create a new Blueprint instance pointed at this repository, wires
+# DATABASE_URL from the database to the web service for you, and
+# generates SECRET_KEY itself (generateValue) so it is never typed
+# into a dashboard field or committed to Git.
+#
+# This does not replace the existing cPanel/Passenger deployment path
+# (passenger_wsgi.py) — that remains available if cPanel hosting with
+# PostgreSQL support is ever used instead. This file is the Render-
+# specific equivalent, using the same app factory unchanged.
+#
+# What you still have to do by hand (Render requires account-holder
+# action for all of these — see the deployment report for exact steps):
+#   1. Create a Render account and connect this GitHub repository.
+#   2. Create a Blueprint instance from this file.
+#   3. Run `flask db upgrade` once via the Render Shell tab (safe,
+#      idempotent — applies only migrations not yet recorded in
+#      alembic_version).
+#   4. Run `flask create-admin` once via the Render Shell tab to create
+#      the first staff login (interactive prompt, password never
+#      typed into a file or the dashboard).
+
+services:
+  - type: web
+    name: gti-backend
+    runtime: python
+    plan: free
+    rootDir: germaine-backend
+    buildCommand: pip install -r requirements.txt
+    # 2 workers is deliberately conservative for Render's free-tier
+    # instance size (512MB RAM) — raise workerCount only after checking
+    # memory headroom on a paid plan.
+    startCommand: gunicorn wsgi:app --workers 2 --timeout 60 --bind 0.0.0.0:$PORT
+    healthCheckPath: /health
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gti-postgres
+          property: connectionString
+      # Comma-separated list of origins allowed to call the public
+      # "/api/..." surface cross-origin (app/utils/cors.py). Never
+      # applies to /admin/, which stays same-origin-only regardless.
+      # Update this if the frontend later moves to a custom domain —
+      # add the new origin rather than replacing this one, until the
+      # GitHub Pages origin is fully retired.
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://baswet.github.io
+      # Optional — see app/blueprints/earncash/withdrawal_routes.py.
+      # Defaults to 500 (KES) if unset; set explicitly here so the
+      # production value is visible in one place rather than relying
+      # on the code default.
+      - key: EARNCASH_MIN_WITHDRAWAL_AMOUNT
+        value: "500"
+
+databases:
+  - name: gti-postgres
+    plan: free
+    databaseName: gti_production
+    user: gti_app

@@ -15,16 +15,17 @@ const CONFIG = {
   // backend run as two separate processes/origins (see README), so the
   // API base can't be derived from window.location the way
   // GTI_SITE_URL below is — it has to stay a fixed localhost URL.
-  // In production, this static site and the Flask backend are deployed
-  // on the same origin, so no environment-specific value needs to be
-  // hardcoded: it's derived from the page's own URL, exactly like
-  // GTI_SITE_URL already is below.
+  // In production, this static site is published on GitHub Pages
+  // (baswet.github.io) and the Flask backend on Render (gti-backend.
+  // onrender.com) — two different origins, matching how api-client.js
+  // (assets/js/api-client.js, the main GTI site's equivalent config)
+  // now points at that same production API origin, for the same reason.
   API_BASE: (function () {
     var host = window.location.hostname;
     if (host === "127.0.0.1" || host === "localhost" || host === "") {
       return "http://127.0.0.1:5000/api/earncash";
     }
-    return window.location.origin + "/api/earncash";
+    return "https://gti-backend.onrender.com/api/earncash";
   })(),
 
   // Base URL of the main Germaine Training Institute site, derived from

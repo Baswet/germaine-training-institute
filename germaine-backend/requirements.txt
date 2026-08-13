@@ -9,6 +9,12 @@ Flask-Migrate==4.0.7
 python-dotenv==1.0.1
 psycopg[binary]==3.2.2
 
+# Production WSGI server (Render deployment). Flask's own dev server
+# (app.run() / `flask run`) is never used in production — passenger_wsgi.py
+# (cPanel/Passenger) and wsgi:app (gunicorn, see render.yaml) are the two
+# supported production entry points, both importing the same app factory.
+gunicorn==22.0.0
+
 # EarnCash integration (bearer-token auth for the /api/earncash/* blueprint,
 # ported unchanged from its original standalone Flask app's dependency)
 PyJWT==2.9.0

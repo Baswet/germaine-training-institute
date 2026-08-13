@@ -33,23 +33,25 @@
        real backend — a silent, site-wide production outage that
        DEPLOYMENT.md incorrectly claimed didn't exist ("api-client.js
        already auto-derives its API base URL from the page's own
-       origin"). It didn't. It does now, matching the pattern EarnCash's
-       own config.js already used correctly (API_BASE there): derive
-       from window.location.origin whenever the page isn't running on
-       localhost/127.0.0.1, so the standard same-origin deployment
-       described in DEPLOYMENT.md needs zero configuration. Still
-       fully overridable via window.GERMAINE_API_BASE_URL for a
-       separate-subdomain backend (e.g. api.yourdomain.com):
+       origin"). It didn't then, and same-origin is no longer even the
+       real deployment shape: the frontend is published on GitHub Pages
+       (baswet.github.io) and the backend on Render (gti-backend.
+       onrender.com) — two different origins, so window.location.origin
+       is never correct for this deployment. The non-localhost fallback
+       below now points at that production API origin directly. Still
+       fully overridable per-page via window.GERMAINE_API_BASE_URL,
+       e.g. for a future custom domain fronting a different backend:
 
-           <script>window.GERMAINE_API_BASE_URL = "https://api.germaineinstitute.ac.ke";</script>
+           <script>window.GERMAINE_API_BASE_URL = "https://api.germaineinstitute.com";</script>
            <script defer src="assets/js/api-client.js"></script>
     --------------------------------------------------------------- */
+    var PRODUCTION_API_BASE_URL = "https://gti-backend.onrender.com";
     var API_BASE_URL = window.GERMAINE_API_BASE_URL || (function () {
         var host = window.location.hostname;
         if (host === "127.0.0.1" || host === "localhost" || host === "") {
             return "http://localhost:5000";
         }
-        return window.location.origin;
+        return PRODUCTION_API_BASE_URL;
     })();
     var DEFAULT_TIMEOUT_MS = 15000;
 
