@@ -31,6 +31,7 @@
         renderGlassTrio();
         renderFaqs(course);
         renderStickyNav();
+        renderApplyModal(course);
 
         /* Every render* call above injects fresh .sp-reveal elements
            (hero image, stats row, skill cards, why-cards, mode cards,
@@ -416,7 +417,7 @@
             '<h3><i class="fa-solid fa-coins"></i> Invest in Your Future</h3>' +
             '<p class="aic-progtri-invest-tagline">Affordable. Quality. Career-focused. Real, published tuition for every learning mode.</p>' +
             '<div class="aic-progtri-invest-list">' + investCardsHtml + "</div>" +
-            '<a href="#aicApply" class="ai-btn ai-btn-primary">Apply for Bootcamp <i class="fa-solid fa-arrow-right"></i></a>' +
+            '<a href="#aicApply" class="ai-btn ai-btn-primary" data-apply-trigger="course">Apply for Bootcamp <i class="fa-solid fa-arrow-right"></i></a>' +
             "</div>" +
 
             "</div></div></section>";
@@ -452,8 +453,6 @@
            unified place that link finally lands on and offers the real
            next step, replacing the old separate/duplicate CTA banner
            that used to sit lower on the page. */
-        var applyHref = "ai-bootcamp.html?course=" + course.slug + "#aiApply";
-
         mount.outerHTML =
             '<section class="aic-detail-section aic-detail-section-tint" id="aicFaqs">' +
             '<div class="ai-wrap">' +
@@ -476,7 +475,7 @@
             '<span class="aic-final-ic"><i class="fa-solid fa-graduation-cap"></i></span>' +
             "<h2>Ready to Begin Your Career?</h2>" +
             "<p>Take the next step toward a career in " + course.title + " with Germaine Training Institute.</p>" +
-            '<a href="' + applyHref + '" class="aic-final-apply">Apply for This Programme <i class="fa-solid fa-arrow-right"></i></a>' +
+            '<a href="#aicApply" class="aic-final-apply" data-apply-trigger="course">Apply for This Programme <i class="fa-solid fa-arrow-right"></i></a>' +
             '<a href="ai-bootcamp-courses.html" class="aic-final-more">Explore More Programmes</a>' +
             "</div>" +
             "</div>" +
@@ -484,6 +483,238 @@
             "</div></div></div></section>";
 
         initFaqAccordion();
+    }
+
+    /* ==================================================
+       APPLY NOW MODAL
+       One shared modal injected once per page, reused by every
+       "Apply" trigger on the page (hero CTA, invest-card CTA, the
+       FAQ+CTA card above). Auto-fills the current course's title —
+       the applicant never types a programme name.
+
+       Submission reuses the exact same resolve-programme-by-title +
+       POST /api/admissions/applications flow already implemented and
+       tested in assets/js/ai-bootcamp.js's #aiApplyForm handler (no
+       new backend endpoint). Because production migrations have not
+       been run yet, a submission can be CODE VERIFIED (reaches the
+       backend, passes validation) without necessarily being LIVE
+       DATABASE VERIFIED — the error state below surfaces the real
+       backend response either way rather than faking success.
+       ================================================== */
+    function renderApplyModal(course) {
+        if (document.getElementById("acmModal")) return; // one per page
+
+        var wrap = document.createElement("div");
+        wrap.innerHTML =
+            '<div class="acm-backdrop" id="acmBackdrop" hidden></div>' +
+            '<div class="acm-modal" id="acmModal" role="dialog" aria-modal="true" aria-labelledby="acmTitle" hidden>' +
+            '<div class="acm-panel">' +
+            '<button type="button" class="acm-close" id="acmClose" aria-label="Close application form">&times;</button>' +
+
+            '<div class="acm-head">' +
+            '<h2 id="acmTitle">Apply for <span id="acmCourseName">' + course.title + '</span></h2>' +
+            '<p>Complete the form below and our admissions team will get back to you.</p>' +
+            '</div>' +
+
+            '<div class="acm-body">' +
+            '<form id="acmForm" novalidate>' +
+
+            '<div class="acm-field">' +
+            '<label for="acmName">Full Name <span class="acm-req">*</span></label>' +
+            '<input type="text" id="acmName" name="fullName" required placeholder="Your full name">' +
+            '</div>' +
+
+            '<div class="acm-row">' +
+            '<div class="acm-field">' +
+            '<label for="acmEmail">Email Address <span class="acm-req">*</span></label>' +
+            '<input type="email" id="acmEmail" name="email" required placeholder="you@example.com">' +
+            '</div>' +
+            '<div class="acm-field">' +
+            '<label for="acmPhone">Phone Number <span class="acm-req">*</span></label>' +
+            '<input type="tel" id="acmPhone" name="phone" required placeholder="+254 7XX XXX XXX">' +
+            '</div>' +
+            '</div>' +
+
+            '<div class="acm-field">' +
+            '<label for="acmProgramme">Preferred Bootcamp <span class="acm-req">*</span></label>' +
+            '<input type="text" id="acmProgramme" name="programme" value="' + course.title + '" readonly>' +
+            '</div>' +
+
+            '<div class="acm-row">' +
+            '<div class="acm-field">' +
+            '<label for="acmEducation">Highest Education Level <span class="acm-req">*</span></label>' +
+            '<select id="acmEducation" name="education" required>' +
+            '<option value="" disabled selected>Select an option</option>' +
+            '<option>KCSE / High School</option>' +
+            '<option>Certificate</option>' +
+            '<option>Diploma</option>' +
+            '<option>Undergraduate Degree</option>' +
+            '<option>Postgraduate</option>' +
+            '</select>' +
+            '</div>' +
+            '<div class="acm-field">' +
+            '<label for="acmIntake">Preferred Intake</label>' +
+            '<select id="acmIntake" name="intake">' +
+            '<option value="" disabled selected>Select an intake</option>' +
+            '<option>September 2026</option>' +
+            '<option>January 2027</option>' +
+            '<option>Next Available Cohort</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+
+            '<div class="acm-field">' +
+            '<label for="acmMessage">Message / Additional Information</label>' +
+            '<textarea id="acmMessage" name="message" rows="3" placeholder="Anything else we should know?"></textarea>' +
+            '</div>' +
+
+            '<p class="acm-status" id="acmStatus" hidden></p>' +
+
+            '<button type="submit" class="acm-submit" id="acmSubmit">Submit Application <i class="fa-solid fa-arrow-right"></i></button>' +
+
+            '</form>' +
+
+            '<div class="acm-success" id="acmSuccess" hidden>' +
+            '<i class="fa-solid fa-circle-check"></i>' +
+            '<h3>Application received</h3>' +
+            '<p>Thank you for applying to ' + course.title + '. Our admissions team will contact you with next steps.</p>' +
+            '</div>' +
+
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        document.body.appendChild(wrap);
+
+        var backdrop = document.getElementById("acmBackdrop");
+        var modal = document.getElementById("acmModal");
+        var closeBtn = document.getElementById("acmClose");
+        var form = document.getElementById("acmForm");
+        var status = document.getElementById("acmStatus");
+        var submitBtn = document.getElementById("acmSubmit");
+        var successEl = document.getElementById("acmSuccess");
+        var submitting = false;
+        var lastFocused = null;
+
+        function showStatus(msg) {
+            status.textContent = msg;
+            status.hidden = false;
+        }
+        function hideStatus() {
+            status.hidden = true;
+        }
+
+        function openModal() {
+            lastFocused = document.activeElement;
+            form.hidden = false;
+            successEl.hidden = true;
+            hideStatus();
+            backdrop.hidden = false;
+            modal.hidden = false;
+            document.body.classList.add("acm-lock");
+            var nameField = document.getElementById("acmName");
+            if (nameField) setTimeout(function () { nameField.focus(); }, 30);
+        }
+
+        function closeModal() {
+            backdrop.hidden = true;
+            modal.hidden = true;
+            document.body.classList.remove("acm-lock");
+            if (lastFocused && lastFocused.focus) lastFocused.focus();
+        }
+
+        document.addEventListener("click", function (e) {
+            var trigger = e.target.closest && e.target.closest('[data-apply-trigger="course"]');
+            if (trigger) {
+                e.preventDefault();
+                openModal();
+            }
+        });
+
+        closeBtn.addEventListener("click", closeModal);
+        backdrop.addEventListener("click", closeModal);
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && !modal.hidden) closeModal();
+        });
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            hideStatus();
+
+            if (submitting) return; // prevent duplicate submissions
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            if (!window.GermaineAPI) {
+                showStatus("We couldn't reach the server. Please check your connection and try again.");
+                return;
+            }
+
+            submitting = true;
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Submitting…";
+
+            var fullName = document.getElementById("acmName").value.trim();
+            var email = document.getElementById("acmEmail").value.trim();
+            var phone = document.getElementById("acmPhone").value.trim();
+            var education = document.getElementById("acmEducation").value;
+
+            /* Same resolve-by-title pattern as ai-bootcamp.js's #aiApplyForm:
+               the form only knows this course's display title, never the
+               backend's numeric programme id, so it's looked up via the
+               public catalogue endpoint first. No id is ever invented — if
+               no exact match is found the submission stops with a real
+               error instead of a fabricated success. */
+            window.GermaineAPI.get("/api/programmes", { type: "ai_bootcamp", q: course.title, per_page: 50 })
+                .then(function (res) {
+                    var items = (res.success && res.data && res.data.items) || [];
+                    var match = items.filter(function (p) { return p.name === course.title; })[0];
+                    if (!match) {
+                        resetSubmit();
+                        showStatus('We couldn’t match "' + course.title + '" to a programme on file. Please try again shortly or contact admissions directly.');
+                        return null;
+                    }
+                    return match;
+                })
+                .then(function (programme) {
+                    if (!programme) return;
+
+                    var referralCode = (window.GermaineReferral && window.GermaineReferral.getCode()) || undefined;
+
+                    var payload = {
+                        full_name: fullName,
+                        email: email,
+                        phone: phone,
+                        education_level: education || undefined,
+                        programme_id: programme.id,
+                        application_type: "programme_inquiry",
+                        consent: true,
+                        referral_code: referralCode,
+                    };
+
+                    return window.GermaineAPI.post("/api/admissions/applications", payload).then(function (res) {
+                        resetSubmit();
+                        if (!res.success) {
+                            var fieldErrors = res.errors && Object.keys(res.errors).map(function (k) { return res.errors[k][0]; });
+                            showStatus((fieldErrors && fieldErrors[0]) || res.message || "We couldn't submit your application. Please check your details and try again.");
+                            return;
+                        }
+                        form.hidden = true;
+                        successEl.hidden = false;
+                    });
+                })
+                .catch(function () {
+                    resetSubmit();
+                    showStatus("We couldn't reach the server. Please check your connection and try again.");
+                });
+        });
+
+        function resetSubmit() {
+            submitting = false;
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Submit Application <i class="fa-solid fa-arrow-right"></i>';
+        }
     }
 
     function initFaqAccordion() {

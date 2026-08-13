@@ -154,6 +154,36 @@ body.aic-family-page .page-shell{ padding-top:0 !important; }
 .aic-card-media::after{
     content:""; position:absolute; inset:0;
     background:linear-gradient(180deg,transparent 60%,rgba(16,42,92,.5));
+    z-index:2;
+}
+
+/* Two-image auto slideshow — subtle crossfade, confined to the
+   existing fixed-height media box. Whichever image carries
+   .is-active is visible; JS moves that class between the two
+   images on a timer. No layout shift, no travelling-border/glow
+   effects — only a plain opacity fade. */
+.aic-card-media .aic-card-img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; display:block; z-index:1; opacity:0;
+    transition:opacity 1s ease, transform .5s ease;
+}
+.aic-card-media .aic-card-img.is-active{ opacity:1; }
+.aic-card:hover .aic-card-media .aic-card-img{ transform:scale(1.06); }
+
+.aic-card-dots{
+    position:absolute; left:0; right:0; bottom:10px;
+    display:flex; justify-content:center; gap:6px; z-index:3;
+}
+.aic-card-dots span{
+    width:6px; height:6px; border-radius:50%;
+    background:rgba(255,255,255,.55);
+    transition:background .3s ease, transform .3s ease;
+}
+.aic-card-dots span.is-active{
+    background:#fff; transform:scale(1.25);
+}
+@media(prefers-reduced-motion:reduce){
+    .aic-card-media .aic-card-img{ transition:none; }
 }
 
 .aic-card-body{ display:flex; flex-direction:column; flex:1; padding:22px 24px 26px; position:relative; z-index:1; }

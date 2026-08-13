@@ -8,8 +8,11 @@
 
 :root{
     --ai-navy:#102A5C;
-    --ai-navy-soft:rgba(16,42,92,.66);
-    --ai-navy-mut:rgba(16,42,92,.56);
+    /* Darkened for readability (was .66/.56 — read as very light body
+       text). Still visually "muted" relative to full-strength navy
+       headings, just no longer washed out. */
+    --ai-navy-soft:rgba(16,42,92,.82);
+    --ai-navy-mut:rgba(16,42,92,.86);
     --ai-pink:#EC4899;
     --ai-pink-2:#F472B6;
     --ai-line:rgba(16,42,92,.1);
@@ -496,8 +499,8 @@
     background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); color:#fff;
     font-family:'Poppins',sans-serif; font-weight:700; font-size:.76rem;
 }
-.ai-tst-slide figcaption b{ display:block; font-family:'Poppins',sans-serif; font-size:.88rem; color:#fff; }
-.ai-tst-slide figcaption span{ font-size:.74rem; color:rgba(255,255,255,.62); }
+.ai-tst-slide figcaption b{ display:block; font-family:'Poppins',sans-serif; font-size:.9rem; font-weight:700; color:#fff; }
+.ai-tst-slide figcaption span{ font-size:.78rem; font-weight:600; color:rgba(255,255,255,.82); }
 
 .ai-tst-nav{ position:relative; z-index:1; display:flex; align-items:center; justify-content:center; gap:16px; margin-top:20px; }
 .ai-tst-arrow{
