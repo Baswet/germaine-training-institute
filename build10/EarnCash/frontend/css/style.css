@@ -1,0 +1,619 @@
+/* ==========================================================
+                    EARN CASH PLATFORM
+                    GLOBAL STYLE SYSTEM
+========================================================== */
+
+
+/* ==========================================================
+                    IMPORTS
+========================================================== */
+
+
+@import url("variables.css");
+
+@import url(
+"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+);
+
+
+
+/* ==========================================================
+                    RESET
+========================================================== */
+
+
+*{
+
+
+    margin:0;
+
+
+    padding:0;
+
+
+    box-sizing:border-box;
+
+
+}
+
+
+
+html{
+
+
+    scroll-behavior:smooth;
+
+
+}
+
+
+
+
+body{
+
+
+    font-family:
+
+    var(--font-main);
+
+
+    background:
+
+    var(--background);
+
+
+    color:
+
+    var(--text);
+
+
+    overflow-x:hidden;
+
+
+    min-height:100vh;
+
+
+    line-height:1.6;
+
+
+}
+
+
+
+
+/* ==========================================================
+                    CONTAINER
+========================================================== */
+
+
+.container{
+
+
+    width:90%;
+
+
+    max-width:
+
+    var(--container);
+
+
+    margin:auto;
+
+
+}
+
+
+
+/* ==========================================================
+                    LINKS
+========================================================== */
+
+
+a{
+
+
+    text-decoration:none;
+
+
+    color:inherit;
+
+
+}
+
+
+
+
+ul{
+
+
+    list-style:none;
+
+
+}
+
+
+
+
+img{
+
+
+    width:100%;
+
+
+    display:block;
+
+
+}
+
+
+
+
+/* ==========================================================
+                    TYPOGRAPHY
+========================================================== */
+
+
+h1,h2,h3,h4{
+
+
+    font-family:
+    var(--font-heading);
+
+
+    color:
+
+    var(--text);
+
+
+    line-height:1.15;
+
+
+}
+
+
+/* Statistic / large-number displays use Space Grotesk, matching
+   the numeric emphasis used throughout Germaine's own dashboards */
+
+.stat-card h2,
+.balance-card h2,
+.wallet-number,
+.mini-card h4,
+.admin-stat-card h2{
+
+
+    font-family:
+    var(--font-stats);
+
+
+}
+
+
+
+h1{
+
+
+    font-weight:
+
+    var(--font-weight-heavy);
+
+
+}
+
+
+
+h2{
+
+
+    font-weight:
+
+    var(--font-weight-bold);
+
+
+}
+
+
+
+p{
+
+
+    color:
+
+    var(--text-light);
+
+
+}
+/* ==========================================================
+                    GLASS SYSTEM
+========================================================== */
+
+
+.glass{
+
+
+    background:
+
+    var(--surface);
+
+
+    backdrop-filter:
+
+    blur(var(--blur));
+
+
+    -webkit-backdrop-filter:
+
+    blur(var(--blur));
+
+
+    border:
+
+
+    1px solid var(--glass-border);
+
+
+    border-radius:
+
+
+    var(--radius-lg);
+
+
+    box-shadow:
+
+
+    var(--shadow-md);
+
+
+    transition:
+
+
+    var(--transition);
+
+
+}
+
+
+
+.glass:hover{
+
+
+    box-shadow:
+
+
+    var(--shadow-lg);
+
+
+}
+
+
+
+/* ==========================================================
+                    BUTTON SYSTEM
+========================================================== */
+
+
+.btn{
+
+
+    display:inline-flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    padding:
+
+    15px 35px;
+
+
+    border-radius:
+
+    50px;
+
+
+    background:
+
+
+    var(--button-gradient);
+
+
+    color:white;
+
+
+    font-weight:
+
+    600;
+
+
+    border:none;
+
+
+    cursor:pointer;
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+    transition:.4s;
+
+
+    box-shadow:
+
+
+    0 20px 40px rgba(90,131,255,.25);
+
+
+}
+
+
+
+.btn:hover{
+
+
+    transform:
+
+    translateY(-5px);
+
+
+    box-shadow:
+
+
+    var(--shadow-lg);
+
+
+}
+
+
+
+
+.btn-outline{
+
+
+    background:
+
+
+    rgba(255,255,255,.45);
+
+
+    color:
+
+    var(--primary-dark);
+
+
+    border:
+
+
+    1px solid rgba(255,255,255,.8);
+
+
+}
+
+
+
+/* ==========================================================
+                    SECTIONS
+========================================================== */
+
+
+section{
+
+
+    padding:
+
+    var(--section-space) 0;
+
+
+}
+
+
+
+
+
+/* ==========================================================
+                    SCROLL BAR
+========================================================== */
+
+
+::-webkit-scrollbar{
+
+
+    width:10px;
+
+
+}
+
+
+
+::-webkit-scrollbar-track{
+
+
+    background:
+
+    #f1f5ff;
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+
+    background:
+
+    var(--primary);
+
+
+    border-radius:
+
+    20px;
+
+
+}
+
+
+
+
+/* ==========================================================
+                    TEXT SELECTION
+========================================================== */
+
+
+::selection{
+
+
+    background:
+
+    var(--primary);
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+/* ==========================================================
+                    CURSOR LIGHT
+========================================================== */
+
+
+.cursor-glow{
+
+
+    position:fixed;
+
+
+    width:35px;
+
+
+    height:35px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+
+    rgba(105,144,255,.35);
+
+
+    filter:
+
+    blur(15px);
+
+
+    pointer-events:none;
+
+
+    transform:
+
+    translate(-50%,-50%);
+
+
+    z-index:9999;
+
+
+}
+
+
+
+
+
+/* ==========================================================
+                    UTILITIES
+========================================================== */
+
+
+.text-center{
+
+
+    text-align:center;
+
+
+}
+
+
+
+.hidden{
+
+
+    display:none;
+
+
+}
+
+
+
+.flex{
+
+
+    display:flex;
+
+
+}
+
+
+
+.center{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+}
+/* ==========================================================
+   DASHBOARD SECTION NAV
+   Shared link strip added across all logged-in pages so users
+   can actually move between dashboard/courses/referrals/etc.
+========================================================== */
+
+.dash-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    align-items:center;
+}
+
+.dash-links a{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:.9rem;
+    font-weight:500;
+    color:var(--text-light);
+    text-decoration:none;
+    transition:var(--transition);
+}
+
+.dash-links a:hover,
+.dash-links a.active{
+    color:var(--primary);
+}
+
+@media(max-width:900px){
+    .dash-links{
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        gap:16px;
+        max-width:55vw;
+    }
+    .dash-links a{
+        white-space:nowrap;
+    }
+}

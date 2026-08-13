@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% from "admin/_pagination.html" import render_pagination %}
+{% block title %}Alumni{% endblock %}
+{% block content %}
+<div class="gti-topbar"><h1>Alumni</h1></div>
+
+<form class="gti-toolbar" method="get">
+  <input type="text" name="q" placeholder="Search name or email…" value="{{ q }}">
+  <button type="submit">Filter</button>
+  {% if q %}<a class="gti-clear" href="{{ url_for('admin.alumni_list') }}">Clear</a>{% endif %}
+</form>
+
+<div class="gti-table-wrap">
+  {% if result.records %}
+  <table class="gti-table">
+    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Programme / School</th><th>Grad. Year</th><th>Registered</th></tr></thead>
+    <tbody>
+      {% for r in result.records %}
+      <tr>
+        <td><a class="gti-row-link" href="{{ url_for('admin.alumni_detail', alumni_id=r.id) }}">{{ r.full_name }}</a></td>
+        <td>{{ r.email }}</td>
+        <td>{{ r.phone }}</td>
+        <td>{{ r.programme.name if r.programme else '— (unresolved, see §39 F)' }}</td>
+        <td>{{ r.graduation_year or '—' }}</td>
+        <td>{{ r.registered_at.strftime('%d %b %Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <div class="gti-empty">No alumni records match this view.</div>
+  {% endif %}
+</div>
+{{ render_pagination(result, 'admin.alumni_list', {'q': q}) }}
+{% endblock %}

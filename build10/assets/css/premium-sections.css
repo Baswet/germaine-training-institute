@@ -1,0 +1,375 @@
+/*==================================================
+    GERMAINE TRAINING INSTITUTE
+    PREMIUM FUTURISTIC ENHANCEMENTS
+    Scoped upgrade for:
+      · Welcome to Germaine  (.welcome-section)
+      · Why Choose Germaine  (.why-germaine)
+    Layout, content and hierarchy are unchanged —
+    this file only enhances appearance.
+==================================================*/
+
+:root{
+    --fx-bg:#FFFFFF;
+    --fx-bg-2:#FFFFFF;
+    --fx-surface:rgba(255, 255, 255, .55);
+    --fx-surface-2:rgba(255, 255, 255, .7);
+    --fx-cyan:#102A5C;
+    --fx-blue:#EC4899;
+    --fx-gold:#102A5C;
+    --fx-text:#102A5C;
+    --fx-muted:#102A5C;
+    --fx-border:rgba(236, 72, 153, 0.16);
+
+    /* asymmetrical HUD frame shape (angled corners) */
+    --fx-clip:polygon(0 7%, 7% 0, 100% 0, 100% 93%, 93% 100%, 0 100%);
+}
+
+/* smooth angle driver for travelling border light */
+@property --fx-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+
+/*==========================
+    REUSABLE KEYFRAMES
+==========================*/
+@keyframes fxBorderTravel{ to{ --fx-a:360deg; } }
+@keyframes fxFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
+}
+@keyframes fxFloatBadge{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-7px); }
+}
+@keyframes fxGlowPulse{
+    0%,100%{ box-shadow:0 10px 30px rgba(16, 42, 92, .28), 0 0 0 rgba(236, 72, 153, 0); }
+    50%{ box-shadow:0 10px 30px rgba(16, 42, 92, .28), 0 0 22px rgba(236, 72, 153, .45); }
+}
+@keyframes fxDot{
+    0%,100%{ transform:translateY(0) scale(1); opacity:.85; }
+    50%{ transform:translateY(-14px) scale(1.25); opacity:.35; }
+}
+@keyframes fxMesh{
+    0%{ background-position:0% 0%, 100% 100%, 0 0, 0 0; }
+    100%{ background-position:20% 10%, 80% 90%, 0 0, 0 0; }
+}
+@keyframes fxOrb{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    33%{ transform:translate(30px,-24px) scale(1.08); }
+    66%{ transform:translate(-24px,18px) scale(.95); }
+}
+
+/*==================================================
+    FUTURISTIC IMAGE FRAME  (shared HUD container)
+==================================================*/
+.fx-media{ position:relative; isolation:isolate; }
+
+/* soft radial glow behind the frame */
+.fx-media::before{
+    content:"";
+    position:absolute;
+    inset:-10% -8% -10% -12%;
+    z-index:-1;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(236, 72, 153, .28), transparent 60%),
+        radial-gradient(circle at 80% 78%, rgba(236, 72, 153, .16), transparent 62%);
+    filter:blur(34px);
+    opacity:.9;
+}
+
+/* animated cyan/gold border light — revealed as the frame's edge */
+.fx-frame{
+    position:relative;
+    padding:3px;
+    clip-path:var(--fx-clip);
+    background:conic-gradient(from var(--fx-a),
+        rgba(236, 72, 153, .14) 0deg,
+        var(--fx-cyan) 42deg,
+        rgba(236, 72, 153, .35) 96deg,
+        transparent 150deg,
+        transparent 250deg,
+        rgba(236, 72, 153, .55) 302deg,
+        rgba(236, 72, 153, .14) 360deg);
+    animation:fxBorderTravel 8s linear infinite;
+    filter:drop-shadow(0 14px 34px rgba(16, 42, 92, .5)) drop-shadow(0 0 16px rgba(236, 72, 153, .3));
+    transition:transform .5s cubic-bezier(.25,.8,.25,1), filter .5s ease;
+}
+
+/* frosted HUD glass holding the photo */
+.fx-glass{
+    position:relative;
+    clip-path:var(--fx-clip);
+    background:rgba(16, 42, 92, .35);
+    backdrop-filter:blur(6px) saturate(115%);
+    -webkit-backdrop-filter:blur(6px) saturate(115%);
+    overflow:hidden;
+}
+.fx-glass::after{           /* subtle glass reflection sheen */
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(125deg, rgba(255, 255, 255, .16) 0%, transparent 32%);
+    pointer-events:none;
+}
+.fx-glass img{
+    display:block;
+    width:100%;
+    height:440px;
+    object-fit:cover;
+    object-position:center;
+    border-radius:0 !important;   /* shape comes from the clip-path */
+    box-shadow:none !important;
+}
+
+/* hover: gentle 3D lift + intensified cyan glow */
+.fx-media:hover .fx-frame{
+    transform:perspective(1100px) rotateX(2deg) rotateY(-3deg) translateY(-8px) scale(1.02);
+    filter:drop-shadow(0 26px 50px rgba(16, 42, 92, .55)) drop-shadow(0 0 30px rgba(236, 72, 153, .6));
+    animation-duration:5s;
+}
+
+/* decorative floating particles + lines around the frame */
+.fx-dot{
+    position:absolute;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--fx-cyan);
+    box-shadow:0 0 12px var(--fx-cyan), 0 0 22px rgba(236, 72, 153, .6);
+    z-index:2;
+    animation:fxDot 5s ease-in-out infinite;
+}
+.fx-dot.fx-d1{ top:8%; right:-6px; }
+.fx-dot.fx-d2{ bottom:16%; left:-8px; width:6px; height:6px; animation-delay:1.2s; }
+.fx-dot.fx-d3{ top:44%; right:10%; width:5px; height:5px; background:var(--fx-gold); box-shadow:0 0 10px var(--fx-gold); animation-delay:.6s; }
+
+.fx-line{
+    position:absolute;
+    height:1px;
+    width:64px;
+    background:linear-gradient(90deg, transparent, var(--fx-cyan), transparent);
+    opacity:.6;
+    z-index:2;
+}
+.fx-line.fx-l1{ top:-10px; left:14%; }
+.fx-line.fx-l2{ bottom:-10px; right:12%; width:48px; background:linear-gradient(90deg, transparent, var(--fx-gold), transparent); }
+
+/*==================================================
+    SECTION 1 — WELCOME: floating "20+" badge glass
+==================================================*/
+.welcome-image.fx-media .experience-card{
+    background:rgba(255, 255, 255, .7) !important;
+    backdrop-filter:blur(18px) saturate(120%);
+    -webkit-backdrop-filter:blur(18px) saturate(120%);
+    border:1px solid rgba(255, 255, 255, .85);
+    border-radius:16px;
+    box-shadow:0 14px 34px rgba(16, 42, 92, .12), 0 0 18px rgba(236, 72, 153, 0.2);
+    overflow:hidden;
+    z-index:3;
+    animation:fxFloatBadge 6s ease-in-out infinite, fxGlowPulse 4.5s ease-in-out infinite;
+}
+.welcome-image.fx-media .experience-card::after{   /* animated blue/pink outline */
+    content:"";
+    position:absolute; inset:0;
+    padding:1px; border-radius:16px;
+    background:conic-gradient(from var(--fx-a), transparent 0 70%, var(--fx-cyan) 86%, #EC4899 92%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:fxBorderTravel 7s linear infinite;
+    pointer-events:none;
+}
+.welcome-image.fx-media .experience-card h2{ color:var(--fx-text); }
+.welcome-image.fx-media .experience-card span{ color:var(--fx-muted); }
+
+/*==================================================
+    SECTION 2 — WHY CHOOSE GERMAINE
+==================================================*/
+.why-germaine{
+    background:
+        radial-gradient(1000px 600px at 12% 8%, rgba(236, 72, 153, .08), transparent 60%),
+        radial-gradient(900px 620px at 88% 18%, rgba(16, 42, 92, .08), transparent 58%),
+        radial-gradient(800px 560px at 50% 100%, rgba(16, 42, 92, .07), transparent 55%),
+        linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 50%, #FFFFFF 100%) !important;
+    overflow:hidden;
+}
+/* animated mesh gradient + faint tech grid (visible on close inspection) */
+.why-germaine::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(236, 72, 153, .08), transparent 42%),
+        radial-gradient(circle at 82% 78%, rgba(16, 42, 92, .08), transparent 46%),
+        linear-gradient(rgba(16, 42, 92, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 42, 92, .035) 1px, transparent 1px);
+    background-size:100% 100%, 100% 100%, 46px 46px, 46px 46px;
+    animation:fxMesh 22s ease-in-out infinite alternate;
+}
+.why-germaine > *{ position:relative; z-index:1; }
+
+/* ambient glow orbs behind the content */
+.fx-orbs{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.fx-orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.15;
+    animation:fxOrb 22s ease-in-out infinite;
+}
+.fx-orb.o1{ display:none; }
+.fx-orb.o2{ width:480px; height:480px; bottom:-10%; right:6%; background:var(--fx-blue); animation-duration:26s; animation-delay:-6s; }
+.fx-orb.o3{ width:340px; height:340px; top:30%; left:46%; background:var(--fx-gold); opacity:.1; animation-duration:20s; animation-delay:-12s; }
+
+/* Section 2 floating badge — matching HUD glass */
+.why-image.fx-media .floating-badge{
+    background:rgba(255, 255, 255, .7) !important;
+    backdrop-filter:blur(18px) saturate(120%);
+    -webkit-backdrop-filter:blur(18px) saturate(120%);
+    border:1px solid rgba(255, 255, 255, .85);
+    box-shadow:0 14px 34px rgba(16, 42, 92, .14), 0 0 18px rgba(236, 72, 153, 0.22);
+    overflow:hidden;
+    z-index:3;
+    animation:fxFloatBadge 6.5s ease-in-out infinite;
+}
+.why-image.fx-media .floating-badge h3{ color:var(--fx-text); }
+.why-image.fx-media .floating-badge p{ color:var(--fx-muted); }
+
+/* Feature cards → premium light glass with travelling border light on hover */
+.why-germaine .feature-box{
+    position:relative;
+    background:rgba(255, 255, 255, .55) !important;
+    backdrop-filter:blur(20px) saturate(140%);
+    -webkit-backdrop-filter:blur(20px) saturate(140%);
+    border:1px solid rgba(255, 255, 255, .65);
+    box-shadow:0 20px 60px rgba(16, 42, 92, .08), 0 0 18px rgba(236, 72, 153, 0.16);
+    overflow:hidden;
+    transition:transform .4s cubic-bezier(.25,.8,.25,1), box-shadow .4s ease, border-color .4s ease, background .4s ease;
+}
+.why-germaine .feature-box h3{ color:var(--fx-text); }
+.why-germaine .feature-box p{ color:var(--fx-muted); }
+.why-germaine .feature-box::before{   /* travelling border light (hover) */
+    content:"";
+    position:absolute; inset:0;
+    padding:1px; border-radius:inherit;
+    background:conic-gradient(from var(--fx-a), transparent 0 66%, var(--fx-blue) 78%, #FFFFFF 86%, var(--fx-cyan) 94%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0;
+    transition:opacity .4s ease;
+    animation:fxBorderTravel 6s linear infinite;
+    pointer-events:none;
+}
+.why-germaine .feature-box:hover{
+    transform:translateY(-6px) scale(1.02);
+    background:rgba(255, 255, 255, .75) !important;
+    border-color:rgba(236, 72, 153, .4);
+    box-shadow:0 26px 64px rgba(16, 42, 92, .12), 0 0 30px rgba(16, 42, 92, .2);
+}
+.why-germaine .feature-box:hover::before{ opacity:1; }
+
+/* icons keep their glyphs — add soft pink/blue glow */
+.why-germaine .feature-icon{
+    box-shadow:0 0 0 1px rgba(236, 72, 153, .25), 0 0 18px rgba(236, 72, 153, .32);
+    transition:box-shadow .4s ease, transform .4s ease;
+}
+.why-germaine .feature-box:hover .feature-icon{
+    box-shadow:0 0 0 1px rgba(16, 42, 92, .5), 0 0 26px rgba(16, 42, 92, .5);
+    transform:translateY(-2px);
+}
+
+/*==========================
+    ACCESSIBILITY / MOTION
+==========================*/
+@media (prefers-reduced-motion: reduce){
+    .fx-frame, .fx-dot, .fx-orb, .why-germaine::before,
+    .fx-media .experience-card, .why-image.fx-media .floating-badge,
+    .welcome-image.fx-media .experience-card::after,
+    .why-germaine .feature-box::before{ animation:none !important; }
+    .fx-media:hover .fx-frame{ transform:translateY(-6px); }
+}
+
+/*==========================
+    RESPONSIVE
+==========================*/
+@media(max-width:991px){
+    .fx-glass img{ height:400px; }
+}
+@media(max-width:768px){
+    .fx-glass img{ height:340px; }
+    .fx-media::before{ filter:blur(26px); }
+    .fx-orb{ filter:blur(80px); }
+}
+@media(max-width:576px){
+    .fx-glass img{ height:280px; }
+    .fx-line{ display:none; }
+}
+
+/*==================================================
+    WELCOME & WHY IMAGES — TARITA-STYLE ORGANIC BLOB
+    One consistent structure for both sections: a flowing
+    asymmetric photo blob with a royal-blue blob offset to
+    the LEFT (peeking out, not a uniform ring), a glassy
+    border and a travelling margin light.
+==================================================*/
+.welcome-image.fx-media,
+.why-image.fx-media{ padding:18px 18px 30px 48px; }
+
+/* neutralise the angled HUD frame; use a flowing blob shape */
+.welcome-image .fx-frame,
+.why-image .fx-frame{
+    clip-path:none !important;
+    padding:0 !important;
+    background:none !important;
+    filter:none !important;
+    animation:none !important;
+    overflow:visible;
+    border-radius:66% 34% 62% 38% / 58% 44% 56% 42%;
+}
+/* big royal-blue blob offset to the LEFT (peeks like the Tarita reference) */
+.welcome-image .fx-frame::before,
+.why-image .fx-frame::before{
+    content:""; position:absolute; z-index:-1;
+    top:-5%; left:-30%; right:3%; bottom:-7%;
+    background:linear-gradient(130deg, #102A5C 0%, #102A5C 52%, #102A5C 100%);
+    border-radius:64% 36% 70% 30% / 62% 40% 60% 38%;
+    transform:rotate(-5deg);
+    box-shadow:0 34px 70px rgba(16, 42, 92, .35);
+}
+/* the photo — same flowing blob, glassy border & glow */
+.welcome-image .fx-glass,
+.why-image .fx-glass{
+    clip-path:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    border-radius:66% 34% 62% 38% / 58% 44% 56% 42%;
+    border:4px solid rgba(255, 255, 255, .82);
+    box-shadow:0 30px 60px rgba(236, 72, 153, .3), 0 0 44px rgba(16, 42, 92, .28), inset 0 0 40px rgba(255, 255, 255, .14);
+    overflow:hidden;
+}
+.welcome-image .fx-glass img,
+.why-image .fx-glass img{
+    border-radius:inherit !important;
+    height:440px !important;
+}
+.welcome-image .fx-glass::after,
+.why-image .fx-glass::after{ border-radius:inherit; }
+/* travelling light around the blob margin */
+.welcome-image .fx-glass::before,
+.why-image .fx-glass::before{
+    content:""; position:absolute; inset:0; z-index:3;
+    border-radius:inherit; padding:3px;
+    background:conic-gradient(from var(--fx-a),
+        transparent 0 64%, var(--fx-cyan) 82%, #EC4899 88%, var(--fx-blue) 94%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:fxBorderTravel 8s linear infinite; pointer-events:none;
+}
+/* keep it clean like the reference (hide the extra dots/lines) */
+.welcome-image .fx-dot, .welcome-image .fx-line,
+.why-image .fx-dot, .why-image .fx-line{ display:none; }
+
+@media(max-width:768px){
+    .welcome-image.fx-media,
+    .why-image.fx-media{ padding:14px 14px 24px 36px; }
+    .welcome-image .fx-glass img,
+    .why-image .fx-glass img{ height:360px !important; }
+}

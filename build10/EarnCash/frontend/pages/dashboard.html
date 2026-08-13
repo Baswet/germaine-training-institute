@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+
+<meta charset="UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="description" content="Your EarnFastCash referral dashboard.">
+<link rel="canonical" href="https://site.germaineinstitute.ac.ke/EarnCash/frontend/pages/dashboard.html">
+
+
+<title>
+
+EarnCash | Dashboard
+
+</title>
+
+
+<!-- MAIN CSS -->
+
+
+<link rel="stylesheet" href="../css/variables.css">
+
+
+<link rel="stylesheet" href="../css/style.css">
+
+
+<link rel="stylesheet" href="../css/background.css">
+
+
+<link rel="stylesheet" href="../css/cards.css">
+
+
+<link rel="stylesheet" href="../css/dashboard.css">
+
+
+<link rel="stylesheet" href="../css/analytics.css">
+
+<link rel="stylesheet" href="../css/dashboard-redesign.css">
+
+
+</head>
+
+
+<body class="eb-dashboard">
+
+
+<!-- ==========================
+        BACKGROUND EFFECTS
+=========================== -->
+
+
+<div class="background-blobs">
+
+
+<span class="blob blob1"></span>
+
+
+<span class="blob blob2"></span>
+
+
+<span class="blob blob3"></span>
+
+
+</div>
+
+
+
+<div class="cursor-glow"></div>
+
+
+<!-- ==========================
+        DASHBOARD SHELL
+=========================== -->
+
+<div class="eb-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="eb-sidebar">
+
+        <div class="eb-sidebar-top">
+            <span class="eb-brand-icon">GC</span>
+            <span class="eb-brand-name">EarnCash</span>
+        </div>
+
+        <nav class="eb-sidebar-nav">
+            <a href="dashboard.html" class="eb-nav-link active"><i data-lucide="gauge"></i><span>Dashboard</span></a>
+            <a href="referrals.html" class="eb-nav-link"><i data-lucide="users"></i><span>My Referrals</span></a>
+            <a href="courses.html" class="eb-nav-link"><i data-lucide="graduation-cap"></i><span>Enrollments</span></a>
+            <a href="#performanceSection" class="eb-nav-link"><i data-lucide="bar-chart-3"></i><span>Performance</span></a>
+            <a href="withdrawal.html" class="eb-nav-link"><i data-lucide="banknote"></i><span>Payouts</span></a>
+            <a href="../../../courses.html" class="eb-nav-link"><i data-lucide="book-open"></i><span>Resources</span></a>
+            <a href="notifications.html" class="eb-nav-link"><i data-lucide="message-square"></i><span>Messages</span></a>
+            <a href="profile.html" class="eb-nav-link"><i data-lucide="settings"></i><span>Settings</span></a>
+        </nav>
+
+        <div class="eb-sidebar-profile">
+
+            <div class="eb-profile-row">
+                <span class="eb-avatar"><i data-lucide="user"></i></span>
+                <div class="eb-profile-info">
+                    <strong id="userName">User</strong>
+                    <span>Affiliate Partner</span>
+                </div>
+                <button class="eb-profile-more" onclick="logout()" title="Log out" aria-label="Log out"><i data-lucide="log-out"></i></button>
+            </div>
+
+            <span class="eb-verified-badge"><i data-lucide="shield-check"></i> Verified Partner</span>
+
+            <span id="userEmail" class="sr-only">email@example.com</span>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN COLUMN -->
+    <div class="eb-main-col">
+
+        <header class="eb-topbar">
+
+            <div class="eb-topbar-actions">
+
+                <a href="../../../index.html" class="eb-inst-brand">
+                    <img src="../../../assets/images/logo/logo.jpg" alt="Germaine Institute">
+                    <span>Germaine<br>Institute</span>
+                </a>
+
+                <a href="notifications.html" class="eb-icon-btn" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                    <span class="eb-dot"></span>
+                </a>
+
+                <a href="profile.html" class="eb-avatar-btn" aria-label="Profile">
+                    <i data-lucide="user-circle"></i>
+                </a>
+
+            </div>
+
+        </header>
+
+        <main class="eb-main">
+
+            <div class="container eb-container">
+
+                <!-- ==========================
+                        HERO BANNER
+                =========================== -->
+
+                <section class="glass eb-hero">
+
+                    <div class="eb-hero-copy">
+                        <h1><span class="eb-hash">#</span> Share the Future.<br><span class="eb-hash">#</span> Grow your income.</h1>
+                        <p>Empower others, build connections and unlock endless opportunities.</p>
+                    </div>
+
+                    <div class="eb-hero-side">
+
+                        <div class="eb-share-card">
+                            <h4>Share Link</h4>
+                            <div class="referral-box">
+                                <input type="text" id="affiliateLink" value="Generating..." readonly aria-label="Your EarnCash sign-up referral link">
+                                <button onclick="copyReferralLink()" aria-label="Copy referral link"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="eb-share-card">
+                            <h4>Refer to GTI Bootcamps</h4>
+                            <div class="referral-box">
+                                <input type="text" id="gtiReferralLink" value="Generating..." readonly aria-label="Your GTI AI Bootcamp referral link">
+                                <button onclick="copyGtiReferralLink()" aria-label="Copy GTI referral link"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ==========================
+                        STATISTICS
+                =========================== -->
+
+                <section class="eb-stats-grid">
+
+                    <div class="glass stat-card eb-stat">
+                        <div class="stat-icon"><i data-lucide="wallet"></i></div>
+                        <div><span>Total Earnings</span><h2 id="totalEarnings">KES 0</h2></div>
+                    </div>
+
+                    <div class="glass stat-card eb-stat">
+                        <div class="stat-icon"><i data-lucide="users"></i></div>
+                        <div><span>Total Referrals</span><h2 id="totalReferrals">0</h2></div>
+                    </div>
+
+                    <div class="glass stat-card eb-stat">
+                        <div class="stat-icon"><i data-lucide="coins"></i></div>
+                        <div><span>Total Commission</span><h2 id="totalCommission">KES 0</h2></div>
+                    </div>
+
+                </section>
+
+                <!-- ==========================
+                        WHY CHOOSE / HOW IT WORKS
+                =========================== -->
+
+                <section class="eb-two-col">
+
+                    <div class="glass eb-panel">
+
+                        <h3>Why Choose EarnCash?</h3>
+
+                        <div class="eb-mini-grid">
+
+                            <div class="eb-mini-item">
+                                <span class="eb-mini-ic"><i data-lucide="layout-dashboard"></i></span>
+                                <div><h4>Create Account</h4><p>Register and access your personal dashboard.</p></div>
+                            </div>
+
+                            <div class="eb-mini-item">
+                                <span class="eb-mini-ic"><i data-lucide="share-2"></i></span>
+                                <div><h4>Share Links</h4><p>Invite friends to enroll using your unique referral link.</p></div>
+                            </div>
+
+                            <div class="eb-mini-item">
+                                <span class="eb-mini-ic"><i data-lucide="trending-up"></i></span>
+                                <div><h4>Track Growth</h4><p>Monitor referrals and performance instantly.</p></div>
+                            </div>
+
+                            <div class="eb-mini-item">
+                                <span class="eb-mini-ic"><i data-lucide="wallet"></i></span>
+                                <div><h4>Manage Wallet</h4><p>Securely monitor your rewards.</p></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="glass eb-panel">
+
+                        <h3>How It Works</h3>
+
+                        <div class="eb-steps-row">
+
+                            <div class="eb-step">
+                                <span class="eb-step-num">01</span>
+                                <span class="eb-mini-ic"><i data-lucide="user-plus"></i></span>
+                                <h4>Create</h4>
+                                <p>Create your free account.</p>
+                            </div>
+
+                            <span class="eb-step-arrow"><i data-lucide="arrow-right"></i></span>
+
+                            <div class="eb-step">
+                                <span class="eb-step-num">02</span>
+                                <span class="eb-mini-ic"><i data-lucide="link"></i></span>
+                                <h4>Share</h4>
+                                <p>Get your personal referral link.</p>
+                            </div>
+
+                            <span class="eb-step-arrow"><i data-lucide="arrow-right"></i></span>
+
+                            <div class="eb-step">
+                                <span class="eb-step-num">03</span>
+                                <span class="eb-mini-ic"><i data-lucide="users"></i></span>
+                                <h4>Grow</h4>
+                                <p>Invite friends to enroll at Germaine Institute.</p>
+                            </div>
+
+                            <span class="eb-step-arrow"><i data-lucide="arrow-right"></i></span>
+
+                            <div class="eb-step">
+                                <span class="eb-step-num">04</span>
+                                <span class="eb-mini-ic"><i data-lucide="wallet"></i></span>
+                                <h4>Earn</h4>
+                                <p>Manage your rewards.</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ==========================
+                        PERFORMANCE (live data)
+                =========================== -->
+
+                <section class="eb-performance" id="performanceSection">
+
+                    <div class="eb-perf-grid">
+
+                        <div class="glass wallet-card">
+
+                            <h2>Available Balance</h2>
+
+                            <div class="wallet-number">
+                                KES <span id="walletBalance">0</span>
+                            </div>
+
+                            <a href="withdrawal.html" class="btn">Withdraw Funds</a>
+
+                        </div>
+
+                        <div class="glass analytics-card">
+
+                            <h2>Earnings Growth</h2>
+                            <p>Your commission performance over time.</p>
+
+                            <div class="chart-container">
+                                <canvas id="earningsChart"></canvas>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="glass activity-card">
+
+                        <h2>Transactions</h2>
+
+                        <div id="transactionList">
+                            <p>Loading transactions...</p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ==========================
+                        CTA BANNER
+                =========================== -->
+
+                <section class="glass eb-cta-banner">
+
+                    <div class="eb-cta-left">
+                        <span class="eb-cta-star"><i data-lucide="star"></i></span>
+                        <p>You're on your way! Keep sharing and growing your network.</p>
+                    </div>
+
+                    <a href="referrals.html" class="btn eb-btn-pink">View Full Performance <i data-lucide="arrow-up-right"></i></a>
+
+                </section>
+
+            </div>
+
+        </main>
+
+        <footer class="eb-footer">
+            <div class="container">
+                <p>&copy; 2026 Germaine Institute. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================
+        JAVASCRIPT FILES
+=========================== -->
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>lucide.createIcons();</script>
+
+<script src="../js/config.js"></script>
+
+
+<script src="../js/auth.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script src="../js/dashboard.js"></script>
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,492 @@
+/*==================================================
+    GERMAINE TRAINING INSTITUTE — ADMISSIONS
+    ULTRA-PREMIUM FUTURISTIC GLASSMORPHISM THEME
+    Everything below is scoped under body.admissions-page
+    so it can never affect any other page on the site.
+    Existing IDs, classes used by JS (faq toggle, form
+    submit, nav, side-nav) and all functionality are
+    left completely intact — this is a visual re-skin.
+
+    Re-themed to a BRIGHT white/pink base (was dark
+    navy-black throughout). Token names are kept as-is
+    to avoid touching every call site; only their VALUES
+    changed, so --adm-white now holds the dark navy TEXT
+    colour (correct on a light background) and --adm-bg-1..4
+    hold light backgrounds instead of near-black ones.
+    The footer keeps an explicit dark-navy background to
+    match the same dark footer used on every other page.
+==================================================*/
+
+body.admissions-page{
+    --adm-bg-1:#FFFFFF;
+    --adm-bg-2:#FFFFFF;
+    --adm-bg-3:#FFFFFF;
+    --adm-bg-4:#FFFFFF;
+    --adm-blue:#EC4899;
+    --adm-cyan:#EC4899;
+    --adm-pink:#EC4899;
+    --adm-purple:#EC4899;
+    --adm-gold:#EC4899;
+    --adm-gold-2:#EC4899;
+    --adm-white:#102A5C;
+    --adm-glass:rgba(255, 255, 255, .65);
+    --adm-glass-2:rgba(255, 255, 255, .55);
+    --adm-border:rgba(236, 72, 153, 0.16);
+    background:var(--adm-bg-1);
+}
+
+@property --adm-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+
+@keyframes admTravel{ to{ --adm-a:360deg; } }
+@keyframes admDrift{
+    0%{ background-position:0% 0%, 100% 100%, 50% 0%; }
+    100%{ background-position:18% 10%, 82% 88%, 55% 6%; }
+}
+@keyframes admOrbit{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    33%{ transform:translate(34px,-26px) scale(1.08); }
+    66%{ transform:translate(-26px,20px) scale(.94); }
+}
+@keyframes admFloat{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(-14px) rotate(1deg); }
+}
+@keyframes admFloatSlow{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-9px); }
+}
+@keyframes admSpin{ to{ transform:rotate(360deg); } }
+@keyframes admSpinRev{ to{ transform:rotate(-360deg); } }
+@keyframes admTwinkle{
+    0%,100%{ opacity:.25; transform:scale(1); }
+    50%{ opacity:.9; transform:scale(1.4); }
+}
+@keyframes admSheen{
+    0%{ transform:translateX(-140%) skewX(-12deg); }
+    100%{ transform:translateX(240%) skewX(-12deg); }
+}
+@keyframes admPulse{
+    0%,100%{ box-shadow:0 0 0 rgba(236, 72, 153, 0); }
+    50%{ box-shadow:0 0 24px rgba(236, 72, 153, .35); }
+}
+@keyframes admReveal{ to{ opacity:1; transform:none; } }
+
+/*========================================
+    AMBIENT FUTURISTIC BACKGROUND (whole page)
+========================================*/
+body.admissions-page{ position:relative; overflow-x:clip; }
+body.admissions-page::before{
+    content:"";
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+        radial-gradient(680px 560px at 8% 10%, rgba(236, 72, 153, .1), transparent 60%),
+        radial-gradient(720px 620px at 94% 86%, rgba(236, 72, 153, .08), transparent 62%),
+        radial-gradient(600px 500px at 55% 45%, rgba(236, 72, 153, .06), transparent 60%);
+    animation:admDrift 30s ease-in-out infinite alternate;
+}
+body.admissions-page::after{
+    content:"";
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5;
+    background-image:
+        radial-gradient(1.6px 1.6px at 12% 22%, rgba(236, 72, 153, .4) 0, transparent 60%),
+        radial-gradient(1.6px 1.6px at 72% 12%, rgba(236, 72, 153, .3) 0, transparent 60%),
+        radial-gradient(1.6px 1.6px at 40% 68%, rgba(236, 72, 153, .35) 0, transparent 60%),
+        radial-gradient(1.6px 1.6px at 88% 60%, rgba(236, 72, 153, .3) 0, transparent 60%),
+        radial-gradient(1.6px 1.6px at 25% 90%, rgba(236, 72, 153, .25) 0, transparent 60%);
+    background-size:100% 100%;
+}
+body.admissions-page > *{ position:relative; z-index:1; }
+body.admissions-page .page-shell{ background:transparent; }
+
+/*========================================
+    NAVIGATION — glass upgrade (style only)
+========================================*/
+body.admissions-page .fixed-top-stack{
+    backdrop-filter:blur(18px) saturate(130%);
+    -webkit-backdrop-filter:blur(18px) saturate(130%);
+    background:linear-gradient(180deg, rgba(255, 255, 255, .94), rgba(255, 255, 255, .9));
+    border-bottom:1px solid var(--adm-border);
+    box-shadow:0 10px 34px rgba(16, 42, 92, .08), 0 0 18px rgba(236, 72, 153, 0.16);
+}
+body.admissions-page .utility-bar{ background:transparent; border-bottom:1px solid rgba(236, 72, 153, 0.12); }
+body.admissions-page .branding-bar{ background:transparent; }
+body.admissions-page .navbar{ background:transparent; position:relative; }
+body.admissions-page .navbar::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:linear-gradient(90deg, transparent, rgba(236, 72, 153, .5), rgba(236, 72, 153, .4), transparent);
+}
+body.admissions-page .nav-links a{ color:var(--adm-white); }
+body.admissions-page .nav-links a:hover,
+body.admissions-page .nav-links .active{ color:var(--adm-cyan); text-shadow:none; }
+body.admissions-page .brand-name{ color:var(--adm-white); }
+body.admissions-page .brand-tagline{ color:rgba(16, 42, 92, .65); }
+body.admissions-page .branding-location{ color:rgba(16, 42, 92, .75); }
+body.admissions-page .branding-contact a{ color:rgba(16, 42, 92, .85); }
+body.admissions-page .apply-btn{
+    position:relative; overflow:hidden;
+    background:linear-gradient(135deg,var(--adm-gold-2),var(--adm-gold));
+    box-shadow:0 10px 26px rgba(236, 72, 153, .35);
+    animation:admPulse 5s ease-in-out infinite;
+}
+body.admissions-page .dropdown-menu{
+    background:rgba(255, 255, 255, .98);
+    backdrop-filter:blur(20px);
+    border:1px solid var(--adm-border);
+}
+body.admissions-page .theme-toggle,
+body.admissions-page .search-btn{
+    background:var(--adm-glass); border:1px solid var(--adm-border); color:var(--adm-white);
+}
+body.admissions-page .announcement-bar{
+    background:linear-gradient(90deg, var(--adm-bg-4), var(--adm-bg-3));
+    border-bottom:1px solid rgba(236, 72, 153, .2);
+}
+body.admissions-page .announcement-link{
+    background:linear-gradient(135deg,var(--adm-cyan),var(--adm-blue));
+}
+
+/*========================================
+    HERO
+========================================*/
+body.admissions-page .adm-hero{
+    background:
+        radial-gradient(900px 500px at 80% -10%, rgba(236, 72, 153, .1), transparent 60%),
+        radial-gradient(700px 500px at 0% 100%, rgba(236, 72, 153, .08), transparent 55%),
+        linear-gradient(160deg, var(--adm-bg-1), var(--adm-bg-3) 70%);
+    padding:40px 0 74px;
+}
+body.admissions-page .adm-hero::before{ display:none; }
+body.admissions-page .adm-hero-grid{
+    display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;
+    text-align:left;
+}
+body.admissions-page .adm-hero-copy{ position:relative; }
+body.admissions-page .adm-hero-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--adm-glass); border:1px solid rgba(236, 72, 153, .35);
+    backdrop-filter:blur(10px); color:var(--adm-cyan);
+    animation:admPulse 4.5s ease-in-out infinite;
+}
+body.admissions-page .adm-hero-badge i{ color:var(--adm-cyan); }
+body.admissions-page .adm-hero h1{
+    text-align:left; margin:18px 0 16px; font-weight:800;
+    font-size:clamp(2.2rem,4.4vw,3.4rem); color:var(--adm-white);
+    text-shadow:none;
+}
+body.admissions-page .adm-hero h1 .adm-gold{
+    background:linear-gradient(90deg,var(--adm-gold-2),var(--adm-gold));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    filter:none;
+}
+body.admissions-page .adm-hero p{ text-align:left; margin:0 0 28px; max-width:560px; color:#102A5C; }
+body.admissions-page .adm-hero-cta{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:26px; }
+body.admissions-page .adm-btn-gold,
+body.admissions-page .adm-portal-cta .adm-btn-gold{
+    display:inline-flex; align-items:center; gap:9px;
+    background:linear-gradient(135deg,var(--adm-gold-2),var(--adm-gold));
+    color:#FFFFFF; font-weight:700; padding:15px 30px; border-radius:999px;
+    box-shadow:0 14px 30px rgba(236, 72, 153, .32); position:relative; overflow:hidden;
+    text-decoration:none; transition:transform .35s ease, box-shadow .35s ease;
+}
+body.admissions-page .adm-btn-gold:hover{ transform:translateY(-3px); box-shadow:0 18px 40px rgba(236, 72, 153, .48); }
+body.admissions-page .adm-btn-glass{
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--adm-glass); color:var(--adm-white); border:1.5px solid var(--adm-border);
+    backdrop-filter:blur(12px); padding:15px 30px; border-radius:999px; text-decoration:none;
+    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+body.admissions-page .adm-btn-glass:hover{
+    border-color:var(--adm-cyan); box-shadow:0 0 24px rgba(236, 72, 153, .25); transform:translateY(-3px);
+}
+body.admissions-page .adm-btn-gold::before,
+body.admissions-page .adm-btn-glass::before{
+    content:""; position:absolute; top:0; bottom:0; width:34%;
+    background:linear-gradient(100deg, transparent, rgba(255, 255, 255, .5), transparent);
+    transform:translateX(-160%) skewX(-12deg); transition:transform .7s ease; pointer-events:none;
+}
+body.admissions-page .adm-btn-gold:hover::before,
+body.admissions-page .adm-btn-glass:hover::before{ transform:translateX(320%) skewX(-12deg); }
+body.admissions-page .adm-hero .breadcrumb{ justify-content:flex-start; margin-top:6px; }
+
+/* hero media / graduate poster */
+body.admissions-page .adm-hero-media{ position:relative; isolation:isolate; }
+body.admissions-page .adm-hero-frame{
+    position:relative; padding:3px; border-radius:28px;
+    background:conic-gradient(from var(--adm-a), rgba(236, 72, 153, .15) 0deg, var(--adm-cyan) 60deg,
+        rgba(236, 72, 153, .4) 130deg, transparent 200deg, transparent 280deg,
+        rgba(236, 72, 153, .55) 330deg, rgba(236, 72, 153, .15) 360deg);
+    animation:admTravel 9s linear infinite;
+    filter:drop-shadow(0 24px 50px rgba(16, 42, 92, .22)) drop-shadow(0 0 30px rgba(236, 72, 153, .14));
+}
+body.admissions-page .adm-hero-glass{
+    position:relative; border-radius:25px; overflow:hidden;
+    background:rgba(255, 255, 255, .5); backdrop-filter:blur(6px) saturate(115%);
+    border:1px solid rgba(236, 72, 153, 0.16);
+}
+body.admissions-page .adm-hero-glass::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(125deg, rgba(255, 255, 255, .35) 0%, transparent 32%);
+}
+body.admissions-page .adm-hero-glass img{
+    display:block; width:100%; height:auto; object-fit:cover;
+    animation:admFloatSlow 7s ease-in-out infinite;
+}
+body.admissions-page .adm-ring{
+    position:absolute; border-radius:50%; pointer-events:none;
+    border:1px solid rgba(236, 72, 153, .25);
+}
+body.admissions-page .adm-ring-1{ inset:-8%; animation:admSpin 40s linear infinite; border-color:rgba(236, 72, 153, .18); }
+body.admissions-page .adm-ring-2{ inset:-16%; animation:admSpinRev 55s linear infinite; border-color:rgba(236, 72, 153, .14); border-style:dashed; }
+body.admissions-page .adm-dot{
+    position:absolute; width:7px; height:7px; border-radius:50%;
+    background:var(--adm-cyan); box-shadow:0 0 12px var(--adm-cyan), 0 0 22px rgba(236, 72, 153, .5);
+    animation:admTwinkle 4s ease-in-out infinite;
+}
+body.admissions-page .adm-dot-1{ top:6%; right:2%; }
+body.admissions-page .adm-dot-2{ bottom:14%; left:-4%; background:var(--adm-gold); box-shadow:0 0 12px var(--adm-gold); animation-delay:1.1s; }
+body.admissions-page .adm-dot-3{ top:48%; right:-3%; background:var(--adm-pink); box-shadow:0 0 12px var(--adm-pink); animation-delay:2s; }
+
+/*========================================
+    CONTENT SECTIONS (generic light glass base)
+========================================*/
+body.admissions-page .content-section,
+body.admissions-page .content-section.alt{
+    background:transparent;
+}
+body.admissions-page .section-tag{
+    background:var(--adm-glass); border:1px solid rgba(236, 72, 153, .3); color:var(--adm-cyan);
+}
+body.admissions-page .section-heading h2,
+body.admissions-page .two-col h2{ color:var(--adm-white); }
+body.admissions-page .section-heading p,
+body.admissions-page .two-col p{ color:#102A5C; }
+body.admissions-page .two-col img{
+    border:1px solid var(--adm-border);
+    box-shadow:0 26px 60px rgba(16, 42, 92, .14), 0 0 34px rgba(236, 72, 153, .1);
+}
+
+/*========================================
+    PROCESS — timeline glass cards
+========================================*/
+body.admissions-page .step-item{
+    position:relative; isolation:isolate; overflow:hidden;
+    background:var(--adm-glass-2);
+    backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--adm-border);
+    box-shadow:0 16px 40px rgba(16, 42, 92, .08), 0 0 18px rgba(236, 72, 153, 0.16);
+    transition:transform .4s cubic-bezier(.25,.8,.25,1), box-shadow .4s ease, border-color .4s ease;
+}
+body.admissions-page .step-item::before{
+    content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit; padding:1px;
+    background:conic-gradient(from var(--adm-a), transparent 0 70%, var(--adm-cyan) 85%, var(--adm-pink) 92%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .4s ease; animation:admTravel 8s linear infinite;
+}
+body.admissions-page .step-item:hover{
+    transform:translateY(-6px); border-color:rgba(236, 72, 153, .35);
+    box-shadow:0 24px 54px rgba(16, 42, 92, .12), 0 0 30px rgba(236, 72, 153, .16);
+}
+body.admissions-page .step-item:hover::before{ opacity:1; }
+body.admissions-page .step-num{
+    background:linear-gradient(135deg,var(--adm-cyan),var(--adm-blue));
+    box-shadow:0 0 18px rgba(236, 72, 153, .4);
+    color:#FFFFFF;
+}
+body.admissions-page .step-item h4{ color:var(--adm-white); }
+body.admissions-page .step-item p{ color:#102A5C; }
+
+/*========================================
+    REQUIREMENTS — glass checklist
+========================================*/
+body.admissions-page .requirements-list{
+    background:var(--adm-glass-2); backdrop-filter:blur(18px);
+    border:1px solid var(--adm-border); border-radius:20px; padding:8px 22px;
+    box-shadow:0 16px 40px rgba(16, 42, 92, .08), 0 0 18px rgba(236, 72, 153, 0.16);
+}
+body.admissions-page .requirements-list li{ color:#102A5C; border-bottom-color:rgba(16, 42, 92, .08); }
+body.admissions-page .requirements-list i{ color:var(--adm-cyan); }
+
+/*========================================
+    REQUIRED DOCUMENTS — upload-style cards
+========================================*/
+body.admissions-page .adm-docs-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:10px;
+}
+body.admissions-page .adm-doc-card{
+    position:relative; isolation:isolate; overflow:hidden; text-align:center;
+    padding:30px 22px; border-radius:20px;
+    background:var(--adm-glass-2); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+    border:1px dashed rgba(236, 72, 153, 0.24);
+    box-shadow:0 16px 40px rgba(16, 42, 92, .08), 0 0 18px rgba(236, 72, 153, 0.16);
+    transition:transform .4s cubic-bezier(.25,.8,.25,1), box-shadow .4s ease, border-color .4s ease;
+}
+body.admissions-page .adm-doc-card::before{
+    content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit; padding:1px;
+    background:conic-gradient(from var(--adm-a), transparent 0 72%, var(--adm-gold) 86%, var(--adm-cyan) 94%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .4s ease; animation:admTravel 7s linear infinite;
+}
+body.admissions-page .adm-doc-card:hover{
+    transform:translateY(-6px) scale(1.02); border-color:rgba(236, 72, 153, .4);
+    box-shadow:0 22px 50px rgba(16, 42, 92, .12), 0 0 26px rgba(236, 72, 153, .16);
+}
+body.admissions-page .adm-doc-card:hover::before{ opacity:1; }
+body.admissions-page .adm-doc-ic{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:56px; height:56px; border-radius:50%; margin-bottom:14px; font-size:1.3rem;
+    color:var(--adm-gold); background:rgba(236, 72, 153, .1); border:1px solid rgba(236, 72, 153, .3);
+    box-shadow:0 0 18px rgba(236, 72, 153, .14) inset;
+}
+body.admissions-page .adm-doc-card h4{ color:var(--adm-white); font-size:1.02rem; margin:0 0 6px; }
+body.admissions-page .adm-doc-card p{ color:#102A5C; font-size:.88rem; margin:0; }
+
+/*========================================
+    FAQ — glass accordion (keeps JS toggle intact)
+========================================*/
+body.admissions-page .faq-item{
+    background:var(--adm-glass-2); backdrop-filter:blur(18px);
+    border:1px solid var(--adm-border);
+    box-shadow:0 12px 32px rgba(16, 42, 92, .08), 0 0 18px rgba(236, 72, 153, 0.16);
+    transition:border-color .35s ease, box-shadow .35s ease;
+}
+body.admissions-page .faq-item:hover{ border-color:rgba(236, 72, 153, .3); }
+body.admissions-page .faq-item.open{ box-shadow:0 18px 44px rgba(16, 42, 92, .1), 0 0 26px rgba(236, 72, 153, .12); }
+body.admissions-page .faq-question{ color:var(--adm-white); }
+body.admissions-page .faq-question i{ color:var(--adm-cyan); }
+body.admissions-page .faq-answer p{ color:#102A5C; }
+
+/*========================================
+    OFFICIAL APPLICATION PORTAL CTA PANEL
+    (kept richly coloured/dark-on-pink as a deliberate
+    accent panel, not part of the page's base background)
+========================================*/
+body.admissions-page .adm-portal-cta{
+    position:relative; isolation:isolate; overflow:hidden;
+    display:flex; align-items:center; justify-content:space-between; gap:26px; flex-wrap:wrap;
+    max-width:900px; margin:0 auto 40px; padding:34px 38px; border-radius:24px;
+    background:linear-gradient(130deg, var(--adm-blue) 0%, #EC4899 55%, #102A5C 100%);
+    border:1px solid rgba(236, 72, 153, .3);
+    box-shadow:0 26px 60px rgba(16, 42, 92, .16), 0 0 40px rgba(236, 72, 153, .14);
+}
+body.admissions-page .adm-portal-cta::before{
+    content:""; position:absolute; inset:0; z-index:-1;
+    background:radial-gradient(500px 260px at 90% 10%, rgba(236, 72, 153, .25), transparent 60%);
+}
+body.admissions-page .adm-portal-text h3{ color:#FFFFFF; font-size:1.35rem; margin:0 0 8px; }
+body.admissions-page .adm-portal-text p{ color:rgba(255, 255, 255, .85); margin:0; max-width:440px; font-size:.95rem; }
+
+/*========================================
+    ENQUIRY FORM — glass finish
+========================================*/
+body.admissions-page .form-card{
+    background:var(--adm-glass-2); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px);
+    border:1px solid var(--adm-border);
+    box-shadow:0 24px 60px rgba(16, 42, 92, .1), 0 0 18px rgba(236, 72, 153, 0.18);
+}
+body.admissions-page .form-group label{ color:var(--adm-white); }
+body.admissions-page .form-group input,
+body.admissions-page .form-group select,
+body.admissions-page .form-group textarea{
+    background:rgba(255, 255, 255, .7); border:1.5px solid var(--adm-border); color:var(--adm-white);
+}
+body.admissions-page .form-group input::placeholder,
+body.admissions-page .form-group textarea::placeholder{ color:rgba(16, 42, 92, .4); }
+body.admissions-page .form-group input:focus,
+body.admissions-page .form-group select:focus,
+body.admissions-page .form-group textarea:focus{
+    border-color:var(--adm-cyan); background:#FFFFFF;
+    box-shadow:0 0 0 3px rgba(236, 72, 153, .15);
+}
+body.admissions-page .form-group select option{ background:#FFFFFF; color:var(--adm-white); }
+body.admissions-page .form-submit{
+    position:relative; overflow:hidden;
+    background:linear-gradient(135deg,var(--adm-gold-2),var(--adm-gold));
+    color:#FFFFFF; box-shadow:0 14px 30px rgba(236, 72, 153, .32);
+}
+body.admissions-page .form-submit::before{
+    content:""; position:absolute; top:0; bottom:0; width:34%;
+    background:linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent);
+    transform:translateX(-160%) skewX(-12deg); transition:transform .7s ease;
+}
+body.admissions-page .form-submit:hover::before{ transform:translateX(320%) skewX(-12deg); }
+body.admissions-page .form-note{ color:#102A5C; }
+
+/*========================================
+    FOOTER — kept dark navy, matching the same
+    dark footer used on every other page site-wide
+========================================*/
+body.admissions-page .footer{
+    background:linear-gradient(180deg, #102A5C, #102A5C);
+}
+body.admissions-page .newsletter{
+    background:linear-gradient(120deg, var(--adm-blue), #102A5C);
+}
+body.admissions-page .footer-column h3{ color:#FFFFFF; }
+body.admissions-page .footer-social a{
+    border:1px solid rgba(255, 255, 255, .18); background:rgba(255, 255, 255, .06);
+    transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+body.admissions-page .footer-social a:hover{
+    border-color:var(--adm-cyan); box-shadow:0 0 18px rgba(236, 72, 153, .35); transform:translateY(-3px);
+}
+body.admissions-page .back-to-top{
+    background:linear-gradient(135deg,var(--adm-gold-2),var(--adm-gold));
+    box-shadow:0 10px 26px rgba(236, 72, 153, .35);
+    color:#FFFFFF;
+}
+
+/*========================================
+    SCROLL REVEAL (respects prefers-reduced-motion)
+========================================*/
+body.admissions-page .step-item,
+body.admissions-page .adm-doc-card,
+body.admissions-page .faq-item{
+    opacity:0; transform:translateY(18px);
+    animation:admReveal .7s cubic-bezier(.25,.8,.25,1) forwards;
+    animation-delay:.05s;
+}
+
+@media (prefers-reduced-motion: reduce){
+    body.admissions-page::before,
+    body.admissions-page .apply-btn,
+    body.admissions-page .adm-hero-badge,
+    body.admissions-page .adm-hero-frame,
+    body.admissions-page .adm-hero-glass img,
+    body.admissions-page .adm-ring-1,
+    body.admissions-page .adm-ring-2,
+    body.admissions-page .adm-dot,
+    body.admissions-page .step-item::before,
+    body.admissions-page .adm-doc-card::before,
+    body.admissions-page .adm-btn-gold::before,
+    body.admissions-page .adm-btn-glass::before,
+    body.admissions-page .form-submit::before,
+    body.admissions-page .step-item,
+    body.admissions-page .adm-doc-card,
+    body.admissions-page .faq-item{ animation:none !important; }
+    body.admissions-page .step-item,
+    body.admissions-page .adm-doc-card,
+    body.admissions-page .faq-item{ opacity:1; transform:none; }
+}
+
+/*========================================
+    RESPONSIVE
+========================================*/
+@media (max-width:991px){
+    body.admissions-page .adm-hero-grid{ grid-template-columns:1fr; text-align:center; }
+    body.admissions-page .adm-hero-copy{ order:1; }
+    body.admissions-page .adm-hero-media{ order:0; max-width:420px; margin:0 auto; }
+    body.admissions-page .adm-hero h1,
+    body.admissions-page .adm-hero p{ text-align:center; margin-left:auto; margin-right:auto; }
+    body.admissions-page .adm-hero-cta{ justify-content:center; }
+    body.admissions-page .adm-hero .breadcrumb{ justify-content:center; }
+    body.admissions-page .adm-docs-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:576px){
+    body.admissions-page .adm-hero{ padding:26px 0 50px; }
+    body.admissions-page .adm-docs-grid{ grid-template-columns:1fr; }
+    body.admissions-page .adm-portal-cta{ flex-direction:column; text-align:center; padding:28px 22px; }
+    body.admissions-page .adm-portal-text p{ max-width:none; }
+}

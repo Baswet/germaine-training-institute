@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% from "admin/_pagination.html" import render_pagination %}
+{% block title %}Newsletter Subscribers{% endblock %}
+{% block content %}
+<div class="gti-topbar"><h1>Newsletter Subscribers</h1></div>
+
+<form class="gti-toolbar" method="get">
+  <input type="text" name="q" placeholder="Search email…" value="{{ q }}">
+  <select name="active">
+    <option value="">All</option>
+    <option value="true" {{ 'selected' if active_param == 'true' }}>Active only</option>
+    <option value="false" {{ 'selected' if active_param == 'false' }}>Unsubscribed only</option>
+  </select>
+  <button type="submit">Filter</button>
+  {% if q or active_param %}<a class="gti-clear" href="{{ url_for('admin.newsletter_list') }}">Clear</a>{% endif %}
+</form>
+
+<div class="gti-table-wrap">
+  {% if result.records %}
+  <table class="gti-table">
+    <thead><tr><th>Email</th><th>Source Page</th><th>Status</th><th>Subscribed</th></tr></thead>
+    <tbody>
+      {% for r in result.records %}
+      <tr>
+        <td>{{ r.email }}</td>
+        <td>{{ r.source_page or '—' }}</td>
+        <td><span class="gti-badge gti-badge-{{ 'green' if r.is_active else 'neutral' }}">{{ 'Active' if r.is_active else 'Unsubscribed' }}</span></td>
+        <td>{{ r.subscribed_at.strftime('%d %b %Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="gti-empty">No subscribers match this view.</div>{% endif %}
+</div>
+{{ render_pagination(result, 'admin.newsletter_list', {'q': q, 'active': active_param}) }}
+{% endblock %}

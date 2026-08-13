@@ -1,0 +1,373 @@
+/*==================================================
+    GERMAINE — NAVIGATION REFRESH
+    Loaded last, so it wins over style.css / global-refinements.css.
+
+    Scope is deliberately narrow — it touches only:
+      1. the UPPER utility bar (Level 1), restyled to match the
+         "Front Page 2026" reference: one clean, compact row of
+         quick links, smaller type, subtle separators.
+      2. the SCROLLED / STICKY merged header — slimmer height,
+         reduced padding, smaller logo/type, and a compact
+         "Apply Scholarship Now" button that sits on the same line.
+
+    The middle/main navigation bar in its NORMAL (unscrolled) state
+    is intentionally NOT restyled here — it keeps the size, colour,
+    spacing and behaviour it already had.
+==================================================*/
+
+/*==================================================
+    1. UPPER UTILITY BAR — reference styling
+    Ten quick links in the exact order of the reference:
+    Hire our Graduates · Earn Cash Fast · AI Boot Camp ·
+    Full Scholarship · Corporate Training · Partner with us
+    | Students Portal · Staff Portal · Alumni Registration · Vacancies
+==================================================*/
+
+.utility-bar{
+    font-size:.78rem;
+    letter-spacing:.1px;
+}
+
+.utility-bar-inner{
+    padding:0 24px;
+    gap:18px;
+    min-height:34px;
+}
+
+.utility-left,
+.utility-right{
+    gap:0;
+}
+
+/* compact text-first links — 12–13px per spec */
+.utility-link{
+    position:relative;
+    font-size:.75rem;
+    font-weight:500;
+    padding:8px 11px;
+    gap:6px;
+    border-radius:7px;
+    color:rgba(255, 255, 255, .74);
+    transition:color .22s ease, background .22s ease;
+}
+
+.utility-link i{
+    font-size:.68rem;
+    opacity:.72;
+    transition:opacity .22s ease, color .22s ease;
+}
+
+/* hairline separators between links — cleaner than pill chips */
+.utility-left .utility-link + .utility-link::before,
+.utility-right .utility-link + .utility-link::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:50%;
+    transform:translateY(-50%);
+    width:1px;
+    height:11px;
+    background:rgba(255, 255, 255, .14);
+}
+
+.utility-link:hover{
+    color:#FFFFFF;
+    background:rgba(255, 255, 255, .07);
+    text-shadow:none;
+}
+
+.utility-link:hover i{
+    opacity:1;
+    color:var(--gnav-accent, #EC4899);
+}
+
+.utility-link.active{
+    color:#FFFFFF;
+}
+
+.utility-link.active i{
+    opacity:1;
+    color:var(--gnav-accent, #EC4899);
+}
+
+/* the scholarship link keeps a subtle pink tint so it still reads as
+   the priority item, without becoming a heavy button */
+.utility-link.utility-scholarship{
+    color:#FBCFE8;
+    font-weight:600;
+}
+
+.utility-link.utility-scholarship i{
+    color:var(--gnav-accent, #EC4899);
+    opacity:1;
+}
+
+.utility-link.utility-scholarship:hover{
+    color:#FFFFFF;
+    background:rgba(236, 72, 153, .16);
+}
+
+/* tablet / small desktop — trim padding before anything wraps */
+@media(max-width:1200px){
+    .utility-link{ padding:8px 9px; font-size:.72rem; }
+    .utility-bar-inner{ gap:12px; padding:0 16px; }
+}
+
+/* below the desktop breakpoint the bar becomes a single swipeable
+   row (the .utility-left/.utility-right overflow rules in style.css
+   already handle the scrolling) */
+@media(max-width:992px){
+    .utility-link i{ display:none; }
+    .utility-link{ padding:8px 10px; }
+}
+
+/*==================================================
+    1b. TWO-LINE NAV LABEL — "Languages & Short Courses"
+    Same typography, hover, active state and dropdown
+    behaviour as every other nav item; it simply wraps onto
+    two centred lines so it stops eating horizontal space.
+    The nav bar does not grow taller: the two lines use a
+    tight line-height that fits inside the existing row.
+==================================================*/
+.nav-links > li > a.nav-twoline{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    text-align:center;
+    line-height:1.12;
+    font-size:.845rem;      /* a touch smaller so both lines sit comfortably */
+    padding-top:9px;
+    padding-bottom:9px;
+    white-space:nowrap;
+}
+
+.nav-twoline .nav-line{
+    display:block;
+    line-height:1.12;
+}
+
+/* the animated underline still spans the whole label */
+.nav-links > li > a.nav-twoline::after{ bottom:6px; }
+
+/* inside the mobile side-nav a single line reads better */
+@media(max-width:992px){
+    .nav-twoline{ flex-direction:row !important; font-size:inherit; line-height:inherit; }
+    .nav-twoline .nav-line{ display:inline; }
+    .nav-twoline .nav-line + .nav-line::before{ content:" "; }
+}
+
+/*==================================================
+    2. STICKY / SCROLLED HEADER — slim single line
+    style.css already merges the branding row and nav row into one
+    flex bar past ~80px of scroll (header#header.sticky). These rules
+    only make that merged bar noticeably shorter and tighter, and
+    guarantee the Apply Scholarship Now button rides on the same line.
+==================================================*/
+
+@media(min-width:993px){
+
+    header#header.sticky{
+        gap:14px;
+        padding:0 18px;
+        min-height:52px;
+        flex-wrap:nowrap;
+        border-bottom-width:1px;
+        /* keep the sticky bar the same contained width as the normal
+           (unscrolled) nav — was inheriting the wider sitewide 1220px
+           container while every other state uses the 1140px premium
+           width from global-refinements.css. */
+        max-width:1140px;
+    }
+
+    /* kill the leftover row padding — the merged bar sets its own */
+    header#header.sticky .branding-inner{ padding:0; }
+    header#header.sticky .branding-bar{ padding:0; }
+
+    /* logo: smaller badge, tighter gap */
+    header#header.sticky .brand-logo-group{ gap:9px; }
+    /* logo must stay the exact size it is unscrolled — no shrink —
+       so it reads as "logo only, unchanged" once sticky (brand-text
+       itself is hidden via the opacity/max-width collapse in
+       global-refinements.css §4, not by resizing anything here) */
+    header#header.sticky .brand-logo-img{ height:44px; }
+    header#header.sticky .brand-name{ font-size:.9rem; letter-spacing:.1px; }
+
+    /* nav links: 13px, tighter padding, underline pulled in to match */
+    header#header.sticky .nav-links{ gap:0; flex-wrap:nowrap; }
+    header#header.sticky .nav-links > li > a{
+        font-size:.8125rem;
+        padding:8px 9px;
+        gap:5px;
+        white-space:nowrap;
+    }
+    header#header.sticky .nav-links > li > a i{ font-size:.6rem; }
+    header#header.sticky .nav-links > li > a::after{ left:9px; right:9px; bottom:4px; height:1.5px; }
+
+    /* two-line label stays two lines in the sticky bar too, and the bar
+       still holds to one compact row */
+    header#header.sticky .nav-links > li > a.nav-twoline{
+        font-size:.75rem;
+        line-height:1.1;
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+    header#header.sticky .nav-links > li > a.nav-twoline::after{ bottom:2px; }
+
+    /* THEME TOGGLE — removed entirely from the sticky bar and its space
+       reclaimed, so the row stays balanced with no empty gap. It remains
+       available in the normal (unscrolled) header. */
+    header#header.sticky .theme-toggle{
+        display:none !important;
+    }
+
+    header#header.sticky .nav-buttons{ gap:0; }
+    header#header.sticky .search-btn{
+        width:31px;
+        height:31px;
+        font-size:.78rem;
+    }
+
+    /*==================================================
+        APPLY FOR FULL SCHOLARSHIP NOW — far-right CTA
+        Compact pink pill that reads as a native part of the
+        row rather than an afterthought.
+    ==================================================*/
+    header#header.sticky .branding-right{
+        gap:0;
+        margin-left:auto;      /* pins the CTA to the far right edge */
+    }
+
+    /* swap to the fuller label only once the bar is sticky */
+    .apply-btn .apply-btn-label-sticky{ display:none; }
+    header#header.sticky .apply-btn .apply-btn-label{ display:none; }
+    header#header.sticky .apply-btn .apply-btn-label-sticky{ display:inline; }
+
+    header#header.sticky .apply-btn{
+        padding:8px 16px;
+        font-size:.75rem;
+        font-weight:700;
+        letter-spacing:.1px;
+        border-radius:50px;
+        white-space:nowrap;
+        line-height:1.15;
+        background:linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+        color:#FFFFFF;
+        box-shadow:0 6px 16px rgba(236, 72, 153, .38), inset 0 1px 0 rgba(255, 255, 255, .25);
+        transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    header#header.sticky .apply-btn:hover{
+        background:linear-gradient(135deg, #F472B6 0%, #EC4899 100%);
+        transform:translateY(-2px);
+        box-shadow:0 10px 24px rgba(236, 72, 153, .55), 0 0 18px rgba(236, 72, 153, .4);
+    }
+
+    /* tight desktops — shave the nav before the CTA is squeezed */
+    @media(max-width:1320px){
+        header#header.sticky .nav-links > li > a{ font-size:.78rem; padding:8px 7px; }
+        header#header.sticky .nav-links > li > a.nav-twoline{ font-size:.72rem; }
+        header#header.sticky .brand-name{ display:none; }
+        header#header.sticky .apply-btn{ padding:8px 13px; font-size:.72rem; }
+    }
+    @media(max-width:1120px){
+        header#header.sticky .search-btn{ display:none; }
+        header#header.sticky .nav-links > li > a{ padding:8px 5px; }
+    }
+
+}
+
+/* tablet — CTA stays visible and compact */
+@media(min-width:769px) and (max-width:992px){
+    .apply-btn .apply-btn-label-sticky{ display:none; }
+    .apply-btn{ padding:8px 14px; font-size:.73rem; border-radius:50px; }
+}
+
+/*==================================================
+    3. SMOOTH TRANSITION
+    The utility bar collapses via max-height + opacity (already in
+    style.css). These add a matching transform so the fold reads as
+    the bar sliding up behind the header rather than just shrinking,
+    and pin the transition timing so both bars move together.
+==================================================*/
+
+.utility-bar{
+    transform-origin:top center;
+    will-change:max-height, opacity, transform;
+    transition:max-height .34s cubic-bezier(.4,0,.2,1),
+               opacity .24s ease,
+               transform .34s cubic-bezier(.4,0,.2,1);
+}
+
+.utility-bar.sticky{
+    transform:translateY(-6px);
+}
+
+header#header,
+header#header .branding-inner,
+header#header .brand-logo-img,
+header#header .apply-btn,
+header#header .nav-links > li > a{
+    transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+
+@media (prefers-reduced-motion: reduce){
+    .utility-bar,
+    header#header,
+    header#header .branding-inner,
+    header#header .brand-logo-img,
+    header#header .apply-btn,
+    header#header .nav-links > li > a{
+        transition:none !important;
+    }
+    .utility-bar.sticky{ transform:none; }
+}
+
+/*==================================================
+    4. MOBILE — keep Apply Scholarship Now reachable
+    On small screens the merged desktop bar doesn't apply; the button
+    just needs to stay visible and compact next to the hamburger.
+==================================================*/
+
+@media(max-width:992px){
+    .apply-btn{
+        padding:8px 14px;
+        font-size:.74rem;
+        border-radius:50px;
+        white-space:nowrap;
+        background:linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+        color:#FFFFFF;
+    }
+    /* mobile keeps the short label so the button never wraps */
+    .apply-btn .apply-btn-label-sticky{ display:none; }
+    .apply-btn .apply-btn-label{ display:inline; }
+
+    /* logo: same no-resize rule as desktop — matches the unscrolled
+       mobile logo height exactly instead of shrinking further */
+    header#header.sticky .brand-logo-img{ height:40px; }
+}
+
+/*==================================================
+    5. MOTTO — two-line "My Skills, / My Dream" beside the logo
+    Splits the existing single-line tagline into two compact lines
+    without increasing the branding bar's height. Purely typographic —
+    logo, navigation links and sticky behaviour are all untouched.
+==================================================*/
+.brand-tagline{
+    display:flex; flex-direction:column;
+    line-height:1.22;
+}
+.brand-tagline-line{ display:block; white-space:nowrap; }
+.brand-tagline-line:first-child{
+    font-weight:700;
+    color:var(--dark, #102A5C);
+}
+.brand-tagline-line:last-child{ color:#EC4899; font-weight:600; }
+
+@keyframes brandTaglineFade{ from{ opacity:0; transform:translateY(3px); } to{ opacity:1; transform:none; } }
+.brand-tagline{ animation:brandTaglineFade .6s ease .1s both; }
+
+/* hide on small screens to avoid crowding the mobile header, per spec —
+   the single-line fallback stays available (below) if space allows */
+@media(max-width:560px){
+    .brand-tagline{ display:none; }
+}

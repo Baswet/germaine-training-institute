@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+                META DATA
+    =========================================== -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Early theme application (prevents flash of wrong theme) -->
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        Student Life | Germaine Training Institute
+    </title>
+
+    <meta name="description"
+        content="Co-curricular activities at Germaine Training Institute — sports, clubs, leadership, community service and talent development in Nakuru.">
+
+    <meta name="keywords"
+        content="Germaine Training Institute, TVET Kenya, Diploma Courses, Certificate Courses, Nakuru College">
+
+    <meta name="author"
+        content="Germaine Training Institute">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title"
+        content="Germaine Training Institute">
+
+    <meta property="og:description"
+        content="See campus life at Germaine Training Institute — modern labs, workshops and student life in Nakuru.">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:image"
+        content="https://site.germaineinstitute.ac.ke/assets/images/hero/hero-students.jpg">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/campus.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Germaine Training Institute">
+    <meta name="twitter:description" content="See campus life at Germaine Training Institute — modern labs, workshops and student life in Nakuru.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/hero/hero-students.jpg">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/campus.html">
+
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/jpeg"
+        href="assets/images/logo/logo.jpg">
+
+    <!-- Preload critical above-the-fold assets -->
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+
+    <link rel="stylesheet"
+        href="assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="assets/css/responsive.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-theme.css">
+
+    <link rel="stylesheet"
+        href="assets/css/student-life.css">
+
+    <link rel="stylesheet" href="assets/css/student-life-v2.css">
+    <link rel="stylesheet" href="assets/css/student-life-hero.css">
+
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+
+    <link rel="stylesheet" href="assets/css/school-page.css">
+
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+
+</head>
+
+<body class="student-life-page">
+
+    <!-- ==========================================
+                PRELOADER
+    =========================================== -->
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ==========================================
+                WHATSAPP
+    =========================================== -->
+
+    <a href="https://wa.me/254719488112"
+        class="whatsapp"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+    <!-- ==========================================
+                FIXED TOP STACK (utility bar + header + announcement)
+    =========================================== -->
+
+        <!-- ==========================================
+                LEVEL 1 — UTILITY BAR
+    =========================================== -->
+
+    <div class="utility-bar" id="utilityBar">
+
+        <div class="container utility-bar-inner">
+
+            <div class="utility-left">
+
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+
+                <a href="ai-bootcamp.html" class="utility-link"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+
+            </div>
+
+            <div class="utility-right">
+
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                FIXED TOP STACK (branding bar + main navigation + announcement)
+    =========================================== -->
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+
+    <!-- ==========================================
+                LEVEL 2 — BRANDING BAR
+    =========================================== -->
+
+    <header id="header">
+
+        <div class="branding-bar">
+
+            <div class="container branding-inner">
+
+                <a href="index.html" class="brand-logo-group">
+
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+
+                    <span class="brand-text">
+
+                        <span class="brand-name">Germaine Training Institute</span>
+
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+
+                    </span>
+
+                </a>
+
+                <div class="branding-right">
+
+                    <div class="branding-contact">
+
+                    <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+
+                    <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+
+                </div>
+
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                    LEVEL 3 — MAIN NAVIGATION
+        =========================================== -->
+
+        <nav class="navbar">
+
+            <div class="container navbar-inner">
+
+                <ul class="nav-links">
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li class="dropdown">
+
+                        <a href="about.html">About Us <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="about.html">Our Story</a>
+
+                            <a href="about.html">Mission &amp; Vision</a>
+
+                            <a href="about.html">Leadership</a>
+
+                            <a href="about.html">Accreditation</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown">
+
+                        <a href="admissions.html">Admissions <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="admissions.html#admission-form">Apply Online</a>
+
+                            <a href="admissions.html">Entry Requirements</a>
+
+                            <a href="admissions.html">Fees Structure</a>
+
+                            <a href="apply.html">Scholarships</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown mega-dropdown">
+
+                        <a href="courses.html">Academic Schools <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu mega-menu mega-menu-schools">
+
+                            <div class="mega-menu-col">
+
+                                <span class="mega-menu-col-title">Academic Schools</span>
+
+                                <a href="courses-health-sciences.html">School of Medical &amp; Health Sciences</a>
+
+                                <a href="courses-hospitality-tourism.html">School of Hospitality, Tourism &amp; Travel</a>
+
+                                <a href="courses-engineering-technology.html">School of Engineering</a>
+
+                                <a href="courses-computing-it.html">School of Computing &amp; Informatics</a>
+
+                                <a href="courses-cosmetology-fashion-design.html">School of Cosmetology, Fashion &amp; Design</a>
+
+                                <a href="courses-business-commerce.html">Business &amp; Social Sciences</a>
+
+                                <a href="courses-mass-communication-journalism.html">School of Communication &amp; Media</a>
+
+                                <a href="courses-agriculture.html">School of Agriculture</a>
+
+                                <a href="courses-virtual-learning.html">School of Virtual Learning</a>
+
+                            </div>
+</div>
+
+                    </li>
+
+                    <li><a href="courses-languages.html" class="nav-twoline"><span class="nav-line">Languages &amp;</span><span class="nav-line">Short Courses</span></a></li>
+
+                    <li><a href="campus.html" class="active">Student Life</a></li>
+
+                    <li><a href="news.html">News &amp; Events</a></li>
+
+                    <li><a href="contact.html">Contact Us</a></li>
+
+                </ul>
+
+                <div class="nav-buttons">
+
+                    <button class="search-btn" aria-label="Open search">
+
+                        <i class="fas fa-search"></i>
+
+                    </button>
+
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                </div>
+
+                <!-- Mobile Menu -->
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ==========================================
+            ADMISSION ANNOUNCEMENT BAR
+    =========================================== -->
+
+    <section class="announcement-bar">
+
+        <div class="container announcement-container">
+
+            <div class="announcement-left">
+
+                <i class="fas fa-bullhorn"></i>
+
+                <span>
+
+                    September 2026 Intake Now Open &bull; Applications Ongoing
+
+                </span>
+
+            </div>
+
+            <a href="apply.html"
+                class="announcement-link">
+
+                Apply Now For Full Scholarship
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    </div>
+
+<!-- ==========================================
+            SEARCH POPUP
+    =========================================== -->
+
+    <div class="search-modal">
+
+        <div class="search-box">
+
+            <input aria-label="Search courses, departments or news"
+                type="text"
+                placeholder="Search courses, departments or news...">
+
+            <button aria-label="Submit search">
+
+                <i class="fas fa-search"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                MAIN CONTENT
+    =========================================== -->
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+    <div class="sl-cursor" aria-hidden="true"></div>
+
+<!-- ================= HERO — structural clone of the Alumni Registration
+     hero: full-bleed crossfade photo slideshow, floating badge, ambient
+     particles, single fully-transparent glass panel defined only by an
+     always-on travelling border light. Structure, spacing, glass
+     treatment, typography and animation are identical to Alumni; only
+     the content and images are Student Life's own. ================= -->
+<section class="alu-hero alu-hero-clean" id="slHero">
+
+    <div class="alu-hero-slideshow" aria-hidden="true">
+        <div class="alu-hero-slide" style="background-image:url('assets/images/gallery/life-teamwork.jpg')"></div>
+        <div class="alu-hero-slide" style="background-image:url('assets/images/gallery/student-life-01.jpg')"></div>
+        <div class="alu-hero-slide" style="background-image:url('assets/images/gallery/students-group.jpg')"></div>
+        <div class="alu-hero-slide" style="background-image:url('assets/images/gallery/life-classroom-learning.jpg')"></div>
+        <div class="alu-hero-slide" style="background-image:url('assets/images/gallery/life-student-sports.jpg')"></div>
+    </div>
+    <div class="alu-hero-overlay" aria-hidden="true"></div>
+
+    <span class="alu-hero-float-badge"><i class="fa-solid fa-people-group"></i> 20+ Active Clubs</span>
+
+    <span class="alu-particle p1" aria-hidden="true"></span>
+    <span class="alu-particle p2" aria-hidden="true"></span>
+    <span class="alu-particle p3" aria-hidden="true"></span>
+
+    <div class="alu-wrap">
+        <div class="alu-hero-panel sp-reveal">
+            <span class="alu-eyebrow"><i class="fa-solid fa-graduation-cap"></i> Student Life &amp; Campus Culture</span>
+            <h1>Life at <span class="alu-pink-text">Germaine</span></h1>
+            <p id="cmsStudentLifeSubtitle">Learn. Connect. Grow. Make memories. Discover a vibrant community where academic excellence meets leadership development, sports, clubs, practical training and creative expression.</p>
+            <div class="alu-hero-cta">
+                <a href="#sl2Glance" class="alu-btn alu-btn-primary"><span>Explore Campus Life</span> <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#slClubs" class="alu-btn alu-btn-outline"><span>Join a Club or Society</span></a>
+            </div>
+        </div>
+    </div>
+
+    <a href="#sl2Glance" class="alu-hero-chevron" aria-label="Scroll down"><i class="fa-solid fa-chevron-down"></i></a>
+</section>
+
+<!-- ================= LIFE AT A GLANCE ================= -->
+<section class="sl2-glance" id="sl2Glance">
+    <div class="sl2-wrap">
+        <div class="sl2-head sl-reveal">
+            <h2>Life at a Glance</h2>
+            <span class="sl2-head-bar" aria-hidden="true"></span>
+        </div>
+        <div class="sl2-glance-grid">
+            <div class="sl2-glance-card sl-reveal" data-d="1"><span class="sl2-glance-ic"><i class="fa-solid fa-person-running"></i></span><h3>Stay Active</h3><p>Competitive sports and recreation for a healthy body and mind.</p></div>
+            <div class="sl2-glance-card sl-reveal" data-d="2"><span class="sl2-glance-ic"><i class="fa-solid fa-people-group"></i></span><h3>Find Your People</h3><p>Join vibrant clubs and societies that match your interests and talents.</p></div>
+            <div class="sl2-glance-card sl-reveal" data-d="3"><span class="sl2-glance-ic"><i class="fa-solid fa-trophy"></i></span><h3>Grow &amp; Lead</h3><p>Opportunities to lead, innovate and make an impact.</p></div>
+            <div class="sl2-glance-card sl-reveal" data-d="4"><span class="sl2-glance-ic"><i class="fa-solid fa-heart"></i></span><h3>We Care</h3><p>Health and counseling support for your well-being.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= SPORTS & RECREATION ================= -->
+<section class="sl2-sports">
+    <div class="sl2-wrap sl2-sports-grid">
+        <span class="sl2-sports-token sl2-sports-token-a" aria-hidden="true"><i class="fa-solid fa-trophy"></i></span>
+        <span class="sl2-sports-token sl2-sports-token-b" aria-hidden="true"><i class="fa-solid fa-whistle"></i></span>
+        <span class="sl2-sports-token sl2-sports-token-c" aria-hidden="true"><i class="fa-solid fa-medal"></i></span>
+        <div class="sl2-sports-text sl-reveal">
+            <h2>Sports &amp; Recreation</h2>
+            <span class="sl2-head-bar" aria-hidden="true"></span>
+            <p>The Institute has robust football, basketball, rugby, volleyball and martial arts teams currently playing in the Kenya Women Premier League, Kenya Rugby Union, Kenya Basketball Leagues, FKF Division One League, Kenya Colleges Sports Association (KCSA) League among other tournaments.</p>
+            <p>The football men&rsquo;s and ladies&rsquo; teams are the reigning KCSA champions having won the 2024&ndash;25 titles while the basketball ladies team are the current defending champions of National Colleges Championship in Kenya.</p>
+            <p>Other sporting activities that students engage in include scrabble, chess, and table tennis, among others.</p>
+            <p>The institute offers enhanced scholarship programme for talented students in various sports discipline.</p>
+            <div class="sl2-scholar-callout">
+                <i class="fa-solid fa-medal"></i>
+                <span>Enhanced scholarships available for talented students in various sports disciplines.</span>
+            </div>
+        </div>
+        <div class="sl2-bento sl-reveal" data-d="1">
+            <span class="sl2-bento-token sl2-bento-token-a" aria-hidden="true"><i class="fa-solid fa-trophy"></i></span>
+            <span class="sl2-bento-token sl2-bento-token-b" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+            <div class="sl2-bento-item sl2-bento-photo"><img class="sl2-bento-photo-img" src="assets/images/gallery/gti-vipers-team.jpg" alt="GTI Vipers, the Germaine Training Institute football team" loading="lazy"><span class="sl2-bento-icon"><i class="fa-solid fa-futbol"></i><span>Football</span></span></div>
+            <div class="sl2-bento-item sl2-bento-photo"><img class="sl2-bento-photo-img" src="assets/images/gallery/sports-basketball.jpg" alt="Basketball action shot" loading="lazy"><span class="sl2-bento-icon"><i class="fa-solid fa-basketball"></i><span>Basketball</span></span></div>
+            <div class="sl2-bento-item sl2-bento-photo"><img class="sl2-bento-photo-img" src="assets/images/gallery/sports-rugby.jpg" alt="Rugby match action shot" loading="lazy"><span class="sl2-bento-icon"><i class="fa-solid fa-football"></i><span>Rugby</span></span></div>
+            <div class="sl2-bento-item sl2-bento-photo"><img class="sl2-bento-photo-img" src="assets/images/gallery/sports-volleyball.jpg" alt="Volleyball match action shot" loading="lazy"><span class="sl2-bento-icon"><i class="fa-solid fa-volleyball"></i><span>Volleyball</span></span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CLUBS & SOCIETIES — sliding showcase ================= -->
+<section class="sl2-clubs" id="slClubs">
+    <div class="sl2-wrap">
+        <div class="sl2-head sl-reveal">
+            <h2>Clubs &amp; Societies</h2>
+            <span class="sl2-head-bar" aria-hidden="true"></span>
+        </div>
+        <div class="clb-stage sl-reveal" id="clbStage">
+            <div class="clb-card" id="clbCard">
+                <div class="clb-slide" data-club="0">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-cross"></i></span><img src="assets/images/gallery/community-event.jpg" alt="GTI Christian Union fellowship" loading="lazy"></div>
+                    <div class="clb-info"><h3>GTI Christian Union</h3><p>Fellowship, faith and service — building character alongside skill.</p></div>
+                </div>
+                <div class="clb-slide" data-club="1">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-desktop"></i></span><img src="assets/images/gallery/ict-1.jpg" alt="Information Technology Club" loading="lazy"></div>
+                    <div class="clb-info"><h3>Information Technology Club</h3><p>Coding, networking and digital innovation for tech-driven trainees.</p></div>
+                </div>
+                <div class="clb-slide" data-club="2">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-masks-theater"></i></span><img src="assets/images/gallery/life-media-studio.jpg" alt="Drama and Music Club" loading="lazy"></div>
+                    <div class="clb-info"><h3>Drama &amp; Music Club</h3><p>Performance, rhythm and storytelling on the Germaine stage.</p></div>
+                </div>
+                <div class="clb-slide" data-club="3">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-star"></i></span><img src="assets/images/gallery/student-achievement.jpg" alt="GTI Knowledge Ambassadors" loading="lazy"></div>
+                    <div class="clb-info"><h3>GTI Knowledge Ambassadors</h3><p>Champions of academic excellence and peer mentorship.</p></div>
+                </div>
+                <div class="clb-slide" data-club="4">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-lightbulb"></i></span><img src="assets/images/gallery/life-engineering-project.jpg" alt="Innovation and Mentorship Hub" loading="lazy"></div>
+                    <div class="clb-info"><h3>Innovation &amp; Mentorship Hub</h3><p>Turning bold ideas into real, hands-on projects.</p></div>
+                </div>
+                <div class="clb-slide" data-club="5">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-gear"></i></span><img src="assets/images/gallery/electrical-1.jpg" alt="GTI Engineering Club" loading="lazy"></div>
+                    <div class="clb-info"><h3>GTI Engineering Club</h3><p>Hands-on engineering practice beyond the classroom.</p></div>
+                </div>
+                <div class="clb-slide" data-club="6">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-chart-line"></i></span><img src="assets/images/slide/business.jpg" alt="GTI Entrepreneurs Club" loading="lazy"></div>
+                    <div class="clb-info"><h3>GTI Entrepreneurs Club</h3><p>Nurturing the next generation of Kenyan business leaders.</p></div>
+                </div>
+                <div class="clb-slide" data-club="7">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-concierge-bell"></i></span><img src="assets/images/gallery/kitchen-1.jpg" alt="GTI Hospitality Club" loading="lazy"></div>
+                    <div class="clb-info"><h3>GTI Hospitality Club</h3><p>Culinary art, service excellence and hospitality flair.</p></div>
+                </div>
+                <div class="clb-slide" data-club="8">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-suitcase-rolling"></i></span><img src="assets/images/slide/hospitality.jpg" alt="GTI Tourism Club" loading="lazy"></div>
+                    <div class="clb-info"><h3>GTI Tourism Club</h3><p>Exploring Kenya&rsquo;s tourism industry and travel careers.</p></div>
+                </div>
+                <div class="clb-slide" data-club="9">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-microphone"></i></span><img src="assets/images/gallery/communication-studio.jpg" alt="GTI Journalism Club" loading="lazy"></div>
+                    <div class="clb-info"><h3>GTI Journalism Club</h3><p>Reporting, broadcasting and storytelling that matters.</p></div>
+                </div>
+                <div class="clb-slide" data-club="10">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-heart-pulse"></i></span><img src="assets/images/gallery/health-1.jpg" alt="GTI Community Health and Development Club" loading="lazy"></div>
+                    <div class="clb-info"><h3>Community Health &amp; Development Club</h3><p>Health outreach and community development initiatives.</p></div>
+                </div>
+                <div class="clb-slide" data-club="11">
+                    <div class="clb-media"><span class="clb-ic"><i class="fa-solid fa-palette"></i></span><img src="assets/images/gallery/fashion-2.jpg" alt="GTI Arts Club" loading="lazy"></div>
+                    <div class="clb-info"><h3>GTI Arts Club</h3><p>Creative expression through design, fashion and visual art.</p></div>
+                </div>
+            </div>
+            <div class="clb-dots" id="clbDots" role="tablist" aria-label="Select a club"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= HEALTH & COUNSELING ================= -->
+<section class="sl2-health">
+    <div class="sl2-wrap sl2-health-grid">
+        <div class="gwf-wrap sl2-health-media sl-reveal">
+            <div class="gwf-frame">
+                <div class="gwf-glass">
+                    <img src="assets/images/gallery/opt/reception-2.jpg" alt="A Germaine Training Institute staff member guiding a student through paperwork, in a calm one-on-one support setting" loading="lazy">
+                </div>
+            </div>
+            <div class="gwf-badge">
+                <h3>100%</h3>
+                <p>Student Support</p>
+            </div>
+        </div>
+        <div class="sl2-health-text sl-reveal" data-d="1">
+            <h2>Health &amp; Counseling</h2>
+            <span class="sl2-head-bar" aria-hidden="true"></span>
+            <p>Our Health and Counseling Centre offers professional medical care and confidential counseling. We also educate students on health and emergency procedures for a safer campus.</p>
+            <p>Beyond physical care, our counselors provide a private, judgement-free space where students can talk through stress, personal challenges, or the everyday pressures of college life. It's part of building a campus where every student feels seen, supported, and able to grow with confidence — emotionally as well as academically.</p>
+            <div class="sl2-health-features">
+                <div class="sl2-health-feature"><i class="fa-solid fa-stethoscope"></i><span>Medical Services</span></div>
+                <div class="sl2-health-feature"><i class="fa-solid fa-brain"></i><span>Counseling Support</span></div>
+                <div class="sl2-health-feature"><i class="fa-solid fa-shield-halved"></i><span>Emergency Awareness</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="sl2-final">
+    <div class="sl2-wrap">
+        <div class="sl2-final-inner sl-reveal">
+            <div class="sl2-final-left">
+                <span class="sl2-final-ic"><i class="fa-solid fa-graduation-cap"></i></span>
+                <div>
+                    <h3>Make the Most of Your College Experience.</h3>
+                    <span>Learn. Grow. Lead. Belong.</span>
+                </div>
+            </div>
+            <div class="sl2-final-cta">
+                <a href="apply.html" class="sl2-btn sl2-btn-primary">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="contact.html" class="sl2-btn sl2-btn-outline">Visit Our Campus</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+    <!-- ==========================================
+                SIDE NAVIGATION (push panel)
+    =========================================== -->
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+<footer class="footer">
+
+    <!-- Footer Main -->
+
+    <div class="footer-main">
+
+        <div class="container footer-grid">
+
+            <!-- About -->
+
+            <div class="footer-column">
+
+                <img src="assets/images/logo/logo-white.png"
+                     alt="Germaine Training Institute Logo"
+                     class="footer-logo" loading="lazy" decoding="async">
+
+                <p>
+
+                    Germaine Training Institute is committed to
+                    producing competent, innovative and
+                    industry-ready graduates through
+                    practical and competency-based education.
+
+                </p>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Quick Links
+
+                </h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="about.html">About Us</a></li>
+
+                    <li><a href="courses.html">Courses</a></li>
+
+                    <li><a href="admissions.html">Admissions</a></li>
+
+                    <li><a href="news.html">News</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+
+                
+
+                    <li><a href="apply.html">Apply Now</a></li>
+
+                    <li><a href="apply.html">Scholarships</a></li>
+</ul>
+
+            </div>
+
+            
+
+            <!-- Contact -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Contact Us
+
+                </h3>
+
+                <ul class="contact-list">
+
+                    <li>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Pioneer Plaza,
+                        Mburu Gichua Road,
+                        Nakuru
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        +254 719 488 112
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        admissions@germaineinstitute.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Mon – Fri : 8:00 AM – 5:00 PM
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Google Map -->
+
+    <div class="footer-map">
+
+        <iframe
+            src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed"
+            loading="lazy"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+    <!-- Bottom Footer -->
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <p>
+
+                © 2026 Germaine Training Institute.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Emmanuel Elijah</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+            BACK TO TOP
+========================================== -->
+
+<button class="back-to-top" aria-label="Back to top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+            JAVASCRIPT
+========================================== -->
+
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+
+<script defer src="assets/js/premium-pages.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+
+<script defer src="assets/js/premium-theme.js"></script>
+
+<script defer src="assets/js/school-page.js"></script>
+
+<script defer src="assets/js/campus-gallery.js"></script>
+<script defer src="assets/js/clubs-showcase.js"></script>
+<script defer src="assets/js/api-client.js"></script>
+<script defer src="assets/js/student-life-cms-bridge.js"></script>
+
+</body>
+
+</html>

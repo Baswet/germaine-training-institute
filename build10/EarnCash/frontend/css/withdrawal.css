@@ -1,0 +1,411 @@
+/* ==========================================================
+                EARNCASH WITHDRAWAL SYSTEM
+                FUTURISTIC GLASS UI
+========================================================== */
+
+
+
+
+
+
+/* ==========================
+        MAIN LAYOUT
+=========================== */
+
+
+
+.withdraw-main{
+
+
+    padding:60px 0;
+
+
+}
+
+
+
+
+
+.withdraw-container{
+
+
+    max-width:700px;
+
+
+    margin:auto;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:30px;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+        BALANCE CARD
+=========================== */
+
+
+.balance-card{
+
+
+    text-align:center;
+
+
+    padding:45px;
+
+
+    border-radius:45px;
+
+
+}
+
+
+
+
+
+.balance-card h2{
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+
+
+.balance-value{
+
+
+    font-size:
+
+
+    3rem;
+
+
+    font-weight:800;
+
+
+    color:
+
+
+    var(--primary);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+        WITHDRAW FORM
+=========================== */
+
+
+.withdraw-card{
+
+
+    padding:45px;
+
+
+    border-radius:45px;
+
+
+}
+
+
+
+
+
+
+
+.withdraw-card h2{
+
+
+    text-align:center;
+
+
+    margin-bottom:30px;
+
+
+}
+/* ==========================
+        SELECT FIELD
+=========================== */
+
+
+
+.withdraw-card select{
+
+
+    width:100%;
+
+
+    padding:15px 20px;
+
+
+    border-radius:20px;
+
+
+    border:
+
+
+    1px solid rgba(255,255,255,.7);
+
+
+    background:
+
+
+    rgba(255,255,255,.55);
+
+
+    outline:none;
+
+
+    color:
+
+
+    var(--text);
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        WITHDRAW BUTTON
+=========================== */
+
+
+.withdraw-btn{
+
+
+    width:100%;
+
+
+    margin-top:20px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        ALERT BOXES
+=========================== */
+
+
+.withdraw-error{
+
+
+    display:none;
+
+
+    padding:15px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+
+    rgba(102,80,255,.15);
+
+
+    color:#365fd9;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+.withdraw-success{
+
+
+    display:none;
+
+
+    padding:15px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+
+    rgba(255,212,80,.15);
+
+
+    color:green;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        HISTORY
+=========================== */
+
+
+.history-card{
+
+
+    padding:40px;
+
+
+    border-radius:40px;
+
+
+}
+
+
+
+
+
+
+.withdraw-item{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    padding:20px 0;
+
+
+    border-bottom:
+
+
+    1px solid rgba(15,23,42,.08);
+
+
+}
+
+
+
+
+
+
+.withdraw-status{
+
+
+    padding:8px 15px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+
+    rgba(237,100,255,.2);
+
+
+    color:
+
+
+    #b3821a;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+        MOBILE
+=========================== */
+
+
+
+@media(max-width:600px){
+
+
+
+.withdraw-card,
+
+
+.balance-card,
+
+
+.history-card{
+
+
+    padding:30px 20px;
+
+
+    border-radius:30px;
+
+
+}
+
+
+
+
+.balance-value{
+
+
+    font-size:2.2rem;
+
+
+}
+
+
+
+}

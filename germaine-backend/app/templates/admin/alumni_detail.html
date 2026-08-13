@@ -1,0 +1,34 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ record.full_name }}{% endblock %}
+{% block content %}
+<a class="gti-back-link" href="{{ url_for('admin.alumni_list') }}">&larr; Back to Alumni</a>
+<div class="gti-topbar"><h1>{{ record.full_name }}</h1></div>
+
+<div class="gti-detail-grid">
+  <div>
+    <div class="gti-panel">
+      <h2>Registration Information</h2>
+      <div class="gti-field-row"><span class="k">Full Name</span><span class="v">{{ record.full_name }}</span></div>
+      <div class="gti-field-row"><span class="k">Email</span><span class="v">{{ record.email }}</span></div>
+      <div class="gti-field-row"><span class="k">Phone</span><span class="v">{{ record.phone }}</span></div>
+      <div class="gti-field-row"><span class="k">Organisation</span><span class="v">{{ record.organisation or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Engagement Interests</span><span class="v">{{ (record.engagement_interests or [])|join(', ') or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Consent</span><span class="v">{{ 'Yes' if record.consent else 'No' }}</span></div>
+    </div>
+  </div>
+  <div>
+    <div class="gti-panel">
+      <h2>Programme / School</h2>
+      {% if record.programme %}
+        <div class="gti-field-row"><span class="k">Programme</span><span class="v">{{ record.programme.name }}</span></div>
+      {% else %}
+        <p style="font-size:.85rem;color:#5b6b7c;">Not recorded. The frontend field labelled "Programme Studied" actually
+        collects a school name, not an individual programme (Step 2 §39 item F) — this is an unresolved data-model
+        question, not a missing submission. No guess has been made linking this record to any programme.</p>
+      {% endif %}
+      <div class="gti-field-row"><span class="k">Graduation Year</span><span class="v">{{ record.graduation_year or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Registered</span><span class="v">{{ record.registered_at.strftime('%d %b %Y, %H:%M') }} UTC</span></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

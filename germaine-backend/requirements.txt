@@ -1,0 +1,17 @@
+# Germaine Training Institute backend — Step 3 scaffold dependencies.
+# Deliberately minimal, per instructions: no extra frameworks beyond
+# these. Testing dependencies (pytest) are listed separately below
+# since they are dev-only, not part of the runtime app.
+
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.0.7
+python-dotenv==1.0.1
+psycopg[binary]==3.2.2
+
+# EarnCash integration (bearer-token auth for the /api/earncash/* blueprint,
+# ported unchanged from its original standalone Flask app's dependency)
+PyJWT==2.9.0
+
+# --- dev / test only ---
+pytest==8.2.2

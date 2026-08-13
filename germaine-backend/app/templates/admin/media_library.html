@@ -1,0 +1,62 @@
+{% extends "admin/base.html" %}
+{% from "admin/_pagination.html" import render_pagination %}
+{% block title %}Media Library{% endblock %}
+{% block content %}
+<div class="gti-topbar"><h1>Media Library</h1></div>
+
+<div class="gti-upload-box">
+  <form method="post" action="{{ url_for('admin.media_upload') }}" enctype="multipart/form-data" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <input type="file" name="file" accept=".jpg,.jpeg,.png,.gif,.webp" required>
+    <input type="text" name="alt_text" placeholder="Alt text (for accessibility)" style="padding:8px 10px;border:1px solid var(--gti-border);border-radius:6px;font-size:.86rem;">
+    <button type="submit" class="gti-btn">Upload Image</button>
+  </form>
+</div>
+<p style="color:var(--gti-text-muted);font-size:.8rem;margin:0 0 10px;">JPEG, PNG, GIF or WEBP only, up to 5MB. Filenames are regenerated automatically — no executable files are accepted.</p>
+
+<form class="gti-toolbar" method="get">
+  <input type="text" name="q" placeholder="Search filename or alt text…" value="{{ q }}">
+  <select name="status">
+    <option value="active" {{ 'selected' if status == 'active' }}>Active</option>
+    <option value="archived" {{ 'selected' if status == 'archived' }}>Archived</option>
+    <option value="all" {{ 'selected' if status == 'all' }}>All</option>
+  </select>
+  <button type="submit">Filter</button>
+</form>
+
+{% if result.records %}
+<div class="gti-media-grid">
+  {% for m in result.records %}
+  <div class="gti-media-card">
+    <img class="gti-media-thumb" src="{{ m.url_path }}" alt="{{ m.alt_text or '' }}">
+    <div class="gti-media-body">
+      <div class="fname">{{ m.original_filename or m.filename }} · {{ (m.size_bytes / 1024) | round(0, 'floor') | int }}KB</div>
+      <form method="post" action="{{ url_for('admin.media_alt_text_update', media_id=m.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <input type="text" name="alt_text" value="{{ m.alt_text or '' }}" placeholder="Alt text">
+        <button type="submit" class="gti-btn gti-btn-secondary gti-btn-small">Save Alt Text</button>
+      </form>
+      <div class="row">
+        <form method="post" action="{{ url_for('admin.media_replace', media_id=m.id) }}" enctype="multipart/form-data" style="display:flex;gap:4px;">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <input type="file" name="file" accept=".jpg,.jpeg,.png,.gif,.webp" style="max-width:100px;font-size:.72rem;">
+          <button type="submit" class="gti-btn gti-btn-secondary gti-btn-small">Replace</button>
+        </form>
+      </div>
+      {% if m.status == 'active' %}
+      <form method="post" action="{{ url_for('admin.media_archive', media_id=m.id) }}" style="margin-top:5px;">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button type="submit" class="gti-btn gti-btn-secondary gti-btn-small">Archive</button>
+      </form>
+      {% else %}
+      <span class="gti-status-pill archived">Archived</span>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="gti-empty">No media assets match this view.</div>
+{% endif %}
+{{ render_pagination(result, 'admin.media_library', {'q': q, 'status': status}) }}
+{% endblock %}

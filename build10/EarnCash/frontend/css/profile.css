@@ -1,0 +1,405 @@
+/* ==========================================================
+                EARNCASH PROFILE SYSTEM
+                FUTURISTIC GLASS UI
+========================================================== */
+
+
+
+
+
+
+/* ==========================
+        MAIN LAYOUT
+=========================== */
+
+
+
+.profile-main{
+
+
+    padding:60px 0;
+
+
+}
+
+
+
+
+
+.profile-container{
+
+
+    max-width:750px;
+
+
+    margin:auto;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:30px;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+        PROFILE CARD
+=========================== */
+
+
+.profile-card{
+
+
+    text-align:center;
+
+
+    padding:50px;
+
+
+    border-radius:45px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        AVATAR
+=========================== */
+
+
+
+.profile-avatar{
+
+
+    width:120px;
+
+
+    height:120px;
+
+
+    margin:auto;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    font-size:3rem;
+
+
+    color:white;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #4f73ff,
+
+        #c1d0ff
+
+    );
+
+
+    box-shadow:
+
+
+    0 0 40px rgba(105,144,255,.4);
+
+
+}
+
+
+
+
+
+
+
+
+.profile-card h1{
+
+
+    margin-top:25px;
+
+
+    font-size:2rem;
+
+
+}
+
+
+
+
+
+
+.profile-card p{
+
+
+    color:
+
+
+    var(--text-light);
+
+
+}
+/* ==========================
+        SETTINGS CARDS
+=========================== */
+
+
+
+.settings-card{
+
+
+    padding:40px;
+
+
+    border-radius:40px;
+
+
+}
+
+
+
+
+
+
+
+.settings-card h2{
+
+
+    margin-bottom:30px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+        MESSAGE
+=========================== */
+
+
+
+.profile-message{
+
+
+    display:none;
+
+
+    padding:15px;
+
+
+    border-radius:20px;
+
+
+    margin-bottom:20px;
+
+
+    background:
+
+
+    rgba(255,212,80,.15);
+
+
+    color:green;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+        PREFERENCES
+=========================== */
+
+
+
+.preference-row{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    padding:20px 0;
+
+
+    border-bottom:
+
+
+    1px solid rgba(15,23,42,.08);
+
+
+}
+
+
+
+
+
+
+
+.preference-row input{
+
+
+    width:20px;
+
+
+    height:20px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+        LOGOUT BUTTON
+=========================== */
+
+
+
+.logout-profile{
+
+
+    width:100%;
+
+
+    padding:18px;
+
+
+    border:none;
+
+
+    border-radius:30px;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #4f73ff,
+
+        #8facff
+
+    );
+
+
+    color:white;
+
+
+    font-size:1rem;
+
+
+    font-weight:700;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+        MOBILE
+=========================== */
+
+
+
+@media(max-width:600px){
+
+
+
+.profile-card,
+
+
+.settings-card{
+
+
+    padding:30px 20px;
+
+
+    border-radius:30px;
+
+
+}
+
+
+
+
+.profile-avatar{
+
+
+    width:90px;
+
+
+    height:90px;
+
+
+    font-size:2rem;
+
+
+}
+
+
+
+}

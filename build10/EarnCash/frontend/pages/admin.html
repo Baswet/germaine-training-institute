@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+
+<meta charset="UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="description" content="EarnFastCash administration.">
+<link rel="canonical" href="https://site.germaineinstitute.ac.ke/EarnCash/frontend/pages/admin.html">
+
+
+
+<title>
+
+EarnCash | Admin Dashboard
+
+</title>
+
+
+
+
+
+
+
+<!-- CSS -->
+
+
+<link rel="stylesheet" href="../css/variables.css">
+
+
+<link rel="stylesheet" href="../css/style.css">
+
+
+<link rel="stylesheet" href="../css/background.css">
+
+
+<link rel="stylesheet" href="../css/admin.css">
+
+
+
+
+
+
+<!-- ICONS -->
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body>
+
+
+
+
+
+
+
+<div class="background-blobs">
+
+
+<span class="blob blob1"></span>
+
+
+<span class="blob blob2"></span>
+
+
+<span class="blob blob3"></span>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<header class="dashboard-nav">
+
+
+
+
+
+<div class="dash-logo">
+
+
+
+<div class="logo-icon">
+
+
+<i data-lucide="shield-check"></i>
+
+
+</div>
+
+
+
+<span>
+
+EarnCash Admin
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div>
+
+
+<button
+
+onclick="adminLogout()"
+
+class="btn">
+
+
+Logout
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+</header>
+
+
+
+
+
+
+
+
+
+<main class="admin-main">
+
+
+
+
+
+<div class="container">
+
+
+
+
+
+<h1>
+
+Admin Dashboard
+
+</h1>
+
+
+
+
+
+
+<p>
+
+Manage users, earnings and platform activity.
+
+</p>
+
+
+
+
+
+
+
+
+<!-- STATISTICS -->
+
+
+<section class="admin-stats">
+
+
+
+
+
+
+
+
+<div class="glass admin-stat-card">
+
+
+
+<div class="admin-icon">
+
+
+<i data-lucide="users"></i>
+
+
+</div>
+
+
+
+
+
+<div>
+
+
+<span>
+
+Total Users
+
+</span>
+
+
+
+<h2 id="totalUsers">
+
+0
+
+</h2>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="glass admin-stat-card">
+
+
+
+<div class="admin-icon">
+
+
+<i data-lucide="trending-up"></i>
+
+
+</div>
+
+
+
+
+
+<div>
+
+
+<span>
+
+Platform Earnings
+
+</span>
+
+
+
+<h2 id="totalEarnings">
+
+KES 0
+
+</h2>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="glass admin-stat-card">
+
+
+
+<div class="admin-icon">
+
+
+<i data-lucide="wallet"></i>
+
+
+</div>
+
+
+
+
+
+<div>
+
+
+<span>
+
+Withdrawals
+
+</span>
+
+
+
+<h2 id="totalWithdrawals">
+
+0
+
+</h2>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+        USER MANAGEMENT
+=========================== -->
+
+
+
+<section class="glass admin-panel">
+
+
+
+
+
+<h2>
+
+Registered Users
+
+</h2>
+
+
+
+
+
+
+
+<div id="usersTable">
+
+
+
+<p>
+
+Loading users...
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ==========================
+        TUITION PAYMENT VERIFICATION
+=========================== -->
+
+
+<section class="glass admin-panel">
+
+
+<h2>
+
+Pending Tuition Payments
+
+</h2>
+
+<p style="opacity:.7; font-size:.85rem; margin-top:-10px;">
+Verify a real tuition payment (M-Pesa, bank, or in-person) before confirming.
+Confirming here is the only way a referral commission is ever created.
+</p>
+
+
+
+<div id="enrollmentsTable">
+
+<p>
+
+Loading enrollments...
+
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<!-- ==========================
+        WITHDRAWAL MANAGEMENT
+=========================== -->
+
+
+<section class="glass admin-panel">
+
+
+
+
+
+<h2>
+
+Withdrawal Requests
+
+</h2>
+
+
+
+
+
+
+
+<div id="withdrawalRequests">
+
+
+
+<p>
+
+No pending requests.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+        PLATFORM ACTIVITY
+=========================== -->
+
+
+<section class="glass admin-panel">
+
+
+
+
+
+<h2>
+
+Platform Activity
+
+</h2>
+
+
+
+
+
+
+
+<div id="adminActivity">
+
+
+
+<div class="activity-item">
+
+
+<i data-lucide="server"></i>
+
+
+
+<div>
+
+
+<h4>
+
+System Online
+
+</h4>
+
+
+
+<p>
+
+All services running normally.
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+</div>
+
+
+</main>
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>lucide.createIcons();</script>
+
+<script src="../js/config.js"></script>
+
+<script src="../js/admin.js"></script>
+
+
+
+
+
+
+</body>
+
+
+</html>

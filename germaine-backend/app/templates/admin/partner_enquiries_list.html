@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% from "admin/_pagination.html" import render_pagination %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="gti-topbar"><h1>{{ title }}</h1></div>
+
+<form class="gti-toolbar" method="get">
+  <input type="text" name="q" placeholder="Search organisation or email…" value="{{ q }}">
+  <select name="status">
+    <option value="">All statuses</option>
+    {% for s in statuses %}<option value="{{ s }}" {{ 'selected' if s == status }}>{{ s|title }}</option>{% endfor %}
+  </select>
+  <button type="submit">Filter</button>
+  {% if q or status %}<a class="gti-clear" href="{{ url_for(base_url) }}">Clear</a>{% endif %}
+</form>
+
+<div class="gti-table-wrap">
+  {% if result.records %}
+  <table class="gti-table">
+    <thead><tr><th>Organisation</th><th>Contact</th><th>Email</th><th>Status</th><th>Submitted</th></tr></thead>
+    <tbody>
+      {% for r in result.records %}
+      <tr>
+        <td><a class="gti-row-link" href="{{ url_for('admin.partner_enquiry_detail', enquiry_id=r.id) }}">{{ r.organisation }}</a></td>
+        <td>{{ r.contact_name }}</td>
+        <td>{{ r.email }}</td>
+        <td><span class="gti-badge gti-badge-{{ 'blue' if r.status=='new' else ('amber' if r.status=='contacted' else 'green') }}">{{ r.status|title }}</span></td>
+        <td>{{ r.submitted_at.strftime('%d %b %Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="gti-empty">No enquiries match this view.</div>{% endif %}
+</div>
+{{ render_pagination(result, base_url, {'q': q, 'status': status or ''}) }}
+{% endblock %}

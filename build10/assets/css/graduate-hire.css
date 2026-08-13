@@ -1,0 +1,804 @@
+/*==================================================
+    GERMAINE TRAINING INSTITUTE — HIRE OUR GRADUATES
+    Ultra-premium LIGHT glassmorphism landing page
+    (white / soft pink / electric blue / lavender).
+    Everything is namespaced under .ghire so it never
+    affects the rest of the site. Structure, spacing
+    and content are unchanged from the previous build —
+    only the visual language changed from dark to light.
+==================================================*/
+
+.ghire{
+    --g-white:#FFFFFF;
+    --g-pink-soft:#FFFFFF;
+    --g-pink:#EC4899;
+    --g-blue:#102A5C;
+    --g-lavender:#F472B6;
+    --g-text:#102A5C;
+    --g-mut:rgba(16, 42, 92, .62);
+    --g-glass:rgba(255, 255, 255, .55);
+    --g-glass-bd:rgba(255, 255, 255, .65);
+    --g-radius:24px;
+    --g-ease:.4s cubic-bezier(.25,.8,.25,1);
+
+    position:relative;
+    color:var(--g-text);
+    background:
+        radial-gradient(1100px 620px at 85% -5%, rgba(16, 42, 92, .16), transparent 60%),
+        radial-gradient(900px 640px at 6% 12%, rgba(236, 72, 153, .14), transparent 58%),
+        radial-gradient(760px 540px at 50% 106%, rgba(236, 72, 153, .12), transparent 55%),
+        linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 45%, #FFFFFF 100%);
+    font-family:var(--font-body, 'Open Sans', sans-serif);
+    overflow:hidden;
+}
+
+.ghire .gh-wrap{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 24px;
+}
+
+.ghire section{ position:relative; z-index:1; }
+
+/* ---------- shared heading ---------- */
+.gh-head{ max-width:760px; margin:0 auto 26px; text-align:center; }
+.gh-head.left{ text-align:left; margin-left:0; }
+.gh-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-button,'Montserrat',sans-serif);
+    font-size:.74rem; font-weight:700; letter-spacing:1.6px; text-transform:uppercase;
+    color:#EC4899;
+    padding:7px 15px; border-radius:50px;
+    background:rgba(236, 72, 153, .1); border:1px solid rgba(236, 72, 153, .28);
+    margin-bottom:14px;
+}
+.gh-head h2{
+    font-family:var(--font-heading,'Poppins',sans-serif);
+    font-weight:700; font-size:2.25rem; line-height:1.18; color:var(--g-text); margin:0 0 10px;
+}
+.gh-head p{ font-size:1rem; line-height:1.7; color:var(--g-mut); margin:0; }
+
+/* ---------- glass card base ---------- */
+.gh-glass{
+    background:var(--g-glass);
+    backdrop-filter:blur(35px) saturate(140%); -webkit-backdrop-filter:blur(35px) saturate(140%);
+    border:1px solid var(--g-glass-bd);
+    box-shadow:0 25px 80px rgba(16, 42, 92, .08), 0 8px 30px rgba(255, 255, 255, .35);
+    border-radius:var(--g-radius);
+    transition:transform var(--g-ease), box-shadow var(--g-ease), border-color var(--g-ease), background var(--g-ease);
+    will-change:transform;
+    animation:ghFloatCard 10s ease-in-out infinite;
+}
+.gh-glass:hover{
+    transform:translateY(-6px) scale(1.02);
+    border-color:rgba(236, 72, 153, .4);
+    box-shadow:0 30px 90px rgba(16, 42, 92, .12), 0 0 34px rgba(16, 42, 92, .18);
+    background:rgba(255, 255, 255, .72);
+}
+@keyframes ghFloatCard{
+    0%,100%{ transform:translateY(-3px); }
+    50%{ transform:translateY(3px); }
+}
+.gh-glass:hover{ animation-play-state:paused; }
+
+/* ---------- buttons ---------- */
+.gh-btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    font-family:var(--font-button,'Montserrat',sans-serif);
+    font-weight:600; font-size:.94rem; letter-spacing:.2px;
+    padding:15px 30px; border-radius:50px; white-space:nowrap;
+    transition:transform var(--g-ease), box-shadow var(--g-ease), background var(--g-ease), color var(--g-ease);
+    cursor:pointer; border:1.5px solid transparent;
+}
+.gh-btn:hover{ transform:translateY(-3px) scale(1.03); animation-play-state:paused; }
+.gh-btn i{ transition:transform .35s ease; }
+.gh-btn:hover i{ transform:translateX(3px); }
+@keyframes ghTextBreathe{
+    0%,100%{ text-shadow:0 0 0 rgba(255, 255, 255, 0); }
+    50%{ text-shadow:0 0 10px rgba(255, 255, 255, .55); }
+}
+@keyframes ghBtnGoldGlow{
+    0%,100%{ box-shadow:0 12px 28px rgba(236, 72, 153, .32); }
+    50%{ box-shadow:0 14px 40px rgba(236, 72, 153, .55); }
+}
+.gh-btn-gold{
+    background:linear-gradient(115deg,var(--g-pink) 0%, var(--g-lavender) 55%, var(--g-blue) 100%);
+    color:#FFFFFF; box-shadow:0 12px 28px rgba(236, 72, 153, .32);
+    animation:ghBtnGoldGlow 7s ease-in-out infinite, ghTextBreathe 6s ease-in-out infinite;
+}
+.gh-btn-gold:hover{ box-shadow:0 18px 40px rgba(236, 72, 153, .5); }
+@keyframes ghBtnGlassGlow{
+    0%,100%{ box-shadow:0 8px 20px rgba(236, 72, 153, .1); }
+    50%{ box-shadow:0 10px 30px rgba(236, 72, 153, .28); }
+}
+.gh-btn-glass{
+    background:rgba(255, 255, 255, .2); color:var(--g-text); border-color:rgba(255, 255, 255, .55);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    animation:ghBtnGlassGlow 7s ease-in-out infinite;
+}
+.gh-btn-glass:hover{
+    border-color:var(--g-blue); background:rgba(16, 42, 92, .12);
+    box-shadow:0 0 26px rgba(16, 42, 92, .32);
+}
+@keyframes ghBtnNeonGlow{
+    0%,100%{ box-shadow:0 10px 26px rgba(236, 72, 153, .12); }
+    50%{ box-shadow:0 12px 34px rgba(236, 72, 153, .3); }
+}
+.gh-btn-neon{
+    position:relative; isolation:isolate; overflow:visible;
+    background:rgba(255, 255, 255, .14); color:var(--g-text);
+    border-color:rgba(236, 72, 153, .4);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 10px 26px rgba(236, 72, 153, .12);
+    animation:ghBtnNeonGlow 7s ease-in-out infinite, ghTextBreathe 6s ease-in-out infinite;
+}
+.gh-btn-neon::after{
+    content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit; padding:1.5px;
+    background:conic-gradient(from var(--gh-a), #FFFFFF 0%, var(--g-pink) 25%, #EC4899 45%, var(--g-blue) 70%, #FFFFFF 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:ghTravel 10s linear infinite;
+}
+.gh-btn-neon:hover{
+    background:rgba(255, 255, 255, .32);
+    box-shadow:0 16px 34px rgba(236, 72, 153, .28);
+}
+
+/* ---------- simple flat pink CTA (hero primary action) ----------
+   Deliberately plain: solid colour, no glass, no travelling border,
+   no glow — just a clean, modern button matching the site's premium
+   accent colour, per brief. */
+.gh-btn-solid-pink{
+    background:#EC4899;
+    color:#FFFFFF;
+    border-color:transparent;
+    box-shadow:0 8px 20px rgba(236, 72, 153, .28);
+    transition:background var(--g-ease), transform var(--g-ease), box-shadow var(--g-ease);
+}
+.gh-btn-solid-pink:hover{
+    background:#F472B6;
+    transform:translateY(-2px);
+    box-shadow:0 12px 26px rgba(236, 72, 153, .36);
+}
+
+/* ================= HERO ================= */
+.gh-hero{
+    /* enlarged a further ~13% (65vh → 74vh) with proportionally increased
+       vertical padding, so the hero reads as more spacious and premium
+       without becoming oversized. Layout, overlay, slideshow, travelling
+       border light and curved bottom are all unchanged. */
+    min-height:74vh; display:flex; align-items:flex-end;
+    padding:40px 0 72px; text-align:left; overflow:hidden;
+    /* Tarita-style curved bottom (centre dips lowest) */
+    border-bottom-left-radius:50% 14%;
+    border-bottom-right-radius:50% 14%;
+}
+@property --gh-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes ghTravel{ to{ --gh-a:360deg; } }
+
+/* 5-image crossfade slideshow with slow Ken-Burns zoom */
+.gh-hero .gh-slideshow{ position:absolute; inset:0; z-index:0; }
+.gh-hero .gh-slide{
+    position:absolute; inset:0;
+    background-size:cover; background-position:center;
+    opacity:0;
+    animation:ghSlideFade 30s ease-in-out infinite, ghSlideZoom 30s ease-in-out infinite;
+}
+.gh-hero .gh-slide:nth-child(1){ animation-delay:0s, 0s; }
+.gh-hero .gh-slide:nth-child(2){ animation-delay:6s, 6s; }
+.gh-hero .gh-slide:nth-child(3){ animation-delay:12s, 12s; }
+.gh-hero .gh-slide:nth-child(4){ animation-delay:18s, 18s; }
+.gh-hero .gh-slide:nth-child(5){ animation-delay:24s, 24s; }
+@keyframes ghSlideFade{
+    0%{ opacity:0; } 3%{ opacity:1; } 17%{ opacity:1; } 20%{ opacity:0; } 100%{ opacity:0; }
+}
+@keyframes ghSlideZoom{
+    0%{ transform:scale(1.06); } 20%{ transform:scale(1.14); } 100%{ transform:scale(1.06); }
+}
+/* soft luminous overlay + pink & blue accent glows (photo stays clearly visible) */
+.gh-hero .gh-hero-overlay{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:
+        radial-gradient(680px 460px at 14% 12%, rgba(236, 72, 153, .16), transparent 62%),
+        radial-gradient(680px 460px at 86% 86%, rgba(16, 42, 92, .16), transparent 62%),
+        radial-gradient(ellipse at 50% 46%, rgba(255, 255, 255, .18) 0%, rgba(255, 255, 255, .3) 70%, rgba(255, 255, 255, .42) 100%);
+}
+/* clean image hero (no text) — lighter overlay so photos read clearly */
+.gh-hero-clean .gh-hero-overlay{
+    background:
+        radial-gradient(700px 480px at 14% 12%, rgba(236, 72, 153, .13), transparent 62%),
+        radial-gradient(700px 480px at 86% 86%, rgba(16, 42, 92, .13), transparent 62%),
+        linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .2));
+}
+
+/* glass frame (frosted rim) following the hero shape */
+.gh-hero::before{
+    content:""; position:absolute; inset:16px; z-index:2; pointer-events:none;
+    border-top-left-radius:22px; border-top-right-radius:22px;
+    border-bottom-left-radius:48% 12%; border-bottom-right-radius:48% 12%;
+    border:1px solid rgba(255, 255, 255, .65);
+    box-shadow:inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 0 46px rgba(255, 255, 255, .16), 0 20px 60px rgba(16, 42, 92, .14);
+    background:linear-gradient(160deg, rgba(255, 255, 255, .14), transparent 42%);
+}
+/* travelling light around the glass margins — pink / blue / lavender / white */
+.gh-hero::after{
+    content:""; position:absolute; inset:16px; z-index:3; pointer-events:none;
+    border-top-left-radius:22px; border-top-right-radius:22px;
+    border-bottom-left-radius:48% 12%; border-bottom-right-radius:48% 12%;
+    padding:2px;
+    background:conic-gradient(from var(--gh-a),
+        transparent 0 60%, var(--g-pink) 74%, #FFFFFF 82%, var(--g-blue) 90%, var(--g-lavender) 97%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:ghTravel 14s linear infinite;
+}
+/* animated scroll-down chevron */
+.gh-hero-chevron{
+    position:absolute; left:50%; bottom:64px; transform:translateX(-50%);
+    z-index:3; width:44px; height:44px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--g-text); font-size:1.15rem;
+    border:1px solid rgba(255, 255, 255, .7); background:rgba(255, 255, 255, .5);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    animation:ghChev 2.2s ease-in-out infinite; transition:var(--g-ease);
+}
+.gh-hero-chevron:hover{ background:var(--g-pink); color:#FFFFFF; border-color:var(--g-pink); }
+@keyframes ghChev{
+    0%,100%{ transform:translateX(-50%) translateY(0); }
+    50%{ transform:translateX(-50%) translateY(7px); }
+}
+@media (prefers-reduced-motion: reduce){
+    .gh-hero .gh-slide{ animation:none; }
+    .gh-hero .gh-slide:nth-child(1){ opacity:1; }
+    .gh-hero-chevron{ animation:none; }
+}
+.gh-hero .gh-wrap{ position:relative; z-index:4; max-width:1200px; }
+.gh-hero-cta{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+/* floating badge pinned to the top of the hero photo */
+.gh-hero-float-badge{
+    position:absolute; top:26px; right:24px; z-index:4;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 16px; border-radius:50px;
+    background:rgba(255, 255, 255, .6); border:1px solid rgba(255, 255, 255, .7);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 10px 30px rgba(16, 42, 92, .1), 0 0 18px rgba(236, 72, 153, 0.18);
+    font-family:var(--font-button,'Montserrat',sans-serif);
+    font-weight:600; font-size:.78rem; color:var(--g-text);
+}
+.gh-hero-float-badge i{ color:var(--g-pink); }
+
+/* glass panel floating over the slideshow — badge / heading / copy / CTA
+   Enlarged in step with the taller hero: wider panel, more generous
+   internal padding and increased spacing between the badge, heading,
+   description and CTA row so the content feels open rather than packed. */
+.gh-hero-panel{
+    max-width:690px; padding:38px 42px;
+    /* fully transparent — the card is now defined only by its animated
+       travelling border light (see graduate-hire-elevate.css), not by a
+       frosted glass fill. The hero slideshow stays perfectly clear. */
+    background:transparent !important;
+    backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
+    box-shadow:none !important;
+    border:1px solid rgba(236, 72, 153, .16);
+}
+.gh-hero-panel .gh-eyebrow{ margin-bottom:14px; }
+.gh-hero-panel h2{
+    font-family:var(--font-heading,'Poppins',sans-serif);
+    font-weight:800; font-size:2.25rem; line-height:1.14; margin:0 0 16px;
+    color:#FFFFFF;
+    text-shadow:0 2px 4px rgba(8, 20, 45, .35), 0 10px 32px rgba(8, 20, 45, .38);
+}
+.gh-hero-panel p{
+    font-size:1rem; line-height:1.72; color:rgba(255, 255, 255, .92); margin:0 0 28px; max-width:585px;
+    text-shadow:0 1px 3px rgba(8, 20, 45, .3), 0 6px 20px rgba(8, 20, 45, .3);
+}
+.gh-hero-panel .gh-hero-cta{ justify-content:flex-start; }
+
+/* ================= STATS (single floating glass container) ================= */
+.gh-stats{ padding:28px 0; }
+.gh-stats-grid{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    padding:18px 10px;
+}
+.gh-stat{
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    padding:6px 14px; position:relative;
+}
+.gh-stat + .gh-stat::before{
+    content:""; position:absolute; left:0; top:14%; bottom:14%; width:1px;
+    background:linear-gradient(180deg, transparent, rgba(16, 42, 92, .12), transparent);
+}
+.gh-stat i{ font-size:1.1rem; color:var(--g-pink); margin-bottom:4px; display:block; }
+.gh-stat .gh-stat-num{
+    font-family:var(--font-heading,'Poppins',sans-serif);
+    font-weight:800; font-size:1.5rem; line-height:1; color:var(--g-text); margin-bottom:2px;
+    background:linear-gradient(90deg,var(--g-pink),var(--g-blue));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.gh-stat span{ font-size:.68rem; color:var(--g-mut); font-weight:500; }
+
+/* ================= WHY HIRE (image feature cards) ================= */
+.gh-section{ padding:40px 0; }
+.gh-why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.gh-feature{ overflow:hidden; display:flex; flex-direction:column; }
+.gh-feature-img{ height:180px; overflow:hidden; }
+.gh-feature-img img{ width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+.gh-feature:hover .gh-feature-img img{ transform:scale(1.08); }
+.gh-feature-body{ padding:18px 20px 22px; }
+.gh-feature-body h3{ font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.2rem; color:var(--g-text); margin:0 0 8px; }
+.gh-feature-body p{ font-size:.95rem; line-height:1.65; color:var(--g-mut); margin:0; }
+
+/* ================= QUALITIES (icon grid) ================= */
+.gh-qual-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.gh-qual{ padding:22px 22px; display:flex; gap:16px; align-items:flex-start; position:relative; overflow:hidden; }
+.gh-qual::before, .gh-qual::after{
+    content:""; position:absolute; width:14px; height:14px; pointer-events:none;
+    border-top:2px solid rgba(236, 72, 153, .4); border-left:2px solid rgba(236, 72, 153, .4);
+    top:10px; left:10px; opacity:.7; animation:ghPulseGlow 6s ease-in-out infinite;
+}
+.gh-qual::after{
+    top:auto; left:auto; bottom:10px; right:10px;
+    border-top:none; border-left:none;
+    border-bottom:2px solid rgba(236, 72, 153, .4); border-right:2px solid rgba(236, 72, 153, .4);
+    animation-delay:1.5s;
+}
+.gh-qual .gh-qic{
+    flex-shrink:0; width:48px; height:48px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center; font-size:1.15rem;
+    color:#FFFFFF; background:linear-gradient(135deg,var(--g-pink),var(--g-lavender));
+    box-shadow:0 8px 20px rgba(236, 72, 153, .28);
+}
+.gh-qual h3{ font-size:1.08rem; color:var(--g-text); margin:0 0 5px; font-family:var(--font-heading,'Poppins',sans-serif); }
+.gh-qual p{ font-size:.9rem; line-height:1.6; color:var(--g-mut); margin:0; }
+
+/* ================= BENEFITS ================= */
+.gh-benefits-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.gh-benefit{ padding:24px 24px; }
+.gh-benefit i{ font-size:1.4rem; color:var(--g-pink); margin-bottom:12px; display:block; }
+.gh-benefit h3{ font-size:1.1rem; color:var(--g-text); margin:0 0 6px; font-family:var(--font-heading,'Poppins',sans-serif); }
+.gh-benefit p{ font-size:.92rem; line-height:1.6; color:var(--g-mut); margin:0; }
+
+/* ================= TESTIMONIALS ================= */
+.gh-tst-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+.gh-tst{ padding:30px 30px; position:relative; }
+.gh-tst .gh-quote{ font-size:2.4rem; color:rgba(236, 72, 153, .45); line-height:1; font-family:Georgia,serif; }
+.gh-tst p{ font-size:1rem; line-height:1.7; color:var(--g-text); margin:6px 0 18px; font-style:italic; }
+.gh-tst .gh-tst-by{ display:flex; align-items:center; gap:12px; }
+.gh-tst .gh-tst-av{
+    width:44px; height:44px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(135deg,var(--g-blue),var(--g-lavender)); color:#FFFFFF;
+    display:flex; align-items:center; justify-content:center; font-weight:700;
+}
+.gh-tst .gh-tst-by strong{ display:block; color:var(--g-text); font-size:.96rem; }
+.gh-tst .gh-tst-by span{ font-size:.82rem; color:var(--g-mut); }
+
+.gh-tst-solo{
+    max-width:760px; margin:0 auto; padding:34px 40px; position:relative; text-align:center;
+}
+.gh-tst-solo .gh-quote{ font-size:2.6rem; }
+.gh-tst-solo p{
+    font-size:1.05rem; line-height:1.65; color:var(--g-text); margin:4px 0 16px; font-style:italic;
+}
+.gh-tst-by-solo{ justify-content:center; }
+
+/* ================= PARTNERS ================= */
+.gh-partners{ padding:46px 0; }
+.gh-logos{ display:flex; flex-wrap:wrap; gap:16px; justify-content:center; }
+.gh-logo{
+    height:76px; width:150px; display:flex; align-items:center; justify-content:center;
+    padding:14px 18px; border-radius:16px;
+    background:rgba(255, 255, 255, .75); border:1px solid rgba(255, 255, 255, .7);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 12px 30px rgba(16, 42, 92, .06), 0 0 18px rgba(236, 72, 153, 0.14);
+    transition:transform var(--g-ease), box-shadow var(--g-ease);
+}
+.gh-logo:hover{ transform:translateY(-4px); box-shadow:0 16px 34px rgba(16, 42, 92, .18), 0 0 18px rgba(236, 72, 153, 0.26); }
+.gh-logo img{ max-width:100%; max-height:100%; object-fit:contain; }
+
+/* ---------- COMPACT PASS — slim accreditation strip ----------
+   Same design, logos, colours, hover lift and responsiveness;
+   only the section's vertical footprint is reduced (~65%) via
+   padding, heading size and logo-card size. Scoped to
+   .gh-partners so nothing else on the page is affected. */
+.gh-partners{ padding:14px 0 18px; }
+.gh-partners .gh-head{ margin-bottom:6px; }
+.gh-partners .gh-eyebrow{ padding:4px 10px; font-size:.62rem; margin-bottom:5px; }
+.gh-partners .gh-head h2{ font-size:1.2rem; line-height:1.25; }
+.gh-partners .gh-logos{ gap:8px; }
+.gh-partners .gh-logo{ height:42px; width:104px; padding:6px 10px; border-radius:10px; }
+@media(max-width:640px){
+    .gh-partners{ padding:12px 0 16px; }
+    .gh-partners .gh-logo{ height:38px; width:92px; }
+}
+
+/*==================================================
+    WHAT OUR GRADUATES CAN DO — premium navy capability
+    showcase. Deliberately a different register from the
+    rest of this (light-glass) page: solid navy field,
+    dark translucent glass cards with a thin pink
+    travelling border, compact 2x3 grid. Namespaced .ghc-
+    so nothing here leaks onto the surrounding sections.
+==================================================*/
+@property --ghc-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes ghcTravel{ to{ --ghc-a:360deg; } }
+
+.gh-capabilities{
+    position:relative; isolation:isolate; overflow:hidden;
+    padding:64px 0;
+    background:#081B3F;
+}
+.ghc-grid-overlay{
+    position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.06;
+    background-image:
+        linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px);
+    background-size:48px 48px;
+    -webkit-mask-image:radial-gradient(circle at 30% 40%, #000 0%, transparent 72%);
+    mask-image:radial-gradient(circle at 30% 40%, #000 0%, transparent 72%);
+}
+.ghc-particle{
+    position:absolute; z-index:0; border-radius:50%; pointer-events:none;
+    background:#EC4899; opacity:.5; filter:blur(.5px);
+    animation:ghcFloat 12s ease-in-out infinite;
+}
+.ghc-particle.p1{ width:5px; height:5px; top:18%; left:58%; }
+.ghc-particle.p2{ width:4px; height:4px; top:68%; left:82%; animation-delay:2.4s; background:#123A92; opacity:.7; }
+.ghc-particle.p3{ width:3px; height:3px; top:44%; left:72%; animation-delay:4.8s; }
+@keyframes ghcFloat{
+    0%,100%{ transform:translateY(0); opacity:.35; }
+    50%{ transform:translateY(-14px); opacity:.8; }
+}
+
+.ghc-layout{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:.85fr 1.15fr; gap:48px; align-items:center;
+}
+
+/* ---------- left — message ---------- */
+.ghc-intro{ max-width:400px; }
+.ghc-eyebrow{
+    display:block;
+    font-family:var(--font-button,'Montserrat',sans-serif);
+    font-size:.74rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:#F9A8D4; margin-bottom:10px;
+}
+.ghc-heading{
+    font-family:var(--font-heading,'Poppins',sans-serif); font-weight:800;
+    font-size:clamp(2.2rem,4vw,3.1rem); line-height:1.05; letter-spacing:-.01em;
+    color:#FFFFFF; margin:0 0 18px;
+}
+.ghc-lead{ font-size:1rem; line-height:1.75; color:rgba(255,255,255,.72); margin:0 0 26px; }
+.ghc-cta{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:13px 26px; border-radius:999px;
+    background:transparent; border:1px solid rgba(236,72,153,.5);
+    color:#FFFFFF; font-family:var(--font-button,'Montserrat',sans-serif); font-weight:700; font-size:.86rem;
+    text-decoration:none; letter-spacing:.02em;
+    transition:transform .3s ease, border-color .3s ease, background .3s ease;
+}
+.ghc-cta i{ font-size:.78rem; transition:transform .3s ease; }
+.ghc-cta:hover{ transform:translateY(-2px); border-color:#EC4899; background:rgba(236,72,153,.12); }
+.ghc-cta:hover i{ transform:translateX(4px); }
+
+/* ---------- right — capability cards ---------- */
+.ghc-cards{
+    display:grid; grid-template-columns:1fr 1fr; gap:16px;
+}
+.ghc-card{
+    position:relative; isolation:isolate;
+    padding:22px 20px;
+    border-radius:14px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    transition:transform .3s ease, background .3s ease, border-color .3s ease;
+}
+.ghc-card::before{
+    content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit; padding:1px;
+    background:conic-gradient(from var(--ghc-a), transparent 0 74%, #EC4899 88%, #FFFFFF 94%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .3s ease;
+    animation:ghcTravel 8s linear infinite;
+}
+.ghc-card:hover{
+    transform:translateY(-4px);
+    background:rgba(255,255,255,.09);
+    border-color:rgba(255,255,255,.32);
+}
+.ghc-card:hover::before{ opacity:1; }
+.ghc-card-line{
+    display:block; width:26px; height:2px; border-radius:2px;
+    background:#EC4899; margin-bottom:14px;
+}
+.ghc-card-icon{
+    display:block; font-size:1.1rem; color:#EC4899; margin-bottom:10px;
+    transition:transform .3s ease;
+}
+.ghc-card:hover .ghc-card-icon{ transform:scale(1.12); }
+.ghc-card h3{
+    font-family:var(--font-heading,'Poppins',sans-serif); font-weight:700; font-size:.98rem;
+    color:#FFFFFF; margin:0 0 8px;
+}
+.ghc-card p{ font-size:.82rem; line-height:1.55; color:rgba(255,255,255,.62); margin:0; }
+
+@media (prefers-reduced-motion: reduce){
+    .ghc-particle{ animation:none !important; }
+    .ghc-card::before{ animation:none !important; }
+}
+
+@media(max-width:992px){
+    .ghc-layout{ grid-template-columns:1fr; gap:32px; }
+    .ghc-intro{ max-width:560px; }
+}
+@media(max-width:640px){
+    .gh-capabilities{ padding:44px 0; }
+    .ghc-cards{ grid-template-columns:1fr; gap:12px; }
+    .ghc-heading{ font-size:2.1rem; }
+}
+
+/* ================= CTA ================= */
+.gh-cta{ padding:20px 0 48px; }
+.gh-cta-inner{
+    padding:40px 36px; border-radius:30px; text-align:center; position:relative; overflow:hidden;
+    background:linear-gradient(120deg, var(--g-pink) 0%, var(--g-lavender) 55%, var(--g-blue) 100%);
+    border:1px solid rgba(255, 255, 255, .4);
+    box-shadow:0 24px 70px rgba(236, 72, 153, .32);
+}
+.gh-cta-inner::after{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(600px 300px at 85% 10%, rgba(255, 255, 255, .25), transparent 60%);
+    pointer-events:none;
+}
+.gh-cta-particle{
+    position:absolute; width:5px; height:5px; border-radius:50%;
+    background:rgba(255, 255, 255, .8); box-shadow:0 0 10px rgba(255, 255, 255, .8);
+    pointer-events:none; animation:ghDot 5s ease-in-out infinite;
+}
+.gh-cta-particle.p1{ top:22%; left:12%; }
+.gh-cta-particle.p2{ top:68%; left:88%; animation-delay:1.2s; }
+.gh-cta-particle.p3{ top:80%; left:22%; width:4px; height:4px; animation-delay:2.4s; }
+.gh-cta-inner h2{ font-family:var(--font-heading,'Poppins',sans-serif); font-size:2.1rem; color:#FFFFFF; margin:0 0 12px; position:relative; }
+.gh-cta-inner p{ font-size:1.05rem; color:rgba(255, 255, 255, .9); max-width:560px; margin:0 auto 24px; position:relative; }
+.gh-cta-inner .gh-hero-cta{ position:relative; }
+.gh-cta-inner .gh-btn-gold{ background:#FFFFFF; color:var(--g-lavender); box-shadow:0 12px 28px rgba(16, 42, 92, .18), 0 0 18px rgba(236, 72, 153, 0.26); }
+.gh-cta-inner .gh-btn-glass{ background:rgba(255, 255, 255, .16); color:#FFFFFF; border-color:rgba(255, 255, 255, .55); }
+
+/* Light-glass variant — used when the CTA card sits beside the FAQ
+   accordion, where a bright white/navy/pink card reads as one family
+   with the rest of the site instead of a heavy saturated banner. */
+.gh-cta-inner-light{
+    background:rgba(255, 255, 255, .82);
+    border:1px solid rgba(16, 42, 92, .1);
+    box-shadow:0 24px 60px rgba(16, 42, 92, .1), 0 0 30px rgba(236, 72, 153, .1);
+    backdrop-filter:blur(20px) saturate(130%);
+    -webkit-backdrop-filter:blur(20px) saturate(130%);
+}
+.gh-cta-inner-light::after{
+    background:radial-gradient(600px 300px at 85% 10%, rgba(236, 72, 153, .07), transparent 60%);
+}
+.gh-cta-inner-light .gh-cta-particle{
+    background:rgba(236, 72, 153, .5); box-shadow:0 0 10px rgba(236, 72, 153, .35);
+}
+.gh-cta-inner-light h2{ color:var(--g-text); }
+.gh-cta-inner-light p{ color:var(--g-mut); }
+.gh-cta-inner-light .gh-btn-gold{
+    background:linear-gradient(115deg, var(--g-pink) 0%, var(--g-lavender) 100%);
+    color:#FFFFFF;
+    box-shadow:0 14px 32px rgba(236, 72, 153, .35);
+}
+.gh-cta-inner-light .gh-btn-gold:hover{ box-shadow:0 20px 42px rgba(236, 72, 153, .45); }
+
+/* ================= FAQ ================= */
+.gh-faq-list{ max-width:840px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+.gh-faq-item{ overflow:hidden; }
+.gh-faq-q{
+    width:100%; text-align:left; cursor:pointer; border:none; background:transparent;
+    color:var(--g-text); font-family:var(--font-heading,'Poppins',sans-serif); font-weight:600; font-size:1.05rem;
+    padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.gh-faq-q i{ color:var(--g-pink); transition:transform var(--g-ease); flex-shrink:0; }
+.gh-faq-item.open .gh-faq-q i{ transform:rotate(180deg); }
+.gh-faq-a{ max-height:0; overflow:hidden; transition:max-height var(--g-ease); }
+.gh-faq-a p{ padding:0 24px 22px; margin:0; font-size:.96rem; line-height:1.7; color:var(--g-mut); }
+
+/* ================= CONTACT ================= */
+.gh-contact-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:26px; align-items:stretch; }
+.gh-contact-cards{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.gh-cc{ padding:24px 22px; display:flex; flex-direction:column; gap:8px; }
+.gh-cc i{ font-size:1.3rem; color:var(--g-pink); }
+.gh-cc h4{ font-size:.95rem; color:var(--g-text); margin:0; }
+.gh-cc a, .gh-cc span{ font-size:.9rem; color:var(--g-mut); text-decoration:none; word-break:break-word; }
+.gh-cc a:hover{ color:var(--g-pink); }
+.gh-contact-panel{ padding:32px 32px; display:flex; flex-direction:column; justify-content:center; }
+.gh-contact-panel h3{ font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.5rem; color:var(--g-text); margin:0 0 10px; }
+.gh-contact-panel p{ font-size:.98rem; line-height:1.7; color:var(--g-mut); margin:0 0 20px; }
+.gh-contact-panel .gh-hero-cta{ justify-content:flex-start; }
+
+/* ================= REVEAL ANIMATIONS ================= */
+.gh-reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s cubic-bezier(.25,.8,.25,1); }
+.gh-reveal.in{ opacity:1; transform:none; }
+.gh-reveal.scale{ transform:scale(.94); }
+.gh-reveal.scale.in{ transform:none; }
+.gh-reveal[data-delay="1"]{ transition-delay:.08s; }
+.gh-reveal[data-delay="2"]{ transition-delay:.16s; }
+.gh-reveal[data-delay="3"]{ transition-delay:.24s; }
+
+@media (prefers-reduced-motion: reduce){
+    .gh-reveal{ opacity:1 !important; transform:none !important; }
+    .gh-hero .gh-hero-bg{ transform:none; }
+    .gh-glass{ animation:none !important; }
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:992px){
+    .gh-stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:14px; }
+    .gh-stat:nth-child(3)::before{ display:none; }
+    .gh-why-grid,.gh-qual-grid,.gh-benefits-grid{ grid-template-columns:repeat(2,1fr); }
+    .gh-hero-panel h2{ font-size:1.92rem; }
+    .gh-head h2{ font-size:2rem; }
+}
+@media(max-width:640px){
+    .gh-stats-grid,.gh-why-grid,.gh-qual-grid,.gh-benefits-grid,
+    .gh-tst-grid,.gh-contact-grid,.gh-contact-cards{ grid-template-columns:1fr; }
+    .gh-stat::before{ display:none; }
+    .gh-stat{ flex-direction:row; justify-content:center; gap:10px; text-align:left; }
+    .gh-stat i{ margin-bottom:0; }
+    .gh-tst-solo{ padding:26px 22px; }
+    .gh-hero{ min-height:55vh; padding:30px 0 58px; border-bottom-left-radius:50% 8%; border-bottom-right-radius:50% 8%; }
+    .gh-hero-panel{ padding:28px 24px; max-width:none; }
+    .gh-hero-panel h2{ font-size:1.68rem; }
+    .gh-hero-panel p{ font-size:.94rem; margin-bottom:24px; }
+    .gh-hero-float-badge{ top:16px; right:16px; font-size:.7rem; padding:7px 12px; }
+    .gh-hero-chevron{ bottom:24px; }
+    .gh-section,.gh-stats{ padding:32px 0; }
+    .gh-head h2{ font-size:1.7rem; }
+    .gh-cta-inner{ padding:32px 22px; }
+    .gh-cta-inner h2{ font-size:1.5rem; }
+    .gh-btn{ width:100%; }
+    .gh-hero-cta{ width:100%; }
+}
+
+/* single divided glass panel look for a plain FAQ list — reused as a
+   base for the pink combined section below (kept generic/reusable). */
+.gh-faq-list-panel{
+    display:block;
+    max-width:none;
+    margin:0;
+    overflow:hidden;
+    background:var(--g-glass);
+    backdrop-filter:blur(28px) saturate(150%); -webkit-backdrop-filter:blur(28px) saturate(150%);
+    border:1px solid var(--g-glass-bd);
+    border-radius:var(--g-radius);
+    box-shadow:0 20px 54px rgba(16, 42, 92, .1);
+}
+.gh-faq-list-panel--full{
+    max-width:840px;
+    margin:0 auto;
+}
+.gh-faq-list-panel .gh-faq-item{
+    border-bottom:1px solid rgba(236, 72, 153, .14);
+}
+.gh-faq-list-panel .gh-faq-item:last-child{ border-bottom:none; }
+.gh-faq-list-panel .gh-faq-q{ padding:16px 22px; font-size:.96rem; }
+.gh-faq-list-panel .gh-faq-a p{ padding:0 22px 16px; font-size:.9rem; }
+
+/*==================================================
+    FAQ + HIRE CTA — combined pink glass panel. One
+    saturated pink section (#EC4899 field) holding a
+    single milky-glass container; FAQ accordion on the
+    left, compact recruitment CTA + contact strip on the
+    right, divided by a thin pink line. Namespaced .ghfr-
+    so it doesn't disturb the light .gh- system elsewhere
+    on this page.
+==================================================*/
+.ghfr-section{
+    position:relative; isolation:isolate; overflow:hidden;
+    padding:56px 0 64px;
+    background:
+        radial-gradient(900px 560px at 88% 6%, rgba(255,255,255,.16), transparent 60%),
+        radial-gradient(760px 520px at 8% 96%, rgba(8,27,63,.22), transparent 60%),
+        linear-gradient(155deg, #EC4899 0%, #F472B6 48%, #EC4899 100%);
+}
+.ghfr-grid-overlay{
+    position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.08;
+    background-image:
+        linear-gradient(rgba(255,255,255,.9) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.9) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(circle at 72% 28%, #000 0%, transparent 74%);
+    mask-image:radial-gradient(circle at 72% 28%, #000 0%, transparent 74%);
+}
+.ghfr-particle{
+    position:absolute; z-index:0; border-radius:50%; pointer-events:none;
+    background:#FFFFFF; opacity:.5; animation:ghcFloat 13s ease-in-out infinite;
+}
+.ghfr-particle.p1{ width:5px; height:5px; top:12%; left:8%; }
+.ghfr-particle.p2{ width:4px; height:4px; top:80%; left:15%; animation-delay:2.6s; background:#081B3F; opacity:.3; }
+.ghfr-particle.p3{ width:3px; height:3px; top:48%; left:93%; animation-delay:5s; }
+
+.ghfr-panel{
+    position:relative; z-index:1;
+    background:rgba(255,255,255,.86);
+    border:1px solid rgba(255,255,255,.75);
+    box-shadow:0 25px 70px rgba(8,27,63,.18);
+    border-radius:32px;
+    padding:40px 44px 44px;
+    backdrop-filter:blur(24px) saturate(140%); -webkit-backdrop-filter:blur(24px) saturate(140%);
+}
+
+.ghfr-badge-row{ text-align:center; margin-bottom:26px; }
+.ghfr-badge{
+    display:inline-flex; align-items:center;
+    font-family:var(--font-button,'Montserrat',sans-serif);
+    font-size:.72rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:#EC4899; padding:8px 20px; border-radius:999px;
+    background:rgba(236,72,153,.08); border:1px solid rgba(236,72,153,.3);
+    box-shadow:0 0 22px rgba(236,72,153,.14);
+}
+
+.ghfr-grid{ display:grid; grid-template-columns:1.5fr auto 1fr; gap:36px; align-items:start; }
+.ghfr-divider{ width:1px; align-self:stretch; background:rgba(236,72,153,.2); }
+
+/* left — FAQ, nested transparently inside the one shared panel
+   (overrides the generic .gh-faq-list-panel glass surface above so
+   it reads as part of the panel, not a second nested card) */
+.ghfr-faq-col .gh-faq-list-panel{
+    background:transparent; border:none; box-shadow:none;
+    backdrop-filter:none; -webkit-backdrop-filter:none; border-radius:0;
+}
+.ghfr-faq-col .gh-faq-list-panel .gh-faq-item{ border-bottom:1px solid rgba(8,27,63,.1); }
+.ghfr-faq-col .gh-faq-list-panel .gh-faq-item:last-child{ border-bottom:none; }
+.ghfr-faq-col .gh-faq-q{ padding:15px 4px; font-size:.94rem; color:#081B3F; }
+.ghfr-faq-col .gh-faq-a p{ padding:0 4px 15px; font-size:.86rem; }
+
+/* right — CTA + contact strip */
+.ghfr-cta-col{ display:flex; flex-direction:column; }
+.ghfr-cta-heading{
+    font-family:var(--font-heading,'Poppins',sans-serif); font-weight:800;
+    font-size:1.5rem; line-height:1.25; color:#081B3F; margin:0 0 12px;
+}
+.ghfr-pink{ color:#EC4899; }
+.ghfr-cta-desc{ font-size:.92rem; line-height:1.65; color:rgba(8,27,63,.62); margin:0 0 22px; }
+.ghfr-btn{
+    display:inline-flex; align-items:center; gap:9px; align-self:flex-start;
+    padding:14px 26px; border-radius:999px;
+    background:#EC4899; color:#FFFFFF; text-decoration:none;
+    font-family:var(--font-button,'Montserrat',sans-serif); font-weight:700; font-size:.82rem;
+    letter-spacing:.04em; text-transform:uppercase;
+    box-shadow:0 14px 30px rgba(236,72,153,.32);
+    transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+}
+.ghfr-btn:hover{ transform:translateY(-3px); background:#F472B6; box-shadow:0 18px 38px rgba(236,72,153,.42); }
+.ghfr-btn i{ font-size:.74rem; transition:transform .3s ease; }
+.ghfr-btn:hover i{ transform:translateX(3px); }
+
+.ghfr-contact-strip{ margin-top:22px; padding-top:20px; border-top:1px solid rgba(8,27,63,.1); }
+.ghfr-contact-label{
+    display:block; font-family:var(--font-button,'Montserrat',sans-serif);
+    font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:#081B3F; margin-bottom:4px;
+}
+.ghfr-contact-strip p{ font-size:.82rem; color:rgba(8,27,63,.6); margin:0 0 8px; }
+.ghfr-contact-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:.82rem; font-weight:700; color:#EC4899; text-decoration:none;
+}
+.ghfr-contact-link:hover{ color:#F472B6; }
+.ghfr-contact-link i{ font-size:.7rem; }
+
+@media(prefers-reduced-motion:reduce){
+    .ghfr-particle{ animation:none !important; }
+}
+@media(max-width:900px){
+    .ghfr-grid{ grid-template-columns:1fr; gap:0; }
+    .ghfr-divider{ display:none; }
+    .ghfr-cta-col{ margin-top:28px; padding-top:24px; border-top:1px solid rgba(8,27,63,.1); }
+}
+@media(max-width:640px){
+    .ghfr-section{ padding:40px 0 48px; }
+    .ghfr-panel{ padding:28px 22px 30px; border-radius:24px; }
+    .ghfr-cta-heading{ font-size:1.3rem; }
+}

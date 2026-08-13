@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        Data Analytics | Germaine AI Bootcamp
+    </title>
+
+    <meta name="description"
+        content="Master Excel, SQL, Power BI, Python, dashboards, data visualisation, and business intelligence using real-world datasets at Germaine Training Institute.">
+
+    <meta name="author" content="Germaine Training Institute">
+
+    <meta property="og:title" content="Data Analytics | Germaine AI Bootcamp">
+    <meta property="og:description" content="Master Excel, SQL, Power BI, Python and business intelligence using real-world datasets.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://site.germaineinstitute.ac.ke/assets/images/slide/pexels-jakubzerdzicki-36950598.jpg">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/ai-course-data-analytics.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Data Analytics | Germaine AI Bootcamp">
+    <meta name="twitter:description" content="Master Excel, SQL, Power BI, Python and business intelligence using real-world datasets.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/slide/pexels-jakubzerdzicki-36950598.jpg">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/ai-course-data-analytics.html">
+
+    <link rel="icon" type="image/jpeg" href="assets/images/logo/logo.jpg">
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/premium-theme.css">
+    <link rel="stylesheet" href="assets/css/premium-sections.css">
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+    <link rel="stylesheet" href="assets/css/school-page.css">
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+    <link rel="stylesheet" href="assets/css/ai-bootcamp.css">
+    <link rel="stylesheet" href="assets/css/ai-courses.css">
+    <link rel="stylesheet" href="assets/css/ai-courses-v2.css">
+    <link rel="stylesheet" href="assets/css/ai-course-hero-v3.css">
+
+    <link rel="stylesheet" href="assets/css/courses-menu.css">
+
+</head>
+
+<body class="aic-family-page" data-course-slug="data-analytics">
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <a href="https://wa.me/254719488112" class="whatsapp" target="_blank" aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="utility-bar" id="utilityBar">
+        <div class="container utility-bar-inner">
+            <div class="utility-left">
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+                <a href="ai-bootcamp.html" class="utility-link active"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+            </div>
+            <div class="utility-right">
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+
+    <header id="header">
+        <div class="branding-bar">
+            <div class="container branding-inner">
+                <a href="index.html" class="brand-logo-group">
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+                    <span class="brand-text">
+                        <span class="brand-name">Germaine Training Institute</span>
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+                    </span>
+                </a>
+                <div class="branding-right">
+                    <div class="branding-contact">
+                        <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+                        <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+                    </div>
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <div class="container navbar-inner">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="about.html">About Us <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="about.html">Our Story</a>
+                            <a href="about.html">Mission &amp; Vision</a>
+                            <a href="about.html">Leadership</a>
+                            <a href="about.html">Accreditation</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="admissions.html">Admissions <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="admissions.html#admission-form">Apply Online</a>
+                            <a href="admissions.html">Entry Requirements</a>
+                            <a href="admissions.html">Fees Structure</a>
+                            <a href="apply.html">Scholarships</a>
+                        </div>
+                    </li>
+                    <li class="dropdown mega-dropdown">
+                        <a href="courses.html">Academic Schools <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-menu mega-menu mega-menu-schools">
+                            <div class="mega-menu-col">
+                                <span class="mega-menu-col-title">Academic Schools</span>
+                                <a href="courses-health-sciences.html">School of Medical &amp; Health Sciences</a>
+                                <a href="courses-hospitality-tourism.html">School of Hospitality, Tourism &amp; Travel</a>
+                                <a href="courses-engineering-technology.html">School of Engineering</a>
+                                <a href="courses-computing-it.html">School of Computing &amp; Informatics</a>
+                                <a href="courses-cosmetology-fashion-design.html">School of Cosmetology, Fashion &amp; Design</a>
+                                <a href="courses-business-commerce.html">Business &amp; Social Sciences</a>
+                                <a href="courses-mass-communication-journalism.html">School of Communication &amp; Media</a>
+                                <a href="courses-agriculture.html">School of Agriculture</a>
+                                <a href="courses-virtual-learning.html">School of Virtual Learning</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="courses-languages.html" class="nav-twoline"><span class="nav-line">Languages &amp;</span><span class="nav-line">Short Courses</span></a></li>
+                    <li><a href="campus.html">Student Life</a></li>
+                    <li><a href="news.html">News &amp; Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+
+                <div class="nav-buttons">
+                    <button class="search-btn" aria-label="Open search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="announcement-bar">
+        <div class="container announcement-container">
+            <div class="announcement-left">
+                <i class="fas fa-bullhorn"></i>
+                <span>September 2026 Intake Now Open &bull; Applications Ongoing</span>
+            </div>
+            <a href="apply.html" class="announcement-link">Apply Now For Full Scholarship <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    </div>
+
+    <div class="search-modal">
+        <div class="search-box">
+            <input aria-label="Search courses, departments or news" type="text" placeholder="Search courses, departments or news...">
+            <button aria-label="Submit search"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+        <header class="aic-nav" id="aicNav">
+            <div class="ai-wrap aic-nav-inner">
+                <a href="ai-bootcamp.html" class="aic-nav-brand">
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" loading="lazy">
+                    <span class="aic-nav-motto">Master AI. Build Real Projects. Launch Your Career.</span>
+                </a>
+                <nav class="aic-nav-links" id="aicNavLinks" aria-label="AI Bootcamp navigation">
+                    <a href="ai-bootcamp.html" class="aic-nav-link" data-nav="home">Home</a>
+                    <a href="ai-bootcamp-courses.html" class="aic-nav-link" data-nav="courses">Courses</a>
+                    <a href="contact.html" class="aic-nav-link">Contact Us</a>
+                    <a href="#aicApply" class="aic-nav-link aic-nav-apply">Apply</a>
+                    <span class="aic-nav-sep" aria-hidden="true"></span>
+                    <a href="index.html" class="aic-nav-link aic-nav-gti">Germaine Training Institute</a>
+                    <a href="EarnCash/frontend/pages/index.html" class="aic-nav-link aic-nav-earn">EarnFastCash</a>
+                </nav>
+                <button type="button" class="aic-nav-burger" id="aicNavBurger" aria-expanded="false" aria-controls="aicNavLinks" aria-label="Toggle AI Bootcamp navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </header>
+
+        <div id="aicDetailNavMount"></div>
+
+        <!-- ================= DETAIL HERO ================= -->
+        <section class="aic-hero2">
+            <div class="aic-hero2-inner ai-wrap">
+
+                <nav class="aic-hero2-breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="ai-bootcamp.html">AI Bootcamp</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="ai-bootcamp-courses.html">Courses</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span class="is-current">Data Analytics</span>
+                </nav>
+
+                <div class="aic-hero2-grid">
+                    <div class="aic-hero2-text sp-reveal">
+                        <span class="aic-hero2-eyebrow"><i class="fa-solid fa-chart-line"></i> Data Analytics</span>
+                        <h1 class="aic-hero2-title">Data <span class="ai-pink-text">Analytics</span></h1>
+                        <p class="aic-hero2-desc">Master Excel, SQL, Power BI, Python, dashboards, data visualisation, and business intelligence using real-world datasets.</p>
+
+                        <div class="aic-intake-badge"><span class="aic-intake-dot"></span> September 2026 Intake Open</div>
+
+                        <div class="aic-hero2-links">
+                            <a href="#aicApply" class="aic-hero2-apply">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="ai-bootcamp-courses.html" class="aic-hero2-back"><i class="fa-solid fa-arrow-left"></i> Back to Courses</a>
+                        </div>
+                    </div>
+                    <div id="aicHeroMediaMount"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <div id="aicStatsMount"></div>
+
+
+        <!-- ================= BUILD YOUR FUTURE ================= -->
+        <section id="aicOverview" class="aic-detail-section">
+            <div class="ai-wrap">
+                <div class="aic-bff-grid">
+                    <div class="aic-bff-text sp-reveal">
+                        <span class="ai-eyebrow"><i class="fa-solid fa-rocket"></i> Your Future</span>
+                        <h2>Build Your Future in Data Analytics</h2>
+                        <p>Every organisation collects data, but few people know how to turn it into decisions. This programme teaches you to clean, analyse and visualise data using the tools most used in business today &mdash; Excel, SQL and Power BI &mdash; and to build the kind of dashboards and reports that help managers act with confidence, using real datasets rather than toy examples.</p>
+                        <div id="aicBenefitsMount"></div>
+                    </div>
+                    <div class="gwf-wrap aic-bff-media sp-reveal">
+                        <div class="gwf-frame">
+                            <div class="gwf-glass">
+                                <img src="pics/dataa.jpg" alt="Business professional reviewing live analytics charts and graphs on a tablet" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="aicSkillsMount"></div>
+
+
+
+        <!-- ================= CAREER OPPORTUNITIES ================= -->
+        <section id="aicCareers" class="aic-detail-section aic-detail-section-tint">
+            <div class="ai-wrap">
+                <div class="aic-detail-section-head aic-center sp-reveal">
+                    <span class="ai-eyebrow"><i class="fa-solid fa-briefcase"></i> Where It Leads</span>
+                    <h2>Career Opportunities</h2>
+                </div>
+                <div class="aic-careers-row sp-reveal">
+                    <span class="aic-career-chip"><i class="fa-solid fa-chart-simple"></i> Data Analyst</span>
+                    <span class="aic-career-chip"><i class="fa-solid fa-chart-pie"></i> BI Analyst</span>
+                    <span class="aic-career-chip"><i class="fa-solid fa-file-excel"></i> Reporting Analyst</span>
+                    <span class="aic-career-chip"><i class="fa-solid fa-database"></i> Data Coordinator</span>
+                    <span class="aic-career-chip"><i class="fa-solid fa-magnifying-glass-chart"></i> Insights Analyst</span>
+                    <span class="aic-career-chip"><i class="fa-solid fa-arrow-trend-up"></i> Junior Business Analyst</span>
+                </div>
+            </div>
+        </section>
+
+        <div id="aicRequirementsMount"></div>
+
+        <!-- ================= LEARNING FORMAT ================= -->
+        <section id="aicFormat" class="aic-detail-section">
+            <div class="ai-wrap">
+                <div class="aic-detail-section-head aic-center sp-reveal">
+                    <span class="ai-eyebrow"><i class="fa-solid fa-calendar-days"></i> How You&rsquo;ll Learn</span>
+                    <h2>Learning Format</h2>
+                </div>
+                <div class="aic-format-grid sp-reveal">
+                    <div class="aic-format-card"><span class="aic-format-ic"><i class="fa-solid fa-chalkboard-user"></i></span><h4>Live, Guided Sessions</h4><p>Instructor-led classes using real, business-relevant datasets.</p></div>
+                    <div class="aic-format-card"><span class="aic-format-ic"><i class="fa-solid fa-people-arrows"></i></span><h4>Mentor Support</h4><p>Feedback on your dashboards and analysis from working analysts.</p></div>
+                    <div class="aic-format-card"><span class="aic-format-ic"><i class="fa-solid fa-award"></i></span><h4>Certification</h4><p>Earn a Germaine-Certified Data Analyst credential on completion.</p></div>
+                </div>
+            </div>
+        </section>
+
+
+        <div id="aicGlassCardsMount"></div>
+
+        <div id="aicFaqMount"></div>
+
+    </main>
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+
+<footer class="footer">
+
+    <div class="footer-main">
+        <div class="container footer-grid">
+
+            <div class="footer-column">
+                <img src="assets/images/logo/logo-white.png" alt="Germaine Training Institute Logo" class="footer-logo" loading="lazy" decoding="async">
+                <p>Germaine Training Institute is committed to producing competent, innovative and industry-ready graduates through practical and competency-based education.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="ai-bootcamp.html">AI Bootcamp</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="apply.html">Scholarships</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-location-dot"></i> Pioneer Plaza, Mburu Gichua Road, Nakuru</li>
+                    <li><i class="fa-solid fa-phone"></i> +254 719 488 112</li>
+                    <li><i class="fa-solid fa-envelope"></i> admissions@germaineinstitute.com</li>
+                    <li><i class="fa-solid fa-clock"></i> Mon – Fri : 8:00 AM – 5:00 PM</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-map">
+        <iframe src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed" loading="lazy" allowfullscreen></iframe>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>© 2026 Germaine Training Institute. All Rights Reserved.</p>
+            <p>Designed & Developed by <strong>Emmanuel Elijah</strong></p>
+        </div>
+    </div>
+
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/ai-family-nav.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+<script defer src="assets/js/premium-theme.js"></script>
+<script defer src="assets/js/school-page.js"></script>
+
+<script src="assets/js/ai-courses-data.js"></script>
+<script src="assets/js/api-client.js"></script>
+<script src="assets/js/referral-capture.js"></script>
+<script defer src="assets/js/courses-menu.js"></script>
+<script defer src="assets/js/ai-course-detail-renderer.js"></script>
+
+</body>
+
+</html>

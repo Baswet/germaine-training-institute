@@ -1,0 +1,576 @@
+/* ==========================================================
+                EARNCASH REFERRAL SYSTEM
+                FUTURISTIC NETWORK UI
+========================================================== */
+
+
+
+
+
+
+/* ==========================
+        MAIN LAYOUT
+=========================== */
+
+
+
+.referral-main{
+
+
+    padding:60px 0;
+
+
+}
+
+
+
+
+
+.referral-container{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:35px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        STATS GRID
+=========================== */
+
+
+
+.referral-stats{
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+
+    repeat(3,1fr);
+
+
+    gap:25px;
+
+
+}
+
+
+
+
+
+
+
+.referral-stat-card{
+
+
+    padding:30px;
+
+
+    border-radius:35px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:20px;
+
+
+    transition:.4s;
+
+
+}
+
+
+
+
+
+.referral-stat-card:hover{
+
+
+    transform:
+
+
+    translateY(-10px);
+
+
+}
+
+
+
+
+
+
+
+.ref-icon{
+
+
+    width:60px;
+
+
+    height:60px;
+
+
+    border-radius:20px;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #4f73ff,
+
+        #b6c9ff
+
+    );
+
+
+    color:white;
+
+
+    font-size:1.4rem;
+
+
+}
+
+
+
+
+
+.referral-stat-card span{
+
+
+    color:
+
+
+    var(--text-light);
+
+
+}
+
+
+
+
+
+.referral-stat-card h2{
+
+
+    margin-top:8px;
+
+
+}
+/* ==========================
+        AFFILIATE LINK
+=========================== */
+
+
+
+.my-link-section{
+
+
+    width:100%;
+
+
+}
+
+
+
+
+
+.my-link-card{
+
+
+    padding:40px;
+
+
+    border-radius:40px;
+
+
+}
+
+
+
+
+
+.referral-copy-box{
+
+
+    display:flex;
+
+
+    gap:10px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+
+
+.referral-copy-box input{
+
+
+    flex:1;
+
+
+    padding:15px 20px;
+
+
+    border-radius:25px;
+
+
+    border:none;
+
+
+    background:
+
+
+    rgba(255,255,255,.6);
+
+
+}
+
+
+
+
+
+.referral-copy-box button{
+
+
+    width:55px;
+
+
+    border:none;
+
+
+    border-radius:50%;
+
+
+    background:
+
+
+    var(--primary);
+
+
+    color:white;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        NETWORK TREE
+=========================== */
+
+
+
+.network-card,
+
+
+.members-card{
+
+
+    padding:40px;
+
+
+    border-radius:40px;
+
+
+}
+
+
+
+
+
+
+
+.network-tree{
+
+
+    margin-top:40px;
+
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+
+
+.member-node{
+
+
+    display:inline-flex;
+
+
+    flex-direction:column;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    width:90px;
+
+
+    height:90px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #4f73ff,
+
+        #c1d0ff
+
+    );
+
+
+    color:white;
+
+
+    gap:8px;
+
+
+}
+
+
+
+
+
+.main-user{
+
+
+    box-shadow:
+
+
+    0 0 40px rgba(105,144,255,.4);
+
+
+}
+
+
+
+
+
+
+.level-two{
+
+
+    margin-top:50px;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    gap:30px;
+
+
+    flex-wrap:wrap;
+
+
+}
+
+
+
+
+
+.level-two .member-node{
+
+
+    width:70px;
+
+
+    height:70px;
+
+
+    background:
+
+
+    rgba(255,255,255,.5);
+
+
+    color:
+
+
+    var(--primary);
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        MEMBER LIST
+=========================== */
+
+
+
+.member-item{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    padding:20px;
+
+
+    border-bottom:
+
+
+    1px solid rgba(15,23,42,.08);
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        RESPONSIVE
+=========================== */
+
+
+
+@media(max-width:900px){
+
+
+
+.referral-stats{
+
+
+    grid-template-columns:
+
+
+    1fr;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+@media(max-width:600px){
+
+
+
+.my-link-card,
+
+
+.network-card,
+
+
+.members-card{
+
+
+    padding:30px 20px;
+
+
+}
+
+
+
+
+.referral-copy-box{
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+.referral-copy-box button{
+
+
+    width:100%;
+
+
+    height:50px;
+
+
+    border-radius:25px;
+
+
+}
+
+
+
+}

@@ -1,0 +1,363 @@
+/*==================================================
+    GERMAINE — SCHOOLS SHOWCASE (premium glassmorphism)
+    Neon-pink hero banner + animated glass card grid.
+    Rendered dynamically from window.SCHOOL_DATA
+    (see assets/js/school-data.js + schools-showcase.js).
+    All class names are prefixed "gss-" to avoid any
+    collision with existing site styles.
+==================================================*/
+:root{
+    --gss-pink-primary:#EC4899;
+    --gss-pink-hot:#EC4899;
+    --gss-pink-soft:#EC4899;
+    --gss-purple-accent:#102A5C;
+    --gss-glow-1:#EC4899;
+    --gss-glow-2:#EC4899;
+    --gss-glow-3:#EC4899;
+
+    --gss-bg-0:#FFFFFF;
+    --gss-bg-1:#FFFFFF;
+    --gss-bg-2:#FFFFFF;
+
+    --gss-glass-fill: rgba(255, 255, 255, .08);
+    --gss-glass-border: rgba(255, 255, 255, .18);
+    --gss-overlay-top: rgba(16, 42, 92, .45);
+    --gss-overlay-bottom: rgba(16, 42, 92, .72);
+
+    --gss-radius-card: 26px;
+}
+
+/* =========================================================
+   HERO BANNER
+========================================================= */
+.gss-hero{
+    position:relative;
+    min-height:420px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    isolation:isolate;
+}
+.gss-hero-photo{
+    position:absolute; inset:0;
+    background-image:url('../images/hero/hero-campus.jpg');
+    background-size:cover;
+    background-position:center 35%;
+    z-index:0;
+    animation:gssHeroPan 80s ease-in-out infinite alternate;
+}
+@keyframes gssHeroPan{ from{ transform:scale(1.05) translateX(0); } to{ transform:scale(1.12) translateX(-1.5%); } }
+
+.gss-hero-overlay{
+    position:absolute; inset:0; z-index:1;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, .62) 0%, rgba(255, 255, 255, .58) 55%, rgba(255, 255, 255, .66) 100%),
+      radial-gradient(circle at 20% 20%, rgba(236, 72, 153, .07), transparent 55%),
+      radial-gradient(circle at 85% 80%, rgba(16, 42, 92, .06), transparent 55%);
+}
+.gss-hero-glass{
+    position:absolute; inset:0; z-index:1;
+    backdrop-filter:blur(1.5px) saturate(115%);
+    -webkit-backdrop-filter:blur(1.5px) saturate(115%);
+}
+.gss-hero-particles{ position:absolute; inset:0; z-index:2; pointer-events:none; }
+
+.gss-hero-content{ position:relative; z-index:3; text-align:center; max-width:760px; padding:64px 24px; }
+
+.gss-eyebrow-row{ display:flex; align-items:center; justify-content:center; gap:18px; margin-bottom:16px; }
+.gss-line{
+    height:1px; width:70px;
+    background:linear-gradient(90deg, transparent, var(--gss-pink-primary), transparent);
+    position:relative;
+    overflow:hidden;
+}
+.gss-line::after{
+    content:'';
+    position:absolute; top:0; left:-40%;
+    width:40%; height:100%;
+    background:linear-gradient(90deg, transparent, #FFFFFF, transparent);
+    animation: gssLineSweep 50s linear infinite;
+    will-change: transform;
+}
+@keyframes gssLineSweep{ 0%{transform:translateX(0);} 100%{transform:translateX(400%);} }
+
+.gss-kicker{
+    font-family:'Poppins', 'Segoe UI', system-ui, sans-serif;
+    font-size:.72rem;
+    letter-spacing:.35em;
+    font-weight:600;
+    color:#EC4899;
+    text-transform:uppercase;
+}
+
+.gss-title{
+    font-family:'Poppins', 'Segoe UI', system-ui, sans-serif;
+    font-size:clamp(2.3rem, 4.6vw, 3.6rem);
+    font-weight:700;
+    margin:0 0 14px;
+    letter-spacing:-.01em;
+    background:linear-gradient(100deg, #102A5C 0%, var(--gss-pink-primary) 60%, var(--gss-purple-accent) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:none;
+}
+
+.gss-subtitle{
+    font-size:1.05rem;
+    color:#102A5C;
+    line-height:1.6;
+    margin:0;
+    text-shadow:none;
+    font-family:'Open Sans', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* =========================================================
+   GRID SECTION (light futuristic gradient backdrop)
+========================================================= */
+.gss-schools{
+    font-family:'Open Sans', 'Segoe UI', system-ui, sans-serif;
+    position:relative;
+    padding:64px 24px 110px;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(236, 72, 153, .16), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(16, 42, 92, .14), transparent 40%),
+      radial-gradient(circle at 50% 100%, rgba(236, 72, 153, .12), transparent 50%),
+      linear-gradient(180deg, var(--gss-bg-0) 0%, var(--gss-bg-1) 45%, var(--gss-bg-2) 100%);
+    overflow:hidden;
+    isolation:isolate;
+}
+
+.gss-blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:.55;
+    z-index:0;
+    pointer-events:none;
+}
+.gss-blob.b1{ display:none; }
+.gss-blob.b2{ width:420px; height:420px; bottom:-160px; right:-120px; background:radial-gradient(circle, #102A5C, transparent 70%); animation: gssFloaty 75s ease-in-out infinite; }
+.gss-blob.b3{ width:260px; height:260px; top:40%; left:60%; background:radial-gradient(circle, #FFFFFF, transparent 70%); animation: gssFloaty 90s ease-in-out infinite reverse; }
+
+@keyframes gssFloaty{
+    0%,100%{ transform:translateY(0) translateX(0); }
+    50%{ transform:translateY(-30px) translateX(20px); }
+}
+
+.gss-particle{
+    position:absolute;
+    width:4px; height:4px;
+    border-radius:50%;
+    background:var(--gss-glow-1);
+    box-shadow:0 0 8px 2px var(--gss-glow-2);
+    opacity:.7;
+    animation: gssDrift linear infinite;
+}
+@keyframes gssDrift{
+    0%{ transform:translateY(0) scale(1); opacity:.2; }
+    50%{ opacity:.9; }
+    100%{ transform:translateY(-140px) scale(.4); opacity:0; }
+}
+
+.gss-grid{
+    position:relative; z-index:2;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:22px;
+    max-width:1400px;
+    margin:0 auto;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+.gss-card{
+    position:relative;
+    max-width:330px;
+    min-width:280px;
+    height:305px;
+    margin:0 auto;
+    border-radius:var(--gss-radius-card);
+    overflow:hidden;
+    isolation:isolate;
+    cursor:pointer;
+    display:block;
+    text-decoration:none;
+    transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
+    box-shadow:0 14px 34px rgba(236, 72, 153, .16);
+}
+.gss-card:hover{
+    transform:translateY(-8px) scale(1.03);
+    box-shadow:0 26px 60px rgba(16, 42, 92, .32), 0 0 0 1px rgba(255, 255, 255, .25);
+}
+
+.gss-card::before{
+    content:'';
+    position:absolute; inset:0;
+    padding:2px;
+    border-radius:var(--gss-radius-card);
+    background:conic-gradient(from 0deg, var(--gss-pink-primary), var(--gss-purple-accent), var(--gss-glow-3), var(--gss-pink-primary));
+    -webkit-mask:linear-gradient(#FFFFFF 0 0) content-box, linear-gradient(#FFFFFF 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    animation:gssBorderTravel 55s linear infinite;
+    opacity:.85;
+    z-index:3;
+    pointer-events:none;
+    transition:opacity 1s ease;
+}
+.gss-card:hover::before{
+    animation-duration:1s;
+    opacity:1;
+    filter:drop-shadow(0 0 10px var(--gss-glow-1));
+}
+@keyframes gssBorderTravel{ to{ transform:rotate(360deg); } }
+
+.gss-photo{
+    position:absolute; inset:0;
+    background-size:cover;
+    background-position:center;
+    transition:transform .6s ease, filter .6s ease;
+    z-index:0;
+}
+.gss-card:hover .gss-photo{ transform:scale(1.08); filter:brightness(1.08); }
+
+.gss-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, var(--gss-overlay-top) 0%, var(--gss-overlay-bottom) 100%);
+    z-index:1;
+}
+
+.gss-glass{
+    position:absolute; inset:0;
+    background:var(--gss-glass-fill);
+    backdrop-filter:blur(20px) saturate(180%);
+    -webkit-backdrop-filter:blur(20px) saturate(180%);
+    border:1px solid var(--gss-glass-border);
+    border-radius:var(--gss-radius-card);
+    z-index:2;
+    transition:background .4s ease;
+}
+.gss-card:hover .gss-glass{ background:rgba(255, 255, 255, .14); }
+
+.gss-shine{
+    position:absolute; inset:0; z-index:2;
+    background:linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, .25) 50%, transparent 60%);
+    background-size:250% 250%;
+    background-position:200% 0;
+    opacity:0;
+    transition:opacity .3s ease;
+    pointer-events:none;
+}
+.gss-card:hover .gss-shine{ opacity:1; animation:gssShineSweep 1.2s ease forwards; }
+@keyframes gssShineSweep{ from{ background-position:200% 0; } to{ background-position:-50% 0; } }
+
+.gss-content{
+    position:relative; z-index:4;
+    height:100%;
+    display:flex; flex-direction:column; align-items:center;
+    padding:20px 18px 16px;
+    text-align:center;
+}
+
+.gss-thumb-wrap{
+    position:relative;
+    width:74px; height:74px;
+    border-radius:50%;
+    margin-bottom:10px;
+    flex-shrink:0;
+}
+.gss-thumb-wrap::after{
+    content:'';
+    position:absolute; inset:-6px;
+    border-radius:50%;
+    border:2px solid #EC4899;
+    box-shadow:0 0 15px rgba(236, 72, 153, .7), 0 0 30px rgba(236, 72, 153, .45), 0 0 50px rgba(236, 72, 153, .25);
+    animation:gssPulseGlow 45s ease-in-out infinite;
+}
+@keyframes gssPulseGlow{
+    0%,100%{ box-shadow:0 0 12px rgba(236, 72, 153, .6), 0 0 26px rgba(236, 72, 153, .4), 0 0 44px rgba(236, 72, 153, .2); }
+    50%{ box-shadow:0 0 18px rgba(236, 72, 153, .85), 0 0 34px rgba(236, 72, 153, .55), 0 0 56px rgba(236, 72, 153, .3); }
+}
+.gss-thumb{
+    width:100%; height:100%;
+    border-radius:50%;
+    background-size:cover;
+    background-position:center;
+    border:2px solid rgba(255, 255, 255, .5);
+}
+
+.gss-badge{
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 14px;
+    font-size:.68rem; font-weight:600; letter-spacing:.03em;
+    color:#FFFFFF;
+    background:rgba(236, 72, 153, .28);
+    border:1px solid rgba(255, 255, 255, .35);
+    border-radius:999px;
+    backdrop-filter:blur(6px);
+    box-shadow:0 0 14px rgba(236, 72, 153, .35);
+    margin-bottom:8px;
+}
+.gss-badge svg{ width:12px; height:12px; }
+
+.gss-name{
+    font-family:'Poppins', 'Segoe UI', system-ui, sans-serif;
+    font-size:1.06rem;
+    font-weight:700;
+    color:#FFFFFF;
+    line-height:1.25;
+    margin:0 0 10px;
+    text-shadow:0 3px 8px rgba(16, 42, 92, .7);
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    min-height:2.5em;
+}
+
+.gss-pills{
+    display:flex; flex-direction:column; gap:5px;
+    width:100%;
+    margin-bottom:12px;
+}
+.gss-pill{
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    font-size:.72rem; font-weight:500;
+    color:#FFFFFF;
+    padding:5px 10px;
+    background:rgba(255, 255, 255, .1);
+    border:1px solid rgba(255, 255, 255, .16);
+    border-radius:10px;
+    backdrop-filter:blur(6px);
+}
+.gss-pill svg{ width:12px; height:12px; flex-shrink:0; color:var(--gss-pink-soft); }
+
+.gss-cta{
+    margin-top:auto;
+    width:100%;
+    border:none;
+    cursor:pointer;
+    padding:9px 16px;
+    font-family:'Open Sans', 'Segoe UI', system-ui, sans-serif;
+    font-size:.86rem;
+    font-weight:700;
+    color:#EC4899;
+    border-radius:999px;
+    background:linear-gradient(180deg, #FFFFFF 0%, var(--gss-pink-soft) 55%, var(--gss-pink-hot) 100%);
+    box-shadow:0 6px 18px rgba(236, 72, 153, .4);
+    transition:transform .25s ease, box-shadow .25s ease;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+}
+.gss-card:hover .gss-cta{
+    transform:translateY(-3px);
+    box-shadow:0 12px 26px rgba(236, 72, 153, .55);
+}
+
+@media (max-width:480px){
+    .gss-hero{ min-height:340px; }
+    .gss-schools{ padding:56px 16px 70px; }
+    .gss-line{ width:36px; }
+}

@@ -1,0 +1,529 @@
+/* ==========================================================
+                    EARN CASH ANIMATION SYSTEM
+========================================================== */
+
+
+
+
+
+/* ==========================================================
+                    FADE UP
+========================================================== */
+
+
+.fade-up{
+
+
+    animation:
+
+
+    fadeUp .9s ease forwards;
+
+
+}
+
+
+
+
+
+@keyframes fadeUp{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:
+
+
+        translateY(40px);
+
+
+    }
+
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:
+
+
+        translateY(0);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+                    SCROLL REVEAL
+========================================================== */
+
+
+.reveal{
+
+
+    opacity:0;
+
+
+    transform:
+
+
+    translateY(50px);
+
+
+    transition:
+
+
+    .8s ease;
+
+
+}
+
+
+
+
+.reveal.active{
+
+
+    opacity:1;
+
+
+    transform:
+
+
+    translateY(0);
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+                    FLOATING ELEMENT
+========================================================== */
+
+
+.float{
+
+
+    animation:
+
+
+    floating 5s ease-in-out infinite;
+
+
+}
+
+
+
+
+
+@keyframes floating{
+
+
+    0%,100%{
+
+
+        transform:
+
+
+        translateY(0);
+
+
+    }
+
+
+
+
+    50%{
+
+
+        transform:
+
+
+        translateY(-15px);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+/* ==========================================================
+                    GLOW PULSE
+========================================================== */
+
+
+.glow-pulse{
+
+
+    animation:
+
+
+    glowPulse 3s infinite;
+
+
+}
+
+
+
+
+
+@keyframes glowPulse{
+
+
+    0%{
+
+
+        box-shadow:
+
+
+        0 0 0 rgba(105,144,255,0);
+
+
+    }
+
+
+
+
+    50%{
+
+
+        box-shadow:
+
+
+        0 0 40px rgba(105,144,255,.5);
+
+
+    }
+
+
+
+
+    100%{
+
+
+        box-shadow:
+
+
+        0 0 0 rgba(105,144,255,0);
+
+
+    }
+
+
+}
+/* ==========================================================
+                    ROTATING GLASS MOTION
+========================================================== */
+
+
+.rotate-slow{
+
+
+    animation:
+
+
+    rotateSlow 12s linear infinite;
+
+
+}
+
+
+
+
+
+@keyframes rotateSlow{
+
+
+    from{
+
+
+        transform:
+
+
+        rotate(0deg);
+
+
+    }
+
+
+
+
+    to{
+
+
+        transform:
+
+
+        rotate(360deg);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+/* ==========================================================
+                    SCALE POP
+========================================================== */
+
+
+.pop-in{
+
+
+    animation:
+
+
+    popIn .7s ease forwards;
+
+
+}
+
+
+
+
+
+@keyframes popIn{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:
+
+
+        scale(.8);
+
+
+    }
+
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:
+
+
+        scale(1);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+                    BUTTON SHINE EFFECT
+========================================================== */
+
+
+.energy-hover{
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+.energy-hover::after{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    top:0;
+
+
+    left:-100%;
+
+
+    width:100%;
+
+
+    height:100%;
+
+
+    background:
+
+
+    linear-gradient(
+
+        120deg,
+
+        transparent,
+
+        rgba(255,255,255,.5),
+
+        transparent
+
+    );
+
+
+    transition:.6s;
+
+
+}
+
+
+
+
+
+.energy-hover:hover::after{
+
+
+    left:100%;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+                    DASHBOARD ORBIT EFFECT
+========================================================== */
+
+
+.orbit{
+
+
+    animation:
+
+
+    orbitMove 8s ease-in-out infinite;
+
+
+}
+
+
+
+
+
+@keyframes orbitMove{
+
+
+    0%,100%{
+
+
+        transform:
+
+
+        translateY(0)
+
+        rotateY(-5deg);
+
+
+    }
+
+
+
+
+    50%{
+
+
+        transform:
+
+
+        translateY(-25px)
+
+        rotateY(5deg);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+                    MOBILE REDUCTION
+========================================================== */
+
+
+@media(max-width:600px){
+
+
+
+    .float,
+
+
+    .orbit{
+
+
+        animation-duration:
+
+
+        8s;
+
+
+    }
+
+
+
+}

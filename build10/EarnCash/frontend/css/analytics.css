@@ -1,0 +1,350 @@
+/* ==========================================================
+                EARNCASH ANALYTICS SYSTEM
+                FUTURISTIC GLASS CHARTS
+========================================================== */
+
+
+
+
+
+/* ==========================
+        ANALYTICS SECTION
+=========================== */
+
+
+
+.analytics-section{
+
+
+    margin-top:35px;
+
+
+    width:100%;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+        ANALYTICS CARD
+=========================== */
+
+
+.analytics-card{
+
+
+    padding:40px;
+
+
+    border-radius:40px;
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+.analytics-card::before{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:250px;
+
+
+    height:250px;
+
+
+    top:-100px;
+
+
+    right:-100px;
+
+
+    background:
+
+
+    rgba(105,144,255,.25);
+
+
+    filter:
+
+
+    blur(80px);
+
+
+}
+
+
+
+
+
+
+
+.analytics-card h2{
+
+
+    font-size:
+
+
+    1.8rem;
+
+
+    margin-bottom:
+
+
+    10px;
+
+
+}
+
+
+
+
+
+.analytics-card p{
+
+
+    color:
+
+
+    var(--text-light);
+
+
+    margin-bottom:
+
+
+    30px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        CHART CONTAINER
+=========================== */
+
+
+.chart-container{
+
+
+    position:relative;
+
+
+    width:100%;
+
+
+    height:350px;
+
+
+    padding:20px;
+
+
+    border-radius:30px;
+
+
+    background:
+
+
+    rgba(255,255,255,.35);
+
+
+    backdrop-filter:
+
+
+    blur(20px);
+
+
+}
+
+
+
+
+
+
+
+.chart-container canvas{
+
+
+    width:100%!important;
+
+
+    height:100%!important;
+
+
+}
+/* ==========================
+        ANALYTICS HOVER
+=========================== */
+
+
+
+.analytics-card{
+
+
+    transition:.4s;
+
+
+}
+
+
+
+
+
+.analytics-card:hover{
+
+
+    transform:
+
+
+    translateY(-8px);
+
+
+    box-shadow:
+
+
+    0 30px 80px rgba(105,144,255,.18);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+        CHART GLOW
+=========================== */
+
+
+
+.chart-container::after{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:180px;
+
+
+    height:180px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+
+    rgba(105,144,255,.15);
+
+
+    filter:
+
+
+    blur(70px);
+
+
+    bottom:-60px;
+
+
+    left:50%;
+
+
+    transform:
+
+
+    translateX(-50%);
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        RESPONSIVE
+=========================== */
+
+
+
+@media(max-width:700px){
+
+
+
+.analytics-card{
+
+
+    padding:
+
+
+    25px 20px;
+
+
+    border-radius:
+
+
+    30px;
+
+
+}
+
+
+
+
+.chart-container{
+
+
+    height:
+
+
+    250px;
+
+
+    padding:
+
+
+    10px;
+
+
+}
+
+
+
+}

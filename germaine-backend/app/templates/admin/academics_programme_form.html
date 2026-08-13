@@ -1,0 +1,87 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ programme.name }}{% endblock %}
+{% block content %}
+<a class="gti-back-link" href="{{ url_for('admin.academics_programmes_list') }}">&larr; Back to Programmes</a>
+<div class="gti-topbar">
+  <h1>{{ programme.name }}</h1>
+  <span class="gti-badge gti-badge-neutral">{{ 'AI Bootcamp' if programme.programme_type == 'ai_bootcamp' else 'Academic' }}</span>
+</div>
+
+{% if programme.programme_type == 'academic' %}
+<p style="color:var(--gti-text-muted);font-size:.86rem;">
+  Pricing for this programme comes from its school's flat fee —
+  {% if programme.school %}<a href="{{ url_for('admin.academics_school_edit', school_id=programme.school.id) }}">edit {{ programme.school.name }}'s fee</a>{% else %}no school assigned{% endif %}.
+  Fee is never set on the programme itself.
+</p>
+{% endif %}
+
+<form method="post" action="{{ url_for('admin.academics_programme_edit', programme_id=programme.id) }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <div class="gti-form-section">
+    <h2>Programme Details</h2>
+    <div class="gti-form-group">
+      <label for="pf-overview">Overview</label>
+      <textarea id="pf-overview" name="overview" class="tall">{{ programme.overview or '' }}</textarea>
+    </div>
+    <div class="gti-form-group">
+      <label for="pf-gain">What You'll Gain (one point per line)</label>
+      <textarea id="pf-gain" name="gain_points">{{ (programme.gain_points or [])|join('\n') }}</textarea>
+    </div>
+    <div class="gti-form-group">
+      <label for="pf-entry">Entry Requirement</label>
+      <textarea id="pf-entry" name="entry_requirement">{{ programme.entry_requirement or '' }}</textarea>
+    </div>
+    {% if programme.programme_type == 'academic' %}
+    <div class="gti-form-group">
+      <label for="pf-exam">Exam Body</label>
+      <input type="text" id="pf-exam" name="exam_body" maxlength="50" value="{{ programme.exam_body or '' }}">
+    </div>
+    {% endif %}
+    <div class="gti-form-group">
+      <label for="pf-apply-h">Apply Section Heading</label>
+      <input type="text" id="pf-apply-h" name="apply_heading" maxlength="200" value="{{ programme.apply_heading or '' }}">
+    </div>
+    <div class="gti-form-group">
+      <label for="pf-apply-s">Apply Section Subtext</label>
+      <input type="text" id="pf-apply-s" name="apply_subtext" maxlength="300" value="{{ programme.apply_subtext or '' }}">
+    </div>
+    <div class="gti-form-group">
+      <label for="pf-order">Display Order</label>
+      <input type="number" id="pf-order" name="display_order" value="{{ programme.display_order if programme.display_order is not none else '' }}">
+    </div>
+    <div class="gti-form-group gti-form-checkbox">
+      <input type="checkbox" id="pf-active" name="is_active" {{ 'checked' if programme.is_active }}>
+      <label for="pf-active" style="margin:0;">Active (visible on the public catalogue)</label>
+    </div>
+  </div>
+  <div class="gti-form-actions">
+    <button type="submit" class="gti-btn">Save Changes</button>
+  </div>
+</form>
+
+{% if programme.programme_type == 'ai_bootcamp' and programme.modes %}
+<h2 class="gti-section-title">Pricing Modes</h2>
+{% for mode in programme.modes %}
+<div class="gti-form-section">
+  <h2>{{ mode.label }}{{ ' — ' + mode.sub_label if mode.sub_label }}</h2>
+  <form method="post" action="{{ url_for('admin.academics_programme_mode_update', mode_id=mode.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <input type="hidden" name="is_available_present" value="1">
+    <div class="gti-form-group">
+      <label for="mf-fee-{{ mode.id }}">Fee Amount (KES)</label>
+      <input type="text" id="mf-fee-{{ mode.id }}" name="fee_amount" value="{{ mode.fee_amount if mode.fee_amount is not none else '' }}" placeholder="Leave blank for 'Contact Admissions'">
+    </div>
+    <div class="gti-form-group">
+      <label for="mf-sched-{{ mode.id }}">Schedule</label>
+      <textarea id="mf-sched-{{ mode.id }}" name="schedule">{{ mode.schedule or '' }}</textarea>
+    </div>
+    <div class="gti-form-group gti-form-checkbox">
+      <input type="checkbox" id="mf-avail-{{ mode.id }}" name="is_available" {{ 'checked' if mode.is_available }}>
+      <label for="mf-avail-{{ mode.id }}" style="margin:0;">Available for enrollment</label>
+    </div>
+    <div class="gti-form-actions"><button type="submit" class="gti-btn gti-btn-small">Save Mode</button></div>
+  </form>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

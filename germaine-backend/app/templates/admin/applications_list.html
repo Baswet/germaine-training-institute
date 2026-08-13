@@ -1,0 +1,47 @@
+{% extends "admin/base.html" %}
+{% from "admin/_pagination.html" import render_pagination %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="gti-topbar"><h1>{{ title }}</h1></div>
+
+<form class="gti-toolbar" method="get">
+  <input type="text" name="q" placeholder="Search name, email, reference code…" value="{{ q }}">
+  <select name="status">
+    <option value="">All statuses</option>
+    {% for s in statuses %}
+      <option value="{{ s }}" {{ 'selected' if s == status }}>{{ s.replace('_',' ')|title }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Filter</button>
+  {% if q or status %}<a class="gti-clear" href="{{ url_for(base_url) }}">Clear</a>{% endif %}
+</form>
+
+<div class="gti-table-wrap">
+  {% if result.records %}
+  <table class="gti-table">
+    <thead><tr>
+      <th>Reference Code</th><th>Applicant</th><th>Email</th><th>Programme</th><th>Type</th><th>Status</th><th>Submitted</th>
+    </tr></thead>
+    <tbody>
+      {% for a in result.records %}
+      <tr>
+        <td><a class="gti-row-link" href="{{ url_for('admin.application_detail', app_id=a.id) }}">{{ a.reference_code }}</a></td>
+        <td>{{ a.applicant.full_name }}</td>
+        <td>{{ a.applicant.email }}</td>
+        <td>{{ a.programme.name if a.programme else '—' }}</td>
+        <td><span class="gti-badge gti-badge-neutral">{{ a.application_type.replace('_',' ')|title }}</span></td>
+        <td>
+          {% set badge = {'submitted':'blue','under_review':'amber','offered':'green','enrolled':'green','rejected':'red','withdrawn':'neutral'} %}
+          <span class="gti-badge gti-badge-{{ badge.get(a.status,'neutral') }}">{{ a.status.replace('_',' ')|title }}</span>
+        </td>
+        <td>{{ a.submitted_at.strftime('%d %b %Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <div class="gti-empty">No applications match this view.</div>
+  {% endif %}
+</div>
+{{ render_pagination(result, base_url, {'q': q, 'status': status or ''}) }}
+{% endblock %}

@@ -1,0 +1,327 @@
+/* ==========================================================
+                    EARNCASH THEME
+                    GLOBAL VARIABLES
+
+    Rebuilt to match Germaine Training Institute's official
+    brand system 1:1 (see /assets/css/premium-theme.css --root--).
+    EarnCash is a feature of Germaine, not a separate brand,
+    so its tokens are sourced from the same official palette
+    rather than invented independently.
+========================================================== */
+
+
+:root{
+
+/* ==========================================================
+                    GERMAINE BRAND COLORS
+                    (Germaine Pink primary, Deep Navy secondary,
+                    Luxury Gold accent, White base)
+========================================================== */
+
+--primary:
+#E91E63;                    /* Germaine Pink — primary brand colour */
+
+--primary-light:
+#F48FB1;                    /* Light Pink */
+
+--primary-dark:
+#C2185B;                    /* Darker Pink — hover / interactive */
+
+--secondary:
+#0B1F5B;                    /* Deep Navy */
+
+--secondary-light:
+#1A2F73;
+
+--secondary-dark:
+#051030;
+
+--accent:
+#E91E63;                    /* Germaine Pink (gold removed per brand update — accent now resolves to pink) */
+
+--accent-dark:
+#C2185B;
+
+--accent-light:
+#F48FB1;
+
+--text:
+#0B1F5B;
+
+--text-light:
+#64748B;                    /* Slate Grey */
+
+--white:
+#ffffff;
+
+
+/* ==========================================================
+                    STATUS COLORS
+========================================================== */
+
+--success:
+#10B981;
+
+--error:
+#EF4444;
+
+--warning:
+#F59E0B;
+
+
+/* ==========================================================
+                    SURFACES & BACKGROUND
+========================================================== */
+
+--background:
+linear-gradient(
+135deg,
+#FFFFFF 0%,
+#FFF8FB 35%,
+#F6F8FF 100%
+);
+
+--surface:
+rgba(255,255,255,.55);
+
+--surface-light:
+rgba(255,255,255,.8);
+
+
+/* ==========================================================
+                    GLASS SYSTEM
+========================================================== */
+
+--blur:
+20px;
+
+--glass-border:
+rgba(255,255,255,.6);
+
+--border:
+rgba(15,23,42,.08);
+
+
+/* ==========================================================
+                    SHADOW SYSTEM
+                    (blue-tinted, matches Germaine's own
+                    --shadow / --shadow-hover)
+========================================================== */
+
+--shadow-sm:
+0 10px 25px rgba(11,31,91,.08);
+
+--shadow-md:
+0 15px 35px rgba(11,31,91,.10);
+
+--shadow-lg:
+0 25px 60px rgba(11,31,91,.14);
+
+
+/* ==========================================================
+                    BORDER RADIUS
+========================================================== */
+
+--radius-sm:
+16px;
+
+--radius-md:
+20px;
+
+--radius-lg:
+24px;
+
+--radius-xl:
+32px;
+
+
+/* ==========================================================
+                    LAYOUT
+========================================================== */
+
+--container:
+1200px;
+
+--section-space:
+100px;
+
+
+/* ==========================================================
+                    TRANSITIONS
+========================================================== */
+
+--transition:
+.35s cubic-bezier(.25,.8,.25,1);
+
+--animation-speed:
+1;
+
+
+/* ==========================================================
+                    GLOW / GLASS ACCENTS
+========================================================== */
+
+--glow-primary:
+rgba(11,31,91,.18);
+
+--glow-pink:
+rgba(233,30,99,.28);
+
+--glow-gold:
+rgba(233,30,99,.25);
+
+--glass-highlight:
+rgba(255,255,255,.75);
+
+--glass-shadow:
+rgba(11,31,91,.12);
+
+--overlay:
+rgba(255,255,255,.35);
+
+
+/* Dashboard surfaces */
+
+--dashboard-bg:
+linear-gradient(
+145deg,
+rgba(255,255,255,.85),
+rgba(255,240,247,.5)
+);
+
+--card-gradient:
+linear-gradient(
+135deg,
+rgba(233,30,99,.1),
+rgba(255,255,255,.85)
+);
+
+--button-gradient:
+linear-gradient(
+135deg,
+#E91E63,
+#C2185B
+);
+
+--button-gradient-secondary:
+linear-gradient(
+135deg,
+#0B1F5B,
+#1A2F73
+);
+
+--button-gradient-gold:
+linear-gradient(
+135deg,
+#E91E63,
+#F48FB1
+);
+
+
+/* ==========================================================
+                    TYPOGRAPHY
+                    Poppins matches Germaine's own heading
+                    font exactly; Inter for body copy; Space
+                    Grotesk for statistic/number display.
+========================================================== */
+
+--font-main:
+"Inter",sans-serif;
+
+--font-heading:
+"Poppins",sans-serif;
+
+--font-stats:
+"Space Grotesk",sans-serif;
+
+--font-weight-light:
+300;
+
+--font-weight-normal:
+400;
+
+--font-weight-medium:
+500;
+
+--font-weight-bold:
+700;
+
+--font-weight-heavy:
+800;
+
+
+/* ==========================================================
+                    Z INDEX SYSTEM
+========================================================== */
+
+--background-layer:
+-5;
+
+--content-layer:
+1;
+
+--navbar-layer:
+1000;
+
+--modal-layer:
+2000;
+
+}
+
+
+/* ==========================================================
+                    DARK MODE
+                    Matches Germaine's own [data-theme="dark"]
+                    tokens for consistency, rather than the
+                    previous unrelated dark-pink palette.
+                    Opt-in only — the platform default is
+                    always the light theme above.
+========================================================== */
+
+
+.dark-mode{
+
+--background:
+#030712;
+
+--surface:
+rgba(31,41,55,.65);
+
+--surface-light:
+rgba(39,48,63,.8);
+
+--text:
+#F3F4F6;
+
+--text-light:
+#9CA8B8;
+
+--border:
+rgba(255,255,255,.12);
+
+--glass-border:
+rgba(255,255,255,.15);
+
+}
+
+
+/* ==========================================================
+                    MOBILE VARIABLES
+========================================================== */
+
+@media(max-width:768px){
+
+:root{
+
+--section-space:
+70px;
+
+--radius-lg:
+20px;
+
+--radius-xl:
+26px;
+
+}
+
+}

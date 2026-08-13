@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+                META DATA
+    =========================================== -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Early theme application (prevents flash of wrong theme) -->
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        Corporate Training | Germaine Training Institute
+    </title>
+
+    <meta name="description"
+        content="Practical corporate training programmes from Germaine Training Institute — leadership development, digital transformation and compliance training tailored for organizations across Kenya.">
+
+    <meta name="keywords"
+        content="Germaine Training Institute, Corporate Training Kenya, Leadership Development, Digital Transformation Training, Nakuru">
+
+    <meta name="author"
+        content="Germaine Training Institute">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title"
+        content="Corporate Training | Germaine Training Institute">
+
+    <meta property="og:description"
+        content="Practical corporate training programmes tailored for organizations seeking innovation, workforce transformation and measurable business growth.">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:image"
+        content="https://site.germaineinstitute.ac.ke/assets/images/hero/corporate-training-hero-poster.jpg">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/corporate-training.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Corporate Training | Germaine Training Institute">
+    <meta name="twitter:description" content="Practical corporate training programmes tailored for organizations seeking innovation, workforce transformation and measurable business growth.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/hero/corporate-training-hero-poster.jpg">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/corporate-training.html">
+
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/jpeg"
+        href="assets/images/logo/logo.jpg">
+
+    <!-- Preload critical above-the-fold assets -->
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+
+    <link rel="stylesheet"
+        href="assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="assets/css/responsive.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-theme.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-sections.css">
+
+    <link rel="stylesheet"
+        href="assets/css/corporate-training.css">
+
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+
+    <link rel="stylesheet" href="assets/css/school-page.css">
+
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+
+    <link rel="stylesheet" href="assets/css/consultation-modal.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================================
+                PRELOADER
+    =========================================== -->
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ==========================================
+                WHATSAPP
+    =========================================== -->
+
+    <a href="https://wa.me/254719488112"
+        class="whatsapp"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+    <!-- ==========================================
+                FIXED TOP STACK (utility bar + header + announcement)
+    =========================================== -->
+
+        <!-- ==========================================
+                LEVEL 1 — UTILITY BAR
+    =========================================== -->
+
+    <div class="utility-bar" id="utilityBar">
+
+        <div class="container utility-bar-inner">
+
+            <div class="utility-left">
+
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+
+                <a href="ai-bootcamp.html" class="utility-link"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+
+                <a href="corporate-training.html" class="utility-link active"><i class="fa-solid fa-building"></i>Corporate Training</a>
+
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+
+            </div>
+
+            <div class="utility-right">
+
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                FIXED TOP STACK (branding bar + main navigation + announcement)
+    =========================================== -->
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+
+    <!-- ==========================================
+                LEVEL 2 — BRANDING BAR
+    =========================================== -->
+
+    <header id="header">
+
+        <div class="branding-bar">
+
+            <div class="container branding-inner">
+
+                <a href="index.html" class="brand-logo-group">
+
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+
+                    <span class="brand-text">
+
+                        <span class="brand-name">Germaine Training Institute</span>
+
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+
+                    </span>
+
+                </a>
+
+                <div class="branding-right">
+
+                    <div class="branding-contact">
+
+                    <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+
+                    <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+
+                </div>
+
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                    LEVEL 3 — MAIN NAVIGATION
+        =========================================== -->
+
+        <nav class="navbar">
+
+            <div class="container navbar-inner">
+
+                <ul class="nav-links">
+
+                    <!-- Employer & Industry Services context menu — see
+                         graduate-hire.html for the same pattern. -->
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="corporate-training.html" class="active">Corporate Training</a></li>
+
+                    <li><a href="graduate-hire.html">Hire Our Graduates</a></li>
+
+                    <li><a href="partner-with-us.html">Partner With Us</a></li>
+
+                    <li><a href="contact.html">Contact Us</a></li>
+
+                </ul>
+
+                <div class="nav-buttons">
+
+                    <button class="search-btn" aria-label="Open search">
+
+                        <i class="fas fa-search"></i>
+
+                    </button>
+
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+                </div>
+
+                <!-- Mobile Menu -->
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ==========================================
+            ADMISSION ANNOUNCEMENT BAR
+    =========================================== -->
+
+    <section class="announcement-bar">
+
+        <div class="container announcement-container">
+
+            <div class="announcement-left">
+
+                <i class="fas fa-bullhorn"></i>
+
+                <span>
+
+                    September 2026 Intake Now Open &bull; Applications Ongoing
+
+                </span>
+
+            </div>
+
+            <a href="apply.html"
+                class="announcement-link">
+
+                Apply Now For Full Scholarship
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    </div>
+
+<!-- ==========================================
+            SEARCH POPUP
+    =========================================== -->
+
+    <div class="search-modal">
+
+        <div class="search-box">
+
+            <input aria-label="Search courses, departments or news"
+                type="text"
+                placeholder="Search courses, departments or news...">
+
+            <button aria-label="Submit search">
+
+                <i class="fas fa-search"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                MAIN CONTENT
+    =========================================== -->
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+        <!-- ==========================================
+                HERO — futuristic video background
+        =========================================== -->
+
+        <section class="ct-hero" id="ct-hero">
+
+            <div class="ct-hero-bg" aria-hidden="true">
+                <video autoplay muted loop playsinline preload="auto" poster="assets/images/hero/corporate-training-hero-poster.jpg">
+                    <source src="assets/images/hero/corporate-training-hero-bg.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="ct-hero-vignette" aria-hidden="true"></div>
+            <div class="ct-hero-overlay" aria-hidden="true"></div>
+
+            <div class="ct-hero-inner">
+
+                <div class="ct-hero-card">
+
+                    <div class="ct-hero-content">
+
+                        <span class="ct-badge"><i class="fa-solid fa-building"></i> Corporate Training</span>
+
+                        <h1 class="ct-headline">
+                            Empower Your Workforce Through Practical <span class="ct-gradient-text">Corporate Learning</span>
+                        </h1>
+
+                        <p class="ct-sub">
+                            Professional corporate training tailored for organizations seeking innovation, workforce transformation, and measurable business growth.
+                        </p>
+
+                        <div class="ct-cta">
+                            <a href="#" class="btn-primary" data-cm-trigger>Request Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="assets/images/about/BROCHURE-2023.pdf" class="btn-ghost" target="_blank" rel="noopener">Download Corporate Profile <i class="fa-solid fa-file-arrow-down"></i></a>
+                        </div>
+
+                    </div>
+
+                    <div class="ct-hero-media" id="ctSlider">
+                        <!-- single static background image — no slideshow -->
+                        <img class="ct-hero-static" src="assets/images/slide/pexels-victor-chijioke-350220031-28002642.jpg" alt="Corporate training professionals shaking hands at Germaine Institute" loading="eager">
+                        <div class="ct-hero-static-fade"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FLOATING STAT CARDS -->
+            <div class="ct-stats-wrap">
+                <div class="ct-statsbar">
+                    <div class="ct-stat"><span class="ct-stat-ic"><i class="fa-solid fa-user-tie"></i></span><div><h2>3,500+</h2><span>Professionals Trained</span></div></div>
+                    <div class="ct-stat"><span class="ct-stat-ic"><i class="fa-solid fa-building"></i></span><div><h2>120+</h2><span>Corporate Clients</span></div></div>
+                    <div class="ct-stat"><span class="ct-stat-ic"><i class="fa-solid fa-book"></i></span><div><h2>40+</h2><span>Training Programmes</span></div></div>
+                    <div class="ct-stat"><span class="ct-stat-ic"><i class="fa-solid fa-star"></i></span><div><h2>96%</h2><span>Client Satisfaction</span></div></div>
+                    <div class="ct-stat"><span class="ct-stat-ic"><i class="fa-solid fa-person-chalkboard"></i></span><div><h2>30+</h2><span>Certified Trainers</span></div></div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ==========================================
+                TRUSTED BY
+        =========================================== -->
+
+        <section class="ct-trusted">
+            <div class="ct-trusted-glass">
+                <p class="ct-trusted-label">Trusted &amp; Recognized By</p>
+                <div class="ct-trusted-track-wrap">
+                    <div class="ct-trusted-track">
+                    <img src="assets/images/partners/tvet-cdacc.png" alt="TVET CDACC" loading="lazy">
+                    <img src="assets/images/partners/cisco.png" alt="Cisco" loading="lazy">
+                    <img src="assets/images/partners/khpoa.png" alt="Kenya Health Professions Oversight Authority" loading="lazy">
+                    <img src="assets/images/partners/kra.png" alt="Kenya Revenue Authority" loading="lazy">
+                    <img src="assets/images/partners/tveta.png" alt="TVETA" loading="lazy">
+                    <img src="assets/images/partners/knec.jpg" alt="KNEC" loading="lazy">
+                    <img src="assets/images/partners/kasneb.png" alt="KASNEB" loading="lazy">
+                    <img src="assets/images/partners/nita.png" alt="NITA" loading="lazy">
+                    <!-- duplicated for seamless scroll -->
+                    <img src="assets/images/partners/tvet-cdacc.png" alt="" aria-hidden="true" loading="lazy">
+                    <img src="assets/images/partners/cisco.png" alt="" aria-hidden="true" loading="lazy">
+                    <img src="assets/images/partners/khpoa.png" alt="" aria-hidden="true" loading="lazy">
+                    <img src="assets/images/partners/kra.png" alt="" aria-hidden="true" loading="lazy">
+                    <img src="assets/images/partners/tveta.png" alt="" aria-hidden="true" loading="lazy">
+                    <img src="assets/images/partners/knec.jpg" alt="" aria-hidden="true" loading="lazy">
+                    <img src="assets/images/partners/kasneb.png" alt="" aria-hidden="true" loading="lazy">
+                    <img src="assets/images/partners/nita.png" alt="" aria-hidden="true" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+                CORPORATE SOLUTIONS
+        =========================================== -->
+
+        <section class="ct-section" style="padding-bottom:56px;">
+            <div class="fx-orbs" aria-hidden="true">
+                <span class="fx-orb o1" style="opacity:.08;"></span>
+                <span class="fx-orb o2" style="opacity:.07;"></span>
+            </div>
+            <div class="ct-container">
+                <div class="ct-head-row ct-reveal">
+                    <div>
+                        <span class="ct-eyebrow">What We Offer</span>
+                        <h2 class="ct-h2">Corporate Solutions Built Around Your Business</h2>
+                    </div>
+                    <p class="ct-lead">From leadership pipelines to digital readiness, our programmes are designed with measurable business outcomes in mind.</p>
+                </div>
+
+                <div class="ct-solutions-grid">
+                    <div class="ct-solution-card ct-reveal">
+                        <div class="ct-solution-media">
+                            <img src="assets/images/slide/pexels-mikhail-nilov-9301196.jpg" alt="Leadership development training" loading="lazy">
+                        </div>
+                        <div class="ct-solution-body">
+                            <h3>Leadership Development</h3>
+                            <p>Practical management programmes that build confident decision-makers at every level.</p>
+                        </div>
+                    </div>
+                    <div class="ct-solution-card ct-reveal">
+                        <div class="ct-solution-media">
+                            <img src="assets/images/slide/pexels-jakubzerdzicki-35501997.jpg" alt="Digital transformation training" loading="lazy">
+                        </div>
+                        <div class="ct-solution-body">
+                            <h3>Digital Transformation</h3>
+                            <p>Hands-on digital-skills training that prepares your workforce for modern tools.</p>
+                        </div>
+                    </div>
+                    <div class="ct-solution-card ct-reveal">
+                        <div class="ct-solution-media">
+                            <img src="assets/images/slide/pexels-ron-lach-9783346.jpg" alt="Compliance and governance training" loading="lazy">
+                        </div>
+                        <div class="ct-solution-body">
+                            <h3>Compliance &amp; Governance</h3>
+                            <p>Structured training aligned with TVETA and NITA regulatory standards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+                WHY ORGANIZATIONS CHOOSE GERMAINE
+        =========================================== -->
+
+        <section class="ct-section" style="padding-top:0;">
+            <div class="ct-container">
+                <div class="ct-head-row ct-reveal">
+                    <div>
+                        <span class="ct-eyebrow">Why Germaine</span>
+                        <h2 class="ct-h2">A Training Partner That Understands Industry</h2>
+                    </div>
+                </div>
+
+                <div class="ct-why-card ct-reveal">
+                    <div class="ct-why-content">
+                        <h3>10+ Years of Industry-Aligned Training, Built Around Your Business</h3>
+                        <p>Germaine Training Institute has spent two decades building practical, competency-based programmes recognized by Kenyan regulators and industry partners — then tailors every corporate programme to your organization's real performance gaps.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> TVETA &amp; NITA accredited training standards</li>
+                            <li><i class="fa-solid fa-check"></i> Instructors with real industry experience</li>
+                            <li><i class="fa-solid fa-check"></i> Customized curriculum per organization</li>
+                            <li><i class="fa-solid fa-check"></i> Flexible on-site or in-campus delivery</li>
+                        </ul>
+                    </div>
+                    <div class="ct-why-blob-media">
+                        <span class="ct-why-blob" aria-hidden="true"></span>
+                        <div class="ct-why-organic">
+                            <img src="assets/images/slide/pexels-gabby-k-9487235.jpg" alt="Executive leadership training at Germaine Institute" loading="lazy">
+                        </div>
+                        <span class="fx-dot fx-d1"></span>
+                        <span class="fx-dot fx-d2"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+                TRAINING PROCESS
+        =========================================== -->
+
+        <section class="ct-section" style="padding-top:0;">
+            <div class="ct-container">
+                <div class="ct-head-row ct-reveal">
+                    <div>
+                        <span class="ct-eyebrow">Our Approach</span>
+                        <h2 class="ct-h2">A Simple, Proven Training Process</h2>
+                    </div>
+                </div>
+
+                <div class="ct-process ct-reveal">
+                    <div class="ct-step">
+                        <div class="ct-step-num">1</div>
+                        <h4>Discover</h4>
+                        <p>We assess your organization's skills gaps and training objectives.</p>
+                    </div>
+                    <div class="ct-step">
+                        <div class="ct-step-num">2</div>
+                        <h4>Design</h4>
+                        <p>A tailored curriculum is built around your industry and workforce.</p>
+                    </div>
+                    <div class="ct-step">
+                        <div class="ct-step-num">3</div>
+                        <h4>Deliver</h4>
+                        <p>Hands-on training delivered on-site or at our Nakuru campus.</p>
+                    </div>
+                    <div class="ct-step">
+                        <div class="ct-step-num">4</div>
+                        <h4>Measure</h4>
+                        <p>We track outcomes and performance impact after training.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+                TRAINING IN ACTION — bento slideshow
+        =========================================== -->
+
+        <section class="ct-section ct-section-dark" id="ctBentoSection">
+            <div class="ct-container">
+                <div class="ct-head-row ct-reveal">
+                    <div>
+                        <span class="ct-eyebrow">Gallery</span>
+                        <h2 class="ct-h2">Training in Action</h2>
+                    </div>
+                </div>
+
+                <div class="ct-bento ct-reveal" id="ctBento">
+                    <div class="ct-bento-card ct-bento-main" id="ctBentoMain">
+                        <div class="ct-bento-track" id="ctBentoMainTrack"></div>
+                        <button type="button" class="ct-bento-arrow ct-bento-arrow-prev" id="ctBentoPrev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button type="button" class="ct-bento-arrow ct-bento-arrow-next" id="ctBentoNext" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
+                        <div class="ct-bento-cap" id="ctBentoMainCap"></div>
+                        <div class="ct-bento-dots" id="ctBentoMainDots"></div>
+                    </div>
+                    <div class="ct-bento-card ct-bento-side" id="ctBentoSideA">
+                        <div class="ct-bento-track" id="ctBentoSideATrack"></div>
+                        <div class="ct-bento-cap ct-bento-cap-sm" id="ctBentoSideACap"></div>
+                    </div>
+                    <div class="ct-bento-card ct-bento-side" id="ctBentoSideB">
+                        <div class="ct-bento-track" id="ctBentoSideBTrack"></div>
+                        <div class="ct-bento-cap ct-bento-cap-sm" id="ctBentoSideBCap"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+                TESTIMONIALS
+                Note: no client-supplied testimonials exist yet
+                in the project assets, so this section presents
+                general partner value rather than fabricated
+                attributed quotes. Swap in real client testimonials
+                when available.
+        =========================================== -->
+
+        <section class="ct-section" style="padding-top:0;">
+            <div class="ct-container">
+                <div class="ct-head-row ct-reveal">
+                    <div>
+                        <span class="ct-eyebrow">What Partners Value</span>
+                        <h2 class="ct-h2">Why Organizations Choose to Train with Us</h2>
+                    </div>
+                </div>
+
+                <div class="ct-testimonial-grid ct-reveal">
+                    <div class="ct-testimonial-card">
+                        <i class="fa-solid fa-quote-left ct-quote"></i>
+                        <p>Organizations consistently tell us the practical, hands-on format is what sets Germaine apart from classroom-only training providers.</p>
+                        <div class="ct-testimonial-foot">
+                            <span class="ct-testimonial-avatar"><i class="fa-solid fa-building"></i></span>
+                            <div><strong>Practical Delivery</strong><span>Hands-on, not just theory</span></div>
+                        </div>
+                    </div>
+                    <div class="ct-testimonial-card">
+                        <i class="fa-solid fa-quote-left ct-quote"></i>
+                        <p>Programmes are built around each organization's real skills gaps, rather than a fixed catalog — training maps directly to performance goals.</p>
+                        <div class="ct-testimonial-foot">
+                            <span class="ct-testimonial-avatar"><i class="fa-solid fa-sliders"></i></span>
+                            <div><strong>Tailored Curriculum</strong><span>Designed around your goals</span></div>
+                        </div>
+                    </div>
+                    <div class="ct-testimonial-card">
+                        <i class="fa-solid fa-quote-left ct-quote"></i>
+                        <p>With TVETA and NITA-aligned standards, partner organizations gain training they can confidently report against compliance requirements.</p>
+                        <div class="ct-testimonial-foot">
+                            <span class="ct-testimonial-avatar"><i class="fa-solid fa-shield-halved"></i></span>
+                            <div><strong>Compliance-Ready</strong><span>Audit-aligned training</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+                FINAL CTA
+        =========================================== -->
+
+        <section class="ct-section" style="padding-top:0;">
+            <div class="ct-container">
+                <div class="ct-final-cta ct-reveal">
+                    <h2>Let's Build Your Workforce Together</h2>
+                    <p>Tell us about your organization's training goals and our team will design a programme around them.</p>
+                    <div class="ct-cta">
+                        <a href="#" class="btn-primary" data-cm-trigger>Schedule Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="assets/images/about/BROCHURE-2023.pdf" class="btn-ghost" target="_blank" rel="noopener">Download Corporate Profile <i class="fa-solid fa-file-arrow-down"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+                SIDE NAVIGATION (push panel)
+    =========================================== -->
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+
+    <!-- ==========================================
+                REQUEST A CONSULTATION MODAL
+    =========================================== -->
+
+    <div class="cm-modal" id="cmModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cmModalTitle">
+
+        <div class="cm-modal-backdrop" id="cmModalBackdrop"></div>
+
+        <div class="cm-modal-panel">
+
+            <button type="button" class="cm-modal-close" id="cmModalClose" aria-label="Close form">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <form class="cm-form" id="cmForm" novalidate>
+
+                <div class="cm-modal-head">
+                    <span class="cm-modal-icon"><i class="fa-solid fa-handshake"></i></span>
+                    <h2 id="cmModalTitle">Request a Consultation</h2>
+                    <p>Tell us about your organization and training goals, and our Corporate Training team will get back to you to design a programme around them.</p>
+                </div>
+
+                <div class="cm-row">
+
+                    <div class="cm-field">
+                        <label for="cmName">Full Name <span class="cm-req">*</span></label>
+                        <div class="cm-input-wrap">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="cmName" name="fullName" required placeholder="Your full name">
+                        </div>
+                    </div>
+
+                    <div class="cm-field">
+                        <label for="cmCompany">Company <span class="cm-req">*</span></label>
+                        <div class="cm-input-wrap">
+                            <i class="fa-solid fa-building"></i>
+                            <input type="text" id="cmCompany" name="company" required placeholder="Your organization">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="cm-row">
+
+                    <div class="cm-field">
+                        <label for="cmEmail">Work Email <span class="cm-req">*</span></label>
+                        <div class="cm-input-wrap">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="cmEmail" name="workEmail" required placeholder="you@company.com">
+                        </div>
+                    </div>
+
+                    <div class="cm-field">
+                        <label for="cmPhone">Phone <span class="cm-req">*</span></label>
+                        <div class="cm-input-wrap">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" id="cmPhone" name="phone" required placeholder="+254 7XX XXX XXX">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="cm-row">
+
+                    <div class="cm-field">
+                        <label for="cmArea">Training Area <span class="cm-req">*</span></label>
+                        <div class="cm-input-wrap">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <select id="cmArea" name="trainingArea" required>
+                                <option value="" disabled selected>Select a training area</option>
+                                <option>Leadership Development</option>
+                                <option>Digital Transformation</option>
+                                <option>Compliance &amp; Governance</option>
+                                <option>Customer Service &amp; Communication</option>
+                                <option>Technical &amp; Vocational Upskilling</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="cm-field">
+                        <label for="cmMethod">Preferred Consultation Method <span class="cm-req">*</span></label>
+                        <div class="cm-input-wrap">
+                            <i class="fa-solid fa-comments"></i>
+                            <select id="cmMethod" name="consultationMethod" required>
+                                <option value="" disabled selected>Select a method</option>
+                                <option>Phone Call</option>
+                                <option>Video Call</option>
+                                <option>On-site Visit</option>
+                                <option>Email</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="cm-field">
+                    <label for="cmNeeds">Training Needs <span class="cm-req">*</span></label>
+                    <div class="cm-input-wrap cm-input-wrap-textarea">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <textarea id="cmNeeds" name="trainingNeeds" required rows="4" placeholder="Tell us about your organization's skills gaps and training objectives."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="cm-submit">
+                    <i class="fa-solid fa-paper-plane"></i> Request Consultation
+                </button>
+
+            </form>
+
+            <div class="cm-success" id="cmSuccess" hidden>
+                <span class="cm-success-icon"><i class="fa-solid fa-circle-check"></i></span>
+                <h2>Request Submitted Successfully!</h2>
+                <p>Thank you for reaching out. Our Corporate Training team has received your request and will contact you shortly to schedule your consultation.</p>
+                <button type="button" class="cm-btn-done" id="cmDoneBtn">Done</button>
+            </div>
+
+        </div>
+
+    </div>
+
+<footer class="footer">
+
+    <!-- Footer Main -->
+
+    <div class="footer-main">
+
+        <div class="container footer-grid">
+
+            <!-- About -->
+
+            <div class="footer-column">
+
+                <img src="assets/images/logo/logo-white.png"
+                     alt="Germaine Training Institute Logo"
+                     class="footer-logo" loading="lazy" decoding="async">
+
+                <p>
+
+                    Germaine Training Institute is committed to
+                    producing competent, innovative and
+                    industry-ready graduates through
+                    practical and competency-based education.
+
+                </p>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Quick Links
+
+                </h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="about.html">About Us</a></li>
+
+                    <li><a href="courses.html">Courses</a></li>
+
+                    <li><a href="admissions.html">Admissions</a></li>
+
+                    <li><a href="corporate-training.html">Corporate Training</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+
+                
+
+                    <li><a href="apply.html">Apply Now</a></li>
+
+                    <li><a href="apply.html">Scholarships</a></li>
+</ul>
+
+            </div>
+
+            
+
+            <!-- Contact -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Contact Us
+
+                </h3>
+
+                <ul class="contact-list">
+
+                    <li>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Pioneer Plaza,
+                        Mburu Gichua Road,
+                        Nakuru
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        +254 719 488 112
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        admissions@germaineinstitute.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Mon – Fri : 8:00 AM – 5:00 PM
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Google Map -->
+
+    <div class="footer-map">
+
+        <iframe
+            src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed"
+            loading="lazy"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+    <!-- Bottom Footer -->
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <p>
+
+                © 2026 Germaine Training Institute.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Emmanuel Elijah</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+            BACK TO TOP
+========================================== -->
+
+<button class="back-to-top" aria-label="Back to top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+            JAVASCRIPT
+========================================== -->
+
+<script defer src="assets/js/api-client.js"></script>
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+
+<script defer src="assets/js/premium-theme.js"></script>
+
+<script defer src="assets/js/corporate-training.js"></script>
+
+<script defer src="assets/js/consultation-modal.js"></script>
+
+<script defer src="assets/js/corporate-bento.js"></script>
+
+<script defer src="assets/js/school-page.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ category.label }}{% endblock %}
+{% block content %}
+<a class="gti-back-link" href="{{ url_for('admin.academics_categories_list') }}">&larr; Back to Categories</a>
+<div class="gti-topbar"><h1>{{ category.label }}</h1></div>
+<form method="post" action="{{ url_for('admin.academics_category_edit', category_id=category.id) }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <div class="gti-form-section">
+    <h2>Category Details</h2>
+    <div class="gti-form-group">
+      <label for="cf-label">Label</label>
+      <input type="text" id="cf-label" name="label" maxlength="150" value="{{ category.label }}" required>
+    </div>
+    <div class="gti-form-group">
+      <label for="cf-icon">Icon (Font Awesome class)</label>
+      <input type="text" id="cf-icon" name="icon" maxlength="80" value="{{ category.icon or '' }}" placeholder="e.g. fa-solid fa-shield-halved">
+      <span class="hint">Slug ({{ category.slug }}) is fixed and cannot be changed here — it's referenced by existing programme links.</span>
+    </div>
+  </div>
+  <div class="gti-form-actions">
+    <button type="submit" class="gti-btn">Save Changes</button>
+  </div>
+</form>
+{% endblock %}

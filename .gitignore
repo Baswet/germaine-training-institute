@@ -1,0 +1,78 @@
+# Germaine Training Institute — repository .gitignore
+# Root of the repo = this "update" project folder (build10/ + germaine-backend/).
+# Nothing listed here is deleted from disk — this only controls what git tracks.
+
+# ---------------------------------------------------------------
+# Secrets / environment files — never commit real credentials.
+# ---------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.production.example
+
+# ---------------------------------------------------------------
+# Python virtual environments (two exist in this project: the active
+# germaine-backend/.venv and the legacy build10/EarnCash/backend/venv).
+# ---------------------------------------------------------------
+.venv/
+venv/
+env/
+*.egg-info/
+
+# ---------------------------------------------------------------
+# Python bytecode / caches
+# ---------------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# ---------------------------------------------------------------
+# Logs
+# ---------------------------------------------------------------
+*.log
+
+# ---------------------------------------------------------------
+# Local databases / dumps / schema exports — never commit real or
+# even sample data files, and never commit raw SQL dumps.
+# ---------------------------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+*.sql
+*backup*/
+*.bak
+
+# ---------------------------------------------------------------
+# Node / frontend tooling (none currently used, kept for safety)
+# ---------------------------------------------------------------
+node_modules/
+
+# ---------------------------------------------------------------
+# IDE / editor / OS noise
+# ---------------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------
+# Sandbox/FUSE-mount artifacts (created by this cloud dev environment
+# while files were open during editing — not real project files).
+# ---------------------------------------------------------------
+.fuse_hidden*
+
+# ---------------------------------------------------------------
+# Out-of-project clutter present in this mounted folder — not part of
+# the GTI application. Confirmed during the Phase 16 audit:
+#   imagesss/  — raw, unprocessed source-photo staging area (several
+#                multi-gigabyte Google Drive zip exports, the largest
+#                over 1.3GB — nowhere near GitHub's 100MB/file limit
+#                and not referenced by any deployed page)
+#   gitignore/ — stray leftover folder (contains only an empty .venv)
+#   New folder/ — empty stray folder
+# ---------------------------------------------------------------
+imagesss/
+gitignore/
+New folder/

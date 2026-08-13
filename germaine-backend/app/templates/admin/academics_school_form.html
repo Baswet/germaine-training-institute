@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ school.name }}{% endblock %}
+{% block content %}
+<a class="gti-back-link" href="{{ url_for('admin.academics_schools_list') }}">&larr; Back to Schools</a>
+<div class="gti-topbar"><h1>{{ school.name }}</h1></div>
+
+<form method="post" action="{{ url_for('admin.academics_school_edit', school_id=school.id) }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <div class="gti-form-section">
+    <h2>School Details</h2>
+    <div class="gti-form-group">
+      <label for="sf-description">Description</label>
+      <textarea id="sf-description" name="description" class="tall">{{ school.description or '' }}</textarea>
+    </div>
+    <div class="gti-form-group">
+      <label for="sf-fee">Flat Fee Display Text</label>
+      <input type="text" id="sf-fee" name="fee" maxlength="50" value="{{ school.fee or '' }}" placeholder="e.g. KES 11,500">
+      <span class="hint">Academic programmes under this school all show this one flat fee — the two pricing models (academic flat fee vs. AI Bootcamp per-mode fee) are kept separate.</span>
+    </div>
+    <div class="gti-form-group">
+      <label for="sf-order">Display Order</label>
+      <input type="number" id="sf-order" name="display_order" value="{{ school.display_order if school.display_order is not none else '' }}">
+    </div>
+    <div class="gti-form-group gti-form-checkbox">
+      <input type="checkbox" id="sf-active" name="is_active" {{ 'checked' if school.is_active }}>
+      <label for="sf-active" style="margin:0;">Active (visible on the public catalogue)</label>
+    </div>
+  </div>
+  <div class="gti-form-actions">
+    <button type="submit" class="gti-btn">Save Changes</button>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,1107 @@
+/*==================================================
+    GERMAINE — ABOUT US PAGE (PREMIUM REBUILD)
+    Scoped entirely under .ab- prefixed classes so
+    nothing here can leak onto other pages. Reuses the
+    site's real tokens (--primary, --primary-dark,
+    --glass-*, --radius*, --shadow*, --font-*) rather
+    than inventing a new palette. Sections not covered
+    here (Welcome / Learning split, Mission-Vision-Values
+    cards, Leadership grid base, Accreditation marquee,
+    Testimonials, CTA) reuse existing sitewide classes
+    from style.css / premium-sections.css directly.
+==================================================*/
+
+@property --ab-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes abTravel{ to{ --ab-a:360deg; } }
+@keyframes abReveal{ to{ opacity:1; transform:none; } }
+
+.ab-reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.25,.8,.25,1), transform .7s cubic-bezier(.25,.8,.25,1); }
+.ab-reveal.ab-show{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion: reduce){
+    .ab-reveal{ opacity:1 !important; transform:none !important; }
+}
+
+/*==================================================
+    2. WHO WE ARE — compact image + intro with feature
+    chips, plus one shared glass container holding the
+    official Vision / Mission / Core Values / Institutional
+    Promise text EXACTLY as supplied by the Institute. The
+    Promise item scrolls internally rather than the text
+    being shortened to fit.
+==================================================*/
+.ab-who-grid{
+    /* Premium two-column split: image ~57%, text ~43% (desktop), so the
+       enlarged slideshow reads as the dominant visual anchor while the
+       expanded copy still gets a comfortable measure. Top-aligned (not
+       centred) so the image lines up with the heading rather than
+       floating in the middle of the taller text column. */
+    display:grid; grid-template-columns:1.35fr 1fr; gap:48px; align-items:start;
+    margin-bottom:28px;
+}
+.ab-who-image{ position:relative; border-radius:26px; overflow:hidden; height:520px; box-shadow:var(--shadow-hover); }
+.ab-who-image img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Desktop: pin the slideshow in view while the longer copy scrolls past,
+   so the enlarged image stays visually balanced against the expanded
+   text rather than being left behind above a much taller column. */
+@media(min-width:901px){
+    .ab-who-image{
+        position:sticky;
+        top:calc(var(--header-height, 100px) + 20px);
+    }
+}
+
+/* Responsive fade slideshow inside the existing image frame — smooth
+   cross-fade with a gentle Ken-Burns-style scale for a premium feel.
+   Auto-advance pauses on hover (see about-premium.js). */
+.ab-who-slides{ position:absolute; inset:0; }
+.ab-who-slide{
+    position:absolute; inset:0; opacity:0; z-index:0;
+    transform:scale(1.06);
+    transition:opacity 1s ease, transform 5s ease-out;
+}
+.ab-who-slide.is-active{ opacity:1; z-index:1; transform:scale(1); }
+@media (prefers-reduced-motion: reduce){
+    .ab-who-slide{ transition:opacity .3s ease; transform:none; }
+    .ab-who-slide.is-active{ transform:none; }
+}
+.ab-who-image::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(16, 42, 92, .35), transparent 45%);
+}
+/* floating TVET badge — same glass-pill treatment as the hero badges
+   (.ab-hero-float-badge): blurred white glass, pink icon, soft shadow */
+.ab-who-badge{
+    position:absolute; left:14px; bottom:14px; z-index:1;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 16px; border-radius:50px;
+    background:rgba(255, 255, 255, .6); border:1px solid rgba(255, 255, 255, .7);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 10px 30px rgba(16, 42, 92, .15), 0 0 18px rgba(236, 72, 153, .18);
+    font-family:var(--font-button); font-weight:600; font-size:.78rem;
+    letter-spacing:.4px; color:#102A5C;
+}
+.ab-who-badge i{ color:#EC4899; }
+.ab-who-content p{ font-size:.94rem; line-height:1.65; color:var(--text-body); margin-bottom:14px; }
+
+.ab-who-chips{
+    list-style:none; margin:0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px 10px;
+}
+.ab-who-chips li{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:6px 12px; border-radius:50px;
+    background:rgba(236, 72, 153, .08); border:1px solid rgba(236, 72, 153, .22);
+    font-size:.76rem; font-weight:600; color:#102A5C;
+}
+.ab-who-chips li i{ color:#EC4899; font-size:.68rem; }
+
+/* ---------- one shared glass container for the four value items ---------- */
+/* Four individual premium glass cards (MKU-inspired, original Germaine
+   execution) — icon badge, travelling border light, hover lift. Replaces
+   the previous single divided panel so each statement reads as its own
+   distinct, elegant card. */
+/* Interactive image cards, stacked vertically. Cover only until hover,
+   then the statement panel fades up over a gently zooming photo. */
+.ab-values-stack{ display:flex; flex-direction:column; gap:18px; }
+
+.ab-vcard{
+    position:relative; isolation:isolate; overflow:hidden;
+    border-radius:24px; min-height:200px;
+    display:flex; align-items:center;
+    border:1px solid rgba(255, 255, 255, .18);
+    box-shadow:0 15px 40px rgba(0, 0, 0, .28);
+    cursor:default; outline:none;
+    transition:transform .45s cubic-bezier(.25,.8,.25,1), box-shadow .45s ease;
+}
+.ab-vcard:hover,
+.ab-vcard:focus-visible{
+    transform:translateY(-6px);
+    box-shadow:0 30px 62px rgba(0, 0, 0, .34);
+}
+
+/* photo layer — subtle continuous presence, zooms in on hover */
+.ab-vcard-media{
+    position:absolute; inset:0; z-index:0;
+    background-size:cover; background-position:center;
+    transform:scale(1.005);
+    transition:transform .7s cubic-bezier(.25,.8,.25,1), filter .5s ease;
+}
+.ab-vcard:hover .ab-vcard-media,
+.ab-vcard:focus-visible .ab-vcard-media{ transform:scale(1.06); filter:brightness(.85); }
+
+/* navy-to-pink gradient veil for contrast and brand warmth */
+.ab-vcard-veil{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(135deg, rgba(16, 42, 92, .88) 0%, rgba(16, 42, 92, .72) 45%, rgba(236, 72, 153, .55) 100%);
+    transition:opacity .45s ease;
+}
+.ab-vcard:hover .ab-vcard-veil,
+.ab-vcard:focus-visible .ab-vcard-veil{ opacity:.97; }
+
+/* travelling border light — retained */
+.ab-vcard::before{
+    content:""; position:absolute; inset:0; padding:1.4px; border-radius:24px; z-index:4;
+    background:conic-gradient(from var(--ab-vc-a,0deg), transparent 0 70%, #EC4899 82%, #FFFFFF 90%, #EC4899 96%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:abValueTravel 10s linear infinite; pointer-events:none;
+    opacity:.85;
+}
+@property --ab-vc-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes abValueTravel{ to{ --ab-vc-a:360deg; } }
+
+/* ---------- COVER (visible by default) ---------- */
+.ab-vcard-cover{
+    position:relative; z-index:2;
+    display:flex; align-items:center; gap:18px;
+    padding:30px 34px; width:100%;
+    transition:opacity .4s ease, transform .45s cubic-bezier(.25,.8,.25,1);
+}
+.ab-vcard-icon{
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    width:54px; height:54px; border-radius:16px;
+    background:rgba(236, 72, 153, .22); border:1px solid rgba(244, 114, 182, .45);
+    color:#FFFFFF; font-size:1.3rem;
+    box-shadow:0 8px 22px rgba(236, 72, 153, .25);
+    transition:transform .45s cubic-bezier(.25,.8,.25,1);
+}
+.ab-vcard:hover .ab-vcard-icon{ transform:scale(.92) translateY(-4px); }
+.ab-vcard-cover h3{
+    font-family:var(--font-heading); font-weight:800;
+    font-size:clamp(1.15rem, 2.2vw, 1.5rem); color:#FFFFFF; margin:0; line-height:1.2;
+}
+
+/* ---------- REVEAL PANEL (hover) ---------- */
+.ab-vcard-panel{
+    position:absolute; inset:0; z-index:3;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:26px 34px;
+    background:rgba(255, 255, 255, .08);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    opacity:0; transform:translateY(14px); pointer-events:none;
+    transition:opacity .4s ease, transform .5s cubic-bezier(.25,.8,.25,1);
+}
+.ab-vcard:hover .ab-vcard-panel,
+.ab-vcard:focus-visible .ab-vcard-panel{ opacity:1; transform:none; pointer-events:auto; }
+.ab-vcard:hover .ab-vcard-cover,
+.ab-vcard:focus-visible .ab-vcard-cover{ opacity:0; transform:translateY(-10px); }
+
+.ab-vcard-tag{
+    display:inline-flex; align-items:center; gap:8px; margin-bottom:10px;
+    font-family:var(--font-button); font-weight:700; font-size:.68rem; letter-spacing:1.4px;
+    text-transform:uppercase; color:#FBCFE8;
+}
+.ab-vcard-panel p{ font-size:.88rem; line-height:1.65; color:#FFFFFF; margin:0; }
+.ab-vcard-panel p em{ font-style:italic; color:rgba(255, 255, 255, .94); }
+.ab-vcard-scroll{ max-height:120px; overflow-y:auto; padding-right:8px; }
+.ab-vcard-scroll p{ margin:0 0 8px; }
+.ab-vcard-scroll p:last-child{ margin-bottom:0; }
+.ab-vcard-scroll::-webkit-scrollbar{ width:4px; }
+.ab-vcard-scroll::-webkit-scrollbar-thumb{ background:rgba(236, 72, 153, .5); border-radius:10px; }
+
+/* Touch devices have no hover — show the statement by default so no
+   content is unreachable, and drop the cover/lift interaction. */
+@media(hover:none){
+    .ab-vcard-cover{ display:none; }
+    .ab-vcard-panel{ opacity:1; transform:none; pointer-events:auto; position:relative; }
+    .ab-vcard{ min-height:0; }
+}
+@media (prefers-reduced-motion: reduce){
+    .ab-vcard::before{ animation:none; }
+    .ab-vcard,.ab-vcard-media,.ab-vcard-panel,.ab-vcard-cover,.ab-vcard-icon{ transition:none; }
+}
+
+/* Tablet — keep the two-column layout (per spec: "preserve two-column
+   layout where practical") but tighten the ratio, gap and slideshow
+   height so it doesn't feel cramped on smaller/portrait screens. */
+@media(max-width:1200px){
+    .ab-who-grid{ grid-template-columns:1.15fr 1fr; gap:32px; }
+    .ab-who-image{ height:420px; }
+}
+
+/* Mobile — stack image above text, full width. */
+@media(max-width:900px){
+    .ab-who-grid{ grid-template-columns:1fr; gap:26px; }
+    .ab-who-image{ height:380px; max-width:640px; margin:0 auto; }
+    .ab-values-stack{ gap:16px; }
+}
+@media(max-width:576px){
+    .ab-who-image{ height:280px; }
+}
+@media(max-width:640px){
+    .ab-vcard{ min-height:170px; }
+    .ab-vcard-cover{ padding:22px 22px; gap:14px; }
+    .ab-vcard-icon{ width:46px; height:46px; font-size:1.1rem; }
+    .ab-vcard-panel{ padding:20px 22px; }
+}
+
+/*==================================================
+    2b. VISION / MISSION / CORE VALUES — flip-card trio
+    Three identical, compact 3D flip cards (MKU-About-Us-style
+    interaction). Same size, border treatment, corner accents,
+    flip timing and hover behaviour across all three so they
+    read as one cohesive component. Front = supplied photo +
+    icon + title; back = the official statement. Hover flips on
+    desktop; tap toggles a .is-flipped class (about-premium.js)
+    on touch devices; focus + Enter/Space also flips for keyboard
+    users. Everything here is additive/new — the surrounding
+    Institutional Promise card and its .ab-vcard styling are
+    untouched.
+==================================================*/
+/*==================================================
+    EDITORIAL LAYOUT — three stacked cards on the left,
+    one tall Promise panel on the right, elegant wavy
+    dividers between each card and between the columns.
+==================================================*/
+.ab-vmp-layout{
+    display:grid;
+    grid-template-columns:minmax(0, .92fr) 26px minmax(0, 1.08fr);
+    align-items:stretch;
+    gap:0;
+    margin-bottom:20px;
+}
+
+.ab-vmp-stack{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:0;
+}
+
+/* ---------- decorative wavy dividers ---------- */
+.ab-wave-div{
+    position:relative;
+    height:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+.ab-wave-div svg{ width:100%; height:14px; display:block; overflow:visible; }
+
+.ab-wave-vdiv{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:26px;
+}
+.ab-wave-vdiv svg{ width:18px; height:100%; display:block; overflow:visible; }
+
+/* small pink pearl riding the centre of every divider */
+.ab-wave-dot{
+    position:absolute;
+    top:50%; left:50%;
+    width:7px; height:7px;
+    margin:-3.5px 0 0 -3.5px;
+    border-radius:50%;
+    background:#EC4899;
+    box-shadow:0 0 0 3px rgba(236, 72, 153, .18), 0 0 12px rgba(236, 72, 153, .7);
+    animation:abWavePulse 3.4s ease-in-out infinite;
+}
+@keyframes abWavePulse{
+    0%,100%{ box-shadow:0 0 0 3px rgba(236, 72, 153, .18), 0 0 12px rgba(236, 72, 153, .7); }
+    50%{ box-shadow:0 0 0 6px rgba(236, 72, 153, .08), 0 0 18px rgba(236, 72, 153, .95); }
+}
+
+/* ---------- right column: OUR PROMISE as editorial text ----------
+   Deliberately NOT a card: no border, no glass panel, no flip. It is
+   set as a highlighted institutional statement that blends into the
+   page, and it sizes naturally to its content rather than being
+   stretched to match the height of the three cards. */
+.ab-promise{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:6px 4px 6px 26px;
+    align-self:center;          /* sizes to content, not to the stack */
+}
+
+.ab-promise-eyebrow{
+    display:block;
+    font-family:var(--font-button,'Montserrat',sans-serif);
+    font-weight:700;
+    font-size:.68rem;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+    color:#EC4899;
+    margin-bottom:10px;
+}
+
+.ab-promise-title{
+    font-family:var(--font-heading,'Poppins',sans-serif);
+    font-weight:800;
+    font-size:clamp(1.5rem, 2.6vw, 2.05rem);
+    line-height:1.18;
+    color:#9D174D;
+    margin:0 0 18px;
+    letter-spacing:-.2px;
+}
+
+.ab-promise-body p{
+    font-size:1rem;
+    line-height:1.85;
+    color:#3f4a63;
+    margin:0 0 18px;
+    max-width:56ch;
+}
+
+/* opening statement carries a touch more weight */
+.ab-promise-body p:first-child{
+    font-size:1.06rem;
+    color:#2f3a52;
+    font-weight:500;
+}
+
+.ab-promise-body p:last-child{ margin-bottom:0; }
+
+/* small pink rule closing the statement */
+.ab-promise-rule{
+    display:block;
+    width:74px;
+    height:3px;
+    margin-top:22px;
+    border-radius:3px;
+    background:linear-gradient(90deg, #EC4899, #F9A8D4);
+}
+
+.ab-flip-card{
+    position:relative; isolation:isolate;
+    /* enlarged for MKU-style image prominence: 46px of the height is the
+       label bar, leaving a generous artwork area. All three cards share
+       this exact height so the stack aligns perfectly. */
+    height:186px; border-radius:16px;
+    perspective:1200px;
+    cursor:pointer; outline:none;
+}
+
+/* travelling conic-gradient border light — sits on a static wrapper
+   behind the flipping inner element so the animated frame never
+   distorts during the 3D rotation */
+.ab-flip-card::before{
+    content:""; position:absolute; inset:0; padding:1.6px; border-radius:22px; z-index:0;
+    background:conic-gradient(from var(--ab-vc-a,0deg), transparent 0 68%, #EC4899 80%, #FFFFFF 88%, #102A5C 95%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:abValueTravel 9s linear infinite; pointer-events:none;
+}
+
+.ab-flip-inner{
+    position:relative; width:100%; height:100%; z-index:1;
+    transform-style:preserve-3d;
+    transition:transform .8s cubic-bezier(.25,.8,.25,1), box-shadow .45s ease;
+    border-radius:20px;
+    box-shadow:0 16px 38px rgba(16, 42, 92, .18);
+    will-change:transform;
+}
+.ab-flip-card:hover .ab-flip-inner,
+.ab-flip-card:focus-visible .ab-flip-inner,
+.ab-flip-card.is-flipped .ab-flip-inner{
+    transform:rotateY(180deg);
+    box-shadow:0 26px 54px rgba(16, 42, 92, .3);
+}
+.ab-flip-card:not(.is-flipped):hover{ transform:translateY(-4px); }
+.ab-flip-card{ transition:transform .45s cubic-bezier(.25,.8,.25,1); }
+
+.ab-flip-face{
+    position:absolute; inset:0;
+    -webkit-backface-visibility:hidden; backface-visibility:hidden;
+    border-radius:20px; overflow:hidden;
+}
+
+/* ---------- FRONT ----------
+   The three artwork images (Our Vision / Mission / Core Values) are
+   typographic graphics, so they are shown WHOLE on a clean white
+   field (object-fit:contain) rather than cropped edge-to-edge. The
+   label sits in a compact solid bar beneath the artwork so nothing
+   is ever obscured. Card heights stay identical across all three. */
+.ab-flip-front{ background:#FFFFFF; }
+.ab-flip-front img{
+    position:absolute; left:0; right:0; top:0;
+    width:100%; height:calc(100% - 46px);
+    object-fit:contain; object-position:center;
+    background:#FFFFFF; padding:10px 14px 4px;
+    transition:transform .8s ease;
+}
+.ab-flip-card:hover .ab-flip-front img{ transform:scale(1.04); }
+.ab-flip-veil{
+    position:absolute; left:0; right:0; bottom:0; height:46px; z-index:1;
+    background:#102A5C;
+}
+.ab-flip-front-body{
+    position:absolute; left:0; right:0; bottom:0; z-index:2; height:46px;
+    display:flex; flex-direction:row; align-items:center; gap:9px;
+    padding:0 14px;
+}
+.ab-flip-icon{
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    width:32px; height:32px; border-radius:11px;
+    background:rgba(236, 72, 153, .25); border:1px solid rgba(244, 114, 182, .5);
+    color:#FFFFFF; font-size:.88rem;
+    box-shadow:0 8px 18px rgba(236, 72, 153, .25);
+}
+.ab-flip-front-body h3{
+    font-family:var(--font-heading); font-weight:800;
+    font-size:1.02rem; color:#FFFFFF; margin:0; line-height:1.2;
+}
+.ab-flip-hint{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--font-button); font-weight:600; font-size:.6rem;
+    letter-spacing:.6px; text-transform:uppercase; color:#FBCFE8;
+    opacity:.85;
+}
+.ab-flip-hint i{ font-size:.58rem; }
+
+/* ---------- BACK ----------
+   Shows ONLY the statement itself — no repeated "Our Vision" /
+   "Our Mission" / "Our Core Values" label, per the final design
+   correction. The description is centred both axes with generous
+   padding so the back reads as the image "transformed into" the
+   information, not a re-labelled card. */
+.ab-flip-back{
+    transform:rotateY(180deg);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    gap:6px; padding:22px 24px;
+    background:linear-gradient(145deg, #102A5C 0%, #1a3d7c 55%, #7c1350 140%);
+}
+.ab-flip-back p{ font-size:.88rem; line-height:1.6; color:#FFFFFF; margin:0; max-width:34ch; }
+.ab-flip-values-list{
+    list-style:none; margin:0 auto; padding:0; max-width:230px;
+    display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; width:100%;
+    justify-items:start;
+}
+.ab-flip-values-list li{
+    display:flex; align-items:center; gap:6px;
+    font-size:.74rem; font-weight:600; color:#FFFFFF; line-height:1.3;
+}
+.ab-flip-values-list li i{ color:#F9A8D4; font-size:.7rem; flex-shrink:0; }
+
+/* decorative corner accent lines — same premium framing on both faces */
+.ab-flip-corner{ position:absolute; width:26px; height:26px; z-index:3; pointer-events:none; opacity:.9; }
+.ab-flip-corner-tl{ top:12px; left:12px; border-top:2px solid rgba(255, 255, 255, .75); border-left:2px solid rgba(255, 255, 255, .75); border-radius:6px 0 0 0; }
+.ab-flip-corner-br{ bottom:12px; right:12px; border-bottom:2px solid #EC4899; border-right:2px solid #EC4899; border-radius:0 0 6px 0; }
+
+@media(hover:none){
+    /* touch devices: no hover state, tap toggles .is-flipped via JS */
+    .ab-flip-card:hover .ab-flip-inner{ transform:none; }
+    .ab-flip-card.is-flipped .ab-flip-inner{ transform:rotateY(180deg); }
+}
+@media (prefers-reduced-motion: reduce){
+    .ab-flip-inner{ transition:none; }
+    .ab-flip-card{ transition:none; }
+    .ab-flip-card::before{ animation:none; }
+    .ab-flip-front img{ transition:none; }
+}
+
+/* Tablet — keep the side-by-side editorial layout, just tighten it */
+@media(max-width:1024px){
+    .ab-vmp-layout{ grid-template-columns:minmax(0, .95fr) 20px minmax(0, 1.05fr); }
+    .ab-wave-vdiv{ width:20px; }
+    .ab-flip-card{ height:196px; }
+}
+
+/* Mobile — everything stacks vertically, decorative separators kept */
+@media(max-width:820px){
+    .ab-vmp-layout{ grid-template-columns:1fr; }
+    /* the vertical separator becomes a horizontal pink hairline so the
+       decorative rhythm survives the stack without SVG distortion */
+    .ab-wave-vdiv{
+        width:100%;
+        height:34px;
+    }
+    .ab-wave-vdiv svg{ display:none; }
+    .ab-wave-vdiv::before{
+        content:"";
+        position:absolute;
+        left:8%; right:8%;
+        top:50%;
+        height:1.6px;
+        border-radius:2px;
+        background:linear-gradient(90deg,
+            rgba(236, 72, 153, 0) 0%,
+            rgba(236, 72, 153, .9) 25%,
+            #F9A8D4 50%,
+            rgba(236, 72, 153, .9) 75%,
+            rgba(236, 72, 153, 0) 100%);
+    }
+    .ab-vmp-promise .ab-vcard--promise{ min-height:320px; }
+    .ab-flip-card{ height:210px; }
+}
+
+@media(max-width:640px){
+    .ab-flip-card{ height:214px; }
+    .ab-flip-values-list{ grid-template-columns:1fr; }
+    .ab-wave-div{ height:22px; }
+}
+
+/*==================================================
+    3. WHY CHOOSE GERMAINE (About page copy) — independent
+    copy of the homepage .why-germaine section, scoped with
+    .ab-why-compact. Same colours/glass/icons/hover/layout;
+    only the feature cards' footprint is reduced (~30-40%
+    shorter, tighter padding/spacing, slightly smaller icon
+    and heading). The image and section chrome are untouched.
+==================================================*/
+.ab-why-compact{ padding:56px 0; }
+.ab-why-compact .section-heading{ margin-bottom:34px; }
+
+.ab-why-compact .why-content{ gap:10px; }
+
+.ab-why-compact .feature-box{
+    gap:10px;
+    padding:11px 14px;
+}
+.ab-why-compact .feature-icon{
+    width:36px; height:36px;
+    border-radius:11px;
+    font-size:.92rem;
+}
+.ab-why-compact .feature-box h3{
+    font-size:.88rem;
+    margin-bottom:3px;
+}
+.ab-why-compact .feature-box p{
+    font-size:.78rem;
+    line-height:1.42;
+}
+
+@media(max-width:600px){
+    .ab-why-compact{ padding:40px 0; }
+}
+
+/*==================================================
+    2a. LIFE AT GERMAINE — unified premium hero.
+    One white rounded container (heading, description,
+    CTAs, organic blob photo, floating activity icons and
+    a "Campus Voices" testimonial stack) presented as a
+    single composition rather than two separate cards.
+==================================================*/
+.lg-hero{ position:relative; isolation:isolate; overflow:hidden; padding:52px 0 20px; }
+.lg-glow{ position:absolute; z-index:0; border-radius:50%; filter:blur(80px); pointer-events:none; }
+.lg-glow-a{ width:420px; height:420px; top:-120px; left:4%; background:rgba(236,72,153,.10); }
+.lg-glow-b{ width:380px; height:380px; bottom:-140px; right:2%; background:rgba(16,42,92,.09); }
+
+.lg-hero-card{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.92fr);
+    gap:48px; align-items:center;
+    background:
+        radial-gradient(circle at 8% 0%, rgba(236,72,153,.05), transparent 40%),
+        radial-gradient(circle at 96% 100%, rgba(16,42,92,.05), transparent 44%),
+        #FFFFFF;
+    border-radius:40px; padding:60px;
+    border:1px solid rgba(255,255,255,.6);
+    box-shadow:0 20px 55px rgba(15,23,42,.08);
+}
+
+.lg-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:7px 15px; border-radius:50px; margin-bottom:16px;
+    background:rgba(236,72,153,.08); border:1px solid rgba(236,72,153,.22);
+    font-family:'Montserrat',sans-serif; font-weight:800; font-size:.68rem;
+    letter-spacing:1.3px; text-transform:uppercase; color:#DB2777;
+}
+.lg-eyebrow-dot{ width:7px; height:7px; border-radius:50%; background:#EC4899; }
+.lg-title{
+    font-family:var(--font-heading); font-weight:800;
+    font-size:clamp(2.2rem, 4vw, 3.4rem); line-height:1.06;
+    color:#102A5C; margin:0 0 6px;
+}
+.lg-title-accent{
+    background:linear-gradient(100deg, #EC4899 0%, #102A5C 100%);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+}
+.lg-subtitle{
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:1.15rem;
+    color:#334155; margin:0 0 14px;
+}
+.lg-desc{
+    font-size:1rem; line-height:1.9; color:#475569;
+    max-width:560px; margin:0 0 28px;
+}
+.lg-cta{ display:flex; flex-wrap:wrap; gap:14px; }
+.lg-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 26px; border-radius:50px;
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:.9rem;
+    text-decoration:none; transition:transform .3s ease, box-shadow .3s ease;
+}
+.lg-btn-primary{
+    background:linear-gradient(100deg, #EC4899, #102A5C);
+    color:#FFFFFF; box-shadow:0 10px 26px rgba(236,72,153,.32);
+}
+.lg-btn-primary:hover{ transform:translateY(-3px); box-shadow:0 14px 34px rgba(236,72,153,.42); color:#FFFFFF; }
+.lg-btn-ghost{
+    background:rgba(255,255,255,.6); color:#102A5C;
+    border:1px solid rgba(16,42,92,.16);
+}
+.lg-btn-ghost:hover{ transform:translateY(-3px); background:#FFFFFF; }
+
+/* ---------- visual: organic blob photo + floating icons + voices ---------- */
+.lg-hero-visual{ position:relative; width:100%; max-width:440px; margin:0 auto; aspect-ratio:1/1.02; }
+.lg-blob-glow{
+    position:absolute; inset:-28px; z-index:0;
+    border-radius:62% 38% 41% 59% / 55% 44% 56% 45%;
+    background:radial-gradient(circle, rgba(236,72,153,.22), transparent 68%);
+    filter:blur(32px);
+}
+.lg-blob-frame{
+    position:relative; z-index:1; width:100%; height:100%;
+    animation:lgBlobFloat 10s ease-in-out infinite;
+}
+@keyframes lgBlobFloat{
+    0%,100%{ transform:translate3d(0,0,0); }
+    50%{ transform:translate3d(0,-13px,0); }
+}
+.lg-blob-img{
+    width:100%; height:100%; object-fit:cover; object-position:center 30%;
+    border-radius:62% 38% 41% 59% / 55% 44% 56% 45%;
+    border:6px solid rgba(255,255,255,.85);
+    box-shadow:0 25px 60px rgba(15,23,42,.18), 0 0 0 1px rgba(236,72,153,.12);
+}
+.lg-token{
+    position:absolute; z-index:3; width:48px; height:48px; border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.85); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.7);
+    box-shadow:0 12px 26px rgba(15,23,42,.12);
+    color:#EC4899; font-size:1rem;
+    animation:lgTokenBob 9s ease-in-out infinite;
+}
+.lg-token-1{ top:2%; left:0%; }
+.lg-token-2{ top:20%; right:-4%; color:#102A5C; animation-delay:1.2s; }
+.lg-token-3{ bottom:34%; left:-6%; color:#EC4899; animation-delay:2.6s; }
+.lg-token-4{ top:-2%; right:22%; width:40px; height:40px; font-size:.9rem; animation-delay:.6s; }
+.lg-token-5{ bottom:6%; left:14%; width:38px; height:38px; font-size:.85rem; color:#102A5C; animation-delay:3.4s; }
+.lg-token-6{ top:46%; right:0%; width:36px; height:36px; font-size:.82rem; color:#EC4899; animation-delay:4.4s; }
+@keyframes lgTokenBob{
+    0%,100%{ transform:translate3d(0,0,0); }
+    50%{ transform:translate3d(0,-11px,0); }
+}
+.lg-voices{
+    position:absolute; z-index:4; bottom:0%; right:-6%; width:230px;
+    display:flex; flex-direction:column; gap:9px;
+}
+.lg-voices-title{
+    display:inline-flex; align-self:flex-start; align-items:center; gap:6px;
+    padding:6px 13px; border-radius:50px; margin-bottom:2px;
+    background:#EC4899; color:#FFFFFF;
+    font-family:'Montserrat',sans-serif; font-weight:800; font-size:.66rem;
+    letter-spacing:.5px; text-transform:uppercase;
+}
+.lg-voice-card{
+    display:flex; align-items:flex-start; gap:9px;
+    padding:11px 13px; border-radius:16px;
+    background:rgba(255,255,255,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.7);
+    box-shadow:0 10px 24px rgba(15,23,42,.1);
+    animation:lgVoiceRise 7s ease-in-out infinite;
+}
+.lg-voice-card:nth-child(3){ animation-delay:1.4s; }
+.lg-voice-card:nth-child(4){ animation-delay:2.8s; }
+@keyframes lgVoiceRise{
+    0%,100%{ transform:translate3d(0,0,0); }
+    50%{ transform:translate3d(0,-6px,0); }
+}
+.lg-voice-avatar{
+    flex-shrink:0; width:28px; height:28px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,#EC4899,#102A5C);
+    color:#FFFFFF; font-family:'Poppins',sans-serif; font-weight:700; font-size:.62rem;
+}
+.lg-voice-card p{
+    margin:0 0 2px; font-size:.7rem; line-height:1.35; color:#1E293B; font-weight:600;
+}
+.lg-voice-card span{ font-size:.62rem; color:#64748B; font-weight:600; }
+
+@media(prefers-reduced-motion:reduce){
+    .lg-blob-frame, .lg-token, .lg-voice-card{ animation:none; }
+}
+
+@media(max-width:1024px){
+    .lg-hero-card{ gap:34px; padding:44px 32px; border-radius:32px; }
+    .lg-hero-visual{ max-width:380px; }
+}
+@media(max-width:900px){
+    .lg-hero{ padding:36px 0 12px; }
+    .lg-hero-card{ grid-template-columns:1fr; text-align:center; padding:36px 24px; }
+    .lg-desc{ margin-left:auto; margin-right:auto; }
+    .lg-cta{ justify-content:center; }
+    .lg-hero-visual{ max-width:340px; margin-top:26px; }
+}
+@media(max-width:520px){
+    .lg-hero-card{ padding:28px 18px; border-radius:26px; }
+    .lg-title{ font-size:clamp(1.9rem,9vw,2.4rem); }
+    .lg-voices{ position:relative; right:0; width:100%; margin-top:16px; }
+    .lg-token{ display:none; }
+}
+
+/*==================================================
+    2b. LIFE AT GERMAINE — compact bento grid.
+    One featured card spanning both rows plus two
+    secondary cards. Backgrounds cross-fade three real
+    Germaine photos each with a slow continuous zoom,
+    driven purely by CSS. Glass surfaces, travelling
+    pink/cyan border light and pink-tinted overlays keep
+    this consistent with the rest of the site.
+==================================================*/
+.life-section{
+    padding:52px 0 28px;
+}
+.life-section .container{
+    background:
+        radial-gradient(circle at 50% 0%, rgba(236, 72, 153, .14), transparent 45%),
+        linear-gradient(#102A5C, #1E3A8A);
+    border-radius:28px;
+    padding:34px 30px 30px;
+    box-shadow:0 12px 40px rgba(16, 42, 92, .25);
+}
+
+.life-header{ text-align:center; margin-bottom:26px; }
+/* compact pink pill badge — not a full-width banner.
+   .recognised-badge is an alias so either class name works.
+   (Kept here after the Recognised & Trusted By section was removed,
+   because the Life at Germaine header still uses this badge.) */
+.recognised-title,
+.recognised-badge{
+    display:inline-block;
+    width:fit-content;
+    background:#EC4899;
+    color:#fff;
+    padding:6px 16px;
+    border-radius:999px;
+    font-family:var(--font-heading);
+    font-size:.95rem;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    box-shadow:0 0 15px rgba(236, 72, 153, .35);
+}
+
+.life-header .recognised-title{ margin-bottom:12px; }
+.life-header h2{
+    font-family:var(--font-heading); font-weight:700;
+    font-size:clamp(1.6rem, 2.8vw, 2.15rem); color:#F8FAFC; margin-bottom:8px;
+}
+.life-header p{
+    font-size:.94rem; line-height:1.6; color:#CBD5E1;
+    max-width:560px; margin:0 auto;
+}
+
+/* ---------- grid ----------
+   Expanded from 1 featured + 2 secondary (3 cards / 9 photos) to 1
+   featured + 6 secondary (7 cards / 21 photos) so more real Germaine
+   moments are on screen at once, while every tile keeps the exact
+   same 180px row height, radius and glass treatment as before. */
+.bento-grid{
+    display:grid;
+    grid-template-columns:1.3fr repeat(3, 1fr);
+    grid-template-rows:repeat(2, 180px);
+    gap:16px;
+}
+
+.bento-card{
+    position:relative; isolation:isolate; overflow:hidden;
+    border-radius:20px;
+    background:rgba(255, 255, 255, .08);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255, 255, 255, .15);
+    box-shadow:0 10px 30px rgba(16, 42, 92, .25), inset 0 1px 0 rgba(255, 255, 255, .15);
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .3s ease, border-color .3s ease;
+}
+.bento-card.featured{ grid-row:1 / span 2; }
+
+.bento-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(236, 72, 153, .45);
+    box-shadow:0 0 40px rgba(236, 72, 153, .3), 0 16px 36px rgba(16, 42, 92, .3);
+}
+
+/* travelling pink / cyan border light, masked to the card edge */
+.bento-card::before{
+    content:""; position:absolute; inset:0; padding:1.6px; border-radius:20px; z-index:0;
+    background:conic-gradient(from var(--ab-a),
+        transparent 0 62%, #EC4899 74%, #F472B6 84%, #EC4899 92%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:abTravel 12s linear infinite; pointer-events:none;
+}
+
+/* ---------- auto-rotating backgrounds ----------
+   Real <img loading="lazy"> elements (not CSS background-image) so the
+   browser can lazy-load every off-screen tile and so the images use a
+   true object-fit: cover. Cross-fade cycle unchanged in spirit — just
+   nudged faster per the brief — and the grid/tile dimensions are
+   untouched. `object-position` is biased slightly above centre so
+   faces and key subjects stay in frame. */
+.bento-card .slideshow{
+    position:absolute; inset:1.6px; border-radius:18px; overflow:hidden; z-index:1;
+    background:#102A5C;
+}
+.bento-card .slide{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center 42%;
+    opacity:0;
+    /* slightly faster cross-fade (was 9s) for a more dynamic feel */
+    animation:lifeFade 6.6s infinite, lifeZoom 6.6s linear infinite;
+}
+.bento-card .slide-1{ animation-delay:0s, 0s; }
+.bento-card .slide-2{ animation-delay:2.2s, 2.2s; }
+.bento-card .slide-3{ animation-delay:4.4s, 4.4s; }
+
+@keyframes lifeFade{
+    0%{ opacity:0; } 8%{ opacity:1; } 33%{ opacity:1; } 41%{ opacity:0; } 100%{ opacity:0; }
+}
+/* gentle outward drift — starts already filling the tile (1 → 1.05) so
+   no edge is ever exposed at any point in the cycle */
+@keyframes lifeZoom{
+    0%{ transform:scale(1); } 100%{ transform:scale(1.05); }
+}
+
+/* ---------- overlay content ---------- */
+.bento-card .card-content{
+    position:absolute; inset:1.6px; z-index:2;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:18px;
+    border-radius:18px;
+    background:linear-gradient(180deg,
+        transparent 30%,
+        rgba(16, 42, 92, .45) 55%,
+        rgba(236, 72, 153, .28) 100%);
+    pointer-events:none;
+}
+.bento-card .badge{
+    display:inline-flex; width:fit-content;
+    padding:5px 13px; margin-bottom:8px;
+    border-radius:30px;
+    background:rgba(236, 72, 153, .2);
+    border:1px solid rgba(236, 72, 153, .4);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    font-family:var(--font-button); font-weight:700; font-size:.63rem;
+    letter-spacing:.5px; text-transform:uppercase; color:#F8FAFC;
+}
+.bento-card .card-content h3{
+    color:#FFFFFF; font-family:var(--font-heading);
+    font-size:1.05rem; font-weight:700; margin:0;
+    text-shadow:0 2px 8px rgba(16, 42, 92, .6);
+}
+
+/* ---------- responsive ---------- */
+/* Tablet — keep a balanced multi-column grid, just fewer columns than
+   desktop; the featured card still spans both rows on the left. */
+@media(max-width:1100px) and (min-width:769px){
+    .bento-grid{ grid-template-columns:1.3fr repeat(2, 1fr); grid-auto-rows:180px; }
+}
+
+@media(max-width:768px){
+    .life-section .container{ padding:24px 18px 22px; border-radius:22px; }
+    .bento-grid{ grid-template-columns:1fr; grid-template-rows:none; grid-auto-rows:200px; }
+    .bento-card.featured{ grid-row:auto; grid-column:auto; }
+}
+@media (prefers-reduced-motion: reduce){
+    .bento-card::before{ animation:none; }
+    .bento-card .slide{ animation:lifeFade 9s infinite; }
+    .bento-card:hover{ transform:none; }
+}
+
+/*==================================================
+    6. WHITESPACE PASS — this page's sections were each
+    tuned individually with fairly generous top/bottom
+    padding; tightened here so the page reads as one
+    continuous flow rather than a stack of separate
+    blocks. Scoped to this page's section IDs only, so
+    shared classes like .content-section keep their
+    normal spacing everywhere else on the site.
+==================================================*/
+#ab-who,
+#ab-facilities{
+    padding:44px 0;
+}
+#ab-who .ab-who-grid{ margin-bottom:24px; }
+
+@media(max-width:900px){
+    #ab-who,
+    #ab-facilities{ padding:34px 0; }
+}
+
+/*==================================================
+    7. NEWSLETTER — compact version for this page only.
+    .newsletter is shared sitewide (footer subscribe
+    banner); about-premium.css loads after style.css so
+    this override wins here without touching other pages.
+==================================================*/
+.newsletter{ padding:26px 0; }
+.newsletter-text h2{ font-size:1.15rem; margin-bottom:4px; }
+.newsletter-text p{ font-size:.82rem; }
+.newsletter-form{ padding:4px; }
+.newsletter-form input{ padding:9px 16px; font-size:.85rem; }
+.newsletter-form button{ padding:9px 20px; font-size:.82rem; }
+
+
+/*==================================================
+    9. ABOUT PAGE — CLEAN, BALANCED COLOUR PASS
+    Previously this block pushed the page to ~60–70% pink,
+    which read as too saturated. Rebalanced here so the page
+    reads as clean whites first, a quiet navy/blue undertone
+    second, and pink reserved only for small, purposeful
+    highlights (eyebrow tags, check icons, a thin accent
+    line) — the same palette tokens as the rest of the site,
+    just redistributed.
+
+    Appended last so it overrides the earlier declarations in
+    this same file without needing them edited in place.
+    Everything stays scoped to About-page classes.
+==================================================*/
+
+/* ---------- section washes: mostly white, whisper of pink + blue ----------
+   #ab-who and #ab-gallery are the two real content sections on this
+   page (both unique to about.html, so nothing else is affected). */
+#ab-who,
+#ab-gallery{
+    position:relative;
+    background:
+        radial-gradient(1100px 460px at 12% -10%, rgba(236, 72, 153, .06), transparent 60%),
+        radial-gradient(900px 420px at 92% 8%, rgba(16, 42, 92, .06), transparent 62%),
+        linear-gradient(180deg, rgba(255, 255, 255, .98), rgba(255, 255, 255, .95));
+}
+
+/* ---------- Who We Are ---------- */
+.ab-who-image{
+    box-shadow:0 26px 60px rgba(16, 42, 92, .18), 0 0 0 1px rgba(236, 72, 153, .1);
+}
+.ab-who-image::after{
+    background:linear-gradient(0deg, rgba(16, 42, 92, .4), rgba(236, 72, 153, .08) 28%, transparent 48%);
+}
+.ab-who-badge{
+    border-color:rgba(16, 42, 92, .16);
+    box-shadow:0 10px 30px rgba(16, 42, 92, .14), 0 0 14px rgba(236, 72, 153, .14);
+    color:#102A5C;
+}
+.ab-who-chips li{
+    background:rgba(255, 255, 255, .55);
+    border-color:rgba(16, 42, 92, .14);
+    color:#102A5C;
+}
+.ab-who-chips li i{ color:#EC4899; }
+
+/* ---------- flip cards: navy-forward glass, pink kept only as a small accent ---------- */
+.ab-flip-icon{
+    background:rgba(255, 255, 255, .18);
+    border-color:rgba(255, 255, 255, .45);
+    box-shadow:0 8px 20px rgba(16, 42, 92, .22);
+}
+.ab-flip-corner-br{ border-bottom-color:#F9A8D4; border-right-color:#F9A8D4; }
+
+/* ---------- headings & section tags — pink stays only as a small accent ---------- */
+#ab-who .section-tag,
+#ab-gallery .recognised-title{
+    color:#EC4899;
+}
+
+#ab-gallery .life-header h2 span,
+#ab-who .ab-who-content h2 span{ color:#EC4899; }
+
+/* body copy stays navy for readability */
+#ab-who .ab-who-content p,
+#ab-gallery .life-header p{ color:#334e78; }
+
+/* ---------- scroll-reveal keeps working, just pink glows ---------- */
+.ab-reveal{ will-change:opacity, transform; }
+
+@media (prefers-reduced-motion: reduce){
+    .ab-wave-dot{ animation:none; }
+}
+
+/*==================================================
+    10. VISION / MISSION / CORE VALUES — COMPACT PASS 2
+    Cards reduced again, from 166px to 124px tall, with a
+    narrower column (78% width) so they sit as a compact
+    accent beside the Promise text instead of a full-height
+    block. Every internal element scales down in proportion
+    so the cards read as refined and compact rather than
+    simply squashed. All flip mechanics, hover effects,
+    glassmorphism, animated borders, shadows, border-radius
+    and decorative corner accents are untouched.
+==================================================*/
+
+/* radii follow the smaller card */
+.ab-flip-card::before{ border-radius:16px; }
+.ab-flip-inner{ border-radius:14px; }
+.ab-flip-face{ border-radius:14px; }
+
+/* front face — label bar beneath the artwork */
+.ab-flip-front-body{
+    padding:0 13px;
+    gap:9px;
+}
+.ab-flip-icon{
+    width:26px; height:26px;
+    border-radius:8px;
+    font-size:.7rem;
+}
+.ab-flip-front-body h3{ font-size:.9rem; flex:1 1 auto; }
+.ab-flip-hint{ font-size:.54rem; flex:0 0 auto; }
+.ab-flip-hint i{ font-size:.52rem; }
+
+/* corner accents: on the front they now sit over white artwork, so the
+   top-left mark switches to navy; the back face keeps the white mark */
+.ab-flip-front .ab-flip-corner-tl{
+    border-top-color:rgba(16, 42, 92, .35);
+    border-left-color:rgba(16, 42, 92, .35);
+}
+.ab-flip-front .ab-flip-corner-br{ display:none; }
+
+/* back face */
+.ab-flip-back{
+    padding:16px 16px;
+    gap:4px;
+}
+.ab-flip-back p{ font-size:.78rem; line-height:1.5; }
+.ab-flip-values-list{ gap:2px 8px; max-width:200px; }
+.ab-flip-values-list li{ font-size:.66rem; gap:4px; }
+.ab-flip-values-list li i{ font-size:.58rem; }
+
+/* corner accents scale down with the card */
+.ab-flip-corner{ width:14px; height:14px; }
+.ab-flip-corner-tl{ top:7px; left:7px; }
+.ab-flip-corner-br{ bottom:7px; right:7px; }
+
+/* tighter dividers so the stack stays balanced against the text */
+.ab-wave-div{ height:18px; }
+.ab-wave-div svg{ height:12px; }
+
+/* the three cards keep identical width, height and spacing */
+.ab-vmp-stack{ gap:0; }
+.ab-vmp-stack .ab-flip-card{ width:100%; }
+
+/*==================================================
+    11. RESPONSIVE — Promise text stacks below the cards
+==================================================*/
+@media(max-width:1024px){
+    .ab-promise{ padding-left:24px; }
+    .ab-promise-body p{ font-size:.94rem; line-height:1.75; }
+    .ab-promise-body p:first-child{ font-size:.98rem; }
+}
+
+@media(max-width:820px){
+    .ab-promise{
+        padding:4px 0 0;
+        align-self:stretch;
+    }
+    .ab-promise-title{ font-size:1.5rem; }
+    .ab-promise-body p{ max-width:none; }
+    .ab-flip-card{ height:196px; }
+}
+
+@media(max-width:640px){
+    .ab-flip-card{ height:200px; }
+    .ab-promise-body p{ font-size:.9rem; line-height:1.7; }
+    .ab-promise-body p:first-child{ font-size:.94rem; }
+    .ab-promise-rule{ margin-top:16px; }
+}

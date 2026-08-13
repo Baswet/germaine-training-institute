@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+                META DATA
+    =========================================== -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Early theme application (prevents flash of wrong theme) -->
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        Germaine Training Institute | Building Skills. Creating Careers.
+    </title>
+
+    <meta name="description"
+        content="Germaine Training Institute offers competency-based practical education, diploma, certificate and artisan programmes in Kenya.">
+
+    <meta name="keywords"
+        content="Germaine Training Institute, TVET Kenya, Diploma Courses, Certificate Courses, Nakuru College">
+
+    <meta name="author"
+        content="Germaine Training Institute">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title"
+        content="Germaine Training Institute">
+
+    <meta property="og:description"
+        content="Building Skills. Creating Careers. Changing Lives.">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:image"
+        content="https://site.germaineinstitute.ac.ke/assets/images/hero/hero-students.jpg">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Germaine Training Institute">
+    <meta name="twitter:description" content="Building Skills. Creating Careers. Changing Lives.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/hero/hero-students.jpg">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/">
+
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/jpeg"
+        href="assets/images/logo/logo.jpg">
+
+    <!-- Preload critical above-the-fold assets -->
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+
+    <link rel="stylesheet"
+        href="assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="assets/css/responsive.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-theme.css">
+
+    <link rel="stylesheet"
+        href="assets/css/hero-template.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-sections.css">
+
+    <link rel="stylesheet"
+        href="assets/css/academic-programmes.css">
+
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+
+    <link rel="stylesheet" href="assets/css/school-page.css">
+
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================================
+                PRELOADER
+    =========================================== -->
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ==========================================
+                WHATSAPP
+    =========================================== -->
+
+    <a href="https://wa.me/254719488112"
+        class="whatsapp"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+    <!-- ==========================================
+                FIXED TOP STACK (utility bar + header + announcement)
+    =========================================== -->
+
+        <!-- ==========================================
+                LEVEL 1 — UTILITY BAR
+    =========================================== -->
+
+    <div class="utility-bar" id="utilityBar">
+
+        <div class="container utility-bar-inner">
+
+            <div class="utility-left">
+
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+
+                <a href="ai-bootcamp.html" class="utility-link"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+
+            </div>
+
+            <div class="utility-right">
+
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                FIXED TOP STACK (branding bar + main navigation + announcement)
+    =========================================== -->
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+
+    <!-- ==========================================
+                LEVEL 2 — BRANDING BAR
+    =========================================== -->
+
+    <header id="header">
+
+        <div class="branding-bar">
+
+            <div class="container branding-inner">
+
+                <a href="index.html" class="brand-logo-group">
+
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+
+                    <span class="brand-text">
+
+                        <span class="brand-name">Germaine Training Institute</span>
+
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+
+                    </span>
+
+                </a>
+
+                <div class="branding-right">
+
+                    <div class="branding-contact">
+
+                    <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+
+                    <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+
+                </div>
+
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                    LEVEL 3 — MAIN NAVIGATION
+        =========================================== -->
+
+        <nav class="navbar">
+
+            <div class="container navbar-inner">
+
+                <ul class="nav-links">
+
+                    <li><a href="index.html" class="active">Home</a></li>
+
+                    <li class="dropdown">
+
+                        <a href="about.html">About Us <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="about.html">Our Story</a>
+
+                            <a href="about.html">Mission &amp; Vision</a>
+
+                            <a href="about.html">Leadership</a>
+
+                            <a href="about.html">Accreditation</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown">
+
+                        <a href="admissions.html">Admissions <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="admissions.html#admission-form">Apply Online</a>
+
+                            <a href="admissions.html">Entry Requirements</a>
+
+                            <a href="admissions.html">Fees Structure</a>
+
+                            <a href="apply.html">Scholarships</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown mega-dropdown">
+
+                        <a href="courses.html">Academic Schools <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu mega-menu mega-menu-schools">
+
+                            <div class="mega-menu-col">
+
+                                <span class="mega-menu-col-title">Academic Schools</span>
+
+                                <a href="courses-health-sciences.html">School of Medical &amp; Health Sciences</a>
+
+                                <a href="courses-hospitality-tourism.html">School of Hospitality, Tourism &amp; Travel</a>
+
+                                <a href="courses-engineering-technology.html">School of Engineering</a>
+
+                                <a href="courses-computing-it.html">School of Computing &amp; Informatics</a>
+
+                                <a href="courses-cosmetology-fashion-design.html">School of Cosmetology, Fashion &amp; Design</a>
+
+                                <a href="courses-business-commerce.html">Business &amp; Social Sciences</a>
+
+                                <a href="courses-mass-communication-journalism.html">School of Communication &amp; Media</a>
+
+                                <a href="courses-agriculture.html">School of Agriculture</a>
+
+                                <a href="courses-virtual-learning.html">School of Virtual Learning</a>
+
+                            </div>
+</div>
+
+                    </li>
+
+                    <li><a href="courses-languages.html" class="nav-twoline"><span class="nav-line">Languages &amp;</span><span class="nav-line">Short Courses</span></a></li>
+
+                    <li><a href="campus.html">Student Life</a></li>
+
+                    <li><a href="news.html">News &amp; Events</a></li>
+
+                    <li><a href="contact.html">Contact Us</a></li>
+
+                </ul>
+
+                <div class="nav-buttons">
+
+                    <button class="search-btn" aria-label="Open search">
+
+                        <i class="fas fa-search"></i>
+
+                    </button>
+
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                </div>
+
+                <!-- Mobile Menu -->
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ==========================================
+            ADMISSION ANNOUNCEMENT BAR
+    =========================================== -->
+
+    <section class="announcement-bar">
+
+        <div class="container announcement-container">
+
+            <div class="announcement-left">
+
+                <i class="fas fa-bullhorn"></i>
+
+                <span>
+
+                    September 2026 Intake Now Open &bull; Applications Ongoing
+
+                </span>
+
+            </div>
+
+            <a href="apply.html"
+                class="announcement-link">
+
+                Apply Now For Full Scholarship
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    </div>
+
+<!-- ==========================================
+            SEARCH POPUP
+    =========================================== -->
+
+    <div class="search-modal">
+
+        <div class="search-box">
+
+            <input aria-label="Search courses, departments or news"
+                type="text"
+                placeholder="Search courses, departments or news...">
+
+            <button aria-label="Submit search">
+
+                <i class="fas fa-search"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                MAIN CONTENT
+    =========================================== -->
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+<section class="hero-tpl" id="heroTpl">
+
+    <!-- video background -->
+    <div class="hero-bg" aria-hidden="true">
+        <video id="bgVideo" autoplay muted loop playsinline preload="auto" poster="assets/images/hero/hero-institute-poster.jpg">
+            <source src="assets/images/hero/hero-institute-bg.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="wrap hero-inner">
+
+        <!-- ONE UNIFIED GLASS CARD: text + slideshow -->
+        <div class="hero-card">
+
+            <!-- LEFT: content -->
+            <div class="content">
+                <span class="badge reveal" style="--d:0" id="cmsHeroBadge"><b>Industry Collaborated</b> Practical Training</span>
+                <h1 class="headline">
+                    <span class="reveal" style="--d:1" id="cmsHeroLine1">Empowering</span>
+                    <span class="reveal" style="--d:2" id="cmsHeroLine2">the Next Generation</span>
+                    <span class="reveal accent" style="--d:3"><span class="gold" id="cmsHeroAccent">of Professionals</span></span>
+                </h1>
+                <p class="sub reveal" style="--d:4" id="cmsHeroSubtitle">Industry-driven training designed to equip you with the skills and mindset for the future of work.</p>
+                <div class="cta reveal" style="--d:5">
+                    <a href="apply.html" class="btn btn-gold">Apply Scholarship Now <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="courses.html" class="btn btn-glass">Explore Programmes <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- RIGHT: slideshow media (dark-themed images) -->
+            <div class="card-media" id="slider">
+                <div class="track" id="track">
+                    <div class="tpl-slide active">
+                        <img src="assets/images/schools/ict.jpg" alt="School of Computing & Informatics" loading="lazy">
+                        <div class="cap"><div><h4>School of Computing & Informatics</h4><p>Innovate. Code. Transform.</p></div><span class="count"><b>01</b> / 04</span></div>
+                    </div>
+                    <div class="tpl-slide">
+                        <img src="assets/images/schools/engineering.jpg" alt="School of Engineering" loading="lazy">
+                        <div class="cap"><div><h4>School of Engineering</h4><p>Design. Build. Innovate.</p></div><span class="count"><b>02</b> / 04</span></div>
+                    </div>
+                    <div class="tpl-slide">
+                        <img src="assets/images/schools/construction.jpg" alt="School of Construction" loading="lazy">
+                        <div class="cap"><div><h4>School of Construction</h4><p>Build. Shape. Create.</p></div><span class="count"><b>03</b> / 04</span></div>
+                    </div>
+                    <div class="tpl-slide">
+                        <img src="assets/images/campus/classroom.jpg" alt="Practical Learning" loading="lazy">
+                        <div class="cap"><div><h4>Practical Learning</h4><p>Learn. Practise. Excel.</p></div><span class="count"><b>04</b> / 04</span></div>
+                    </div>
+                </div>
+                <button class="arrow prev" id="prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="arrow next" id="next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+                <div class="dots" id="dots" aria-hidden="true"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="welcome-section" id="welcome">
+
+    <div class="container">
+
+        <div class="welcome-grid">
+
+            <!-- LEFT -->
+
+            <div class="welcome-image fx-media">
+
+                <div class="fx-frame">
+                    <div class="fx-glass">
+                        <img src="assets/images/about/welcome-lab.jpg"
+                            alt="Germaine Training Institute student in the laboratory" loading="lazy">
+                    </div>
+                </div>
+
+                <span class="fx-dot fx-d1" aria-hidden="true"></span>
+                <span class="fx-dot fx-d2" aria-hidden="true"></span>
+                <span class="fx-dot fx-d3" aria-hidden="true"></span>
+                <span class="fx-line fx-l1" aria-hidden="true"></span>
+                <span class="fx-line fx-l2" aria-hidden="true"></span>
+
+                <div class="experience-card">
+
+                    <h2>10+</h2>
+
+                    <span>Years of Excellence</span>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+
+            <div class="welcome-content">
+
+                <span class="section-tag">
+
+                    Discover Germaine Training Institute
+
+                </span>
+
+                <h2>
+
+                    Practical Skills.
+                    Real Careers.
+                    Bright Futures.
+
+                </h2>
+
+                <p>
+
+                    Germaine Training Institute (GTI) is Kenya's home for grounded,
+                    competency-based technical and vocational training that turns
+                    classroom knowledge into real industry experience, organized
+                    and supervised by our institute experts and industry partners.
+                    From National Diplomas to Certificates, Artisan and Vocational
+                    courses to Short Courses and Professional programmes, we are
+                    empowering young adults with hands-on training that fuels
+                    Health, Hospitality, Engineering, Media and Entrepreneurship
+                    with skilled talent. Every graduate leaves competent, innovative
+                    and work-ready to meet the dynamic demands of the 21st-century
+                    job market. Discover the programmes, people and possibilities
+                    waiting for you at Germaine.
+
+                </p>
+
+                <div class="welcome-features">
+
+                    <div class="welcome-feature">
+
+                        <img src="assets/images/icons/training.png" alt="Practical training icon" loading="lazy">
+
+                        <div>
+
+                            <h4>Practical Learning</h4>
+
+                            <p>Hands-on workshops & laboratories.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="welcome-feature">
+
+                        <img src="assets/images/icons/tvet.png" alt="TVET approved icon" loading="lazy">
+
+                        <div>
+
+                            <h4>TVET Approved</h4>
+
+                            <p>Recognized competency based programmes.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="welcome-feature">
+
+                        <img src="assets/images/icons/job.png" alt="Career focused icon" loading="lazy">
+
+                        <div>
+
+                            <h4>Career Focused</h4>
+
+                            <p>Industrial attachment and employability.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="welcome-feature">
+
+                        <img src="assets/images/icons/graduation.png" alt="Student success icon" loading="lazy">
+
+                        <div>
+
+                            <h4>Student Success</h4>
+
+                            <p>Thousands of successful graduates.</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <a href="about.html" class="btn-primary">
+
+                    Discover More
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= ACADEMIC PROGRAMMES (Explore Your Future Career) ================= -->
+<section class="afp" id="programmes">
+
+    <div class="afp-circuit" aria-hidden="true"></div>
+    <div class="afp-aurora" aria-hidden="true"></div>
+    <div class="afp-reflect" aria-hidden="true"></div>
+    <span class="afp-streak s1" aria-hidden="true"></span>
+    <span class="afp-streak s2" aria-hidden="true"></span>
+    <span class="afp-particle" aria-hidden="true"></span>
+    <span class="afp-particle" aria-hidden="true"></span>
+    <span class="afp-particle" aria-hidden="true"></span>
+    <span class="afp-particle" aria-hidden="true"></span>
+    <span class="afp-particle" aria-hidden="true"></span>
+
+    <div class="afp-wrap">
+
+        <span class="afp-eyebrow">Academic Programmes</span>
+        <h1 class="afp-title">Explore Your <span class="b">Future</span> Career</h1>
+        <p class="afp-sub">Choose from industry-driven schools and our most in-demand programmes designed for the modern workplace.</p>
+
+        <div class="afp-panel">
+
+            <!-- LEFT: OUR SCHOOLS -->
+            <div class="afp-col-schools">
+                <div class="afp-coltitle">Our Schools</div>
+                <div class="afp-schools">
+
+                    <a href="courses-computing-it.html" class="afp-card afp-school">
+                        <span class="afp-school-img"><img src="assets/images/schools/ict.jpg" alt="School of Computing & Informatics" loading="lazy"></span>
+                        <span class="afp-school-body">
+                            <span class="afp-hex"><i class="fa-solid fa-desktop"></i></span>
+                            <span class="afp-school-text"><h3>School of Computing & Informatics</h3></span>
+                            <i class="fa-solid fa-arrow-right afp-school-go"></i>
+                        </span>
+                    </a>
+
+                    <a href="courses-business-commerce.html" class="afp-card afp-school gold">
+                        <span class="afp-school-img"><img src="assets/images/schools/business.jpg" alt="School of Business" loading="lazy"></span>
+                        <span class="afp-school-body">
+                            <span class="afp-hex"><i class="fa-solid fa-briefcase"></i></span>
+                            <span class="afp-school-text"><h3>School of Business</h3></span>
+                            <i class="fa-solid fa-arrow-right afp-school-go"></i>
+                        </span>
+                    </a>
+
+                    <a href="courses-hospitality-tourism.html" class="afp-card afp-school cyan">
+                        <span class="afp-school-img"><img src="assets/images/schools/hospitality.jpg" alt="School of Hospitality" loading="lazy"></span>
+                        <span class="afp-school-body">
+                            <span class="afp-hex"><i class="fa-solid fa-bell-concierge"></i></span>
+                            <span class="afp-school-text"><h3>School of Hospitality</h3></span>
+                            <i class="fa-solid fa-arrow-right afp-school-go"></i>
+                        </span>
+                    </a>
+
+                    <a href="courses-mass-communication-journalism.html" class="afp-card afp-school violet">
+                        <span class="afp-school-img"><img src="assets/images/schools/journalism.jpg" alt="School of Journalism" loading="lazy"></span>
+                        <span class="afp-school-body">
+                            <span class="afp-hex"><i class="fa-solid fa-microphone"></i></span>
+                            <span class="afp-school-text"><h3>School of Journalism</h3></span>
+                            <i class="fa-solid fa-arrow-right afp-school-go"></i>
+                        </span>
+                    </a>
+
+                    <a href="courses-cosmetology-fashion-design.html" class="afp-card afp-school pink">
+                        <span class="afp-school-img"><img src="assets/images/schools/beauty.jpg" alt="Beauty & Cosmetology" loading="lazy"></span>
+                        <span class="afp-school-body">
+                            <span class="afp-hex"><i class="fa-solid fa-spa"></i></span>
+                            <span class="afp-school-text"><h3>Beauty &amp; Cosmetology</h3></span>
+                            <i class="fa-solid fa-arrow-right afp-school-go"></i>
+                        </span>
+                    </a>
+
+                    <a href="courses.html" class="afp-card afp-school afp-school-all">
+                        <span class="afp-school-img afp-school-all-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
+                        <span class="afp-school-body">
+                            <span class="afp-school-text">
+                                <h3>Explore All Programmes</h3>
+                                <span>Browse all Diploma, Certificate, Artisan and Professional programmes offered across every academic school.</span>
+                            </span>
+                            <span class="afp-school-cta">Explore Programmes <i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- RIGHT: MOST IN-DEMAND PROGRAMMES -->
+            <div class="afp-col-prog">
+                <div class="afp-colhead">
+                    <div class="afp-coltitle" style="margin-bottom:0;">Most In-Demand Programmes</div>
+                    <a href="courses.html" class="afp-viewall">View All Programmes <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="afp-prog-grid">
+
+                    <a href="courses-computing-it.html" class="afp-card afp-prog">
+                        <span class="afp-prog-img"><span class="afp-tag">Diploma</span><img src="assets/images/slide/ict.jpg" alt="ICT" loading="lazy"></span>
+                        <span class="afp-prog-body">
+                            <h4>Diploma in Information Communication Technology</h4>
+                            <span class="afp-prog-dur"><i class="fa-regular fa-clock"></i> 2 Years</span>
+                            <span class="afp-prog-explore">Explore Programme <i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </a>
+
+                    <a href="courses-business-commerce.html" class="afp-card afp-prog gold">
+                        <span class="afp-prog-img"><span class="afp-tag gold">Diploma</span><img src="assets/images/slide/business.jpg" alt="Business" loading="lazy"></span>
+                        <span class="afp-prog-body">
+                            <h4>Diploma in Business Management</h4>
+                            <span class="afp-prog-dur"><i class="fa-regular fa-clock"></i> 2 Years</span>
+                            <span class="afp-prog-explore">Explore Programme <i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </a>
+
+                    <a href="courses-hospitality-tourism.html" class="afp-card afp-prog cyan">
+                        <span class="afp-prog-img"><span class="afp-tag cyan">Diploma</span><img src="assets/images/slide/hospitality.jpg" alt="Catering" loading="lazy"></span>
+                        <span class="afp-prog-body">
+                            <h4>Diploma in Catering &amp; Accommodation Management</h4>
+                            <span class="afp-prog-dur"><i class="fa-regular fa-clock"></i> 27 Months</span>
+                            <span class="afp-prog-explore">Explore Programme <i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </a>
+
+                    <a href="courses-mass-communication-journalism.html" class="afp-card afp-prog violet">
+                        <span class="afp-prog-img"><span class="afp-tag violet">Diploma</span><img src="assets/images/slide/journalism.jpg" alt="Journalism" loading="lazy"></span>
+                        <span class="afp-prog-body">
+                            <h4>Diploma in Journalism &amp; Media Studies</h4>
+                            <span class="afp-prog-dur"><i class="fa-regular fa-clock"></i> 12 Months</span>
+                            <span class="afp-prog-explore">Explore Programme <i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </a>
+
+                    <a href="courses-cosmetology-fashion-design.html" class="afp-card afp-prog pink">
+                        <span class="afp-prog-img"><span class="afp-tag pink">Diploma</span><img src="assets/images/slide/cosmatologist.jpg" alt="Cosmetology" loading="lazy"></span>
+                        <span class="afp-prog-body">
+                            <h4>Diploma in Cosmetology</h4>
+                            <span class="afp-prog-dur"><i class="fa-regular fa-clock"></i> 12 Months</span>
+                            <span class="afp-prog-explore">Explore Programme <i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </a>
+
+                    <a href="courses-engineering-technology.html" class="afp-card afp-prog cert">
+                        <span class="afp-prog-img"><span class="afp-tag cert">Certificate</span><img src="assets/images/slide/plumbing.jpg" alt="Electrical Installation" loading="lazy"></span>
+                        <span class="afp-prog-body">
+                            <h4>Certificate in Electrical &amp; Electronic Installation</h4>
+                            <span class="afp-prog-dur"><i class="fa-regular fa-clock"></i> 1 Year</span>
+                            <span class="afp-prog-explore">Explore Programme <i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="why-germaine">
+
+    <div class="fx-orbs" aria-hidden="true">
+        <span class="fx-orb o1"></span>
+        <span class="fx-orb o2"></span>
+        <span class="fx-orb o3"></span>
+    </div>
+
+    <div class="section-heading">
+
+        <span class="section-badge">
+            WHY CHOOSE GERMAINE
+        </span>
+
+        <h2>
+            Building Skills.
+            <span>Creating Careers.</span>
+        </h2>
+
+        <p>
+            At Germaine Training Institute, we combine quality education,
+            practical training and student-centred learning to prepare
+            graduates for successful careers and lifelong professional
+            growth.
+        </p>
+
+    </div>
+
+    <div class="why-container">
+
+        <!-- LEFT IMAGE -->
+
+        <div class="why-image fx-media">
+
+            <div class="fx-frame">
+                <div class="fx-glass">
+                    <img src="assets/images/about/why-germaine.jpg"
+                         alt="Students Learning" loading="lazy">
+                </div>
+            </div>
+
+            <span class="fx-dot fx-d1" aria-hidden="true"></span>
+            <span class="fx-dot fx-d2" aria-hidden="true"></span>
+            <span class="fx-line fx-l1" aria-hidden="true"></span>
+
+            <div class="floating-badge">
+
+                <h3>10+</h3>
+
+                <p>
+                    Years of Excellence in Skills Development
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT FEATURES -->
+
+        <div class="why-content">
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-hands-holding-circle"></i>
+                </div>
+
+                <div>
+
+                    <h3>Practical Hands-On Learning</h3>
+
+                    <p>
+                        Learn through workshops,
+                        demonstrations and practical sessions
+                        that prepare you for the workplace.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+
+                <div>
+
+                    <h3>Experienced Trainers</h3>
+
+                    <p>
+                        Learn from qualified and dedicated
+                        professionals committed to your success.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+
+                <div>
+
+                    <h3>Industry-Aligned Programmes</h3>
+
+                    <p>
+                        Every course is shaped alongside real
+                        employers, so what you learn connects
+                        directly to industry demand.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-desktop"></i>
+                </div>
+
+                <div>
+
+                    <h3>Modern Learning Facilities</h3>
+
+                    <p>
+                        Well-equipped computer labs, workshops
+                        and studios across every school.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+
+                <div>
+
+                    <h3>Career Placement Support</h3>
+
+                    <p>
+                        Real help connecting you with our
+                        network of hiring partners and employers.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+
+                    <h3>Flexible Learning Options</h3>
+
+                    <p>
+                        Full-time, distance and virtual study
+                        modes that fit around your life.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+                    STUDENT TESTIMONIALS
+====================================================== -->
+
+<section class="testimonial-section tst-premium">
+
+    <div class="container">
+
+        <div class="tst-heading">
+
+            <span class="tst-badge"><i class="fa-solid fa-graduation-cap"></i> WHAT OUR GRADUATES SAY</span>
+
+            <h2 class="tst-title">Real Graduates. <span class="tst-grad">Proven Results.</span></h2>
+
+            <p class="tst-sub">Thousands of graduates have transformed their lives through practical, industry-ready training at Germaine Training Institute.</p>
+
+        </div>
+
+        <div class="tst-stats">
+            <div class="tst-stat"><i class="fa-solid fa-user-graduate"></i><div><strong data-count="7500" data-suffix="+">0</strong><span>Graduates Trained</span></div></div>
+            <div class="tst-stat"><i class="fa-solid fa-building"></i><div><strong data-count="400" data-suffix="+">0</strong><span>Hiring Companies</span></div></div>
+            <div class="tst-stat"><i class="fa-solid fa-chart-line"></i><div><strong data-count="75" data-suffix="%">0</strong><span>Placement Rate</span></div></div>
+            <div class="tst-stat"><i class="fa-solid fa-rocket"></i><div><strong data-count="150" data-suffix="+">0</strong><span>Successful Start-Ups</span></div></div>
+        </div>
+
+        <div class="testimonial-compact" id="testimonial-compact">
+
+            <button class="testimonial-nav prev" id="t-prev" aria-label="Previous testimonial">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <div class="tst-viewport">
+                <div class="testimonial-track" id="testimonial-track">
+
+                    <div class="testimonial-slide active">
+                        <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+                        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>The Germaine Training Institute equipped me with skills and experience for real life. I'm now a proud owner of a programming and web development company employing three people.</p>
+                        <div class="testimonial-author">
+                            <span class="testimonial-avatar testimonial-avatar-initials">MA</span>
+                            <div>
+                                <span class="testimonial-name">Moses Amboko</span>
+                                <span class="testimonial-role">Kakamega &bull; ICT &amp; Software Development</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+                        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>I was head-hunted through the Institute's placement office immediately after completing my course. Today I work as front office personnel at a leading five-star hotel.</p>
+                        <div class="testimonial-author">
+                            <span class="testimonial-avatar testimonial-avatar-initials">JO</span>
+                            <div>
+                                <span class="testimonial-name">Janet Otieno</span>
+                                <span class="testimonial-role">Nakuru &bull; Hospitality &amp; Tourism</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+                        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>Two years after leaving college, I was voted the most valuable employee of a foreign company. The GTI's practical lessons truly prepared me for the world of work.</p>
+                        <div class="testimonial-author">
+                            <span class="testimonial-avatar testimonial-avatar-initials">JN</span>
+                            <div>
+                                <span class="testimonial-name">Jane Rose Nyambura</span>
+                                <span class="testimonial-role">Dubai, UAE &bull; Alumna</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+                        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>The real practical experience on modern road construction was invaluable. I've met countless GTI alumni across the industry working as mechanics and plant operators.</p>
+                        <div class="testimonial-author">
+                            <span class="testimonial-avatar testimonial-avatar-initials">MO</span>
+                            <div>
+                                <span class="testimonial-name">Michael Otieno</span>
+                                <span class="testimonial-role">Mombasa &bull; Engineering &amp; Construction</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+                        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>The GTI skilled my raw talent, enabling me to earn a living. I also appreciate the discipline, obedience and perseverance the Institute instills in every trainee.</p>
+                        <div class="testimonial-author">
+                            <span class="testimonial-avatar testimonial-avatar-initials">JK</span>
+                            <div>
+                                <span class="testimonial-name">John Kamau</span>
+                                <span class="testimonial-role">Nyeri &bull; Alumnus</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <button class="testimonial-nav next" id="t-next" aria-label="Next testimonial">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="testimonial-dots" id="testimonial-dots"></div>
+
+        </div>
+
+        <div class="tst-partners">
+            <span class="tst-partners-label">Recognised &amp; Trusted By</span>
+            <div class="tst-partners-logos">
+                <img src="assets/images/partners/tveta.png" alt="TVETA" loading="lazy">
+                <img src="assets/images/partners/nita.png" alt="NITA" loading="lazy">
+                <img src="assets/images/partners/knec.jpg" alt="KNEC" loading="lazy">
+                <img src="assets/images/partners/kasneb.png" alt="KASNEB" loading="lazy">
+                <img src="assets/images/partners/cisco.png" alt="Cisco" loading="lazy">
+                <img src="assets/images/partners/tvet-cdacc.png" alt="TVET CDACC" loading="lazy">
+                <img src="assets/images/partners/khpoa.png" alt="Kenya Health Professions Oversight Authority" loading="lazy">
+                <img src="assets/images/partners/kra.png" alt="Kenya Revenue Authority" loading="lazy">
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+    <!-- ==========================================
+                SIDE NAVIGATION (push panel)
+    =========================================== -->
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+
+<footer class="footer">
+
+    <!-- Footer Main -->
+
+    <div class="footer-main">
+
+        <div class="container footer-grid">
+
+            <!-- About -->
+
+            <div class="footer-column">
+
+                <img src="assets/images/logo/logo-white.png"
+                     alt="Germaine Training Institute Logo"
+                     class="footer-logo" loading="lazy" decoding="async">
+
+                <p>
+
+                    Germaine Training Institute is committed to
+                    producing competent, innovative and
+                    industry-ready graduates through
+                    practical and competency-based education.
+
+                </p>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Quick Links
+
+                </h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="about.html">About Us</a></li>
+
+                    <li><a href="courses.html">Courses</a></li>
+
+                    <li><a href="admissions.html">Admissions</a></li>
+
+                    <li><a href="news.html">News</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+
+                
+
+                    <li><a href="apply.html">Apply Now</a></li>
+
+                    <li><a href="apply.html">Scholarships</a></li>
+</ul>
+
+            </div>
+
+            
+
+            <!-- Contact -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Contact Us
+
+                </h3>
+
+                <ul class="contact-list">
+
+                    <li>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Pioneer Plaza,
+                        Mburu Gichua Road,
+                        Nakuru
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        +254 719 488 112
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        admissions@germaineinstitute.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Mon – Fri : 8:00 AM – 5:00 PM
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Google Map -->
+
+    <div class="footer-map">
+
+        <iframe
+            src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed"
+            loading="lazy"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+    <!-- Bottom Footer -->
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <p>
+
+                © 2026 Germaine Training Institute.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Emmanuel Elijah</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+            BACK TO TOP
+========================================== -->
+
+<button class="back-to-top" aria-label="Back to top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+            JAVASCRIPT
+========================================== -->
+
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+<script defer src="assets/js/hero-template.js"></script>
+<script defer src="assets/js/academic-programmes.js"></script>
+<script defer src="assets/js/api-client.js"></script>
+<script defer src="assets/js/homepage-cms-bridge.js"></script>
+
+<script defer src="assets/js/premium-theme.js"></script>
+
+<script defer src="assets/js/school-page.js"></script>
+
+</body>
+
+</html>

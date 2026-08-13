@@ -1,0 +1,538 @@
+/*==================================================
+    GERMAINE TRAINING INSTITUTE — CONTACT US
+    Unique luxury glass experience. No photographs.
+    Scoped under body.contact-page, prefix .cu-*
+==================================================*/
+
+body.contact-page{
+    --cu-pink:#EC4899;
+    --cu-rose:#FFFFFF;
+    --cu-white:#FFFFFF;
+    --cu-lav:#FFFFFF;
+    --cu-blue:#102A5C;
+    --cu-blue-glow:#102A5C;
+    --cu-violet:#EC4899;
+    --cu-ink:#102A5C;
+    --cu-mut:#102A5C;
+    --cu-glass:rgba(255, 255, 255, .55);
+    --cu-bd:rgba(255, 255, 255, .7);
+    --cu-r:28px;
+    --cu-ease:.55s cubic-bezier(.22,.85,.28,1);
+    color:var(--cu-ink);
+    background:var(--cu-white);
+    overflow-x:clip;
+}
+
+/* Guarantee true fixed positioning for the nav stack and overlays,
+   matching the homepage's sticky-nav behaviour exactly. */
+body.contact-page .fixed-top-stack{ position:fixed !important; top:0 !important; left:0 !important; width:100% !important; z-index:1000 !important; }
+body.contact-page .search-modal,
+body.contact-page .whatsapp,
+body.contact-page .back-to-top{ position:fixed !important; }
+
+@property --cu-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes cuTravel{ to{ --cu-a:360deg; } }
+@keyframes cuFloat{ 0%,100%{ transform:translateY(-5px);} 50%{ transform:translateY(5px);} }
+@keyframes cuSpin{ to{ transform:rotate(360deg); } }
+@keyframes cuDrift{ 0%{ background-position:0% 0%,100% 100%,50% 20%; } 100%{ background-position:15% 8%,85% 92%,54% 27%; } }
+@keyframes cuSheen{ 0%{ transform:translateX(-130%) skewX(-16deg);} 100%{ transform:translateX(240%) skewX(-16deg);} }
+@keyframes cuPing{ 0%{ transform:scale(.85); opacity:.7;} 100%{ transform:scale(1.6); opacity:0;} }
+
+
+body.contact-page .cu-wrap{ width:100%; max-width:1220px; margin:0 auto; padding:0 24px; }
+/* :not(.announcement-bar) — the sitewide fixed announcement pill is also a
+   <section>; without this exclusion this reset drags it out of its fixed
+   bottom position and into normal document flow under the nav. */
+body.contact-page section:not(.announcement-bar){ position:relative; z-index:1; }
+
+/*========== BACKGROUND ==========*/
+body.contact-page::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+        radial-gradient(1100px 700px at 86% -6%, rgba(236, 72, 153, .15), transparent 60%),
+        radial-gradient(980px 700px at 3% 16%, rgba(16, 42, 92, .13), transparent 58%),
+        radial-gradient(880px 620px at 50% 105%, rgba(236, 72, 153, .11), transparent 56%),
+        linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 44%,#FFFFFF 100%);
+    animation:cuDrift 34s ease-in-out infinite alternate;
+}
+body.contact-page::after{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.55;
+    background-image:
+        radial-gradient(1.7px 1.7px at 14% 22%, rgba(236, 72, 153, .5) 0, transparent 60%),
+        radial-gradient(1.7px 1.7px at 70% 16%, rgba(16, 42, 92, .45) 0, transparent 60%),
+        radial-gradient(1.7px 1.7px at 36% 74%, rgba(236, 72, 153, .45) 0, transparent 60%),
+        radial-gradient(1.7px 1.7px at 90% 60%, rgba(236, 72, 153, .4) 0, transparent 60%);
+}
+body.contact-page > *{ position:relative; z-index:1; }
+
+.cu-panelfield{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.cu-gpanel{
+    position:absolute; border-radius:26px;
+    background:rgba(255, 255, 255, .32); border:1px solid rgba(255, 255, 255, .58);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    animation:cuFloat 14s ease-in-out infinite;
+}
+.cu-gpanel.g1{ width:200px; height:132px; top:10%; left:-46px; transform:rotate(-11deg); }
+.cu-gpanel.g2{ width:120px; height:120px; top:56%; right:-30px; border-radius:50%; animation-delay:3.5s; }
+.cu-gpanel.g3{ width:150px; height:94px; bottom:8%; left:10%; transform:rotate(8deg); animation-delay:7s; }
+
+.cu-cursor{
+    position:fixed; top:0; left:0; width:440px; height:440px; z-index:0; pointer-events:none; border-radius:50%;
+    background:radial-gradient(circle, rgba(236, 72, 153, .11), rgba(16, 42, 92, .07) 45%, transparent 72%);
+    transform:translate(-50%,-50%); opacity:0; transition:opacity .6s ease;
+}
+.cu-cursor.on{ opacity:1; }
+@media (hover:none){ .cu-cursor{ display:none; } }
+
+/*========== GLASS BASE ==========*/
+.cu-glass{
+    position:relative; isolation:isolate;
+    background:var(--cu-glass);
+    backdrop-filter:blur(26px) saturate(150%); -webkit-backdrop-filter:blur(26px) saturate(150%);
+    border:1px solid var(--cu-bd); border-radius:var(--cu-r);
+    box-shadow:0 10px 30px rgba(16, 42, 92, .08), 0 0 18px rgba(236, 72, 153, 0.16);
+    transition:transform var(--cu-ease), box-shadow var(--cu-ease), background var(--cu-ease);
+}
+.cu-glass::before{
+    content:""; position:absolute; inset:0; z-index:3; pointer-events:none; border-radius:inherit; padding:1.4px;
+    background:conic-gradient(from var(--cu-a),
+        transparent 0 58%, var(--cu-pink) 72%, #FFFFFF 80%, var(--cu-violet) 88%, var(--cu-blue) 95%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:cuTravel 13s linear infinite; opacity:.72; transition:opacity .4s ease;
+}
+.cu-glass:hover::before{ opacity:1; animation-duration:7s; }
+.cu-glass::after{
+    content:""; position:absolute; inset:-9px; z-index:-1; border-radius:calc(var(--cu-r) + 9px);
+    background:conic-gradient(from var(--cu-a),
+        transparent 0 62%, rgba(236, 72, 153, .5) 76%, rgba(236, 72, 153, .38) 86%, rgba(16, 42, 92, .42) 94%, transparent 100%);
+    filter:blur(15px); opacity:0; transition:opacity .5s ease; pointer-events:none;
+    animation:cuTravel 13s linear infinite;
+}
+.cu-glass:hover::after{ opacity:.8; }
+.cu-glass:hover{ transform:translateY(-6px); }
+
+/*========== HEADINGS ==========*/
+.cu-section{ padding:40px 0; }
+/* Step 1: hero removed — this section now opens the page directly under the
+   sticky nav (page-shell already clears the header height), so it only
+   needs a light top breathing room rather than a full section's worth. */
+.cu-first-section{ padding-top:26px; }
+.cu-head{ max-width:720px; margin:0 auto 26px; text-align:center; }
+.cu-badge{
+    display:inline-flex; align-items:center; gap:9px; padding:8px 18px; border-radius:50px; margin-bottom:16px;
+    background:rgba(236, 72, 153, .09); border:1px solid rgba(236, 72, 153, .28);
+    font-family:var(--font-button,'Montserrat',sans-serif); font-weight:700; font-size:.72rem;
+    letter-spacing:1.6px; text-transform:uppercase; color:#EC4899;
+}
+.cu-head h2{
+    font-family:var(--font-heading,'Poppins',sans-serif); font-weight:800;
+    font-size:clamp(1.9rem,3.6vw,2.6rem); line-height:1.16; margin:0 0 12px; color:var(--cu-ink);
+}
+.cu-head h2 span, .cu-grad{
+    background:linear-gradient(100deg,var(--cu-pink),var(--cu-violet) 58%,var(--cu-blue));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.cu-head p{ font-size:1rem; line-height:1.7; color:var(--cu-mut); margin:0; }
+
+/*========== BUTTONS ==========*/
+.cu-btn{
+    position:relative; overflow:hidden; isolation:isolate;
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:16px 34px; border-radius:50px; text-decoration:none; white-space:nowrap;
+    font-family:var(--font-button,'Montserrat',sans-serif); font-weight:600; font-size:.94rem;
+    border:1.5px solid transparent; cursor:pointer;
+    transition:transform var(--cu-ease), box-shadow var(--cu-ease), background var(--cu-ease);
+}
+.cu-btn i{ transition:transform .35s ease; }
+.cu-btn:hover i{ transform:translateX(3px); }
+.cu-btn::after{
+    content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit; padding:1.5px;
+    background:conic-gradient(from var(--cu-a), transparent 0 58%, #FFFFFF 74%, var(--cu-pink) 88%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:cuTravel 10s linear infinite;
+}
+.cu-btn::before{
+    content:""; position:absolute; top:0; bottom:0; width:36%; pointer-events:none;
+    background:linear-gradient(100deg, transparent, rgba(255, 255, 255, .5), transparent);
+    animation:cuSheen 5.5s ease-in-out infinite;
+}
+.cu-btn-primary{
+    background:linear-gradient(118deg,var(--cu-pink) 0%,var(--cu-violet) 56%,var(--cu-blue) 100%);
+    background-size:200% 200%; color:#FFFFFF; box-shadow:0 16px 36px rgba(236, 72, 153, .34);
+    animation:cuBtnGrad 7s ease-in-out infinite;
+}
+@keyframes cuBtnGrad{ 0%,100%{ background-position:0% 50%;} 50%{ background-position:100% 50%;} }
+.cu-btn-primary:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 22px 48px rgba(236, 72, 153, .42); }
+.cu-btn-glass{
+    background:rgba(255, 255, 255, .45); color:var(--cu-ink); border-color:rgba(255, 255, 255, .75);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+}
+.cu-btn-glass:hover{ border-color:var(--cu-pink); background:rgba(255, 255, 255, .6); box-shadow:0 10px 24px rgba(16, 42, 92, .12); transform:translateY(-3px) scale(1.03); }
+.cu-ripple{
+    position:absolute; border-radius:50%; pointer-events:none; background:rgba(255, 255, 255, .6);
+    transform:scale(0); opacity:.6; animation:cuRip .62s ease-out forwards;
+}
+@keyframes cuRip{ to{ transform:scale(2.6); opacity:0; } }
+
+/*========== HERO + COMMUNICATION HUB ==========*/
+.cu-hero{ padding:48px 0 44px; }
+.cu-hero-grid{ display:grid; grid-template-columns:1.02fr .98fr; gap:52px; align-items:center; }
+.cu-hero h1{
+    font-family:var(--font-heading,'Poppins',sans-serif); font-weight:800;
+    font-size:clamp(2.3rem,4.4vw,3.4rem); line-height:1.1; margin:0 0 18px; color:var(--cu-ink);
+}
+.cu-hero p{ font-size:1.06rem; line-height:1.75; color:var(--cu-mut); max-width:520px; margin:0 0 30px; }
+.cu-hero-cta{ display:flex; gap:16px; flex-wrap:wrap; }
+
+.cu-hub{ position:relative; width:100%; max-width:430px; margin:0 auto; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; }
+.cu-hub-ring{ position:absolute; border-radius:50%; border:1px dashed rgba(236, 72, 153, .2); pointer-events:none; }
+.cu-hub-ring.r1{ inset:4%; animation:cuSpin 52s linear infinite; }
+.cu-hub-ring.r2{ inset:19%; border-color:rgba(236, 72, 153, 0.26); animation:cuSpin 68s linear infinite reverse; }
+.cu-hub-core{
+    position:relative; width:118px; height:118px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:2.2rem; color:#FFFFFF;
+    background:linear-gradient(135deg,var(--cu-pink),var(--cu-violet));
+    box-shadow:0 22px 54px rgba(236, 72, 153, .36), inset 0 -6px 18px rgba(255, 255, 255, .25);
+}
+.cu-hub-core::before,.cu-hub-core::after{
+    content:""; position:absolute; inset:0; border-radius:50%; border:2px solid rgba(236, 72, 153, .5);
+    animation:cuPing 3.4s ease-out infinite;
+}
+.cu-hub-core::after{ animation-delay:1.7s; }
+.cu-hub-node{
+    position:absolute; width:64px; height:64px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem;
+    background:rgba(255, 255, 255, .62); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255, 255, 255, .8); box-shadow:0 14px 32px rgba(16, 42, 92, .13), 0 0 18px rgba(236, 72, 153, 0.21);
+    animation:cuFloat 6.5s ease-in-out infinite;
+}
+.cu-hub-node.n1{ top:2%; left:50%; margin-left:-32px; color:var(--cu-pink); }
+.cu-hub-node.n2{ right:2%; top:50%; margin-top:-32px; color:var(--cu-blue); animation-delay:1.6s; }
+.cu-hub-node.n3{ bottom:2%; left:50%; margin-left:-32px; color:var(--cu-violet); animation-delay:3.2s; }
+.cu-hub-node.n4{ left:2%; top:50%; margin-top:-32px; color:var(--cu-pink); animation-delay:4.8s; }
+
+/*========== QUICK CONTACT ==========*/
+.cu-quick-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+.cu-quick{ padding:24px 22px; text-align:center; }
+.cu-quick-ic{
+    width:58px; height:58px; margin:0 auto 16px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem; color:#FFFFFF;
+    background:linear-gradient(135deg,var(--cu-pink),var(--cu-violet));
+    box-shadow:0 12px 28px rgba(236, 72, 153, .34), inset 0 -4px 12px rgba(255, 255, 255, .25);
+    animation:cuFloat 6s ease-in-out infinite;
+}
+.cu-quick:nth-child(2) .cu-quick-ic{ background:linear-gradient(135deg,var(--cu-blue),var(--cu-violet)); animation-delay:1.4s; }
+.cu-quick:nth-child(3) .cu-quick-ic{ background:linear-gradient(135deg,var(--cu-pink),var(--cu-blue)); animation-delay:2.8s; }
+.cu-quick:nth-child(4) .cu-quick-ic{ background:linear-gradient(135deg,var(--cu-violet),var(--cu-pink)); animation-delay:4.2s; }
+.cu-quick h3{ font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.06rem; margin:0 0 8px; color:var(--cu-ink); }
+.cu-quick p{ font-size:.85rem; line-height:1.65; color:var(--cu-mut); margin:0; }
+.cu-quick a{ color:var(--cu-pink); font-weight:600; text-decoration:none; }
+.cu-quick a:hover{ text-decoration:underline; }
+
+/*========== EXECUTIVE HERO WITH RADIAL CONTACT HUB ==========
+   Height reduced ~25% vs the original hero. Background is a soft
+   white surface with an extremely faint blueprint grid + two very
+   low-opacity ambient glows (5-8%) — intentionally subtle, this is
+   the one ambient effect kept on the page; everything else on this
+   page uses solid/matte surfaces per the "remove glow" pass. */
+.cu-exec-hero{
+    position:relative; isolation:isolate; overflow:hidden;
+    padding:46px 0 40px;
+    background:#FFFFFF;
+}
+.cu-exec-hero::before{
+    content:""; position:absolute; inset:0; z-index:-2;
+    background-image:
+        linear-gradient(rgba(16, 42, 92, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 42, 92, .05) 1px, transparent 1px);
+    background-size:36px 36px;
+}
+.cu-exec-hero::after{
+    content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background:
+        radial-gradient(480px 320px at 12% 15%, rgba(16, 42, 92, .08), transparent 65%),
+        radial-gradient(480px 320px at 90% 85%, rgba(236, 72, 153, .08), transparent 65%);
+}
+
+.cu-radial-hero-grid{
+    display:grid;
+    grid-template-columns:40% 60%;
+    gap:36px;
+    align-items:center;
+}
+
+/* ---------- LEFT: radial contact hub ---------- */
+.cu-radial-hub{
+    position:relative;
+    width:340px; height:340px;
+    max-width:100%;
+    margin:0 auto;
+}
+.cu-ring{
+    position:absolute; top:50%; left:50%; border-radius:50%;
+    transform:translate(-50%,-50%);
+    border:1px solid rgba(236, 72, 153, 0.16);
+    pointer-events:none;
+}
+.cu-ring.r1{ width:130px; height:130px; animation:cuRadar 4.5s ease-in-out infinite; }
+.cu-ring.r2{ width:170px; height:170px; border-style:dashed; animation:cuRadar 4.5s ease-in-out infinite .6s; }
+.cu-ring.r3{ width:210px; height:210px; animation:cuRadar 4.5s ease-in-out infinite 1.2s; }
+.cu-ring.r4{ width:250px; height:250px; border-style:dashed; animation:cuRadar 4.5s ease-in-out infinite 1.8s; }
+@keyframes cuRadar{
+    0%,100%{ transform:translate(-50%,-50%) scale(1); opacity:.55; }
+    50%{ transform:translate(-50%,-50%) scale(1.045); opacity:.25; }
+}
+
+.cu-connector{ position:absolute; background:rgba(16, 42, 92, .12); }
+.cu-connector.top{ top:60px; left:calc(50% - 1px); width:2px; height:68px; }
+.cu-connector.bottom{ top:212px; left:calc(50% - 1px); width:2px; height:68px; }
+.cu-connector.left{ left:60px; top:calc(50% - 1px); height:2px; width:68px; }
+.cu-connector.right{ left:212px; top:calc(50% - 1px); height:2px; width:68px; }
+
+.cu-hub-center{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:84px; height:84px; border-radius:50%; z-index:2;
+    display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:#FFFFFF;
+    background:linear-gradient(135deg,#EC4899,#EC4899);
+    backdrop-filter:blur(6px);
+    box-shadow:0 14px 34px rgba(236, 72, 153, .32), 0 0 0 8px rgba(236, 72, 153, .08);
+    animation:cuHubFloat 5s ease-in-out infinite;
+}
+@keyframes cuHubFloat{ 0%,100%{ transform:translate(-50%,-50%) translateY(0); } 50%{ transform:translate(-50%,-50%) translateY(-8px); } }
+
+.cu-hub-node{
+    position:absolute; z-index:2;
+    width:54px; height:54px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1.05rem;
+    color:var(--cu-pink);
+    background:rgba(255, 255, 255, .85);
+    border:1px solid rgba(255, 255, 255, .9);
+    box-shadow:6px 6px 14px rgba(16, 42, 92, .08), -4px -4px 10px rgba(255, 255, 255, .8);
+    transition:transform .35s cubic-bezier(.25,.8,.25,1), box-shadow .35s ease;
+}
+.cu-hub-node:hover{
+    transform:scale(1.08);
+    box-shadow:0 10px 30px rgba(16, 42, 92, .3), 0 0 18px rgba(236, 72, 153, 0.3);
+    color:#102A5C;
+}
+.cu-hub-node.pos-top{ top:6px; left:50%; transform:translateX(-50%); }
+.cu-hub-node.pos-top:hover{ transform:translateX(-50%) scale(1.08); }
+.cu-hub-node.pos-right{ right:6px; top:50%; transform:translateY(-50%); }
+.cu-hub-node.pos-right:hover{ transform:translateY(-50%) scale(1.08); }
+.cu-hub-node.pos-bottom{ bottom:6px; left:50%; transform:translateX(-50%); }
+.cu-hub-node.pos-bottom:hover{ transform:translateX(-50%) scale(1.08); }
+.cu-hub-node.pos-left{ left:6px; top:50%; transform:translateY(-50%); }
+.cu-hub-node.pos-left:hover{ transform:translateY(-50%) scale(1.08); }
+
+/* ---------- RIGHT: hero content ---------- */
+.cu-exec-hero-inner{ max-width:520px; }
+.cu-exec-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 20px; border-radius:50px; margin-bottom:20px;
+    background:rgba(255, 255, 255, .6); border:1px solid rgba(236, 72, 153, .22);
+    font-family:var(--font-button,'Montserrat',sans-serif); font-weight:700; font-size:.72rem;
+    letter-spacing:2px; text-transform:uppercase; color:var(--cu-pink);
+}
+.cu-exec-heading{
+    font-family:'Playfair Display', Georgia, serif;
+    font-weight:700; font-size:clamp(1.8rem,3.6vw,2.7rem); line-height:1.2;
+    color:var(--cu-ink); margin-bottom:16px;
+}
+.cu-exec-sub{ font-size:.98rem; line-height:1.7; color:var(--cu-mut); margin-bottom:24px; }
+
+.cu-exec-cta{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px; }
+
+.cu-exec-stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+}
+.cu-exec-stat{
+    text-align:center; padding:12px 8px; border-radius:16px;
+    background:rgba(255, 255, 255, .5);
+    border:1px solid rgba(255, 255, 255, .7);
+}
+.cu-exec-stat strong{ display:block; font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.05rem; color:var(--cu-ink); }
+.cu-exec-stat span{ font-size:.66rem; color:var(--cu-mut); text-transform:uppercase; letter-spacing:.4px; }
+
+@media(max-width:992px){
+    .cu-radial-hero-grid{ grid-template-columns:1fr; text-align:center; justify-items:center; }
+    .cu-exec-hero-inner{ margin:0 auto; }
+    .cu-exec-cta{ justify-content:center; }
+}
+@media(max-width:560px){
+    .cu-radial-hub{ width:220px; height:220px; }
+    .cu-ring.r1{ width:85px; height:85px; }
+    .cu-ring.r2{ width:110px; height:110px; }
+    .cu-ring.r3{ width:136px; height:136px; }
+    .cu-ring.r4{ width:162px; height:162px; }
+    .cu-hub-center{ width:60px; height:60px; font-size:1.15rem; }
+    .cu-hub-node{ width:40px; height:40px; font-size:.85rem; }
+    .cu-connector.top{ top:40px; height:44px; }
+    .cu-connector.bottom{ top:136px; height:44px; }
+    .cu-connector.left{ left:40px; width:44px; }
+    .cu-connector.right{ left:136px; width:44px; }
+    .cu-exec-stats{ grid-template-columns:repeat(2,1fr); }
+    .cu-exec-hero{ padding:36px 0 32px; }
+}
+@media (prefers-reduced-motion: reduce){
+    .cu-ring, .cu-hub-center{ animation:none; }
+}
+
+/*========== VISIT CAMPUS — shared primitives (pin + body text) ==========
+   Contact Information / All Our Details section removed: its content
+   (address, phone, email, website) already appears in Quick Contact
+   Options above and in the footer. */
+.cu-pin{
+    width:104px; height:104px; border-radius:50%; position:relative; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:2rem; color:#FFFFFF;
+    background:linear-gradient(135deg,var(--cu-pink),var(--cu-violet));
+    box-shadow:0 18px 44px rgba(236, 72, 153, .34);
+}
+.cu-pin::before{ content:""; position:absolute; inset:0; border-radius:50%; border:2px solid rgba(236, 72, 153, .5); animation:cuPing 3.2s ease-out infinite; }
+.cu-visit-body h3{ font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.35rem; margin:0 0 8px; color:var(--cu-ink); }
+.cu-visit-body p{ font-size:.95rem; line-height:1.7; color:var(--cu-mut); margin:0; }
+
+/*========== BUSINESS HOURS — shared row primitive ==========*/
+.cu-hour-row{
+    display:flex; align-items:center; justify-content:space-between; padding:10px 4px; position:relative;
+}
+.cu-hour-row::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:linear-gradient(90deg, transparent, rgba(236, 72, 153, .2), transparent);
+}
+.cu-hour-row:last-child::after{ display:none; }
+.cu-hour-row span:first-child{ font-weight:600; font-size:.9rem; color:var(--cu-ink); }
+.cu-hour-row span:last-child{ font-size:.86rem; color:var(--cu-mut); }
+.cu-hour-row.closed span:last-child{ color:#EC4899; font-weight:700; }
+
+/*========== MESSAGE FORM ==========*/
+.cu-form-card{ padding:26px 28px; max-width:none; margin:0; display:flex; flex-direction:column; }
+.cu-form-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.cu-field{ position:relative; margin-bottom:12px; }
+.cu-form-row .cu-field{ margin-bottom:0; }
+.cu-field label{ display:block; font-size:.76rem; font-weight:600; color:var(--cu-ink); margin-bottom:5px; }
+.cu-field input, .cu-field textarea{
+    width:100%; padding:10px 15px; border-radius:14px; font-family:inherit; font-size:.88rem;
+    background:rgba(255, 255, 255, .55); border:1.5px solid rgba(255, 255, 255, .8); color:var(--cu-ink); outline:none;
+    transition:border-color .35s ease, background .35s ease, box-shadow .35s ease;
+}
+.cu-field textarea{ min-height:84px; resize:vertical; }
+.cu-field input::placeholder, .cu-field textarea::placeholder{ color:rgba(16, 42, 92, .35); }
+.cu-field input:focus, .cu-field textarea:focus{
+    border-color:var(--cu-blue-glow); background:#FFFFFF; box-shadow:0 0 0 4px rgba(16, 42, 92, .16), 0 0 18px rgba(236, 72, 153, 0.24);
+}
+.cu-form-submit{ width:100%; margin-top:2px; padding:12px 22px; font-size:.9rem; }
+.cu-form-note{ font-size:.72rem; color:var(--cu-mut); text-align:center; margin:8px 0 0; }
+
+/*========== PAIRED TWO-COLUMN LAYOUT: form | visit us ==========
+   Grid "align-items:stretch" makes both cards match height
+   automatically — no manual height math needed. */
+.cu-contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+    align-items:stretch;
+}
+
+.cu-visit-card{ padding:26px 28px; display:flex; flex-direction:column; gap:16px; }
+.cu-visit-top{ display:flex; gap:16px; align-items:flex-start; }
+.cu-visit-top .cu-visit-body h3{ font-family:var(--font-heading,'Poppins',sans-serif); font-size:1.14rem; margin:0 0 6px; color:var(--cu-ink); }
+.cu-visit-top .cu-visit-body p{ font-size:.86rem; line-height:1.6; color:var(--cu-mut); margin:0; }
+
+.cu-visit-map{
+    border-radius:16px; overflow:hidden; flex:1; min-height:150px;
+    border:1px solid rgba(255, 255, 255, .7);
+    box-shadow:inset 0 0 0 1px rgba(236, 72, 153, .06);
+}
+.cu-visit-map iframe{ width:100%; height:100%; min-height:150px; border:0; display:block; }
+
+.cu-visit-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+.cu-visit-actions .cu-btn{ flex:1; justify-content:center; padding:10px 16px; font-size:.82rem; }
+
+/*========== BUSINESS HOURS — compact card ==========
+   Weekdays are collapsed into a single row instead of five,
+   matching the requested "at-a-glance" compact footprint. */
+.cu-hours-compact{
+    background:rgba(255, 255, 255, .4);
+    border:1px solid rgba(255, 255, 255, .7);
+    border-radius:16px;
+    padding:14px 18px;
+}
+.cu-hours-compact h4{
+    display:flex; align-items:center; gap:8px;
+    font-family:var(--font-heading,'Poppins',sans-serif); font-size:.88rem;
+    margin:0 0 8px; color:var(--cu-ink);
+}
+.cu-hours-compact h4 i{ color:var(--cu-pink); }
+.cu-hours-compact .cu-hour-row{ padding:5px 0; }
+.cu-hours-compact .cu-hour-row span:first-child{ font-size:.82rem; }
+.cu-hours-compact .cu-hour-row span:last-child{ font-size:.8rem; }
+
+@media(max-width:960px){
+    .cu-contact-grid{ grid-template-columns:1fr; }
+}
+@media(max-width:640px){
+    .cu-visit-card{ padding:24px 20px; }
+    .cu-visit-top{ flex-direction:column; }
+}
+.cu-loc-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; padding:36px 40px; position:relative; }
+.cu-loc-block{ padding:0 26px; text-align:center; position:relative; }
+.cu-loc-block + .cu-loc-block::before{
+    content:""; position:absolute; left:0; top:12%; bottom:12%; width:2px; border-radius:2px;
+    background:linear-gradient(180deg, transparent, var(--cu-pink), var(--cu-blue), transparent);
+    box-shadow:0 0 10px rgba(236, 72, 153, .4);
+}
+.cu-loc-ic{
+    width:52px; height:52px; margin:0 auto 14px; border-radius:16px;
+    display:flex; align-items:center; justify-content:center; font-size:1.15rem; color:var(--cu-pink);
+    background:rgba(236, 72, 153, .1); border:1px solid rgba(236, 72, 153, .28);
+    box-shadow:inset 0 0 18px rgba(236, 72, 153, .16), 0 0 20px rgba(236, 72, 153, .14);
+    animation:cuFloat 6.5s ease-in-out infinite;
+}
+.cu-loc-block h4{ font-size:1rem; margin:0 0 6px; color:var(--cu-ink); }
+.cu-loc-block p{ font-size:.85rem; line-height:1.6; color:var(--cu-mut); margin:0; }
+
+/*========== FINAL CTA ==========*/
+.cu-final{ padding:10px 0 60px; }
+.cu-final-inner{ text-align:center; padding:46px 40px; overflow:hidden; }
+.cu-final-inner h2{ font-family:var(--font-heading,'Poppins',sans-serif); font-size:clamp(1.7rem,3.3vw,2.4rem); margin:0 0 12px; color:var(--cu-ink); }
+.cu-final-inner p{ font-size:1rem; color:var(--cu-mut); max-width:540px; margin:0 auto 28px; }
+.cu-final-cta{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+/*========== REVEAL ==========*/
+.cu-reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s var(--cu-ease), transform .8s var(--cu-ease); }
+.cu-reveal.in{ opacity:1; transform:none; }
+.cu-reveal[data-d="1"]{ transition-delay:.09s; }
+.cu-reveal[data-d="2"]{ transition-delay:.18s; }
+.cu-reveal[data-d="3"]{ transition-delay:.27s; }
+.cu-reveal[data-d="4"]{ transition-delay:.36s; }
+
+/*========== RESPONSIVE ==========*/
+@media(max-width:1100px){
+    .cu-quick-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:960px){
+    .cu-hero-grid{ grid-template-columns:1fr; text-align:center; }
+    .cu-hero p{ margin-left:auto; margin-right:auto; }
+    .cu-hero-cta{ justify-content:center; }
+    .cu-hero-visual{ order:-1; }
+    .cu-loc-grid{ grid-template-columns:1fr; gap:26px; }
+    .cu-loc-block + .cu-loc-block::before{
+        left:20%; right:20%; top:-13px; bottom:auto; width:auto; height:2px;
+        background:linear-gradient(90deg, transparent, var(--cu-pink), var(--cu-blue), transparent);
+    }
+}
+@media(max-width:640px){
+    .cu-quick-grid{ grid-template-columns:1fr; }
+    .cu-form-row{ grid-template-columns:1fr; }
+    .cu-form-card{ padding:24px 20px; }
+    .cu-loc-grid{ padding:26px 22px; }
+    .cu-final-inner{ padding:36px 22px; }
+    .cu-btn{ width:100%; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    body.contact-page *{ animation:none !important; }
+    .cu-reveal{ opacity:1 !important; transform:none !important; }
+}

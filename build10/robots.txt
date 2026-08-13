@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Server-rendered staff admin portal (germaine-backend/app/blueprints/admin) —
+# session-cookie authenticated, never meant to appear in search results.
+Disallow: /admin/
+
+# Backend JSON API surface (public catalogue/enquiry endpoints included) —
+# not a browsable destination for crawlers, no page content lives here.
+Disallow: /api/
+
+# EarnCash account/private pages — dashboard, profile, notifications,
+# referrals, withdrawal, login/register forms, and the EarnCash admin
+# portal. These also carry their own <meta name="robots" content="noindex">
+# tag; disallowing the crawl here too keeps them out of the crawl budget
+# entirely. EarnCash/frontend/pages/index.html and courses.html (the
+# public gateway pages) are intentionally left crawlable.
+Disallow: /EarnCash/frontend/pages/login.html
+Disallow: /EarnCash/frontend/pages/register.html
+Disallow: /EarnCash/frontend/pages/dashboard.html
+Disallow: /EarnCash/frontend/pages/profile.html
+Disallow: /EarnCash/frontend/pages/notifications.html
+Disallow: /EarnCash/frontend/pages/referrals.html
+Disallow: /EarnCash/frontend/pages/withdrawal.html
+Disallow: /EarnCash/frontend/pages/admin.html
+Disallow: /EarnCash/frontend/pages/admin-login.html
+
+Sitemap: https://site.germaineinstitute.ac.ke/sitemap.xml

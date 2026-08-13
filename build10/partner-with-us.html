@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+                META DATA
+    =========================================== -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Early theme application (prevents flash of wrong theme) -->
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        Partner with Us | Germaine Training Institute
+    </title>
+
+    <meta name="description"
+        content="Partner with Germaine Training Institute — graduate recruitment, industrial attachment, corporate training, research collaboration and community projects with a leading Kenyan TVET institution.">
+
+    <meta name="keywords"
+        content="Germaine Training Institute, TVET Kenya, Diploma Courses, Certificate Courses, Nakuru College">
+
+    <meta name="author"
+        content="Germaine Training Institute">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title"
+        content="Partner with Us | Germaine Training Institute">
+
+    <meta property="og:description"
+        content="Partner with Germaine Training Institute — graduate recruitment, industrial attachment, corporate training, research collaboration and community projects with a leading Kenyan TVET institution.">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:image"
+        content="https://site.germaineinstitute.ac.ke/assets/images/hero/hero-students.jpg">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/partner-with-us.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Partner with Us | Germaine Training Institute">
+    <meta name="twitter:description" content="Partner with Germaine Training Institute — graduate recruitment, industrial attachment, corporate training, research collaboration and community projects with a leading Kenyan TVET institution.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/hero/hero-students.jpg">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/partner-with-us.html">
+
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/jpeg"
+        href="assets/images/logo/logo.jpg">
+
+    <!-- Preload critical above-the-fold assets -->
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+
+    <link rel="stylesheet"
+        href="assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="assets/css/responsive.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-theme.css">
+
+    <link rel="stylesheet" href="assets/css/partner-with-us.css">
+
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+
+    <link rel="stylesheet" href="assets/css/school-page.css">
+
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+
+</head>
+
+<body class="partner-page">
+
+    <!-- ==========================================
+                PRELOADER
+    =========================================== -->
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ==========================================
+                WHATSAPP
+    =========================================== -->
+
+    <a href="https://wa.me/254719488112"
+        class="whatsapp"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+    <!-- ==========================================
+                FIXED TOP STACK (utility bar + header + announcement)
+    =========================================== -->
+
+        <!-- ==========================================
+                LEVEL 1 — UTILITY BAR
+    =========================================== -->
+
+    <div class="utility-bar" id="utilityBar">
+
+        <div class="container utility-bar-inner">
+
+            <div class="utility-left">
+
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+
+                <a href="ai-bootcamp.html" class="utility-link"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+
+                <a href="partner-with-us.html" class="utility-link active"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+
+            </div>
+
+            <div class="utility-right">
+
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                FIXED TOP STACK (branding bar + main navigation + announcement)
+    =========================================== -->
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+    <span class="nv-cursor-glow" id="navCursorGlow" aria-hidden="true"></span>
+
+    <!-- ==========================================
+                LEVEL 2 — BRANDING BAR
+    =========================================== -->
+
+    <header id="header">
+
+        <div class="branding-bar">
+
+            <div class="container branding-inner">
+
+                <a href="index.html" class="brand-logo-group">
+
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+
+                    <span class="brand-text">
+
+                        <span class="brand-name">Germaine Training Institute</span>
+
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+
+                    </span>
+
+                </a>
+
+                <div class="branding-right">
+
+                    <div class="branding-contact">
+
+                    <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+
+                    <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+
+                </div>
+
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                    LEVEL 3 — MAIN NAVIGATION
+        =========================================== -->
+
+        <nav class="navbar">
+
+            <div class="container navbar-inner">
+
+                <ul class="nav-links">
+
+                    <!-- Employer & Industry Services context menu — see
+                         graduate-hire.html for the same pattern. -->
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="partner-with-us.html" class="active">Partner With Us</a></li>
+
+                    <li><a href="corporate-training.html">Corporate Training</a></li>
+
+                    <li><a href="graduate-hire.html">Hire Our Graduates</a></li>
+
+                    <li><a href="contact.html">Contact Us</a></li>
+
+                </ul>
+
+                <div class="nav-buttons">
+
+                    <button class="search-btn" aria-label="Open search">
+
+                        <i class="fas fa-search"></i>
+
+                    </button>
+
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                </div>
+
+                <!-- Mobile Menu -->
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ==========================================
+            ADMISSION ANNOUNCEMENT BAR
+    =========================================== -->
+
+    <section class="announcement-bar">
+
+        <div class="container announcement-container">
+
+            <div class="announcement-left">
+
+                <i class="fas fa-bullhorn"></i>
+
+                <span>
+
+                    September 2026 Intake Now Open &bull; Applications Ongoing
+
+                </span>
+
+            </div>
+
+            <a href="apply.html"
+                class="announcement-link">
+
+                Apply Now For Full Scholarship
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    </div>
+
+<!-- ==========================================
+            SEARCH POPUP
+    =========================================== -->
+
+    <div class="search-modal">
+
+        <div class="search-box">
+
+            <input aria-label="Search courses, departments or news"
+                type="text"
+                placeholder="Search courses, departments or news...">
+
+            <button aria-label="Submit search">
+
+                <i class="fas fa-search"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                MAIN CONTENT
+    =========================================== -->
+
+    <div class="page-shell" id="pageShell">
+
+    
+    <main class="sp-page pw-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+<!-- ================= 1. HERO ================= -->
+<section class="pw-hero" id="pwHero">
+
+    <!-- single full-bleed background photo with a slow, continuous
+         zoom-in/zoom-out (no crossfade, no sliding, no separate side
+         image) — same crystal-transparent glass panel treatment as
+         the Hire Our Graduates hero sits on top of it. -->
+    <div class="pw-hero-bg" aria-hidden="true">
+        <img class="pw-hero-bg-img" src="assets/images/partner/partner-handshake.png" alt="" loading="eager" width="1536" height="1024">
+    </div>
+    <div class="pw-hero-vignette" aria-hidden="true"></div>
+    <div class="pw-hero-overlay" aria-hidden="true"></div>
+
+    <div class="pw-wrap">
+
+        <div class="pw-hero-text pw-reveal">
+            <span class="pw-badge"><i class="fa-solid fa-handshake" aria-hidden="true"></i> Partner with Germaine</span>
+
+            <h1 class="pw-hero-title">Build <span class="pw-accent">Meaningful</span> Partnerships</h1>
+
+            <p class="pw-hero-lead">Connect with Germaine&rsquo;s talent, training, and industry network to create opportunities that make a lasting impact.</p>
+
+            <div class="pw-hero-cta">
+                <a href="#pwInquiry" class="pw-btn pw-btn-primary">Become a Partner <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <a href="#pwOpps" class="pw-btn pw-btn-ghost">Explore Opportunities <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pw-wrap">
+        <div class="pw-hero-stats">
+            <div class="pw-hstat"><span class="pw-hstat-ic"><i class="fa-solid fa-user-group" aria-hidden="true"></i></span><div><b>7,500+</b><span>Students Trained</span></div></div>
+            <div class="pw-hstat"><span class="pw-hstat-ic"><i class="fa-solid fa-building" aria-hidden="true"></i></span><div><b>400+</b><span>Industry Partners</span></div></div>
+            <div class="pw-hstat"><span class="pw-hstat-ic"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span><div><b>75%</b><span>Placement Rate</span></div></div>
+            <div class="pw-hstat"><span class="pw-hstat-ic"><i class="fa-solid fa-rocket" aria-hidden="true"></i></span><div><b>150+</b><span>Business Start-ups</span></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 2. PARTNERSHIP OPPORTUNITIES ================= -->
+<section class="pw-opps" id="pwOpps">
+    <div class="pw-wrap">
+
+        <div class="pw-head pw-reveal">
+            <span class="pw-eyebrow">Ways to Work Together</span>
+            <h2>Partnership Opportunities</h2>
+            <p>Four routes into a Germaine partnership — each one built around a different kind of organisation and a different kind of impact.</p>
+        </div>
+
+        <div class="pw-panels ways-to-work-grid">
+            <span class="pw-panels-links" aria-hidden="true"></span>
+
+            <article class="pw-panel pw-reveal">
+                <span class="pw-panel-ic"><i class="fa-solid fa-industry" aria-hidden="true"></i></span>
+                <h3>Industry Partners</h3>
+                <p>Shape the skills your sector needs by working directly with our trainers and assessors.</p>
+                <a href="#pwInquiry" class="pw-panel-more">Learn More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <ul>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Curriculum &amp; Skills Advisory</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Equipment &amp; Workshop Support</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Industry Certification Pathways</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Guest Lecturing &amp; Masterclasses</li>
+                </ul>
+            </article>
+
+            <article class="pw-panel pw-reveal" data-d="1">
+                <span class="pw-panel-ic"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+                <h3>Employers</h3>
+                <p>Access pre-screened, competency-assessed talent and grow your team at no recruitment cost.</p>
+                <a href="#pwInquiry" class="pw-panel-more">Learn More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <ul>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Graduate Recruitment</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Industrial Attachment Hosting</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Customised Corporate Training</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> On-Campus Recruitment Drives</li>
+                </ul>
+            </article>
+
+            <article class="pw-panel pw-reveal" data-d="2">
+                <span class="pw-panel-ic"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+                <h3>Academic Institutions</h3>
+                <p>Build progression routes and joint programmes that widen access to higher qualifications.</p>
+                <a href="#pwInquiry" class="pw-panel-more">Learn More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <ul>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Credit Transfer &amp; Articulation</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Joint Research Projects</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Trainer Exchange Programmes</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Shared Facilities &amp; Resources</li>
+                </ul>
+            </article>
+
+            <article class="pw-panel pw-reveal" data-d="3">
+                <span class="pw-panel-ic"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i></span>
+                <h3>Government &amp; NGOs</h3>
+                <p>Deliver skills programmes at scale for youth, women and underserved communities.</p>
+                <a href="#pwInquiry" class="pw-panel-more">Learn More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <ul>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Sponsored Training Cohorts</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Scholarships &amp; Bursaries</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Community Skills Projects</li>
+                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> County Workforce Initiatives</li>
+                </ul>
+            </article>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= 3. WHY PARTNER — ZIG-ZAG TIMELINE ================= -->
+<section class="pw-why" id="pwWhy">
+    <div class="pw-wrap">
+
+        <div class="pw-head pw-reveal">
+            <span class="pw-eyebrow">The Germaine Advantage</span>
+            <h2>Why Partner with Germaine</h2>
+            <p>Six reasons organisations across Kenya choose to build their talent pipeline with us.</p>
+        </div>
+
+        <ol class="pw-timeline">
+            <span class="pw-timeline-spine" aria-hidden="true"></span>
+
+            <li class="pw-milestone pw-reveal">
+                <span class="pw-milestone-node" aria-hidden="true"><i class="fa-solid fa-gears"></i></span>
+                <div class="pw-milestone-card">
+                    <h3>Industry-Aligned Training</h3>
+                    <p>Every programme is built on CBET standards and reviewed with employers, so what we teach is what your sector actually needs.</p>
+                </div>
+            </li>
+
+            <li class="pw-milestone pw-reveal">
+                <span class="pw-milestone-node" aria-hidden="true"><i class="fa-solid fa-user-check"></i></span>
+                <div class="pw-milestone-card">
+                    <h3>Work-Ready Graduates</h3>
+                    <p>Trainees are assessed in real workshop conditions and leave with the discipline, safety awareness and professionalism employers expect on day one.</p>
+                </div>
+            </li>
+
+            <li class="pw-milestone pw-reveal">
+                <span class="pw-milestone-node" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                <div class="pw-milestone-card">
+                    <h3>Practical Learning</h3>
+                    <p>Over 100 practical workshop hours per programme across engineering, ICT, health, hospitality, agriculture, media and design.</p>
+                </div>
+            </li>
+
+            <li class="pw-milestone pw-reveal">
+                <span class="pw-milestone-node" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+                <div class="pw-milestone-card">
+                    <h3>Innovation &amp; Research</h3>
+                    <p>Our Innovation Hub gives partners a testbed for applied projects, prototypes and community-focused problem solving.</p>
+                </div>
+            </li>
+
+            <li class="pw-milestone pw-reveal">
+                <span class="pw-milestone-node" aria-hidden="true"><i class="fa-solid fa-network-wired"></i></span>
+                <div class="pw-milestone-card">
+                    <h3>Strong Employer Network</h3>
+                    <p>Join 400+ organisations already hosting attachments, recruiting graduates and shaping our training agenda.</p>
+                </div>
+            </li>
+
+            <li class="pw-milestone pw-reveal">
+                <span class="pw-milestone-node" aria-hidden="true"><i class="fa-solid fa-infinity"></i></span>
+                <div class="pw-milestone-card">
+                    <h3>Long-Term Collaboration</h3>
+                    <p>A dedicated Partnerships Office manages every agreement, so the relationship keeps delivering year after year.</p>
+                </div>
+            </li>
+        </ol>
+
+    </div>
+</section>
+
+<!-- ================= 4. FEATURED PARTNERS & SUCCESS STORIES ================= -->
+<section class="pw-partners" id="pwPartners">
+    <div class="pw-wrap">
+
+        <div class="pw-head pw-reveal">
+            <span class="pw-eyebrow">Trusted Collaborations</span>
+            <h2>Featured Partners and Success Stories</h2>
+        </div>
+
+        <div class="pw-partners-grid">
+
+            <div class="pw-logowall pw-reveal">
+                <h3 class="pw-logowall-title">Accreditation &amp; Industry Bodies</h3>
+                <div class="pw-logowall-viewport">
+                    <div class="pw-logowall-track" id="pwLogoTrack">
+                        <span class="pw-logo"><img src="assets/images/partners/tvet-cdacc.png" alt="TVET CDACC" loading="lazy" width="160" height="80"></span>
+                        <span class="pw-logo"><img src="assets/images/partners/khpoa.png" alt="KHPOA" loading="lazy" width="160" height="80"></span>
+                        <span class="pw-logo"><img src="assets/images/partners/kra.png" alt="Kenya Revenue Authority" loading="lazy" width="160" height="80"></span>
+                        <span class="pw-logo"><img src="assets/images/partners/nita.png" alt="NITA" loading="lazy" width="160" height="80"></span>
+                        <span class="pw-logo"><img src="assets/images/partners/knec.jpg" alt="KNEC" loading="lazy" width="160" height="80"></span>
+                    </div>
+                </div>
+                <p class="pw-logowall-note">Our qualifications are assessed and certified through nationally recognised bodies, giving your organisation confidence in every graduate we place.</p>
+            </div>
+
+            <figure class="pw-testimonial pw-reveal" data-d="1">
+                <span class="pw-quote-mark" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
+                <blockquote>
+                    <p>Germaine trainees arrive on attachment already understanding workshop safety, tools and reporting. We have hired from every cohort we have hosted &mdash; they need far less onboarding than most.</p>
+                </blockquote>
+                <figcaption>
+                    <span class="pw-testimonial-ic" aria-hidden="true"><i class="fa-solid fa-user-tie"></i></span>
+                    <span class="pw-testimonial-meta">
+                        <b>Operations Manager</b>
+                        <span>Engineering Partner Organisation, Nakuru</span>
+                    </span>
+                </figcaption>
+                <div class="pw-testimonial-stats">
+                    <div><b>18</b><span>Trainees Hosted</span></div>
+                    <div><b>11</b><span>Hired to Date</span></div>
+                    <div><b>4 yrs</b><span>Partnership</span></div>
+                </div>
+            </figure>
+
+        </div>
+
+        <div class="pw-metrics pw-reveal">
+            <div class="pw-metric"><b>400+</b><span>Industry Partners</span></div>
+            <div class="pw-metric"><b>150+</b><span>Community Projects</span></div>
+            <div class="pw-metric"><b>7,500+</b><span>Graduates</span></div>
+            <div class="pw-metric"><b>95%</b><span>Employer Satisfaction</span></div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= 5. PARTNERSHIP JOURNEY + CTA ================= -->
+<section class="pw-journey" id="pwJourney">
+    <div class="pw-wrap">
+
+        <div class="pw-head pw-reveal">
+            <span class="pw-eyebrow">How It Works</span>
+            <h2>The Partnership Journey</h2>
+            <p>Four straightforward steps from first contact to a working collaboration.</p>
+        </div>
+
+        <ol class="pw-roadmap pw-reveal">
+            <li class="pw-step">
+                <span class="pw-step-node"><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i></span>
+                <b>Connect</b>
+                <span class="pw-step-note">Send us an inquiry</span>
+            </li>
+            <li class="pw-step">
+                <span class="pw-step-node"><i class="fa-solid fa-comments" aria-hidden="true"></i></span>
+                <b>Discuss</b>
+                <span class="pw-step-note">Scope the opportunity</span>
+            </li>
+            <li class="pw-step">
+                <span class="pw-step-node"><i class="fa-solid fa-file-signature" aria-hidden="true"></i></span>
+                <b>Collaborate</b>
+                <span class="pw-step-note">Formalise and launch</span>
+            </li>
+            <li class="pw-step">
+                <span class="pw-step-node"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i></span>
+                <b>Grow Together</b>
+                <span class="pw-step-note">Review and expand</span>
+            </li>
+        </ol>
+
+    </div>
+</section>
+
+<!-- ================= 6. PARTNERSHIP INQUIRY FORM ================= -->
+<section class="pw-inquiry" id="pwInquiry">
+    <div class="pw-wrap">
+
+        <div class="pw-head pw-reveal">
+            <span class="pw-eyebrow">Get in Touch</span>
+            <h2>Partner With Us</h2>
+            <p>Please complete the form below to express your interest in partnering with Germaine Training Institute.</p>
+        </div>
+
+        <div class="pw-inquiry-panel pw-reveal" data-d="1">
+
+        <!-- LEFT — inquiry form -->
+        <div class="pw-formcard">
+
+            <form class="pw-form" id="pwForm" novalidate>
+
+                <div class="pw-field-row">
+                    <div class="pw-field">
+                        <label for="pwOrg">Organization Name <span aria-hidden="true">*</span></label>
+                        <input type="text" id="pwOrg" name="organization" required autocomplete="organization" placeholder="Your organisation">
+                        <span class="pw-error" data-for="pwOrg"></span>
+                    </div>
+                    <div class="pw-field">
+                        <label for="pwName">Contact Person <span aria-hidden="true">*</span></label>
+                        <input type="text" id="pwName" name="contact" required autocomplete="name" placeholder="Full name">
+                        <span class="pw-error" data-for="pwName"></span>
+                    </div>
+                </div>
+
+                <div class="pw-field-row">
+                    <div class="pw-field">
+                        <label for="pwEmail">Email Address <span aria-hidden="true">*</span></label>
+                        <input type="email" id="pwEmail" name="email" required autocomplete="email" placeholder="name@organisation.com">
+                        <span class="pw-error" data-for="pwEmail"></span>
+                    </div>
+                    <div class="pw-field">
+                        <label for="pwPhone">Phone Number <span aria-hidden="true">*</span></label>
+                        <input type="tel" id="pwPhone" name="phone" required autocomplete="tel" placeholder="+254 7XX XXX XXX">
+                        <span class="pw-error" data-for="pwPhone"></span>
+                    </div>
+                </div>
+
+                <div class="pw-field-row">
+                    <div class="pw-field">
+                        <label for="pwType">Organization Type <span aria-hidden="true">*</span></label>
+                        <select id="pwType" name="type" required>
+                            <option value="">Select one&hellip;</option>
+                            <option>Industry / Company</option>
+                            <option>Employer</option>
+                            <option>University / College</option>
+                            <option>Government Agency</option>
+                            <option>NGO / Development Partner</option>
+                            <option>Professional Body</option>
+                            <option>Other</option>
+                        </select>
+                        <span class="pw-error" data-for="pwType"></span>
+                    </div>
+                    <div class="pw-field">
+                        <label for="pwInterest">Partnership Interest <span aria-hidden="true">*</span></label>
+                        <select id="pwInterest" name="interest" required>
+                            <option value="">Select one&hellip;</option>
+                            <option>Graduate Recruitment</option>
+                            <option>Industrial Attachment</option>
+                            <option>Corporate Training</option>
+                            <option>Research Collaboration</option>
+                            <option>Curriculum Development</option>
+                            <option>Scholarships &amp; Sponsorships</option>
+                            <option>Community Projects</option>
+                            <option>Guest Lecturing</option>
+                            <option>Innovation Partnership</option>
+                            <option>Other</option>
+                        </select>
+                        <span class="pw-error" data-for="pwInterest"></span>
+                    </div>
+                </div>
+
+                <div class="pw-field">
+                    <label for="pwMessage">Message <span aria-hidden="true">*</span></label>
+                    <textarea id="pwMessage" name="message" rows="4" required maxlength="500" placeholder="Tell us briefly about your organization and how you would like to partner with Germaine Training Institute..."></textarea>
+                    <span class="pw-counter"><span id="pwCount">0</span> / 500</span>
+                    <span class="pw-error" data-for="pwMessage"></span>
+                </div>
+
+                <label class="pw-consent" for="pwConsent">
+                    <input type="checkbox" id="pwConsent" name="consent" required>
+                    <span>I consent to Germaine Training Institute contacting me regarding this partnership inquiry.</span>
+                </label>
+                <span class="pw-error" data-for="pwConsent"></span>
+
+                <button type="submit" class="pw-submit" id="pwSubmit">
+                    <span class="pw-submit-label">Submit Partnership Inquiry</span>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    <span class="pw-spinner" aria-hidden="true"></span>
+                </button>
+
+            </form>
+
+            <div class="pw-success" id="pwSuccess" hidden>
+                <span class="pw-success-ic" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+                <h3>Thank You!</h3>
+                <p>Your partnership inquiry has been received successfully. Our Partnerships Office will contact you shortly to discuss the next steps.</p>
+            </div>
+
+        </div>
+
+        <!-- RIGHT — premium curved image panel -->
+        <div class="pw-inquiry-imgside">
+            <span class="pw-inq-arc pw-inq-arc-1" aria-hidden="true"></span>
+            <span class="pw-inq-arc pw-inq-arc-2" aria-hidden="true"></span>
+            <span class="pw-inq-ring" aria-hidden="true"></span>
+            <span class="pw-inq-dot" aria-hidden="true"></span>
+            <img src="assets/images/partner/partner-handshake.png" alt="Germaine Training Institute leadership meeting with an industry partner" loading="lazy">
+        </div>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+    <!-- ==========================================
+                SIDE NAVIGATION (push panel)
+    =========================================== -->
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+
+<footer class="footer">
+
+    <!-- Footer Main -->
+
+    <div class="footer-main">
+
+        <div class="container footer-grid">
+
+            <!-- About -->
+
+            <div class="footer-column">
+
+                <img src="assets/images/logo/logo-white.png"
+                     alt="Germaine Training Institute Logo"
+                     class="footer-logo" loading="lazy" decoding="async">
+
+                <p>
+
+                    Germaine Training Institute is committed to
+                    producing competent, innovative and
+                    industry-ready graduates through
+                    practical and competency-based education.
+
+                </p>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Quick Links
+
+                </h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="about.html">About Us</a></li>
+
+                    <li><a href="courses.html">Courses</a></li>
+
+                    <li><a href="admissions.html">Admissions</a></li>
+
+                    <li><a href="news.html">News</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+
+                
+
+                    <li><a href="apply.html">Apply Now</a></li>
+
+                    <li><a href="apply.html">Scholarships</a></li>
+</ul>
+
+            </div>
+
+            
+
+            <!-- Contact -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Contact Us
+
+                </h3>
+
+                <ul class="contact-list">
+
+                    <li>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Pioneer Plaza,
+                        Mburu Gichua Road,
+                        Nakuru
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        +254 719 488 112
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        admissions@germaineinstitute.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Mon – Fri : 8:00 AM – 5:00 PM
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Google Map -->
+
+    <div class="footer-map">
+
+        <iframe
+            src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed"
+            loading="lazy"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+    <!-- Bottom Footer -->
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <p>
+
+                © 2026 Germaine Training Institute.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Emmanuel Elijah</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+            BACK TO TOP
+========================================== -->
+
+<button class="back-to-top" aria-label="Back to top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+            JAVASCRIPT
+========================================== -->
+
+<script defer src="assets/js/api-client.js"></script>
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+
+<script defer src="assets/js/premium-theme.js"></script>
+
+<script defer src="assets/js/school-page.js"></script>
+
+<!-- Lucide icons — used only inside the Request Graduate Profile modal -->
+<script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<script defer src="assets/js/partner-with-us.js"></script>
+
+</body>
+
+</html>

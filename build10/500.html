@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>Something Went Wrong | Germaine Training Institute</title>
+
+    <meta name="description" content="We're experiencing a temporary technical issue. Please try again shortly or return to the Germaine Training Institute homepage.">
+    <meta name="robots" content="noindex, follow">
+
+    <link rel="icon" type="image/jpeg" href="assets/images/logo/logo.jpg">
+
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/premium-theme.css">
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+
+    <style>
+        .error-state-section{
+            min-height: 62vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 90px;
+            text-align: center;
+        }
+        .error-state-inner{ max-width: 640px; margin: 0 auto; }
+        .error-state-code{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: clamp(72px, 14vw, 140px);
+            line-height: 1;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #102A5C, #1E4FA0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0 0 8px;
+        }
+        .error-state-title{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: clamp(22px, 3vw, 30px);
+            color: #102A5C;
+            margin: 0 0 14px;
+        }
+        [data-theme="dark"] .error-state-title{ color: #E7ECF7; }
+        .error-state-text{
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #5A6478;
+            max-width: 480px;
+            margin: 0 auto 32px;
+        }
+        [data-theme="dark"] .error-state-text{ color: #A9B3C7; }
+        .error-state-actions{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .error-state-actions .btn-primary,
+        .error-state-actions .btn-outline{
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: .92rem;
+            padding: 13px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .error-state-actions .btn-primary{
+            background: #102A5C;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(16,42,92,.25);
+        }
+        .error-state-actions .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px rgba(16,42,92,.32); }
+        .error-state-actions .btn-outline{
+            background: transparent;
+            color: #102A5C;
+            border: 1.5px solid #102A5C;
+        }
+        [data-theme="dark"] .error-state-actions .btn-outline{ color: #E7ECF7; border-color: #E7ECF7; }
+        .error-state-actions .btn-outline:hover{ transform: translateY(-2px); background: rgba(16,42,92,.06); }
+        .error-state-links{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 22px;
+            justify-content: center;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .9rem;
+        }
+        .error-state-links a{ color: #1E4FA0; text-decoration: none; }
+        .error-state-links a:hover{ text-decoration: underline; }
+        [data-theme="dark"] .error-state-links a{ color: #7FA6E8; }
+    </style>
+
+</head>
+
+<body>
+
+    <a href="https://wa.me/254719488112" class="whatsapp" target="_blank" aria-label="Chat with us on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+    <div class="utility-bar" id="utilityBar">
+        <div class="container utility-bar-inner">
+            <div class="utility-left">
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+                <a href="ai-bootcamp.html" class="utility-link"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+            </div>
+            <div class="utility-right">
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+    <header id="header">
+        <div class="branding-bar">
+            <div class="container branding-inner">
+                <a href="index.html" class="brand-logo-group">
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+                    <span class="brand-text">
+                        <span class="brand-name">Germaine Training Institute</span>
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+                    </span>
+                </a>
+                <div class="branding-right">
+                    <div class="branding-contact">
+                        <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+                        <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+                    </div>
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <div class="container navbar-inner">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="courses.html">Academic Schools</a></li>
+                    <li><a href="courses-languages.html" class="nav-twoline"><span class="nav-line">Languages &amp;</span><span class="nav-line">Short Courses</span></a></li>
+                    <li><a href="campus.html">Student Life</a></li>
+                    <li><a href="news.html">News &amp; Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="search-btn" aria-label="Open search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    </div>
+
+    <main>
+        <section class="error-state-section">
+            <div class="error-state-inner">
+                <p class="error-state-code">500</p>
+                <h1 class="error-state-title">Something went wrong on our end</h1>
+                <p class="error-state-text">
+                    We're experiencing a temporary technical issue. Nothing you did caused this —
+                    our team has been notified. Please try again in a few minutes, or head back
+                    to the homepage.
+                </p>
+                <div class="error-state-actions">
+                    <a href="index.html" class="btn-primary"><i class="fa-solid fa-house"></i> Back to Homepage</a>
+                    <a href="contact.html" class="btn-outline"><i class="fa-solid fa-envelope"></i> Contact Support</a>
+                </div>
+                <div class="error-state-links">
+                    <a href="admissions.html">Admissions</a>
+                    <a href="courses.html">Academic Schools</a>
+                    <a href="ai-bootcamp.html">AI Bootcamps</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+
+        <div class="footer-main">
+            <div class="container footer-grid">
+
+                <div class="footer-column">
+                    <img src="assets/images/logo/logo-white.png" alt="Germaine Training Institute Logo" class="footer-logo" loading="lazy" decoding="async">
+                    <p>
+                        Germaine Training Institute is committed to
+                        producing competent, innovative and
+                        industry-ready graduates through
+                        practical and competency-based education.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="apply.html">Apply Now</a></li>
+                        <li><a href="apply.html">Scholarships</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-list">
+                        <li><i class="fa-solid fa-location-dot"></i> Pioneer Plaza, Mburu Gichua Road, Nakuru</li>
+                        <li><i class="fa-solid fa-phone"></i> +254 719 488 112</li>
+                        <li><i class="fa-solid fa-envelope"></i> admissions@germaineinstitute.com</li>
+                        <li><i class="fa-solid fa-clock"></i> Mon – Fri : 8:00 AM – 5:00 PM</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p>© 2026 Germaine Training Institute. All Rights Reserved.</p>
+                <p>Designed &amp; Developed by <strong>Emmanuel Elijah</strong></p>
+            </div>
+        </div>
+
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script defer src="assets/js/api-client.js"></script>
+    <script defer src="assets/js/site-nav.js"></script>
+    <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/header-premium.js"></script>
+    <script defer src="assets/js/premium-theme.js"></script>
+
+</body>
+
+</html>

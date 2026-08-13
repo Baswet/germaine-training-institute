@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        Alumni Network | Germaine Training Institute
+    </title>
+
+    <meta name="description"
+        content="Join the Germaine Training Institute Alumni Network — reconnect with classmates, grow your professional network, discover career opportunities, and mentor future graduates.">
+
+    <meta name="author" content="Germaine Training Institute">
+
+    <meta property="og:title" content="Alumni Network | Germaine Training Institute">
+    <meta property="og:description" content="Reconnect with classmates, grow your network, and continue your Germaine journey as an alumnus.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://site.germaineinstitute.ac.ke/assets/images/hero/graduates-hero.png">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/alumni.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alumni Network | Germaine Training Institute">
+    <meta name="twitter:description" content="Reconnect with classmates, grow your network, and continue your Germaine journey as an alumnus.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/hero/graduates-hero.png">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/alumni.html">
+
+    <link rel="icon" type="image/jpeg" href="assets/images/logo/logo.jpg">
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/premium-theme.css">
+    <link rel="stylesheet" href="assets/css/premium-sections.css">
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+    <link rel="stylesheet" href="assets/css/school-page.css">
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+    <link rel="stylesheet" href="assets/css/alumni.css">
+
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <a href="https://wa.me/254719488112" class="whatsapp" target="_blank" aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="utility-bar" id="utilityBar">
+        <div class="container utility-bar-inner">
+            <div class="utility-left">
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+                <a href="ai-bootcamp.html" class="utility-link"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+            </div>
+            <div class="utility-right">
+                <a href="alumni.html" class="utility-link active"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+
+    <header id="header">
+        <div class="branding-bar">
+            <div class="container branding-inner">
+                <a href="index.html" class="brand-logo-group">
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+                    <span class="brand-text">
+                        <span class="brand-name">Germaine Training Institute</span>
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+                    </span>
+                </a>
+                <div class="branding-right">
+                    <div class="branding-contact">
+                        <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+                        <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+                    </div>
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <div class="container navbar-inner">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="about.html">About Us <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="about.html">Our Story</a>
+                            <a href="about.html">Mission &amp; Vision</a>
+                            <a href="about.html">Leadership</a>
+                            <a href="about.html">Accreditation</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="admissions.html">Admissions <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="admissions.html#admission-form">Apply Online</a>
+                            <a href="admissions.html">Entry Requirements</a>
+                            <a href="admissions.html">Fees Structure</a>
+                            <a href="apply.html">Scholarships</a>
+                        </div>
+                    </li>
+                    <li class="dropdown mega-dropdown">
+                        <a href="courses.html">Academic Schools <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-menu mega-menu mega-menu-schools">
+                            <div class="mega-menu-col">
+                                <span class="mega-menu-col-title">Academic Schools</span>
+                                <a href="courses-health-sciences.html">School of Medical &amp; Health Sciences</a>
+                                <a href="courses-hospitality-tourism.html">School of Hospitality, Tourism &amp; Travel</a>
+                                <a href="courses-engineering-technology.html">School of Engineering</a>
+                                <a href="courses-computing-it.html">School of Computing &amp; Informatics</a>
+                                <a href="courses-cosmetology-fashion-design.html">School of Cosmetology, Fashion &amp; Design</a>
+                                <a href="courses-business-commerce.html">Business &amp; Social Sciences</a>
+                                <a href="courses-mass-communication-journalism.html">School of Communication &amp; Media</a>
+                                <a href="courses-agriculture.html">School of Agriculture</a>
+                                <a href="courses-virtual-learning.html">School of Virtual Learning</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="courses-languages.html" class="nav-twoline"><span class="nav-line">Languages &amp;</span><span class="nav-line">Short Courses</span></a></li>
+                    <li><a href="campus.html">Student Life</a></li>
+                    <li><a href="news.html">News &amp; Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+
+                <div class="nav-buttons">
+                    <button class="search-btn" aria-label="Open search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="announcement-bar">
+        <div class="container announcement-container">
+            <div class="announcement-left">
+                <i class="fas fa-bullhorn"></i>
+                <span>September 2026 Intake Now Open &bull; Applications Ongoing</span>
+            </div>
+            <a href="apply.html" class="announcement-link">Apply Now For Full Scholarship <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    </div>
+
+    <div class="search-modal">
+        <div class="search-box">
+            <input aria-label="Search courses, departments or news" type="text" placeholder="Search courses, departments or news...">
+            <button aria-label="Submit search"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+        <!-- ================= HERO — structural clone of the "Hire Our
+             Graduates" hero: full-bleed crossfade photo slideshow,
+             floating badge, ambient particles, single fully-transparent
+             glass panel defined only by an always-on travelling border. ================= -->
+        <section class="alu-hero alu-hero-clean">
+
+            <div class="alu-hero-slideshow" aria-hidden="true">
+                <div class="alu-hero-slide" style="background-image:url('assets/images/hero/graduates-hero.png')"></div>
+                <div class="alu-hero-slide" style="background-image:url('assets/images/gallery/campus-meeting.jpg')"></div>
+                <div class="alu-hero-slide" style="background-image:url('assets/images/gallery/students-group.jpg')"></div>
+                <div class="alu-hero-slide" style="background-image:url('assets/images/gallery/community-event.jpg')"></div>
+                <div class="alu-hero-slide" style="background-image:url('assets/images/gallery/life-campus-events.jpg')"></div>
+            </div>
+            <div class="alu-hero-overlay" aria-hidden="true"></div>
+
+            <span class="alu-hero-float-badge"><i class="fa-solid fa-users"></i> 5,000+ Graduates</span>
+
+            <span class="alu-particle p1" aria-hidden="true"></span>
+            <span class="alu-particle p2" aria-hidden="true"></span>
+            <span class="alu-particle p3" aria-hidden="true"></span>
+
+            <div class="alu-wrap">
+                <div class="alu-hero-panel sp-reveal">
+                    <span class="alu-eyebrow"><i class="fa-solid fa-graduation-cap"></i> Germaine Alumni Network</span>
+                    <h1>Stay Connected. <span class="alu-pink-text">Keep Growing.</span></h1>
+                    <p>Reconnect with Germaine, celebrate your journey, access new opportunities, and stay connected with the community of professionals who started their journey here.</p>
+                    <div class="alu-hero-cta">
+                        <a href="#alumniForm" class="alu-btn alu-btn-primary"><span>Register as Alumni</span> <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#alumniWhyJoin" class="alu-btn alu-btn-outline"><span>Explore Alumni Benefits</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#alumniWhyJoin" class="alu-hero-chevron" aria-label="Scroll down"><i class="fa-solid fa-chevron-down"></i></a>
+        </section>
+
+        <!-- ================= WHY JOIN ================= -->
+        <section class="alu-section alu-section-tint" id="alumniWhyJoin">
+            <div class="alu-wrap">
+
+                <div class="alu-head alu-center sp-reveal">
+                    <span class="alu-eyebrow"><i class="fa-solid fa-users"></i> Why Join</span>
+                    <h2>Stay Connected. <span class="alu-pink-text">Grow Together.</span></h2>
+                    <p>The Germaine Alumni Network keeps graduates connected long after graduation by creating opportunities for professional networking, career development, mentorship, and lifelong learning.</p>
+                </div>
+
+                <div class="alu-cards">
+
+                    <article class="alu-card sp-reveal">
+                        <div class="alu-card-slideshow" aria-hidden="true">
+                            <img class="alu-slide" src="assets/images/gallery/campus-meeting.jpg" alt="" loading="lazy">
+                            <img class="alu-slide" src="assets/images/gallery/reception-1.jpg" alt="" loading="lazy">
+                            <img class="alu-slide" src="assets/images/gallery/workshop-teamwork-1.jpg" alt="" loading="lazy">
+                        </div>
+                        <div class="alu-card-body">
+                            <h3>Professional Networking</h3>
+                            <p>Build meaningful relationships with fellow graduates, employers, and industry professionals while expanding your career network.</p>
+                        </div>
+                    </article>
+
+                    <article class="alu-card sp-reveal">
+                        <div class="alu-card-slideshow" aria-hidden="true">
+                            <img class="alu-slide" src="assets/images/gallery/life-engineering-project.jpg" alt="" loading="lazy">
+                            <img class="alu-slide" src="assets/images/gallery/ict-1.jpg" alt="" loading="lazy">
+                            <img class="alu-slide" src="assets/images/gallery/workshop-teamwork-2.jpg" alt="" loading="lazy">
+                        </div>
+                        <div class="alu-card-body">
+                            <h3>Career Growth</h3>
+                            <p>Access exclusive job opportunities, internships, workshops, networking events, and professional development programmes.</p>
+                        </div>
+                    </article>
+
+                    <article class="alu-card sp-reveal">
+                        <div class="alu-card-slideshow" aria-hidden="true">
+                            <img class="alu-slide" src="assets/images/gallery/students-group.jpg" alt="" loading="lazy">
+                            <img class="alu-slide" src="assets/images/gallery/life-community-culture.jpg" alt="" loading="lazy">
+                            <img class="alu-slide" src="assets/images/gallery/community-event.jpg" alt="" loading="lazy">
+                        </div>
+                        <div class="alu-card-body">
+                            <h3>Give Back</h3>
+                            <p>Share your knowledge through mentorship, guest speaking, internships, and community outreach while inspiring future Germaine graduates.</p>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= ALUMNI COMMUNITY ================= -->
+        <section class="alu-section">
+            <div class="alu-wrap alu-community-grid">
+
+                <div class="gwf-wrap alu-community-media sp-reveal">
+                    <div class="gwf-frame">
+                        <div class="gwf-glass">
+                            <img src="assets/images/gallery/students-group.jpg" alt="Germaine Training Institute students and graduates together" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="gwf-badge">
+                        <h3>1</h3>
+                        <p>Community, For Life</p>
+                    </div>
+                </div>
+
+                <div class="alu-community-text sp-reveal">
+                    <div class="alu-head">
+                        <span class="alu-eyebrow"><i class="fa-solid fa-earth-africa"></i> Our Community</span>
+                        <h2>One Community. <span class="alu-pink-text">Endless Opportunities.</span></h2>
+                        <p>Whether you graduated recently or many years ago, you remain an important member of the Germaine family. Stay informed about alumni events, industry partnerships, career development programmes, reunions, innovation projects, and opportunities to inspire the next generation.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= REGISTRATION FORM ================= -->
+        <section class="alu-section alu-section-tint" id="alumniRegister">
+            <div class="alu-wrap">
+
+                <div class="alu-head alu-center alu-form-head-compact sp-reveal">
+                    <span class="alu-eyebrow"><i class="fa-solid fa-pen-to-square"></i> Register With Us</span>
+                    <h2>Stay connected. <span class="alu-pink-text">Keep growing.</span> Give back.</h2>
+                    <span class="alu-form-head-accent" aria-hidden="true"></span>
+                </div>
+
+                <div class="alu-form-panel alu-form-compact sp-reveal">
+
+                    <form id="alumniForm">
+
+                        <div class="alu-row-compact">
+
+                            <div class="alu-field">
+                                <input type="text" id="aluName" name="fullName" placeholder=" " required>
+                                <label for="aluName">Full Name *</label>
+                            </div>
+
+                            <div class="alu-field">
+                                <input type="email" id="aluEmail" name="email" placeholder=" " required>
+                                <label for="aluEmail">Email Address *</label>
+                            </div>
+
+                            <div class="alu-field">
+                                <input type="tel" id="aluPhone" name="phone" placeholder=" " required>
+                                <label for="aluPhone">Phone / WhatsApp *</label>
+                            </div>
+
+                            <div class="alu-field">
+                                <select id="aluProgramme" name="programme" required>
+                                    <option value="" disabled selected>Select your programme</option>
+                                    <option>School of Medical &amp; Health Sciences</option>
+                                    <option>School of Hospitality, Tourism &amp; Travel</option>
+                                    <option>School of Engineering</option>
+                                    <option>School of Computing &amp; Informatics</option>
+                                    <option>School of Cosmetology, Fashion &amp; Design</option>
+                                    <option>Business &amp; Social Sciences</option>
+                                    <option>School of Communication &amp; Media</option>
+                                    <option>School of Agriculture</option>
+                                    <option>School of Virtual Learning</option>
+                                    <option>Germaine AI Bootcamp</option>
+                                </select>
+                                <label for="aluProgramme">Programme Studied *</label>
+                            </div>
+
+                            <div class="alu-field">
+                                <select id="aluGradYear" name="gradYear" required>
+                                    <option value="" disabled selected>Select year</option>
+                                    <option>2026</option><option>2025</option><option>2024</option><option>2023</option>
+                                    <option>2022</option><option>2021</option><option>2020</option><option>2019</option>
+                                    <option>2018</option><option>2017</option><option>2016</option><option>2015</option>
+                                    <option>2014</option><option>2013</option><option>2012</option><option>2011</option>
+                                    <option>2010</option><option>2009</option><option>2008</option><option>2007</option>
+                                    <option>2006</option><option>2005</option><option>2004</option><option>2003</option>
+                                    <option>2002</option><option>2001</option><option>2000</option><option>1999</option>
+                                    <option>1998</option><option>1997</option><option>1996</option><option>1995</option>
+                                </select>
+                                <label for="aluGradYear">Graduation Year *</label>
+                            </div>
+
+                            <div class="alu-field">
+                                <input type="text" id="aluEmployer" name="employer" placeholder=" ">
+                                <label for="aluEmployer">Current Occupation / Organization</label>
+                            </div>
+
+                        </div>
+
+                        <div class="alu-connect">
+                            <span class="alu-connect-label">How would you like to stay connected?</span>
+                            <div class="alu-pill-group">
+                                <input type="checkbox" id="aluConnectNetworking" name="stayConnected" value="Networking" class="alu-pill-input">
+                                <label for="aluConnectNetworking" class="alu-pill-choice">Networking</label>
+
+                                <input type="checkbox" id="aluConnectMentorship" name="stayConnected" value="Mentorship" class="alu-pill-input">
+                                <label for="aluConnectMentorship" class="alu-pill-choice">Mentorship</label>
+
+                                <input type="checkbox" id="aluConnectEvents" name="stayConnected" value="Events" class="alu-pill-input">
+                                <label for="aluConnectEvents" class="alu-pill-choice">Events</label>
+
+                                <input type="checkbox" id="aluConnectCareers" name="stayConnected" value="Career Opportunities" class="alu-pill-input">
+                                <label for="aluConnectCareers" class="alu-pill-choice">Career Opportunities</label>
+                            </div>
+                        </div>
+
+                        <label class="alu-checkbox">
+                            <input type="checkbox" id="aluConsent" name="consent">
+                            <span>I agree to receive relevant alumni communications.</span>
+                        </label>
+
+                        <div class="alu-form-submit">
+                            <button type="submit" class="alu-btn alu-btn-primary"><span>Register as Alumni</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+
+                    </form>
+
+                    <div class="alu-apply-success" id="alumniSuccess" hidden style="text-align:center; padding:20px 0;">
+                        <span style="display:inline-flex; width:60px; height:60px; border-radius:50%; align-items:center; justify-content:center; background:rgba(236,72,153,.1); color:var(--alu-pink); font-size:1.6rem; margin-bottom:14px;"><i class="fa-solid fa-circle-check"></i></span>
+                        <h2 style="font-family:'Poppins',sans-serif; font-weight:800; color:var(--alu-navy); margin:0 0 8px;">Welcome to the Network!</h2>
+                        <p style="color:var(--alu-navy-mut); margin:0;">Thank you for registering. Our Alumni Office will be in touch with next steps.</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= ALUMNI ADVANTAGE (Benefits + Statistics, merged, compact navy) ================= -->
+        <section class="alu-advantage">
+            <div class="alu-orbs" aria-hidden="true">
+                <span class="alu-orb alu-orb-pink" style="top:-16%; right:-8%;"></span>
+            </div>
+            <div class="alu-wrap">
+
+                <div class="alu-head alu-center sp-reveal">
+                    <span class="alu-eyebrow"><i class="fa-solid fa-gift"></i> Benefits</span>
+                    <h2>Your Alumni <span class="alu-pink-text">Advantage</span></h2>
+                    <p>Stay connected, keep growing, and remain part of the Germaine community.</p>
+                </div>
+
+                <div class="alu-adv-cards sp-reveal">
+                    <div class="alu-adv-card">
+                        <h3>Stay Connected</h3>
+                        <p>Keep in touch with Germaine and fellow alumni.</p>
+                    </div>
+                    <div class="alu-adv-card">
+                        <h3>Career Growth</h3>
+                        <p>Access opportunities, events, and professional development.</p>
+                    </div>
+                    <div class="alu-adv-card">
+                        <h3>Alumni Network</h3>
+                        <p>Build meaningful connections across the Germaine community.</p>
+                    </div>
+                </div>
+
+                <div class="alu-stats sp-reveal">
+                    <div class="alu-stat"><h3>5000+</h3><p>Alumni Network</p></div>
+                    <div class="alu-stat"><h3>95%</h3><p>Career Success</p></div>
+                    <div class="alu-stat"><h3>100+</h3><p>Industry Partners</p></div>
+                    <div class="alu-stat"><h3>50+</h3><p>Annual Alumni Events</p></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= FINAL CTA ================= -->
+        <section class="alu-final">
+            <div class="alu-wrap">
+                <div class="alu-final-inner sp-reveal">
+                    <h2>Once a Germaine Student, Always Part of Our Community.</h2>
+                    <p>Reconnect with classmates, celebrate achievements, create new opportunities, and continue growing with a vibrant community of Germaine graduates making an impact across industries.</p>
+                    <div class="alu-final-cta">
+                        <a href="#alumniForm" class="alu-btn alu-btn-primary"><span>Register Today</span> <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="contact.html" class="alu-btn alu-btn-outline"><span>Contact Alumni Office</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+
+<footer class="footer">
+
+    <div class="footer-main">
+        <div class="container footer-grid">
+
+            <div class="footer-column">
+                <img src="assets/images/logo/logo-white.png" alt="Germaine Training Institute Logo" class="footer-logo" loading="lazy" decoding="async">
+                <p>Germaine Training Institute is committed to producing competent, innovative and industry-ready graduates through practical and competency-based education.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="ai-bootcamp.html">AI Bootcamp</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="apply.html">Scholarships</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-location-dot"></i> Pioneer Plaza, Mburu Gichua Road, Nakuru</li>
+                    <li><i class="fa-solid fa-phone"></i> +254 719 488 112</li>
+                    <li><i class="fa-solid fa-envelope"></i> admissions@germaineinstitute.com</li>
+                    <li><i class="fa-solid fa-clock"></i> Mon – Fri : 8:00 AM – 5:00 PM</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-map">
+        <iframe src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed" loading="lazy" allowfullscreen></iframe>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>© 2026 Germaine Training Institute. All Rights Reserved.</p>
+            <p>Designed & Developed by <strong>Emmanuel Elijah</strong></p>
+        </div>
+    </div>
+
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script defer src="assets/js/api-client.js"></script>
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+<script defer src="assets/js/premium-theme.js"></script>
+<script defer src="assets/js/school-page.js"></script>
+
+<script defer src="assets/js/alumni.js"></script>
+
+</body>
+
+</html>

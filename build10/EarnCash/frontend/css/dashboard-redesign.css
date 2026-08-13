@@ -1,0 +1,391 @@
+/* ==========================================================
+    EARNCASH — DASHBOARD REDESIGN
+    Recreates the reference layout (sidebar + topbar + hero
+    banner + stat grid + why/how panels + CTA banner) on top
+    of the existing EarnCash tokens (variables.css) and glass
+    system (.glass / .btn from style.css). Scoped to
+    body.eb-dashboard so no other EarnCash page is affected.
+    All functional IDs used by dashboard.js are preserved:
+    userName, userEmail, totalEarnings, totalReferrals,
+    totalCommission, walletBalance, affiliateLink,
+    transactionList, earningsChart.
+========================================================== */
+
+body.eb-dashboard{ overflow-x:hidden; }
+
+.sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* ==========================================================
+    SHELL — sidebar + main column
+========================================================== */
+.eb-shell{ display:flex; align-items:flex-start; min-height:100vh; }
+
+.eb-sidebar{
+    position:sticky; top:0; align-self:flex-start;
+    width:250px; flex-shrink:0; height:100vh;
+    display:flex; flex-direction:column;
+    padding:22px 16px;
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(var(--blur));
+    -webkit-backdrop-filter:blur(var(--blur));
+    border-right:1px solid var(--glass-border);
+}
+.eb-sidebar-top{ display:flex; align-items:center; gap:10px; padding:6px 10px 22px; }
+.eb-brand-icon{
+    width:40px; height:40px; border-radius:14px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-stats); font-weight:800; font-size:1rem; color:#fff;
+    background:var(--button-gradient-secondary);
+    box-shadow:0 8px 18px var(--glow-pink);
+}
+.eb-brand-name{ font-family:var(--font-heading); font-weight:700; font-size:1.05rem; color:var(--text); }
+
+.eb-sidebar-nav{ display:flex; flex-direction:column; gap:3px; flex:1; overflow-y:auto; }
+.eb-nav-link{
+    display:flex; align-items:center; gap:12px; padding:11px 14px; border-radius:14px;
+    font-size:.9rem; font-weight:600; color:var(--text-light); transition:var(--transition);
+}
+.eb-nav-link i{ width:18px; height:18px; flex-shrink:0; }
+.eb-nav-link:hover{ background:rgba(233,30,99,.08); color:var(--secondary-dark); }
+.eb-nav-link.active{
+    background:var(--button-gradient-secondary); color:#fff;
+    box-shadow:0 10px 22px var(--glow-pink);
+}
+
+.eb-sidebar-profile{
+    margin-top:14px; padding:14px; border-radius:20px;
+    background:var(--surface-light); border:1px solid var(--glass-border);
+}
+.eb-profile-row{ display:flex; align-items:center; gap:10px; }
+.eb-avatar{
+    width:38px; height:38px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--button-gradient); color:#fff;
+}
+.eb-avatar i{ width:18px; height:18px; }
+.eb-profile-info{ flex:1; min-width:0; display:flex; flex-direction:column; }
+.eb-profile-info strong{ font-size:.86rem; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.eb-profile-info span{ font-size:.72rem; color:var(--text-light); }
+.eb-profile-more{
+    border:none; background:transparent; color:var(--text-light); cursor:pointer;
+    width:26px; height:26px; display:flex; align-items:center; justify-content:center; border-radius:8px;
+}
+.eb-profile-more:hover{ background:rgba(15,23,42,.06); color:var(--secondary-dark); }
+.eb-profile-more i{ width:16px; height:16px; }
+.eb-verified-badge{
+    display:inline-flex; align-items:center; gap:6px; margin-top:12px;
+    padding:6px 12px; border-radius:50px; font-size:.72rem; font-weight:700;
+    background:rgba(233,30,99,.1); color:var(--secondary-dark);
+}
+.eb-verified-badge i{ width:13px; height:13px; }
+
+.eb-main-col{ flex:1; min-width:0; display:flex; flex-direction:column; min-height:100vh; }
+
+/* ==========================================================
+    TOPBAR
+========================================================== */
+.eb-topbar{
+    display:flex; align-items:center; justify-content:flex-end; gap:16px;
+    padding:16px 28px;
+}
+.eb-inst-brand{ display:flex; align-items:center; gap:10px; }
+.eb-inst-brand img{ width:34px; height:34px; border-radius:9px; object-fit:cover; }
+.eb-inst-brand span{ font-family:var(--font-heading); font-weight:700; font-size:.86rem; line-height:1.15; color:var(--text); }
+.eb-icon-btn, .eb-avatar-btn{
+    position:relative; width:40px; height:40px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--surface-light); border:1px solid var(--glass-border); color:var(--text);
+}
+.eb-icon-btn i, .eb-avatar-btn i{ width:18px; height:18px; }
+.eb-dot{
+    position:absolute; top:8px; right:9px; width:8px; height:8px; border-radius:50%;
+    background:var(--secondary); border:2px solid #fff;
+}
+
+/* ==========================================================
+    MAIN CONTENT
+========================================================== */
+.eb-main{ flex:1; padding-bottom:60px; }
+.eb-container{ width:94%; max-width:1180px; }
+
+/* ---------- HERO ---------- */
+.eb-hero{
+    display:grid; grid-template-columns:1.6fr 1fr; gap:26px; align-items:center;
+    padding:34px 36px; margin-bottom:22px; position:relative; overflow:hidden;
+}
+.eb-hero-copy h1{
+    font-size:clamp(1.7rem,3vw,2.3rem); line-height:1.18; margin-bottom:12px;
+}
+.eb-hash{ color:var(--secondary); }
+.eb-hero-copy p{ max-width:360px; font-size:.96rem; }
+
+.eb-hero-donut{ display:flex; flex-direction:column; align-items:center; gap:12px; }
+.eb-donut{
+    --pct:0;
+    width:130px; height:130px; border-radius:50%; position:relative;
+    background:conic-gradient(var(--secondary) calc(var(--pct)*1%), rgba(15,23,42,.08) 0);
+    display:flex; align-items:center; justify-content:center;
+}
+.eb-donut::before{
+    content:""; position:absolute; inset:12px; border-radius:50%;
+    background:#fff; box-shadow:inset 0 0 0 1px var(--glass-border);
+}
+.eb-donut-value{ position:relative; z-index:1; font-family:var(--font-stats); font-weight:800; font-size:1.7rem; color:var(--secondary-dark); }
+.eb-donut-caption{ text-align:center; }
+.eb-donut-caption span{ display:block; font-size:.74rem; color:var(--text-light); }
+.eb-donut-caption strong{
+    display:inline-flex; align-items:center; gap:5px; margin-top:4px;
+    font-size:.86rem; color:var(--text);
+}
+.eb-donut-caption strong i{ width:14px; height:14px; color:var(--accent); }
+
+.eb-hero-side{ display:flex; flex-direction:column; gap:14px; }
+.eb-share-card, .eb-bonus-card{
+    padding:16px 18px; border-radius:20px;
+    background:var(--surface-light); border:1px solid var(--glass-border);
+}
+.eb-share-card h4, .eb-bonus-card h4{ font-size:.78rem; color:var(--text-light); font-weight:600; margin-bottom:10px; }
+.eb-share-card .referral-box{ margin-top:0; }
+.eb-share-card .referral-box input{ font-size:.78rem; padding:11px 14px; }
+.eb-share-card .referral-box button{ width:40px; }
+.eb-bonus-card{ position:relative; overflow:hidden; }
+.eb-bonus-card strong{ font-family:var(--font-stats); font-size:1.5rem; color:var(--secondary-dark); display:block; }
+.eb-bonus-card > span{ font-size:.76rem; color:var(--text-light); }
+.eb-spark{ width:100%; height:30px; margin-top:8px; }
+.eb-spark polyline{ fill:none; stroke:var(--secondary); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ---------- STATS ---------- */
+.eb-stats-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:22px; }
+.eb-stat{ padding:22px; }
+.eb-stat .stat-icon{ width:46px; height:46px; border-radius:14px; font-size:1.1rem; }
+.eb-stat h2{ font-size:1.4rem; margin-top:4px; }
+
+/* ---------- WHY / HOW ---------- */
+.eb-two-col{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:22px; }
+.eb-panel{ padding:26px; }
+.eb-panel > h3{ font-size:1.08rem; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; }
+
+.eb-mini-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.eb-mini-item{ display:flex; align-items:flex-start; gap:12px; }
+.eb-mini-item .eb-mini-ic{
+    flex-shrink:0; width:38px; height:38px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(233,30,99,.1); color:var(--secondary-dark);
+}
+.eb-mini-item .eb-mini-ic i{ width:17px; height:17px; }
+.eb-mini-item h4{ font-size:.86rem; margin-bottom:3px; }
+.eb-mini-item p{ font-size:.76rem; line-height:1.45; }
+
+.eb-steps-row{ display:flex; align-items:flex-start; gap:6px; }
+.eb-step{ flex:1; min-width:0; text-align:left; }
+.eb-step-num{ font-family:var(--font-stats); font-weight:800; font-size:.78rem; color:var(--secondary); margin-bottom:8px; display:block; }
+.eb-step .eb-mini-ic{ margin-bottom:10px; }
+.eb-step h4{ font-size:.84rem; margin-bottom:3px; }
+.eb-step p{ font-size:.74rem; line-height:1.4; }
+.eb-step-arrow{ color:rgba(15,23,42,.2); flex-shrink:0; margin-top:32px; }
+.eb-step-arrow i{ width:16px; height:16px; }
+
+/* ---------- PERFORMANCE (real data: wallet / chart / transactions) ---------- */
+.eb-performance{ margin-bottom:22px; }
+.eb-perf-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:18px; margin-bottom:18px; }
+.eb-performance .wallet-card{ display:flex; flex-direction:column; justify-content:center; }
+.eb-performance .analytics-card, .eb-performance .activity-card{ margin-top:0; }
+
+/* ---------- CTA BANNER ---------- */
+.eb-cta-banner{
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    padding:22px 30px; margin-bottom:10px;
+    background:linear-gradient(120deg, rgba(233,30,99,.1), rgba(194,24,91,.08));
+}
+.eb-cta-left{ display:flex; align-items:center; gap:14px; }
+.eb-cta-star{
+    flex-shrink:0; width:42px; height:42px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--button-gradient-gold); color:#fff;
+}
+.eb-cta-star i{ width:18px; height:18px; }
+.eb-cta-left p{ font-weight:600; color:var(--text); font-size:.94rem; }
+.eb-btn-pink{ background:var(--button-gradient-secondary); gap:8px; }
+.eb-btn-pink i{ width:16px; height:16px; }
+
+/* ---------- GTI ENROLLMENT GATEWAY ----------
+   Purposeful "choose a programme to begin your application"
+   gateway — replaces the old "No courses available" dead end on
+   the Enrollments page. Two equally-weighted real paths (AI
+   Bootcamps / Academic Schools), each a premium glass card with a
+   travelling margin light, pointing to the two real GTI discovery
+   hubs. Full version shown when a user has zero real enrollments;
+   compact two-link version appended below a user's REAL
+   enrollment list so they can keep discovering without ever
+   hiding their real data. */
+.gti-gateway-wrap{ padding:38px 34px; margin-top:6px; }
+.gti-gateway-head{ text-align:center; margin-bottom:26px; }
+.gti-gateway-head h2{ margin:0 0 8px; font-size:1.4rem; font-weight:800; color:var(--text); }
+.gti-gateway-head p{ margin:0 auto; max-width:520px; color:var(--text-light); font-size:.92rem; line-height:1.6; }
+
+.gti-gateway-cards{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+.gti-gateway-path-card{
+    position:relative; overflow:hidden; display:block; text-decoration:none;
+    padding:28px 24px; border-radius:var(--radius-lg);
+    background:rgba(255,255,255,.6); backdrop-filter:blur(var(--blur)); -webkit-backdrop-filter:blur(var(--blur));
+    border:1px solid var(--glass-border); box-shadow:var(--shadow-sm);
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+.gti-gateway-path-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+.gti-gateway-path-card::after{
+    content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px; pointer-events:none;
+    background:conic-gradient(from 0deg, transparent 0%, transparent 80%, rgba(233,30,99,.9) 88%, #fff 92%, var(--primary) 96%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:gtiPathTravel 5s linear infinite;
+}
+.gti-gateway-path-card-blue::after{
+    background:conic-gradient(from 0deg, transparent 0%, transparent 80%, rgba(11,31,91,.9) 88%, #fff 92%, var(--secondary) 96%, transparent 100%);
+    animation-delay:-2.5s;
+}
+@keyframes gtiPathTravel{ to{ transform:rotate(360deg); } }
+
+.gti-gateway-path-ic{
+    width:52px; height:52px; margin-bottom:14px; border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--button-gradient); color:#fff; box-shadow:var(--shadow-sm);
+}
+.gti-gateway-path-card-blue .gti-gateway-path-ic{ background:var(--button-gradient-secondary); }
+.gti-gateway-path-ic i{ width:24px; height:24px; }
+.gti-gateway-path-card h3{ margin:0 0 8px; font-size:1.08rem; font-weight:800; color:var(--text); }
+.gti-gateway-path-card p{ margin:0 0 16px; font-size:.86rem; line-height:1.6; color:var(--text-light); }
+.gti-gateway-path-cta{
+    display:inline-flex; align-items:center; gap:8px; font-size:.82rem; font-weight:700;
+    color:var(--primary);
+}
+.gti-gateway-path-card-blue .gti-gateway-path-cta{ color:var(--secondary); }
+.gti-gateway-path-cta i{ width:14px; height:14px; transition:transform .3s ease; }
+.gti-gateway-path-card:hover .gti-gateway-path-cta i{ transform:translateX(4px); }
+
+.gti-gateway-wrap-compact{
+    padding:18px 24px; margin-top:16px; text-align:left;
+    background:rgba(233,30,99,.04); box-shadow:none;
+}
+.gti-gateway-wrap-compact h3{ margin:0 0 12px; font-size:.92rem; font-weight:700; color:var(--text); }
+.gti-gateway-cards-compact{ display:flex; gap:12px; flex-wrap:wrap; }
+.gti-gateway-mini{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+    padding:11px 20px; border-radius:999px; font-size:.8rem; font-weight:700;
+    background:var(--button-gradient); color:#fff; box-shadow:var(--shadow-sm);
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+.gti-gateway-mini-blue{ background:var(--button-gradient-secondary); }
+.gti-gateway-mini:hover{ transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.gti-gateway-mini i{ width:14px; height:14px; }
+
+/* ---------- FOOTER ---------- */
+.eb-footer{ padding:18px 28px 26px; }
+.eb-footer p{ font-size:.78rem; color:var(--text-light); }
+
+/* ==========================================================
+    RESPONSIVE
+========================================================== */
+@media (max-width:1080px){
+    .eb-hero{ grid-template-columns:1fr; }
+    .eb-hero-donut{ flex-direction:row; justify-content:flex-start; gap:16px; }
+    .eb-hero-side{ flex-direction:row; }
+    .eb-share-card, .eb-bonus-card{ flex:1; }
+}
+@media (max-width:960px){
+    .eb-shell{ flex-direction:column; }
+    .eb-sidebar{
+        position:relative; top:0; width:100%; height:auto; flex-direction:row;
+        align-items:center; padding:12px 16px; overflow-x:auto; border-right:none;
+        border-bottom:1px solid var(--glass-border);
+    }
+    .eb-sidebar-top{ padding:0 12px 0 0; }
+    .eb-sidebar-nav{ flex-direction:row; flex:none; }
+    .eb-nav-link span{ display:none; }
+    .eb-nav-link{ padding:10px; }
+    .eb-sidebar-profile{ display:none; }
+    .eb-stats-grid{ grid-template-columns:repeat(2,1fr); }
+    .eb-two-col{ grid-template-columns:1fr; }
+    .eb-perf-grid{ grid-template-columns:1fr; }
+}
+@media (max-width:640px){
+    .eb-topbar{ justify-content:space-between; padding:14px 18px; }
+    .eb-inst-brand span{ display:none; }
+    .eb-hero{ padding:24px 20px; }
+    .eb-hero-donut{ flex-direction:column; }
+    .eb-hero-side{ flex-direction:column; }
+    .eb-stats-grid{ grid-template-columns:1fr; }
+    .eb-mini-grid{ grid-template-columns:1fr; }
+    .eb-steps-row{ flex-direction:column; }
+    .eb-step-arrow{ display:none; }
+    .eb-cta-banner{ flex-direction:column; align-items:flex-start; }
+    .gti-gateway-wrap{ padding:28px 20px; }
+    .gti-gateway-cards{ grid-template-columns:1fr; }
+    .gti-gateway-cards-compact{ flex-direction:column; align-items:stretch; }
+    .gti-gateway-mini{ justify-content:center; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    body.eb-dashboard *{ animation:none !important; }
+}
+
+/* ==========================================================
+    FORM FIELDS — profile settings + withdrawal request
+    (previously unstyled; scoped narrowly so the referral
+    link input / other flex inputs are never affected)
+========================================================== */
+body.eb-dashboard .input-group{ margin-bottom:18px; }
+body.eb-dashboard .input-group label,
+body.eb-dashboard #withdrawForm label{
+    display:block; font-size:.82rem; font-weight:600; color:var(--text); margin-bottom:6px;
+}
+body.eb-dashboard .input-group input,
+body.eb-dashboard #withdrawForm input,
+body.eb-dashboard #withdrawForm select{
+    width:100%; padding:13px 16px; border-radius:16px;
+    border:1px solid var(--glass-border); background:rgba(255,255,255,.6);
+    color:var(--text); font-family:var(--font-main); font-size:.92rem; outline:none;
+    transition:var(--transition);
+}
+body.eb-dashboard #withdrawForm input,
+body.eb-dashboard #withdrawForm select{ margin-bottom:16px; }
+body.eb-dashboard .input-group input:focus,
+body.eb-dashboard #withdrawForm input:focus,
+body.eb-dashboard #withdrawForm select:focus{
+    border-color:var(--secondary); background:#fff;
+    box-shadow:0 0 0 3px rgba(233,30,99,.12);
+}
+body.eb-dashboard #withdrawForm .btn,
+body.eb-dashboard .settings-card .btn{ margin-top:4px; }
+
+/* ==========================================================
+    NOTIFICATIONS — unread highlight + action buttons
+    (generated by notifications.js; previously unstyled)
+========================================================== */
+body.eb-dashboard .notification-row{ align-items:flex-start; }
+body.eb-dashboard .notification-row.unread{
+    background:rgba(233,30,99,.06); border-radius:16px; padding:16px 18px; border-bottom:none;
+    margin-bottom:6px;
+}
+body.eb-dashboard .notification-actions{ display:flex; gap:8px; flex-shrink:0; }
+body.eb-dashboard .notification-actions button{
+    border:1px solid var(--glass-border); background:rgba(255,255,255,.7);
+    padding:7px 14px; border-radius:50px; font-size:.76rem; font-weight:600;
+    color:var(--text); cursor:pointer; transition:var(--transition);
+}
+body.eb-dashboard .notification-actions button:hover{ border-color:var(--secondary); color:var(--secondary-dark); }
+body.eb-dashboard .notification-actions button[data-action="delete"]:hover{ border-color:#EF4444; color:#EF4444; }
+
+/* ==========================================================
+    NETWORK TREE — referrals "How Commissions Work" copy
+========================================================== */
+body.eb-dashboard .network-tree{ margin-top:4px; }
+body.eb-dashboard .network-tree p{ line-height:1.75; }
+
+/* ==========================================================
+    SHARED PAGE HEADER CARD (referrals / notifications / courses)
+========================================================== */
+body.eb-dashboard .dashboard-header{ margin-bottom:6px; }

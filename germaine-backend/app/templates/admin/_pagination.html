@@ -1,0 +1,18 @@
+{% macro render_pagination(result, endpoint, extra_args) %}
+{% if result.pages > 1 %}
+<div class="gti-pagination">
+  {% if result.page > 1 %}
+    <a href="{{ url_for(endpoint, page=result.page-1, **extra_args) }}">&larr; Prev</a>
+  {% else %}
+    <span class="disabled">&larr; Prev</span>
+  {% endif %}
+  <span class="current">Page {{ result.page }} of {{ result.pages }}</span>
+  {% if result.page < result.pages %}
+    <a href="{{ url_for(endpoint, page=result.page+1, **extra_args) }}">Next &rarr;</a>
+  {% else %}
+    <span class="disabled">Next &rarr;</span>
+  {% endif %}
+  <span style="color:#8a97a6;margin-left:8px;">{{ result.total }} total</span>
+</div>
+{% endif %}
+{% endmacro %}

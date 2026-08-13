@@ -1,0 +1,422 @@
+/* ==========================================================
+                    FUTURISTIC CTA SECTION
+========================================================== */
+
+
+
+.cta{
+
+
+    position:relative;
+
+
+    padding:80px 0;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+                    CTA CONTAINER
+========================================================== */
+
+
+.cta-box{
+
+
+    position:relative;
+
+
+    background:
+
+
+    rgba(255,255,255,.45);
+
+
+    backdrop-filter:
+
+
+    blur(30px);
+
+
+    border:
+
+
+    1px solid rgba(255,255,255,.8);
+
+
+    box-shadow:
+
+
+    var(--shadow-lg);
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+                    CTA LIGHT EFFECT
+========================================================== */
+
+
+.cta-box::after{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:350px;
+
+
+    height:350px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+
+    rgba(105,144,255,.25);
+
+
+    filter:
+
+
+    blur(100px);
+
+
+    bottom:-150px;
+
+
+    left:-100px;
+
+
+    z-index:-1;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+                    CTA TEXT
+========================================================== */
+
+
+.cta-box h2{
+
+
+    font-weight:
+
+
+    800;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #4f73ff,
+
+        #9cb4ff
+
+    );
+
+
+    -webkit-background-clip:
+
+
+    text;
+
+
+    color:
+
+
+    transparent;
+
+
+}
+
+
+
+.cta-box p{
+
+
+    font-size:
+
+
+    1.1rem;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+                    CTA BUTTON AREA
+========================================================== */
+
+
+.cta-buttons{
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    gap:20px;
+
+
+}
+/* ==========================================================
+                    CTA BUTTON EFFECTS
+========================================================== */
+
+
+
+.cta-buttons .btn{
+
+
+    min-width:170px;
+
+
+}
+
+
+
+
+.cta-buttons .btn:hover{
+
+
+    transform:
+
+
+    translateY(-8px);
+
+
+}
+
+
+
+
+
+
+/* ==========================================================
+                    CTA FLOATING LIGHT
+========================================================== */
+
+
+.cta-box::before{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    top:-80px;
+
+
+    right:-80px;
+
+
+    width:220px;
+
+
+    height:220px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+
+    rgba(255,255,255,.5);
+
+
+    filter:
+
+
+    blur(70px);
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+                    CTA ENTRY ANIMATION
+========================================================== */
+
+
+.cta-box{
+
+
+    animation:
+
+
+    ctaAppear .9s ease forwards;
+
+
+}
+
+
+
+
+
+@keyframes ctaAppear{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:
+
+
+        translateY(50px);
+
+
+    }
+
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:
+
+
+        translateY(0);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+                    MOBILE CTA
+========================================================== */
+
+
+
+@media(max-width:700px){
+
+
+
+    .cta{
+
+
+        padding:
+
+
+        60px 0;
+
+
+    }
+
+
+
+
+    .cta-box{
+
+
+        padding:
+
+
+        35px 20px;
+
+
+        border-radius:
+
+
+        30px;
+
+
+    }
+
+
+
+
+
+    .cta-buttons{
+
+
+        flex-direction:
+
+
+        column;
+
+
+    }
+
+
+
+
+
+    .cta-buttons .btn{
+
+
+        width:100%;
+
+
+    }
+
+
+
+}

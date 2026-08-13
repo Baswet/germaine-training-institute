@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+
+<meta charset="UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="description" content="Withdraw your EarnFastCash earnings.">
+<link rel="canonical" href="https://site.germaineinstitute.ac.ke/EarnCash/frontend/pages/withdrawal.html">
+
+
+<title>
+
+EarnCash | Withdraw Funds
+
+</title>
+
+
+<link rel="stylesheet" href="../css/variables.css">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="../css/background.css">
+
+<link rel="stylesheet" href="../css/cards.css">
+
+<link rel="stylesheet" href="../css/dashboard.css">
+
+<link rel="stylesheet" href="../css/dashboard-redesign.css">
+
+
+</head>
+
+
+<body class="eb-dashboard">
+
+
+<div class="background-blobs">
+
+
+<span class="blob blob1"></span>
+
+
+<span class="blob blob2"></span>
+
+
+<span class="blob blob3"></span>
+
+
+</div>
+
+
+<div class="cursor-glow"></div>
+
+<div class="eb-shell">
+
+    <aside class="eb-sidebar">
+
+        <div class="eb-sidebar-top">
+            <span class="eb-brand-icon">GC</span>
+            <span class="eb-brand-name">EarnCash</span>
+        </div>
+
+        <nav class="eb-sidebar-nav">
+            <a href="dashboard.html" class="eb-nav-link"><i data-lucide="gauge"></i><span>Dashboard</span></a>
+            <a href="referrals.html" class="eb-nav-link"><i data-lucide="users"></i><span>My Referrals</span></a>
+            <a href="courses.html" class="eb-nav-link"><i data-lucide="graduation-cap"></i><span>Enrollments</span></a>
+            <a href="dashboard.html#performanceSection" class="eb-nav-link"><i data-lucide="bar-chart-3"></i><span>Performance</span></a>
+            <a href="withdrawal.html" class="eb-nav-link active"><i data-lucide="banknote"></i><span>Payouts</span></a>
+            <a href="../../../courses.html" class="eb-nav-link"><i data-lucide="book-open"></i><span>Resources</span></a>
+            <a href="notifications.html" class="eb-nav-link"><i data-lucide="message-square"></i><span>Messages</span></a>
+            <a href="profile.html" class="eb-nav-link"><i data-lucide="settings"></i><span>Settings</span></a>
+        </nav>
+
+        <div class="eb-sidebar-profile">
+
+            <div class="eb-profile-row">
+                <span class="eb-avatar"><i data-lucide="user"></i></span>
+                <div class="eb-profile-info">
+                    <strong>My Account</strong>
+                    <span>Affiliate Partner</span>
+                </div>
+                <button class="eb-profile-more" onclick="logout()" title="Log out" aria-label="Log out"><i data-lucide="log-out"></i></button>
+            </div>
+
+            <span class="eb-verified-badge"><i data-lucide="shield-check"></i> Verified Partner</span>
+
+        </div>
+
+    </aside>
+
+    <div class="eb-main-col">
+
+        <header class="eb-topbar">
+
+            <div class="eb-topbar-actions">
+
+                <a href="../../../index.html" class="eb-inst-brand">
+                    <img src="../../../assets/images/logo/logo.jpg" alt="Germaine Institute">
+                    <span>Germaine<br>Institute</span>
+                </a>
+
+                <a href="notifications.html" class="eb-icon-btn" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                    <span class="eb-dot"></span>
+                </a>
+
+                <a href="profile.html" class="eb-avatar-btn" aria-label="Profile">
+                    <i data-lucide="user-circle"></i>
+                </a>
+
+            </div>
+
+        </header>
+
+        <main class="eb-main">
+
+            <div class="container eb-container">
+
+                <!-- ==========================
+                        WALLET BALANCE
+                =========================== -->
+
+                <section class="wallet-section">
+
+                    <div class="glass wallet-card">
+
+                        <h2>Available Balance</h2>
+
+                        <div class="wallet-number">
+                            KES <span id="withdrawBalance">0</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ==========================
+                        WITHDRAW FORM
+                =========================== -->
+
+                <section class="wallet-section">
+
+                    <div class="glass wallet-card">
+
+                        <h2>Request Withdrawal</h2>
+
+                        <form id="withdrawForm">
+
+                            <label>Amount</label>
+                            <input aria-label="Enter amount" type="number" id="withdrawAmount" placeholder="Enter amount" required>
+
+                            <label>Payment Method</label>
+                            <select id="withdrawMethod" required>
+                                <option value="">Select Method</option>
+                                <option value="mpesa">M-Pesa</option>
+                                <option value="bank">Bank Transfer</option>
+                                <option value="airtel_money">Airtel Money</option>
+                            </select>
+
+                            <label>Account Details</label>
+                            <input aria-label="Phone number or account" type="text" id="withdrawDetails" placeholder="Phone number or account" required>
+
+                            <button class="btn" type="submit">Submit Withdrawal</button>
+
+                        </form>
+
+                    </div>
+
+                </section>
+
+                <!-- ==========================
+                        WITHDRAWAL HISTORY
+                =========================== -->
+
+                <section class="activity-section">
+
+                    <div class="glass activity-card">
+
+                        <h2>Withdrawal History</h2>
+
+                        <div id="withdrawHistory">
+                            <p>Loading withdrawals...</p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+        <footer class="eb-footer">
+            <div class="container">
+                <p>&copy; 2026 Germaine Institute. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================
+        JAVASCRIPT FILES
+=========================== -->
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>lucide.createIcons();</script>
+
+<script src="../js/config.js"></script>
+
+
+<script src="../js/auth.js"></script>
+
+
+<script src="../js/withdrawal.js"></script>
+
+
+</body>
+
+
+</html>

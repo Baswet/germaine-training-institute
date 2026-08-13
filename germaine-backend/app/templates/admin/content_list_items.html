@@ -1,0 +1,72 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ list_meta.label }}{% endblock %}
+{% block content %}
+<div class="gti-topbar"><h1>{{ list_meta.label }}</h1></div>
+
+<div class="gti-toolbar" style="margin-bottom:20px;">
+  {% for key, meta in [('homepage_hero_slides','Homepage Hero Slideshow'), ('student_life_clubs','Student Life — Clubs & Societies'), ('student_life_sports','Student Life — Sports & Recreation')] %}
+    <a class="gti-btn {{ 'gti-btn' if key == list_key else 'gti-btn-secondary' }} gti-btn-small" href="{{ url_for('admin.content_list_items', list_key=key) }}">{{ meta }}</a>
+  {% endfor %}
+</div>
+
+<p style="color:var(--gti-text-muted);font-size:.86rem;margin-top:-10px;margin-bottom:16px;">
+  Up to {{ list_meta.max_items }} items. An empty list here means the page keeps showing its existing static images — nothing is removed from the live site until you add items.
+</p>
+
+<div class="gti-form-section">
+  <h2>Add New Item</h2>
+  <form method="post" action="{{ url_for('admin.content_list_item_create', list_key=list_key) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <div class="gti-item-card" style="align-items:flex-end;">
+      <div class="fields">
+        <div><label style="font-size:.78rem;font-weight:600;">Title</label><input type="text" name="title" placeholder="Title"></div>
+        <div><label style="font-size:.78rem;font-weight:600;">Subtitle / Caption</label><input type="text" name="subtitle" placeholder="Subtitle"></div>
+        <div><label style="font-size:.78rem;font-weight:600;">Link URL (optional)</label><input type="text" name="link_url" placeholder="e.g. courses.html"></div>
+        <div>
+          <label style="font-size:.78rem;font-weight:600;">Image</label>
+          <select name="image_id">
+            <option value="">— Choose from Media Library —</option>
+            {% for m in media %}<option value="{{ m.id }}">{{ m.original_filename or m.filename }}</option>{% endfor %}
+          </select>
+        </div>
+        <div><label style="font-size:.78rem;font-weight:600;">Display Order</label><input type="number" name="display_order" placeholder="1"></div>
+      </div>
+      <div class="actions"><button type="submit" class="gti-btn">Add</button></div>
+    </div>
+  </form>
+</div>
+
+<h2 class="gti-section-title">Current Items</h2>
+{% if items %}
+  {% for item in items %}
+  <form method="post" action="{{ url_for('admin.content_list_item_update', item_id=item.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <div class="gti-item-card">
+      {% if item.image and item.image.url_path %}<img src="{{ item.image.url_path }}" alt="">{% else %}<img src="" alt="">{% endif %}
+      <div class="fields">
+        <input type="text" name="title" value="{{ item.title or '' }}" placeholder="Title">
+        <input type="text" name="subtitle" value="{{ item.subtitle or '' }}" placeholder="Subtitle">
+        <input type="text" name="link_url" value="{{ item.link_url or '' }}" placeholder="Link URL">
+        <select name="image_id">
+          <option value="">— No image —</option>
+          {% for m in media %}<option value="{{ m.id }}" {{ 'selected' if item.image_id == m.id }}>{{ m.original_filename or m.filename }}</option>{% endfor %}
+        </select>
+        <input type="number" name="display_order" value="{{ item.display_order if item.display_order is not none else '' }}" placeholder="Order">
+      </div>
+      <div class="actions">
+        <span class="gti-status-pill {{ 'published' if item.is_active else 'archived' }}">{{ 'Active' if item.is_active else 'Archived' }}</span>
+        <button type="submit" class="gti-btn gti-btn-small">Save</button>
+      </div>
+    </div>
+  </form>
+  {% if item.is_active %}
+  <form method="post" action="{{ url_for('admin.content_list_item_archive', item_id=item.id) }}" style="margin:-8px 0 12px;">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit" class="gti-btn gti-btn-secondary gti-btn-small">Archive this item</button>
+  </form>
+  {% endif %}
+  {% endfor %}
+{% else %}
+  <div class="gti-empty">No items yet — the page's existing static content is shown as-is.</div>
+{% endif %}
+{% endblock %}

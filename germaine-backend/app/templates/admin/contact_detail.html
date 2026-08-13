@@ -1,0 +1,34 @@
+{% extends "admin/base.html" %}
+{% block title %}Contact — {{ record.name }}{% endblock %}
+{% block content %}
+<a class="gti-back-link" href="{{ url_for('admin.contact_list') }}">&larr; Back to Contact Enquiries</a>
+<div class="gti-topbar"><h1>{{ record.name }}</h1></div>
+
+<div class="gti-detail-grid">
+  <div>
+    <div class="gti-panel">
+      <h2>Message</h2>
+      <div class="gti-field-row"><span class="k">Email</span><span class="v">{{ record.email }}</span></div>
+      <div class="gti-field-row"><span class="k">Subject</span><span class="v">{{ record.subject or '—' }}</span></div>
+      <div class="gti-field-row" style="display:block;"><span class="k">Message</span><p class="v" style="text-align:left;margin:6px 0 0;max-width:100%;">{{ record.message }}</p></div>
+    </div>
+  </div>
+  <div>
+    <div class="gti-panel">
+      <h2>Details</h2>
+      <div class="gti-field-row"><span class="k">Submitted</span><span class="v">{{ record.submitted_at.strftime('%d %b %Y, %H:%M') }} UTC</span></div>
+      <div class="gti-field-row"><span class="k">Status</span><span class="v"><span class="gti-badge gti-badge-blue">{{ record.status|title }}</span></span></div>
+    </div>
+    <div class="gti-panel">
+      <h2>Update Status</h2>
+      <form class="gti-status-form" method="post" action="{{ url_for('admin.contact_status_update', message_id=record.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <select name="status">
+          {% for s in statuses %}<option value="{{ s }}" {{ 'selected' if s == record.status }}>{{ s|title }}</option>{% endfor %}
+        </select>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

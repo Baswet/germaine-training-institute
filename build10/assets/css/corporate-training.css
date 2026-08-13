@@ -1,0 +1,666 @@
+/*==================================================
+    GERMAINE — CORPORATE TRAINING PAGE
+    Built on top of the existing global design system
+    (style.css, premium-theme.css, premium-sections.css).
+    Reuses --pt-* variables and .fx-* component classes
+    already established site-wide for visual consistency.
+    Loads after those three files.
+==================================================*/
+
+@property --ct-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+
+:root{
+    --ct-navy:#102A5C;
+    --ct-navy-2:#102A5C;
+    --ct-blue:#EC4899;
+    --ct-cyan:#EC4899;
+    --ct-gold:#EC4899;
+    --ct-gold-2:#EC4899;
+    --ct-pink:#EC4899;
+    --ct-ease:.45s cubic-bezier(.25,.8,.25,1);
+}
+
+@keyframes ctTravel{ to{ --ct-a:360deg; } }
+@keyframes ctFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+@keyframes ctKenburns{ 0%{ scale:1.05; } 100%{ scale:1.14; } }
+@keyframes ctReveal{ to{ opacity:1; transform:none; } }
+@keyframes ctShimmer{ 0%{ background-position:-200% 0; } 100%{ background-position:200% 0; } }
+@keyframes ctScroll{ to{ transform:translateX(-50%); } }
+@keyframes ctPulseLine{ 0%,100%{ opacity:.4; } 50%{ opacity:1; } }
+
+.ct-reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s var(--ct-ease), transform .8s var(--ct-ease); }
+.ct-reveal.ct-show{ opacity:1; transform:none; }
+
+/*==================================================
+    1. HERO — video background, unified glass card
+==================================================*/
+.ct-hero{
+    position:relative;
+    min-height:86vh;
+    overflow:hidden;
+    isolation:isolate;
+    background:linear-gradient(160deg,#FFFFFF,#FFFFFF 65%);
+}
+.ct-hero-bg{ position:absolute; inset:0; z-index:-3; overflow:hidden; }
+.ct-hero-bg video{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    animation:ctKenburns 26s ease-in-out infinite alternate;
+}
+.ct-hero-vignette{
+    position:absolute; inset:0; z-index:-2; pointer-events:none;
+    background:radial-gradient(ellipse at 50% 45%, transparent 48%, rgba(255, 255, 255, .08) 80%, rgba(255, 255, 255, .16) 100%);
+}
+.ct-hero-overlay{
+    position:absolute; inset:0; z-index:-1;
+    background:linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .1) 55%, rgba(255, 255, 255, .14));
+}
+
+.ct-hero-inner{
+    position:relative; z-index:2;
+    max-width:1220px; margin:0 auto; padding:52px 24px 20px;
+    display:flex; justify-content:center;
+}
+
+.ct-hero-card{
+    position:relative;
+    width:100%;
+    min-height:460px;
+    display:grid; grid-template-columns:1fr 1.05fr;
+    border-radius:28px;
+    overflow:hidden;
+}
+
+/* Fully transparent — no glass, no blur, no shadow. Text/icons float
+   directly over the video background on the left; the right (media)
+   side keeps its own single opaque static image, unaffected. */
+.ct-hero-content{
+    background:transparent;
+    background-color:transparent;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    box-shadow:none;
+}
+.ct-hero-card::before{
+    content:""; position:absolute; inset:0; padding:1px; border-radius:28px;
+    background:conic-gradient(from var(--ct-a), transparent 0 66%, var(--ct-cyan) 83%, #EC4899 89%, rgba(236, 72, 153, .6) 96%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:ctTravel 9s linear infinite; pointer-events:none; z-index:6;
+}
+
+.ct-hero-content{ position:relative; z-index:2; padding:40px 36px; display:flex; flex-direction:column; justify-content:center; }
+
+.ct-badge{
+    display:inline-flex; align-items:center; gap:8px; position:relative; overflow:hidden; align-self:flex-start;
+    padding:9px 18px; border-radius:50px; margin-bottom:18px;
+    background:rgba(255, 255, 255, .2); border:1px solid rgba(255, 255, 255, .4);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    font-family:'Montserrat',sans-serif; font-weight:600; font-size:.76rem;
+    letter-spacing:1.4px; text-transform:uppercase; color:var(--pt-navy,#102A5C);
+    text-shadow:0 1px 12px rgba(255, 255, 255, .6);
+}
+.ct-badge i{ color:var(--ct-gold); }
+.ct-badge::before{
+    content:""; position:absolute; inset:0; padding:1px; border-radius:50px;
+    background:conic-gradient(from var(--ct-a), transparent 0 68%, var(--ct-cyan) 86%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:ctTravel 7s linear infinite; pointer-events:none;
+}
+
+.ct-headline{
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:44px; line-height:1.14;
+    color:var(--pt-navy,#102A5C); margin-bottom:16px;
+    text-shadow:0 2px 20px rgba(255, 255, 255, .55);
+}
+.ct-headline .ct-gradient-text{
+    background:linear-gradient(90deg,var(--ct-cyan),var(--ct-pink),var(--ct-gold-2),var(--ct-cyan));
+    background-size:300% auto;
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    animation:ctShimmer 6s linear infinite;
+}
+
+.ct-sub{ font-family:'Open Sans',sans-serif; font-size:16px; line-height:1.6; color:rgba(16, 42, 92, .82); max-width:520px; margin-bottom:26px; text-shadow:0 1px 14px rgba(255, 255, 255, .5); }
+
+.ct-cta{ display:flex; gap:16px; flex-wrap:wrap; }
+
+/* Hero now sits on the light animated background, so its ghost button
+   uses the default blue-on-transparent style. The final CTA banner
+   stays on a dark pink/navy gradient and keeps the light override. */
+.ct-final-cta .btn-ghost{
+    color:#FFFFFF;
+    border-color:rgba(255, 255, 255, .45);
+}
+.ct-final-cta .btn-ghost:hover{
+    color:#FFFFFF;
+    border-color:var(--ct-gold-2);
+}
+.ct-final-cta .btn-ghost::after{
+    background:linear-gradient(90deg, var(--ct-cyan), var(--ct-gold-2));
+}
+
+/* RIGHT: layered media — static anchor image behind, floating glass
+   slideshow window in front, creating depth instead of a flat swap */
+.ct-hero-media{ position:relative; min-height:100%; overflow:hidden; }
+.ct-hero-media::after{
+    content:""; position:absolute; left:0; top:10%; bottom:10%; width:1px;
+    background:linear-gradient(180deg, transparent, rgba(236, 72, 153, .5), transparent); z-index:4;
+}
+.ct-hero-static{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    scale:1.04;
+    translate:var(--ct-pan, 0px 0px);
+    will-change:translate;
+    animation:ctKenburnsScale 30s ease-in-out infinite alternate;
+}
+@keyframes ctKenburnsScale{ 0%{ scale:1.04; } 100%{ scale:1.13; } }
+.ct-hero-static-fade{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(100deg, rgba(16, 42, 92, .55) 0%, rgba(16, 42, 92, .15) 38%, transparent 60%);
+}
+
+/* Slideshow window removed per spec — hero media is now a single static
+   cover image only (.ct-hero-static above), no carousel/dots/JS. */
+
+/*==================================================
+    2. FLOATING STAT CARDS (over hero bottom edge)
+==================================================*/
+.ct-stats-wrap{ position:relative; z-index:2; max-width:1220px; margin:0 auto; padding:0 24px 28px; }
+/* Fully transparent — no card, no glass, no blur, no shadow. Text and
+   icons float directly over the hero video; only a hairline divider
+   separates the five stats. Compact: ~35-40% shorter than before. */
+.ct-statsbar{
+    position:relative;
+    display:grid; grid-template-columns:repeat(5,1fr);
+    padding:12px 14px; border-radius:16px;
+    background:transparent;
+    background-color:transparent;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    box-shadow:none;
+}
+.ct-stat{
+    display:flex; align-items:center; gap:10px; padding:4px 14px;
+    border-right:1px solid rgba(255, 255, 255, .18);
+    animation:ctFloat 7s ease-in-out infinite;
+    transition:transform .3s ease;
+}
+.ct-stat:nth-child(2){ animation-delay:-1.4s; }
+.ct-stat:nth-child(3){ animation-delay:-2.8s; }
+.ct-stat:nth-child(4){ animation-delay:-4.2s; }
+.ct-stat:nth-child(5){ animation-delay:-5.6s; }
+.ct-stat:last-child{ border-right:none; }
+.ct-stat:hover{ transform:translateY(-2px); }
+.ct-stat-ic{
+    flex-shrink:0; width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:.95rem;
+    color:var(--ct-pink);
+    background:transparent;
+    border:1px solid rgba(255, 255, 255, .22);
+    transition:color .3s ease, border-color .3s ease;
+}
+.ct-stat:hover .ct-stat-ic{ color:var(--ct-gold-2); border-color:rgba(236, 72, 153, .45); }
+.ct-stat h2{
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem;
+    color:var(--pt-navy,#102A5C); margin-bottom:1px;
+    text-shadow:0 1px 3px rgba(255, 255, 255, .4);
+    transition:color .3s ease;
+}
+.ct-stat span{
+    font-size:.72rem; color:var(--pt-slate,#102A5C);
+    text-shadow:0 1px 3px rgba(255, 255, 255, .35);
+}
+.ct-stat:hover h2{ color:var(--ct-pink); }
+
+/*==================================================
+    3. TRUSTED BY — auto-scrolling partner logos
+==================================================*/
+.ct-trusted{ padding:22px 24px 30px; position:relative; }
+.ct-trusted-glass{
+    max-width:1220px; margin:0 auto; padding:22px 28px;
+    border-radius:20px;
+    background:var(--pt-glass,rgba(255, 255, 255, .72));
+    backdrop-filter:blur(18px) saturate(130%);
+    -webkit-backdrop-filter:blur(18px) saturate(130%);
+    border:1px solid rgba(236, 72, 153, .1);
+    box-shadow:var(--pt-glass-shadow,0 20px 60px rgba(236, 72, 153, .08));
+}
+.ct-trusted-label{ text-align:center; font-size:.78rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--pt-slate,#102A5C); font-weight:600; margin-bottom:16px; }
+.ct-trusted-track-wrap{
+    max-width:100%; margin:0 auto; overflow:hidden;
+    -webkit-mask:linear-gradient(90deg, transparent, #102A5C 8%, #102A5C 92%, transparent);
+    mask:linear-gradient(90deg, transparent, #102A5C 8%, #102A5C 92%, transparent);
+}
+.ct-trusted-track{ display:flex; align-items:center; gap:52px; width:max-content; animation:ctScroll 26s linear infinite; }
+.ct-trusted-track img{ height:30px; width:auto; object-fit:contain; opacity:.75; filter:grayscale(15%); transition:opacity .3s ease, filter .3s ease, transform .3s ease; }
+.ct-trusted-track img:hover{ opacity:1; filter:grayscale(0%); transform:scale(1.08); }
+
+/*==================================================
+    4. SECTION SHELL (shared light-glass canvas)
+==================================================*/
+.ct-section{ position:relative; padding:56px 0; overflow:hidden; }
+.ct-section-dark{ background:#F8FAFC; }
+.ct-container{ max-width:1220px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+.ct-eyebrow{ display:inline-block; font-family:'Montserrat',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:1.6px; text-transform:uppercase; color:var(--pt-blue,#EC4899); margin-bottom:12px; }
+.ct-h2{ font-family:'Poppins',sans-serif; font-weight:800; font-size:2.4rem; line-height:1.18; color:var(--pt-navy,#102A5C); max-width:640px; margin-bottom:16px; }
+.ct-lead{ font-size:1.02rem; line-height:1.65; color:var(--pt-slate,#102A5C); max-width:600px; }
+.ct-head-row{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:32px; }
+
+/*==================================================
+    5. CORPORATE SOLUTIONS — compact image cards
+==================================================*/
+.ct-solutions-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.ct-solution-card{
+    position:relative; border-radius:20px; overflow:hidden; isolation:isolate;
+    background:var(--pt-glass,rgba(255, 255, 255, .72));
+    backdrop-filter:blur(18px) saturate(130%);
+    -webkit-backdrop-filter:blur(18px) saturate(130%);
+    border:1px solid rgba(236, 72, 153, .1);
+    box-shadow:var(--pt-glass-shadow,0 20px 60px rgba(236, 72, 153, .08));
+    transition:transform var(--ct-ease), box-shadow var(--ct-ease);
+}
+.ct-solution-card::before{
+    content:""; position:absolute; inset:0; padding:1px; border-radius:20px; opacity:0; z-index:3;
+    background:conic-gradient(from var(--ct-a), transparent 0 70%, var(--ct-cyan) 86%, var(--ct-gold) 94%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:ctTravel 6s linear infinite; pointer-events:none; transition:opacity .4s ease;
+}
+.ct-solution-card:hover{ transform:translateY(-6px); box-shadow:var(--pt-glass-shadow-hover,0 30px 70px rgba(236, 72, 153, .16)); }
+.ct-solution-card:hover::before{ opacity:1; }
+.ct-solution-media{ position:relative; height:130px; overflow:hidden; }
+.ct-solution-media img{ width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ct-ease); }
+.ct-solution-card:hover .ct-solution-media img{ transform:scale(1.08); }
+.ct-solution-body{ padding:18px 20px 20px; }
+.ct-solution-card h3{ font-family:'Poppins',sans-serif; font-weight:700; font-size:1.05rem; color:var(--pt-navy,#102A5C); margin-bottom:6px; }
+.ct-solution-card p{ font-size:.85rem; line-height:1.5; color:var(--pt-slate,#102A5C); }
+
+/*==================================================
+    6. WHY GERMAINE — single premium glass card,
+    organic-clipped image on a layered blue blob
+==================================================*/
+.ct-why-card{
+    display:grid; grid-template-columns:1.05fr 1fr; gap:0;
+    align-items:center;
+    border-radius:28px; overflow:hidden;
+    background:var(--pt-glass,rgba(255, 255, 255, .72));
+    backdrop-filter:blur(22px) saturate(130%);
+    -webkit-backdrop-filter:blur(22px) saturate(130%);
+    border:1px solid rgba(236, 72, 153, .1);
+    box-shadow:var(--pt-glass-shadow,0 20px 60px rgba(236, 72, 153, .08));
+    padding:8px;
+}
+.ct-why-content{ padding:44px 40px; }
+.ct-why-content h3{ font-family:'Poppins',sans-serif; font-weight:700; font-size:1.55rem; color:var(--pt-navy,#102A5C); margin-bottom:14px; line-height:1.25; }
+.ct-why-content p{ font-size:.96rem; line-height:1.65; color:var(--pt-slate,#102A5C); margin-bottom:20px; }
+.ct-why-content ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+.ct-why-content ul li{ display:flex; align-items:center; gap:10px; font-size:.9rem; font-weight:500; color:var(--pt-navy,#102A5C); }
+.ct-why-content ul li i{ color:var(--pt-blue,#EC4899); }
+
+.ct-why-blob-media{ position:relative; height:100%; min-height:360px; display:flex; align-items:center; justify-content:center; }
+.ct-why-blob{
+    position:absolute; inset:6% 4%;
+    border-radius:38% 62% 60% 40% / 45% 40% 60% 55%;
+    background:linear-gradient(150deg, var(--pt-blue,#EC4899), var(--pt-blue-2,#EC4899));
+    opacity:.9; filter:blur(.5px);
+    animation:ctBlobMorph 14s ease-in-out infinite;
+    z-index:0;
+}
+@keyframes ctBlobMorph{
+    0%,100%{ border-radius:38% 62% 60% 40% / 45% 40% 60% 55%; }
+    50%{ border-radius:58% 42% 40% 60% / 55% 60% 40% 45%; }
+}
+.ct-why-organic{
+    position:relative; z-index:1;
+    width:82%; height:82%;
+    border-radius:34% 66% 64% 36% / 48% 42% 58% 52%;
+    overflow:hidden;
+    border:4px solid rgba(255, 255, 255, .85);
+    box-shadow:0 30px 60px rgba(236, 72, 153, .25), 0 0 0 1px rgba(236, 72, 153, .06), 0 0 40px rgba(236, 72, 153, .2);
+    animation:ctBlobMorph 14s ease-in-out infinite reverse;
+}
+.ct-why-organic img{ width:100%; height:100%; object-fit:cover; }
+.ct-why-blob-media .fx-dot{ z-index:2; }
+
+/*==================================================
+    7. TRAINING PROCESS — 4-step timeline
+==================================================*/
+.ct-process{ position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+.ct-process::before{
+    content:""; position:absolute; top:34px; left:12%; right:12%; height:2px;
+    background:linear-gradient(90deg, transparent, var(--pt-blue,#EC4899), var(--ct-gold), var(--pt-blue,#EC4899), transparent);
+    background-size:200% 100%;
+    animation:ctShimmer 4s linear infinite;
+}
+.ct-step{ position:relative; text-align:center; padding:0 18px; }
+.ct-step-num{
+    position:relative; width:68px; height:68px; margin:0 auto 20px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.3rem;
+    background:#FFFFFF; color:var(--pt-blue,#EC4899); border:2px solid var(--pt-blue,#EC4899);
+    box-shadow:0 0 0 6px rgba(236, 72, 153, .08);
+}
+.ct-step:hover .ct-step-num{ box-shadow:0 0 0 6px rgba(236, 72, 153, .14), 0 8px 20px rgba(16, 42, 92, .18); transform:translateY(-2px); }
+.ct-step h4{ font-family:'Poppins',sans-serif; font-weight:700; font-size:1.15rem; color:var(--pt-navy,#102A5C); margin-bottom:8px; }
+.ct-step p{ font-size:.88rem; color:var(--pt-slate,#102A5C); line-height:1.55; }
+
+/*==================================================
+    8. INDUSTRIES SERVED — premium glass photo cards
+==================================================*/
+.ct-industries-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; perspective:1200px; }
+.ct-industry-card{
+    position:relative; isolation:isolate;
+    display:flex; flex-direction:column; align-items:center; gap:0; text-align:center;
+    padding:0 0 16px; border-radius:22px; overflow:visible;
+    background:rgba(255, 255, 255, .75); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(236, 72, 153, .14);
+    box-shadow:0 14px 34px rgba(236, 72, 153, .08);
+    transition:transform .5s var(--ct-ease), box-shadow .5s var(--ct-ease);
+    transform-style:preserve-3d;
+}
+.ct-industry-card::before{  /* travelling pink/blue/purple neon border */
+    content:""; position:absolute; inset:0; z-index:2; pointer-events:none; border-radius:inherit; padding:1.5px;
+    background:conic-gradient(from var(--ct-a), transparent 0 64%, var(--ct-pink) 78%, #FFFFFF 86%, var(--ct-cyan) 94%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .4s ease; animation:ctTravel 9s linear infinite;
+}
+.ct-industry-card:hover{
+    transform:translateY(-8px) rotateX(4deg) rotateY(-4deg);
+    box-shadow:0 26px 54px rgba(236, 72, 153, .18), 0 0 30px rgba(236, 72, 153, .2);
+}
+.ct-industry-card:hover::before{ opacity:1; }
+.ct-industry-card i{ font-size:1.3rem; color:var(--pt-blue,#EC4899); }
+.ct-industry-card span{ font-size:.82rem; font-weight:700; color:var(--pt-navy,#102A5C); }
+
+/* raised photo */
+.ct-industry-photo{ padding:0 0 16px; }
+.ct-industry-photo img{
+    position:relative; width:calc(100% - 16px); height:112px; margin:8px 8px 10px; display:block;
+    object-fit:cover; border-radius:16px; transition:transform .6s var(--ct-ease);
+    box-shadow:0 14px 26px rgba(236, 72, 153, .22);
+}
+.ct-industry-photo::after{  /* soft diagonal reflection sheen */
+    content:""; position:absolute; top:8px; left:8px; right:8px; height:112px; border-radius:16px; z-index:1; pointer-events:none;
+    background:linear-gradient(125deg, rgba(255, 255, 255, .35) 0%, transparent 40%);
+}
+.ct-industry-card:hover .ct-industry-photo img{ transform:scale(1.08); }
+.ct-industry-photo span:last-child{ margin-top:0; position:relative; z-index:2; }
+
+/* floating statistic/identity badge */
+.ct-ind-badge{
+    position:absolute; top:88px; right:18px; z-index:3;
+    width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:.85rem; color:#FFFFFF; background:linear-gradient(135deg,var(--ct-pink),var(--ct-cyan));
+    box-shadow:0 8px 18px rgba(236, 72, 153, .4), 0 0 0 3px #FFFFFF;
+    animation:ctBadgeFloat 4.5s ease-in-out infinite;
+}
+@keyframes ctBadgeFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-4px); } }
+
+/*==================================================
+    9. TRAINING IN ACTION — bento slideshow (68/32 split)
+==================================================*/
+.ct-bento{
+    display:grid;
+    grid-template-columns:68% 1fr;
+    grid-template-rows:1fr 1fr;
+    gap:18px;
+    height:560px;
+}
+.ct-bento-main{ grid-row:1 / 3; }
+.ct-bento-card{
+    position:relative; border-radius:22px; overflow:hidden; isolation:isolate;
+    background:rgba(255, 255, 255, .04);
+}
+.ct-bento-track{ position:absolute; inset:0; }
+.ct-bento-slide{
+    position:absolute; inset:0; opacity:0;
+    transform:scale(1.07);
+    transition:opacity 1.1s ease, transform 6.5s ease;
+}
+.ct-bento-slide.ct-active{ opacity:1; transform:scale(1); z-index:1; }
+.ct-bento-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+.ct-bento-card::after{
+    content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:linear-gradient(0deg, rgba(16, 42, 92, .82), transparent 58%);
+    opacity:.5; transition:opacity .4s ease;
+}
+.ct-bento-card:hover::after{ opacity:.82; }
+.ct-bento-card::before{
+    content:""; position:absolute; inset:0; z-index:3; pointer-events:none;
+    background:linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .22) 45%, transparent 60%);
+    transform:translateX(-120%);
+    transition:transform .9s ease;
+}
+.ct-bento-card:hover::before{ transform:translateX(120%); }
+
+.ct-bento-cap{
+    position:absolute; left:22px; right:130px; bottom:18px; z-index:4;
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:1.05rem; color:#FFFFFF;
+    opacity:0; transform:translateY(8px);
+    transition:opacity .4s ease, transform .4s ease;
+}
+.ct-bento-card:hover .ct-bento-cap{ opacity:1; transform:none; }
+.ct-bento-cap-sm{ right:16px; left:16px; bottom:14px; font-size:.84rem; }
+
+.ct-bento-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:5;
+    width:40px; height:40px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255, 255, 255, .14); border:1px solid rgba(255, 255, 255, .3);
+    color:#FFFFFF; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    cursor:pointer; opacity:0;
+    transition:opacity .3s ease, background .3s ease, transform .3s ease;
+}
+.ct-bento-main:hover .ct-bento-arrow{ opacity:1; }
+.ct-bento-arrow:hover{ background:var(--ct-pink); border-color:var(--ct-pink); transform:translateY(-50%) scale(1.08); }
+.ct-bento-arrow-prev{ left:16px; }
+.ct-bento-arrow-next{ right:16px; }
+
+.ct-bento-dots{
+    position:absolute; right:20px; bottom:22px; z-index:5;
+    display:flex; gap:6px;
+}
+.ct-bento-dot{
+    width:6px; height:6px; border-radius:50%;
+    background:rgba(255, 255, 255, .45); cursor:pointer;
+    transition:width .3s ease, border-radius .3s ease, background .3s ease;
+}
+.ct-bento-dot.ct-active{ width:18px; border-radius:4px; background:var(--ct-gold); }
+
+@media(max-width:900px){
+    .ct-bento{ grid-template-columns:1fr; grid-template-rows:none; height:auto; }
+    .ct-bento-main{ grid-row:auto; height:320px; }
+    .ct-bento-side{ height:220px; }
+}
+@media(max-width:520px){
+    .ct-bento-main{ height:260px; }
+    .ct-bento-side{ height:170px; }
+    .ct-bento-cap{ font-size:.92rem; right:100px; }
+}
+@media (prefers-reduced-motion: reduce){
+    .ct-bento-slide{ transition:opacity .4s ease !important; transform:none !important; }
+}
+
+/*==================================================
+    10. SUCCESS METRICS
+==================================================*/
+.ct-metrics-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+.ct-metric-card{
+    text-align:center; padding:34px 20px; border-radius:22px;
+    background:var(--pt-glass,rgba(255, 255, 255, .72)); backdrop-filter:blur(20px);
+    border:1px solid rgba(236, 72, 153, .1); box-shadow:var(--pt-glass-shadow,0 20px 60px rgba(236, 72, 153, .08));
+    animation:ctFloat 8s ease-in-out infinite;
+}
+.ct-metric-card:nth-child(2){ animation-delay:-2s; }
+.ct-metric-card:nth-child(3){ animation-delay:-4s; }
+.ct-metric-card:nth-child(4){ animation-delay:-6s; }
+.ct-metric-card h2{ font-family:'Poppins',sans-serif; font-weight:800; font-size:2.6rem; background:linear-gradient(135deg,var(--pt-blue,#EC4899),var(--pt-blue-2,#EC4899)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:6px; }
+.ct-metric-card span{ font-size:.88rem; font-weight:600; color:var(--pt-slate,#102A5C); }
+
+/*==================================================
+    11. TESTIMONIALS
+==================================================*/
+.ct-testimonial-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.ct-testimonial-card{
+    padding:30px 26px; border-radius:22px;
+    background:rgba(255, 255, 255, .72); backdrop-filter:blur(18px);
+    border:1px solid rgba(236, 72, 153, .1); box-shadow:0 16px 40px rgba(236, 72, 153, .07);
+    transition:transform var(--ct-ease), box-shadow var(--ct-ease);
+}
+.ct-testimonial-card:hover{ transform:translateY(-6px); box-shadow:0 26px 56px rgba(236, 72, 153, .14); }
+.ct-testimonial-card i.ct-quote{ color:var(--ct-gold); font-size:1.4rem; margin-bottom:14px; display:block; }
+.ct-testimonial-card p{ font-size:.95rem; line-height:1.7; color:var(--pt-navy,#102A5C); margin-bottom:20px; }
+.ct-testimonial-foot{ display:flex; align-items:center; gap:12px; }
+.ct-testimonial-avatar{
+    width:44px; height:44px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,var(--pt-blue,#EC4899),var(--pt-blue-2,#EC4899));
+    color:#FFFFFF; font-family:'Poppins',sans-serif; font-weight:700; font-size:.9rem;
+}
+.ct-testimonial-foot strong{ display:block; font-size:.9rem; color:var(--pt-navy,#102A5C); }
+.ct-testimonial-foot span{ font-size:.8rem; color:var(--pt-slate,#102A5C); }
+
+/*==================================================
+    12. FINAL CTA BANNER
+==================================================*/
+.ct-final-cta{
+    position:relative; border-radius:32px; overflow:hidden; isolation:isolate;
+    padding:64px 40px; text-align:center;
+    background:linear-gradient(135deg,#102A5C,#EC4899 45%,#EC4899 70%,#EC4899 100%);
+    background-size:220% 220%;
+    animation:ctShimmer 10s ease-in-out infinite alternate;
+}
+.ct-final-cta::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .18), transparent 45%),
+               radial-gradient(circle at 85% 80%, rgba(255, 255, 255, .14), transparent 50%);
+}
+.ct-final-cta > *{ position:relative; z-index:1; }
+.ct-final-cta h2{ font-family:'Poppins',sans-serif; font-weight:800; font-size:2.3rem; color:#FFFFFF; margin-bottom:14px; }
+.ct-final-cta p{ font-size:1rem; color:rgba(255, 255, 255, .85); max-width:520px; margin:0 auto 30px; }
+.ct-final-cta .ct-cta{ justify-content:center; }
+
+/*==================================================
+    13. WORKFORCE CTA — replaces the generic "Stay Updated"
+    newsletter block in the footer. Pink/magenta glass banner.
+==================================================*/
+.ct-newsletter-cta{
+    padding:64px 0;
+    margin:0;
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    background:linear-gradient(120deg, #e91e63 0%, #be185d 100%);
+}
+.ct-newsletter-cta-glow{
+    position:absolute; z-index:0; border-radius:50%;
+    filter:blur(60px); pointer-events:none;
+}
+.ct-newsletter-cta-glow-a{
+    width:360px; height:360px; top:-140px; left:-80px;
+    background:radial-gradient(circle, rgba(255,255,255,.28), transparent 70%);
+}
+.ct-newsletter-cta-glow-b{
+    width:420px; height:420px; bottom:-200px; right:-100px;
+    background:radial-gradient(circle, rgba(255,255,255,.18), transparent 70%);
+}
+.ct-newsletter-cta-inner{
+    position:relative; z-index:1;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:28px; flex-wrap:wrap;
+    padding:34px 40px;
+    border-radius:28px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.32);
+    box-shadow:0 20px 50px rgba(190,24,93,.28), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.ct-newsletter-cta-text{ display:flex; flex-direction:column; gap:12px; }
+.ct-newsletter-cta-badge{
+    display:inline-flex; align-self:flex-start; align-items:center; gap:6px;
+    padding:6px 14px; border-radius:50px;
+    background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.35);
+    color:#FFFFFF; font-size:.72rem; font-weight:700; letter-spacing:.04em;
+    text-transform:uppercase;
+}
+.ct-newsletter-cta-copy{ display:flex; align-items:center; gap:14px; }
+.ct-newsletter-cta-ic{
+    flex-shrink:0; width:46px; height:46px; border-radius:14px;
+    background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.32);
+    display:flex; align-items:center; justify-content:center;
+    color:#FFFFFF; font-size:1.15rem;
+}
+.ct-newsletter-cta-text h2{
+    font-family:'Poppins',sans-serif; font-size:1.4rem; font-weight:800;
+    color:#FFFFFF; margin:0 0 4px;
+}
+.ct-newsletter-cta-text p{
+    font-size:.92rem; color:rgba(255,255,255,.88); margin:0;
+}
+.ct-newsletter-cta-btn{
+    flex-shrink:0;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 28px; border-radius:50px;
+    background:#0c0814; color:#FFFFFF;
+    font-weight:700; font-size:.9rem; text-decoration:none;
+    box-shadow:0 10px 24px rgba(0,0,0,.3);
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+.ct-newsletter-cta-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 34px rgba(0,0,0,.34), 0 0 0 6px rgba(255,255,255,.14);
+    color:#FFFFFF;
+}
+
+@media(max-width:640px){
+    .ct-newsletter-cta{ padding:40px 0; }
+    .ct-newsletter-cta-inner{ flex-direction:column; text-align:center; padding:28px 22px; }
+    .ct-newsletter-cta-badge{ align-self:center; }
+    .ct-newsletter-cta-copy{ flex-direction:column; }
+    .ct-newsletter-cta-btn{ width:100%; justify-content:center; }
+}
+
+/*==================================================
+    RESPONSIVE
+==================================================*/
+@media(max-width:1024px){
+    .ct-solutions-grid{ grid-template-columns:repeat(2,1fr); }
+    .ct-industries-grid{ grid-template-columns:repeat(3,1fr); }
+    .ct-metrics-grid,.ct-testimonial-grid{ grid-template-columns:repeat(2,1fr); }
+    .ct-gallery{ columns:3 180px; }
+}
+@media(max-width:900px){
+    .ct-hero-card{ grid-template-columns:1fr; min-height:0; }
+    .ct-hero-media{ min-height:280px; order:2; }
+    .ct-hero-content{ order:1; padding:32px 26px; }
+    .ct-headline{ font-size:34px; }
+    .ct-statsbar{ grid-template-columns:repeat(2,1fr); gap:8px 0; }
+    .ct-stat{ border-right:1px solid rgba(255, 255, 255, .18); }
+    .ct-stat:nth-child(odd){ border-right:1px solid rgba(255, 255, 255, .18); }
+    .ct-stat:nth-child(-n+4){ border-bottom:1px solid rgba(255, 255, 255, .18); padding-bottom:12px; }
+    .ct-stat:nth-child(5){ grid-column:1 / -1; justify-content:center; border-right:none; }
+    .ct-why-card{ grid-template-columns:1fr; }
+    .ct-why-blob-media{ min-height:280px; order:-1; }
+    .ct-why-content{ padding:32px 26px; }
+    .ct-process{ grid-template-columns:1fr 1fr; row-gap:36px; }
+    .ct-process::before{ display:none; }
+}
+@media(max-width:640px){
+    .ct-headline{ font-size:28px; }
+    .ct-cta{ flex-direction:column; align-items:stretch; }
+    .ct-solutions-grid,.ct-industries-grid,.ct-metrics-grid,.ct-testimonial-grid{ grid-template-columns:1fr; }
+    .ct-gallery{ columns:2 140px; }
+    .ct-process{ grid-template-columns:1fr; }
+    .ct-final-cta{ padding:44px 24px; }
+    .ct-final-cta h2{ font-size:1.7rem; }
+}
+@media (prefers-reduced-motion: reduce){
+    .ct-hero-bg video,.ct-hero-card::before,.ct-badge::before,.ct-stat,.ct-headline .ct-gradient-text,
+    .ct-solution-card::before,.ct-metric-card,.ct-process::before,.ct-final-cta,.ct-trusted-track,
+    .ct-industry-card::before,.ct-ind-badge{ animation:none !important; }
+    .ct-reveal{ opacity:1; transform:none; }
+    .ct-industry-card:hover{ transform:translateY(-4px); }
+}

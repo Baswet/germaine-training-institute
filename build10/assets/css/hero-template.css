@@ -1,0 +1,204 @@
+/*==================================================
+    GERMAINE — HOMEPAGE FUTURISTIC HERO (ported template)
+    Scoped under .hero-tpl / #heroTpl. Violet+gold, video bg.
+==================================================*/
+
+/*==================================================
+    GERMAINE — FUTURISTIC HERO TEMPLATE
+    Self-contained. Video background + glass cards +
+    travelling border lights. Reuses the Germaine
+    hero content and layout structure.
+==================================================*/
+:root{
+    /* palette tuned to the Germaine flyer: deep navy + magenta + luxury gold */
+    --navy:#102A5C;
+    --navy-2:#102A5C;
+    --blue:#EC4899;
+    --cyan:#EC4899;
+    --blue-2:#EC4899;
+    --gold:#EC4899;
+    --gold-2:#EC4899;
+    --pink:#EC4899;
+    --white:#FFFFFF;
+    --muted:rgba(255, 255, 255, .78);
+    --glass:rgba(255, 255, 255, .07);
+    --glass-bd:rgba(255, 255, 255, .16);
+    --ease:.4s cubic-bezier(.25,.8,.25,1);
+    --font-h:'Poppins',sans-serif;
+    --font-b:'Open Sans',sans-serif;
+    --font-btn:'Montserrat',sans-serif;
+}
+@property --a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+/* travelling border-light helper (rounded rectangles) */
+@keyframes travel{ to{ --a:360deg; } }
+@keyframes floatY{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-12px); } }
+@keyframes cardFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-8px); } }
+@keyframes reveal{ to{ opacity:1; transform:none; } }
+@keyframes kenburns{ 0%{ scale:1.06; translate:0 0; } 100%{ scale:1.14; translate:-1.5% -1%; } }
+
+/*========== HERO SHELL ==========*/
+.hero-tpl{
+    position:relative;
+    min-height:72vh;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    isolation:isolate;
+    background:linear-gradient(160deg,#FFFFFF,#FFFFFF 65%);
+}
+
+/* video background */
+.hero-bg{ position:absolute; inset:0; z-index:-3; overflow:hidden; }
+.hero-bg video{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    scale:1.06; transform:var(--pan,translate(0,0));
+    will-change:transform;
+    animation:kenburns 24s ease-in-out infinite alternate;
+}
+.hero-vignette{
+    position:absolute; inset:0; z-index:-2; pointer-events:none;
+    background:radial-gradient(ellipse at 50% 45%, transparent 40%, rgba(255, 255, 255, .22) 78%, rgba(255, 255, 255, .48) 100%);
+}
+.hero-overlay{
+    position:absolute; inset:0; z-index:-1;
+    background:linear-gradient(180deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .28) 55%, rgba(255, 255, 255, .36));
+}
+
+.wrap{ width:100%; max-width:1220px; margin:0 auto; padding:0 24px; }
+
+.hero-inner{
+    position:relative; z-index:2;
+    padding:48px 0 20px;
+    display:flex; justify-content:center;
+}
+
+/*========== UNIFIED HERO CARD — text + slideshow in ONE glass card ==========*/
+.hero-card{
+    position:relative;
+    width:100%;
+    min-height:440px;
+    display:grid; grid-template-columns:1fr 1.06fr;
+    align-items:stretch;
+    background:transparent !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    border:none !important;
+    box-shadow:none !important;
+    overflow:visible;
+}
+.hero-card::before{ display:none; }
+
+/*========== LEFT: TEXT (inside the card) ==========*/
+.content{ position:relative; z-index:2; padding:34px 32px; display:flex; flex-direction:column; justify-content:center; }
+.content > *{ position:relative; }
+
+.reveal{ opacity:0; transform:translateY(26px); animation:reveal .8s cubic-bezier(.25,.8,.25,1) forwards; animation-delay:calc(var(--d,0)*.13s + .15s); }
+
+.badge{
+    display:inline-flex; align-items:center; gap:8px; position:relative; overflow:hidden;
+    padding:8px 16px; border-radius:50px;
+    background:rgba(255, 255, 255, .06); border:1px solid rgba(236, 72, 153, .3);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    font-family:var(--font-btn); font-weight:600; font-size:.76rem;
+    letter-spacing:1.4px; text-transform:uppercase; color:var(--white); margin-bottom:16px;
+}
+.badge b{ color:var(--gold); font-weight:700; }
+.badge::before{           /* travelling light on the badge pill */
+    content:""; position:absolute; inset:0; padding:1px; border-radius:50px;
+    background:conic-gradient(from var(--a), transparent 0 68%, var(--cyan) 86%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:travel 7s linear infinite; pointer-events:none;
+}
+
+.headline{
+    display:flex; flex-direction:column;
+    font-family:var(--font-h); font-weight:800; text-transform:uppercase;
+    font-size:44px; line-height:1.06; letter-spacing:.2px; margin-bottom:12px;
+    /* One solid Germaine blue across every word — no gradient, no white,
+       no per-line color drift. Bright enough to stay legible over the
+       dark hero video/overlay. */
+    color:#FFFFFF;
+    filter:drop-shadow(0 2px 14px rgba(16, 42, 92, .55)) drop-shadow(0 0 24px rgba(16, 42, 92, .4));
+}
+.headline .gold{
+    /* kept for markup compatibility; inherits the same solid blue —
+       no separate fill/gradient override any more. */
+    color:inherit;
+}
+.headline .accent{ position:relative; padding-left:20px; }
+.headline .accent::before{ content:""; position:absolute; left:0; top:12%; bottom:12%; width:5px; border-radius:3px; background:#EC4899; box-shadow:0 0 14px rgba(236, 72, 153, .6); }
+
+.sub{ font-size:16px; line-height:1.55; color:rgba(255, 255, 255, .92); max-width:520px; margin-bottom:18px; text-shadow:0 2px 10px rgba(16, 42, 92, .4); }
+
+.cta{ display:flex; gap:16px; flex-wrap:wrap; }
+.btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    font-family:var(--font-btn); font-weight:600; font-size:.92rem;
+    padding:15px 32px; border-radius:999px; cursor:pointer; text-decoration:none;
+    transition:transform var(--ease), box-shadow var(--ease), background var(--ease), color var(--ease);
+    border:1.5px solid transparent;
+}
+.btn-gold{ background:linear-gradient(135deg,var(--gold-2),var(--gold)); color:#FFFFFF; box-shadow:0 12px 28px rgba(236, 72, 153, .35); }
+.btn-gold:hover{ transform:translateY(-3px); box-shadow:0 16px 36px rgba(236, 72, 153, .5); }
+.btn-glass{ background:rgba(255, 255, 255, .06); color:#FFFFFF; border-color:rgba(255, 255, 255, .4); backdrop-filter:blur(12px); }
+.btn-glass:hover{ border-color:var(--gold); background:rgba(255, 255, 255, .16); box-shadow:0 0 26px rgba(255, 255, 255, .25); transform:translateY(-3px); }
+
+/*========== RIGHT: SLIDESHOW MEDIA (fills the card's right half) ==========*/
+.card-media{ position:relative; min-height:100%; overflow:hidden; }
+.card-media::after{   /* thin gold divider between text & media */
+    content:""; position:absolute; left:0; top:10%; bottom:10%; width:1px;
+    background:linear-gradient(180deg, transparent, rgba(236, 72, 153, .5), transparent); z-index:4;
+}
+.track{ position:absolute; inset:0; overflow:hidden; }
+.tpl-slide{ position:absolute; inset:0; opacity:0; transform:scale(1.06); transition:opacity 1s ease, transform 1.4s ease; }
+.tpl-slide.active{ opacity:1; transform:scale(1); }
+.tpl-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+.tpl-slide .cap{
+    position:absolute; left:0; right:0; bottom:0;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+    padding:40px 24px 44px;
+    background:linear-gradient(0deg, rgba(16, 42, 92, .94) 0%, rgba(16, 42, 92, .5) 55%, transparent 100%);
+}
+.cap h4{ font-family:var(--font-h); font-weight:700; font-size:1.22rem; color:var(--gold); margin-bottom:4px; }
+.cap p{ font-size:.88rem; color:rgba(255, 255, 255, .82); }
+.cap .count{ flex-shrink:0; font-family:var(--font-btn); font-size:.88rem; color:rgba(255, 255, 255, .65); }
+.cap .count b{ color:var(--gold); }
+.arrow{
+    position:absolute; top:44%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%;
+    background:rgba(16, 42, 92, .7); backdrop-filter:blur(10px); border:1px solid rgba(236, 72, 153, .45);
+    color:#FFFFFF; display:flex; align-items:center; justify-content:center; z-index:6; cursor:pointer;
+    transition:var(--ease);
+}
+.arrow:hover{ background:var(--gold); color:var(--navy); border-color:var(--gold); box-shadow:0 0 20px rgba(236, 72, 153, .5); }
+.prev{ left:14px; } .next{ right:14px; }
+.dots{ position:absolute; left:24px; right:24px; bottom:14px; z-index:6; display:flex; justify-content:center; gap:8px; padding-top:12px; border-top:1px solid rgba(236, 72, 153, .3); }
+.dot{ width:7px; height:7px; border-radius:50%; background:rgba(255, 255, 255, .4); cursor:pointer; transition:var(--ease); }
+.dot.active{ width:22px; border-radius:5px; background:var(--gold); }
+
+@media (prefers-reduced-motion: reduce){
+    .hero-bg video, .hero-card, .hero-card::before, .badge::before, .reveal, .headline{ animation:none !important; }
+    .reveal{ opacity:1; transform:none; }
+}
+
+/*========== RESPONSIVE ==========*/
+@media(max-width:900px){
+    .hero-card{ grid-template-columns:1fr; min-height:0; }
+    .card-media{ min-height:300px; order:2; }
+    .card-media::after{ display:none; }
+    .content{ order:1; padding:30px 26px; }
+    .headline{ font-size:40px; }
+    .hero-inner{ padding:34px 0 16px; }
+}
+@media(max-width:576px){
+    .hero-tpl{ min-height:auto; }
+    .hero-inner{ padding:30px 0 18px; }
+    .headline{ font-size:32px; }
+    .card-media{ min-height:240px; }
+    .cta{ flex-direction:column; align-items:stretch; }
+    .btn{ width:100%; }
+    .arrow{ width:38px; height:38px; }
+}

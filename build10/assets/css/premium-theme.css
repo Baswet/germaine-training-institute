@@ -1,0 +1,546 @@
+/*==================================================
+    GERMAINE TRAINING INSTITUTE
+    PREMIUM FUTURISTIC BRAND THEME (global layer)
+
+    Loads LAST across every page. Upgrades the shared
+    visual language (colour, glass, light, motion) of
+    the existing site without touching structure, nav,
+    copy or section order. Everything here is additive
+    and scoped to components/classes that already exist
+    site-wide, so it applies consistently to Home, About,
+    Courses, Admissions, Hire Our Graduates and Contact.
+==================================================*/
+
+@property --pt-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+
+:root{
+    --pt-blue:#EC4899;      /* Germaine Pink — primary brand colour (dominant accent) */
+    --pt-blue-2:#EC4899;    /* Darker pink — hover / interactive state */
+    --pt-pink:#EC4899;      /* Signature Germaine Pink */
+    --pt-gold:#EC4899;      /* Legacy "gold" token — gold has been removed sitewide per brand update; now resolves to Germaine Pink so every existing var(--pt-gold) reference stays correct without touching each call site */
+    --pt-pink-light:#EC4899; /* Light Pink — travelling-light midpoint */
+    --pt-navy:#102A5C;      /* Deep Navy — secondary brand colour (headings, body text, footer, nav, icons) */
+    --pt-slate:#102A5C;     /* Slate Grey */
+
+    /* Germaine signature gradient — used sparingly */
+    --pt-gradient:linear-gradient(135deg,#EC4899 0%,#EC4899 45%,#102A5C 75%,#FFFFFF 100%);
+
+    --pt-glass:rgba(255, 255, 255, .72);
+    --pt-glass-bd:rgba(236, 72, 153, .16);
+    --pt-glass-shadow:0 20px 50px rgba(16, 42, 92, .06), 0 0 22px rgba(236, 72, 153, .12);
+    --pt-glass-shadow-hover:0 30px 60px rgba(16, 42, 92, .12), 0 0 34px rgba(236, 72, 153, .26);
+    --pt-ease:.45s cubic-bezier(.25,.8,.25,1);
+
+    /* -----------------------------------------------------------
+       Re-point every legacy brand token used throughout style.css,
+       responsive.css and the scoped section files (nav, footer,
+       badges, plain buttons, misc components not explicitly listed
+       below) so the WHOLE site inherits the exact logo palette —
+       not just the components this file styles directly.
+       Official Germaine theme (3 colours only, gold removed):
+       Germaine Pink #EC4899 (primary/dominant),
+       Deep Navy #102A5C (secondary — headings, text, footer, nav, icons),
+       White #FFFFFF (base).
+    ----------------------------------------------------------- */
+    --primary:var(--pt-blue);
+    --primary-dark:var(--pt-navy);
+    --primary-light:var(--pt-blue-2);
+    --secondary:var(--pt-gold);
+    --secondary-dark:#EC4899;
+    --accent:var(--pt-gold);
+    --accent-dark:#EC4899;
+    --accent-light:#EC4899;
+
+    --surface:#FFFFFF;
+    --bg-page:#FFFFFF;
+    --light:#FFFFFF;
+    --light-2:#FFFFFF;
+    --gray:var(--pt-slate);
+    --dark:var(--pt-navy);
+
+    --shadow:0 10px 26px rgba(16, 42, 92, .06), 0 0 16px rgba(236, 72, 153, .1);
+    --shadow-hover:0 20px 40px rgba(16, 42, 92, .12), 0 0 30px rgba(236, 72, 153, .24);
+}
+
+@media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+}
+
+/*==================================================
+    1. FUTURISTIC WHITE CANVAS
+    Illuminated, layered background applied to the
+    page body and to every plain white/soft-white
+    section so nothing on the site is ever flat white.
+==================================================*/
+
+body{
+    position:relative;
+    background-image:
+        radial-gradient(640px 420px at 6% 0%, rgba(16, 42, 92, .055), transparent 62%),
+        radial-gradient(520px 380px at 97% 8%, rgba(236, 72, 153, .04), transparent 58%),
+        radial-gradient(680px 480px at 86% 98%, rgba(236, 72, 153, .055), transparent 62%),
+        linear-gradient(rgba(16, 42, 92, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 42, 92, .035) 1px, transparent 1px);
+    background-size:100% 100%,100% 100%,100% 100%,42px 42px,42px 42px;
+    background-attachment:fixed,fixed,fixed,fixed,fixed;
+    background-repeat:no-repeat,no-repeat,no-repeat,repeat,repeat;
+    animation:ptBgPulse 20s ease-in-out infinite;
+}
+
+@keyframes ptBgPulse{
+    0%,100%{ background-position:6% 0%,97% 8%,86% 98%,0 0,0 0; }
+    50%{ background-position:10% 4%,93% 12%,82% 94%,0 0,0 0; }
+}
+
+/* the two known flat-white full sections get the same illuminated canvas */
+.welcome-section,
+.welcome-feature{
+    position:relative;
+    background:
+        radial-gradient(520px 360px at 92% 6%, rgba(236, 72, 153, .05), transparent 60%),
+        radial-gradient(560px 380px at 4% 100%, rgba(16, 42, 92, .06), transparent 62%),
+        #FFFFFF !important;
+}
+
+/* faint blueprint grid + node glows behind key premium sections
+   (stats, CTAs, testimonials) without altering their own colour */
+.cta-section::before,
+.why-germaine::before{
+    content:"";
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    opacity:.5;
+    background-image:
+        radial-gradient(circle at 14% 20%, rgba(16, 42, 92, .16) 0 2px, transparent 3px),
+        radial-gradient(circle at 82% 30%, rgba(236, 72, 153, .14) 0 2px, transparent 3px),
+        radial-gradient(circle at 60% 82%, rgba(236, 72, 153, .16) 0 2px, transparent 3px);
+}
+
+/*==================================================
+    2. GLASSMORPHISM CARDS
+    Every content card across the site gets a
+    consistent premium glass treatment: soft blur,
+    hairline blue border, layered shadow, gold shimmer
+    top edge, hover lift with blue glow + pink accent.
+==================================================*/
+
+.welcome-feature,
+.journey-card,
+.newsletter-form,
+.form-card,
+.value-card,
+.team-card,
+.step-item,
+.faq-item,
+.news-card,
+.contact-info-card,
+.course-card-mini,
+.category-card,
+.school-card,
+.industry-recognition,
+.principal-card,
+.programme-card,
+.outcome-card,
+.career-card,
+.requirements-card,
+.feature-card,
+.summary-card,
+.related-card,
+.hero-info-card{
+    position:relative;
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    border:1px solid var(--pt-glass-bd);
+    box-shadow:var(--pt-glass-shadow);
+    transition:transform var(--pt-ease), box-shadow var(--pt-ease), border-color var(--pt-ease);
+}
+
+.welcome-feature::before,
+.journey-card::before,
+.newsletter-form::before,
+.form-card::before,
+.value-card::before,
+.team-card::before,
+.step-item::before,
+.faq-item::before,
+.news-card::before,
+.contact-info-card::before,
+.course-card-mini::before,
+.category-card::before,
+.school-card::before,
+.industry-recognition::before,
+.principal-card::before,
+.programme-card::before,
+.outcome-card::before,
+.career-card::before,
+.requirements-card::before,
+.feature-card::before,
+.summary-card::before,
+.related-card::before{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:3px; z-index:3; pointer-events:none;
+    border-radius:inherit;
+    background:linear-gradient(90deg, transparent, var(--pt-gold) 50%, transparent);
+    background-size:250% 100%;
+    background-position:150% 0;
+    opacity:0;
+    transition:opacity var(--pt-ease);
+}
+
+.welcome-feature:hover::before,
+.journey-card:hover::before,
+.newsletter-form:hover::before,
+.form-card:hover::before,
+.value-card:hover::before,
+.team-card:hover::before,
+.step-item:hover::before,
+.faq-item:hover::before,
+.news-card:hover::before,
+.contact-info-card:hover::before,
+.course-card-mini:hover::before,
+.category-card:hover::before,
+.school-card:hover::before,
+.industry-recognition:hover::before,
+.principal-card:hover::before,
+.programme-card:hover::before,
+.outcome-card:hover::before,
+.career-card:hover::before,
+.requirements-card:hover::before,
+.feature-card:hover::before,
+.summary-card:hover::before,
+.related-card:hover::before{
+    opacity:1;
+    animation:ptShimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes ptShimmer{
+    0%{ background-position:150% 0; }
+    100%{ background-position:-50% 0; }
+}
+
+.welcome-feature:hover,
+.journey-card:hover,
+.newsletter-form:hover,
+.form-card:hover,
+.value-card:hover,
+.team-card:hover,
+.step-item:hover,
+.faq-item:hover,
+.news-card:hover,
+.contact-info-card:hover,
+.course-card-mini:hover,
+.category-card:hover,
+.school-card:hover,
+.industry-recognition:hover,
+.principal-card:hover,
+.programme-card:hover,
+.outcome-card:hover,
+.career-card:hover,
+.requirements-card:hover,
+.feature-card:hover,
+.summary-card:hover,
+.related-card:hover,
+.hero-info-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--pt-glass-shadow-hover), 0 0 0 1px rgba(236, 72, 153, .22);
+    border-color:rgba(236, 72, 153, .32);
+}
+
+/* data tables (fee comparison, programme listings) get a quieter glass
+   frame — no hover-lift, since users hover them constantly to read rows */
+.fee-table,
+.prog-table-wrap{
+    border:1px solid var(--pt-glass-bd);
+    box-shadow:var(--pt-glass-shadow);
+    border-radius:var(--radius,18px);
+    overflow:hidden;
+}
+
+/* card imagery: soft blue grade + rounded glass frame + gentle zoom on hover */
+.news-image img,
+.school-top-img img,
+.programme-card-image img,
+.related-card-img img,
+.team-card img{
+    transition:transform .6s var(--pt-ease), filter .6s ease;
+    filter:saturate(1.03) contrast(1.02);
+}
+.news-card:hover .news-image img,
+.school-card:hover .school-top-img img,
+.programme-card:hover .programme-card-image img,
+.related-card:hover .related-card-img img,
+.team-card:hover img{
+    transform:scale(1.06);
+    filter:saturate(1.1) contrast(1.04) brightness(1.02);
+}
+
+/*==================================================
+    3. BUTTONS — signature gradient, glow, travelling shine
+==================================================*/
+
+.btn-primary,
+.btn-secondary,
+.afp-btn,
+.gh-btn{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+}
+
+.btn-primary{
+    background:linear-gradient(115deg, var(--pt-blue) 0%, var(--pt-blue-2) 55%, var(--pt-blue) 100%);
+    box-shadow:0 14px 26px rgba(16, 42, 92, .2), 0 0 0 0 rgba(236, 72, 153, .5);
+    animation:ptBtnPulse 3s ease-in-out infinite;
+}
+
+.btn-primary:hover{
+    background:linear-gradient(115deg, var(--pt-blue-2) 0%, var(--pt-pink) 100%);
+    color:#FFFFFF;
+    box-shadow:0 18px 32px rgba(16, 42, 92, .2), 0 0 28px rgba(236, 72, 153, .45);
+}
+
+@keyframes ptBtnPulse{
+    0%,100%{ box-shadow:0 14px 26px rgba(16, 42, 92, .2), 0 0 0 0 rgba(236, 72, 153, .55); }
+    50%{ box-shadow:0 16px 30px rgba(16, 42, 92, .24), 0 0 0 8px rgba(236, 72, 153, 0); }
+}
+
+.btn-primary::after,
+.btn-secondary::after,
+.afp-btn::after,
+.gh-btn::after{
+    content:"";
+    position:absolute; top:0; left:-60%; width:40%; height:100%; z-index:1;
+    background:linear-gradient(115deg, transparent, rgba(255, 255, 255, .55), transparent);
+    transform:skewX(-20deg);
+    translate:0;
+    animation:ptBtnShine 3s ease-in-out infinite;
+    will-change:translate;
+    pointer-events:none;
+}
+
+/* GPU-composited sweep — animates `translate` (not `left`) so it never
+   triggers layout, only compositing. 475% of the bar's own 40%-width
+   equals the same 190%-of-button travel as the original left animation. */
+@keyframes ptBtnShine{
+    0%{ translate:0; }
+    35%{ translate:475% 0; }
+    100%{ translate:475% 0; }
+}
+
+.btn-secondary{
+    background:linear-gradient(115deg, var(--pt-gold) 0%, #EC4899 100%);
+}
+
+.btn-secondary:hover{
+    background:linear-gradient(115deg, var(--pt-blue) 0%, var(--pt-blue-2) 100%);
+}
+
+/* ghost buttons — thin blue border, animated underline */
+.btn-ghost{
+    position:relative;
+    display:inline-flex; align-items:center; gap:8px;
+    background:transparent;
+    color:var(--pt-blue);
+    border:1.5px solid rgba(236, 72, 153, .4);
+    border-radius:50px;
+    padding:14px 28px;
+    font-family:var(--font-button,'Montserrat',sans-serif);
+    font-weight:600; font-size:.92rem;
+    transition:var(--pt-ease);
+}
+.btn-ghost::after{
+    content:""; position:absolute; left:28px; right:28px; bottom:9px; height:1.5px;
+    background:var(--pt-gradient); background-size:220% 100%;
+    transform:scaleX(0); transform-origin:left; transition:transform .4s ease;
+}
+.btn-ghost:hover{ border-color:var(--pt-blue); color:var(--pt-blue-2); }
+.btn-ghost:hover::after{ transform:scaleX(1); }
+
+/*==================================================
+    4. HEADINGS — signature gradient word highlight
+==================================================*/
+
+.pt-word{
+    background:var(--pt-gradient);
+    background-size:220% 220%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:var(--pt-blue);
+    animation:ptGradientShift 8s ease-in-out infinite;
+}
+
+@keyframes ptGradientShift{
+    0%,100%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+}
+
+/*==================================================
+    5. ICONS — premium hover states
+==================================================*/
+
+.value-card i,
+.outcome-card i,
+.career-card i,
+.contact-info-card i,
+.journey-icon,
+.afp-hex,
+.step-item i,
+.faq-item i{
+    transition:color .4s ease, background .4s ease, box-shadow .4s ease, transform .4s ease;
+}
+
+.value-card:hover i,
+.outcome-card:hover i,
+.career-card:hover i,
+.contact-info-card:hover i,
+.journey-card:hover .journey-icon,
+.step-item:hover i{
+    color:var(--pt-pink);
+    box-shadow:0 0 18px rgba(236, 72, 153, .45);
+    transform:translateY(-2px) scale(1.06);
+}
+
+/*==================================================
+    6. IMAGE FRAMES — glass border + soft blue glow
+==================================================*/
+
+.gallery-item img,
+.principal-card img,
+.hero-info-card img{
+    border-radius:inherit;
+    box-shadow:inset 0 0 0 1px rgba(255, 255, 255, .5);
+    transition:box-shadow .5s ease, transform .6s var(--pt-ease), filter .5s ease;
+    filter:saturate(1.03) contrast(1.02);
+}
+.gallery-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:var(--radius,18px);
+    box-shadow:0 20px 50px rgba(16, 42, 92, .14);
+    transition:box-shadow .5s ease;
+}
+.gallery-item:hover{
+    box-shadow:0 26px 60px rgba(16, 42, 92, .2), 0 0 0 1px rgba(236, 72, 153, .25), 0 0 24px rgba(236, 72, 153, .18);
+}
+.gallery-item:hover img{
+    transform:scale(1.08);
+    filter:saturate(1.1) contrast(1.04) brightness(1.02);
+}
+
+/*==================================================
+    7. TRAVELLING LIGHT SYSTEM — reusable border scanner
+    Adds an animated conic border trace on hover to the
+    same set of premium cards, echoing the accent used
+    on the homepage Academic Programmes + Hire pages.
+==================================================*/
+
+.value-card,
+.team-card,
+.news-card,
+.category-card,
+.school-card,
+.principal-card,
+.programme-card,
+.outcome-card,
+.career-card,
+.feature-card,
+.ash-card{
+    --pt-edge:conic-gradient(from var(--pt-a), transparent 0 68%, var(--pt-pink-light) 80%, var(--pt-pink) 88%, var(--pt-gold) 95%, transparent 100%);
+}
+
+.value-card::after,
+.team-card::after,
+.news-card::after,
+.category-card::after,
+.school-card::after,
+.principal-card::after,
+.programme-card::after,
+.outcome-card::after,
+.career-card::after,
+.feature-card::after,
+.ash-card::after{
+    content:"";
+    position:absolute; inset:0; z-index:2; pointer-events:none;
+    border-radius:inherit;
+    padding:1.4px;
+    background:var(--pt-edge);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    opacity:0;
+    transition:opacity .4s ease;
+    animation:ptScan 5s linear infinite paused;
+}
+
+.value-card:hover::after,
+.team-card:hover::after,
+.news-card:hover::after,
+.category-card:hover::after,
+.school-card:hover::after,
+.principal-card:hover::after,
+.programme-card:hover::after,
+.outcome-card:hover::after,
+.career-card:hover::after,
+.feature-card:hover::after,
+.ash-card:hover::after{
+    opacity:1;
+    animation-play-state:running;
+}
+
+@keyframes ptScan{ to{ --pt-a:360deg; } }
+
+/*==================================================
+    8. AMBIENT PARTICLES / STREAKS
+    Handled by germaine-signature.js (#g-particle-field)
+    so they are intentionally not duplicated here.
+==================================================*/
+
+/*==================================================
+    9. SECTION DIVIDERS — subtle wave / glow separators
+    (CSS-only, no markup changes required)
+==================================================*/
+
+.welcome-section,
+.why-germaine,
+.testimonial-section{
+    position:relative;
+}
+.welcome-section::after,
+.why-germaine::after,
+.testimonial-section::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:1px; z-index:1;
+    background:linear-gradient(90deg, transparent, rgba(16, 42, 92, .16) 30%, rgba(236, 72, 153, .14) 55%, rgba(236, 72, 153, .16) 75%, transparent);
+}
+
+/*==================================================
+    10. FOOTER — deep navy premium accents
+==================================================*/
+
+.footer{
+    position:relative;
+    overflow:hidden;
+}
+.footer::before{
+    content:"";
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:
+        radial-gradient(420px 260px at 10% 0%, rgba(236, 72, 153, .14), transparent 65%),
+        radial-gradient(420px 280px at 92% 100%, rgba(236, 72, 153, .12), transparent 65%);
+}
+.footer-social a{
+    transition:var(--pt-ease);
+}
+.footer-social a:hover{
+    box-shadow:0 0 18px rgba(236, 72, 153, .45);
+    transform:translateY(-3px);
+}
+
+/*==================================================
+    11. MOTION SAFETY
+==================================================*/
+@media (prefers-reduced-motion: reduce){
+    body{ animation:none; }
+    .pt-particles, .pt-streak{ display:none; }
+    .btn-primary, .btn-primary::after, .btn-secondary::after, .afp-btn::after, .gh-btn::after{ animation:none; }
+}

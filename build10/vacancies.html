@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        Explore Vacancies | Germaine Training Institute
+    </title>
+
+    <meta name="description"
+        content="Discover graduate jobs, internships and career opportunities for Germaine Training Institute students and alumni. Explore verified vacancies from employers hiring Germaine graduates.">
+
+    <meta name="author" content="Germaine Training Institute">
+
+    <meta property="og:title" content="Explore Vacancies | Germaine Training Institute">
+    <meta property="og:description" content="Discover your next career opportunity — verified vacancies for Germaine graduates and alumni.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://site.germaineinstitute.ac.ke/assets/images/gallery/campus-meeting.jpg">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/vacancies.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Explore Vacancies | Germaine Training Institute">
+    <meta name="twitter:description" content="Discover your next career opportunity — verified vacancies for Germaine graduates and alumni.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/gallery/campus-meeting.jpg">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/vacancies.html">
+
+    <link rel="icon" type="image/jpeg" href="assets/images/logo/logo.jpg">
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/premium-theme.css">
+    <link rel="stylesheet" href="assets/css/premium-sections.css">
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+    <link rel="stylesheet" href="assets/css/school-page.css">
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+    <link rel="stylesheet" href="assets/css/vacancies.css">
+
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <a href="https://wa.me/254719488112" class="whatsapp" target="_blank" aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="utility-bar" id="utilityBar">
+        <div class="container utility-bar-inner">
+            <div class="utility-left">
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+                <a href="ai-bootcamp.html" class="utility-link"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+            </div>
+            <div class="utility-right">
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+                <a href="vacancies.html" class="utility-link active"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+
+    <header id="header">
+        <div class="branding-bar">
+            <div class="container branding-inner">
+                <a href="index.html" class="brand-logo-group">
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+                    <span class="brand-text">
+                        <span class="brand-name">Germaine Training Institute</span>
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+                    </span>
+                </a>
+                <div class="branding-right">
+                    <div class="branding-contact">
+                        <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+                        <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+                    </div>
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <div class="container navbar-inner">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="about.html">About Us <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="about.html">Our Story</a>
+                            <a href="about.html">Mission &amp; Vision</a>
+                            <a href="about.html">Leadership</a>
+                            <a href="about.html">Accreditation</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="admissions.html">Admissions <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="admissions.html#admission-form">Apply Online</a>
+                            <a href="admissions.html">Entry Requirements</a>
+                            <a href="admissions.html">Fees Structure</a>
+                            <a href="apply.html">Scholarships</a>
+                        </div>
+                    </li>
+                    <li class="dropdown mega-dropdown">
+                        <a href="courses.html">Academic Schools <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="dropdown-menu mega-menu mega-menu-schools">
+                            <div class="mega-menu-col">
+                                <span class="mega-menu-col-title">Academic Schools</span>
+                                <a href="courses-health-sciences.html">School of Medical &amp; Health Sciences</a>
+                                <a href="courses-hospitality-tourism.html">School of Hospitality, Tourism &amp; Travel</a>
+                                <a href="courses-engineering-technology.html">School of Engineering</a>
+                                <a href="courses-computing-it.html">School of Computing &amp; Informatics</a>
+                                <a href="courses-cosmetology-fashion-design.html">School of Cosmetology, Fashion &amp; Design</a>
+                                <a href="courses-business-commerce.html">Business &amp; Social Sciences</a>
+                                <a href="courses-mass-communication-journalism.html">School of Communication &amp; Media</a>
+                                <a href="courses-agriculture.html">School of Agriculture</a>
+                                <a href="courses-virtual-learning.html">School of Virtual Learning</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="courses-languages.html" class="nav-twoline"><span class="nav-line">Languages &amp;</span><span class="nav-line">Short Courses</span></a></li>
+                    <li><a href="campus.html">Student Life</a></li>
+                    <li><a href="news.html">News &amp; Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+
+                <div class="nav-buttons">
+                    <button class="search-btn" aria-label="Open search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="announcement-bar">
+        <div class="container announcement-container">
+            <div class="announcement-left">
+                <i class="fas fa-bullhorn"></i>
+                <span>September 2026 Intake Now Open &bull; Applications Ongoing</span>
+            </div>
+            <a href="apply.html" class="announcement-link">Apply Now For Full Scholarship <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    </div>
+
+    <div class="search-modal">
+        <div class="search-box">
+            <input aria-label="Search courses, departments or news" type="text" placeholder="Search courses, departments or news...">
+            <button aria-label="Submit search"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+        <!-- ================= HERO ================= -->
+        <section class="vac-hero">
+            <div class="vac-orbs" aria-hidden="true">
+                <span class="vac-orb vac-orb-pink" style="top:-10%; left:-8%;"></span>
+                <span class="vac-orb vac-orb-navy" style="bottom:-16%; right:-10%;"></span>
+            </div>
+            <div class="vac-wrap vac-hero-grid">
+
+                <div class="vac-hero-text sp-reveal">
+                    <span class="vac-eyebrow"><i class="fa-solid fa-rocket"></i> Germaine Careers</span>
+                    <h1 class="vac-hero-title">Discover Your Next <span class="vac-pink-text">Career Opportunity</span></h1>
+                    <p class="vac-hero-desc">Explore graduate jobs, internships, and career opportunities shared with Germaine Training Institute students and alumni by verified employers. Whether you are graduating soon or already in the workforce, find your next step here.</p>
+                    <div class="vac-hero-cta">
+                        <a href="#vacListings" class="vac-btn vac-btn-primary"><span>Explore Vacancies</span> <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="partner-with-us.html#pwInquiry" class="vac-btn vac-btn-outline"><span>Post a Vacancy</span></a>
+                    </div>
+                </div>
+
+                <div class="gwf-wrap vac-hero-media sp-reveal">
+                    <div class="gwf-frame">
+                        <div class="gwf-glass">
+                            <img src="assets/images/campus/pioneer-plaza-exterior.jpg" alt="Germaine Training Institute, Pioneer Plaza campus" loading="eager">
+                        </div>
+                    </div>
+                    <span class="vac-live-badge"><i class="fa-solid fa-circle"></i> Openings Updated Weekly</span>
+                    <span class="vac-token vac-token-1"><i class="fa-solid fa-briefcase"></i> Graduate Jobs</span>
+                    <span class="vac-token vac-token-2"><i class="fa-solid fa-rocket"></i> Internships</span>
+                    <span class="vac-token vac-token-3"><i class="fa-solid fa-handshake"></i> Hiring Partners</span>
+                    <span class="vac-token vac-token-4"><i class="fa-solid fa-star"></i> Career Growth</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= FLOATING SMART SEARCH ================= -->
+        <div class="vac-search-wrap">
+            <div class="vac-wrap">
+                <div class="vac-search sp-reveal">
+                    <div class="vac-search-field">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input aria-label="Search opportunities" type="text" id="vacSearchInput" placeholder="Search opportunities...">
+                    </div>
+                    <div class="vac-search-field">
+                        <i class="fa-solid fa-building"></i>
+                        <select id="vacDept">
+                            <option value="">Department</option>
+                            <option value="ict">ICT &amp; Computing</option>
+                            <option value="hospitality">Hospitality &amp; Tourism</option>
+                            <option value="engineering">Engineering</option>
+                            <option value="health">Health Sciences</option>
+                            <option value="fashion">Fashion &amp; Design</option>
+                            <option value="business">Business &amp; Administration</option>
+                        </select>
+                    </div>
+                    <div class="vac-search-field">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <select id="vacLocation">
+                            <option value="">Location</option>
+                            <option value="nakuru">Nakuru</option>
+                            <option value="nairobi">Nairobi</option>
+                            <option value="remote">Remote / Field-Based</option>
+                        </select>
+                    </div>
+                    <div class="vac-search-field">
+                        <i class="fa-solid fa-clock"></i>
+                        <select id="vacType">
+                            <option value="">Employment Type</option>
+                            <option value="full-time">Full-Time</option>
+                            <option value="part-time">Part-Time</option>
+                            <option value="internship">Internship</option>
+                        </select>
+                    </div>
+                    <button type="button" id="vacFindBtn" class="vac-btn vac-btn-primary vac-search-btn"><span>Find Jobs</span> <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= FEATURED VACANCIES ================= -->
+        <section class="vac-section" id="vacListings">
+            <div class="vac-wrap">
+
+                <div class="vac-head vac-center sp-reveal">
+                    <span class="vac-eyebrow"><i class="fa-solid fa-list-check"></i> Featured Vacancies</span>
+                    <h2>Latest <span class="vac-pink-text">Opportunities</span></h2>
+                    <p>A snapshot of current openings shared with the Germaine community. Use the search panel above to filter by department, location, or employment type.</p>
+                </div>
+
+                <div class="vac-grid">
+
+                    <article class="vac-card sp-reveal" data-dept="ict" data-location="nakuru" data-type="full-time" data-title="ICT Support Technician">
+                        <div class="vac-card-top">
+                            <span class="vac-card-logo"><i class="fa-solid fa-network-wired"></i></span>
+                            <div class="vac-card-title">
+                                <h3>ICT Support Technician</h3>
+                                <span>Regional Technology Solutions Provider</span>
+                            </div>
+                        </div>
+                        <div class="vac-card-meta">
+                            <span class="vac-chip"><i class="fa-solid fa-location-dot"></i> Nakuru</span>
+                            <span class="vac-chip"><i class="fa-solid fa-clock"></i> Full-Time</span>
+                            <span class="vac-chip"><i class="fa-solid fa-graduation-cap"></i> Graduate Level</span>
+                        </div>
+                        <p class="vac-card-deadline">Apply Before: <b>15 Sept 2026</b></p>
+                        <a href="contact.html" class="vac-card-cta"><span>Apply Now</span> <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="vac-card sp-reveal" data-dept="hospitality" data-location="nairobi" data-type="full-time" data-title="Front Office Associate">
+                        <div class="vac-card-top">
+                            <span class="vac-card-logo"><i class="fa-solid fa-hotel"></i></span>
+                            <div class="vac-card-title">
+                                <h3>Front Office Associate</h3>
+                                <span>Leading Hospitality &amp; Tourism Group</span>
+                            </div>
+                        </div>
+                        <div class="vac-card-meta">
+                            <span class="vac-chip"><i class="fa-solid fa-location-dot"></i> Nairobi</span>
+                            <span class="vac-chip"><i class="fa-solid fa-clock"></i> Full-Time</span>
+                            <span class="vac-chip"><i class="fa-solid fa-graduation-cap"></i> Entry Level</span>
+                        </div>
+                        <p class="vac-card-deadline">Apply Before: <b>30 Sept 2026</b></p>
+                        <a href="contact.html" class="vac-card-cta"><span>Apply Now</span> <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="vac-card sp-reveal" data-dept="engineering" data-location="nakuru" data-type="internship" data-title="Junior Electrical Technician">
+                        <div class="vac-card-top">
+                            <span class="vac-card-logo"><i class="fa-solid fa-bolt"></i></span>
+                            <div class="vac-card-title">
+                                <h3>Junior Electrical Technician</h3>
+                                <span>Growing Engineering &amp; Manufacturing Firm</span>
+                            </div>
+                        </div>
+                        <div class="vac-card-meta">
+                            <span class="vac-chip"><i class="fa-solid fa-location-dot"></i> Nakuru</span>
+                            <span class="vac-chip"><i class="fa-solid fa-clock"></i> Internship</span>
+                            <span class="vac-chip"><i class="fa-solid fa-graduation-cap"></i> Internship</span>
+                        </div>
+                        <p class="vac-card-deadline">Apply Before: <b>10 Sept 2026</b></p>
+                        <a href="contact.html" class="vac-card-cta"><span>Apply Now</span> <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="vac-card sp-reveal" data-dept="health" data-location="remote" data-type="part-time" data-title="Community Health Assistant">
+                        <div class="vac-card-top">
+                            <span class="vac-card-logo"><i class="fa-solid fa-heart-pulse"></i></span>
+                            <div class="vac-card-title">
+                                <h3>Community Health Assistant</h3>
+                                <span>National Healthcare Provider Network</span>
+                            </div>
+                        </div>
+                        <div class="vac-card-meta">
+                            <span class="vac-chip"><i class="fa-solid fa-location-dot"></i> Remote / Field-Based</span>
+                            <span class="vac-chip"><i class="fa-solid fa-clock"></i> Part-Time</span>
+                            <span class="vac-chip"><i class="fa-solid fa-graduation-cap"></i> Entry Level</span>
+                        </div>
+                        <p class="vac-card-deadline">Apply Before: <b>20 Sept 2026</b></p>
+                        <a href="contact.html" class="vac-card-cta"><span>Apply Now</span> <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="vac-card sp-reveal" data-dept="fashion" data-location="nairobi" data-type="internship" data-title="Fashion &amp; Design Intern">
+                        <div class="vac-card-top">
+                            <span class="vac-card-logo"><i class="fa-solid fa-scissors"></i></span>
+                            <div class="vac-card-title">
+                                <h3>Fashion &amp; Design Intern</h3>
+                                <span>Regional Fashion &amp; Retail Brand</span>
+                            </div>
+                        </div>
+                        <div class="vac-card-meta">
+                            <span class="vac-chip"><i class="fa-solid fa-location-dot"></i> Nairobi</span>
+                            <span class="vac-chip"><i class="fa-solid fa-clock"></i> Internship</span>
+                            <span class="vac-chip"><i class="fa-solid fa-graduation-cap"></i> Internship</span>
+                        </div>
+                        <p class="vac-card-deadline">Apply Before: <b>5 Oct 2026</b></p>
+                        <a href="contact.html" class="vac-card-cta"><span>Apply Now</span> <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="vac-card sp-reveal" data-dept="business" data-location="nakuru" data-type="full-time" data-title="Business Administration Assistant">
+                        <div class="vac-card-top">
+                            <span class="vac-card-logo"><i class="fa-solid fa-boxes-stacked"></i></span>
+                            <div class="vac-card-title">
+                                <h3>Business Administration Assistant</h3>
+                                <span>Growing Retail &amp; Logistics Company</span>
+                            </div>
+                        </div>
+                        <div class="vac-card-meta">
+                            <span class="vac-chip"><i class="fa-solid fa-location-dot"></i> Nakuru</span>
+                            <span class="vac-chip"><i class="fa-solid fa-clock"></i> Full-Time</span>
+                            <span class="vac-chip"><i class="fa-solid fa-graduation-cap"></i> Graduate Level</span>
+                        </div>
+                        <p class="vac-card-deadline">Apply Before: <b>25 Sept 2026</b></p>
+                        <a href="contact.html" class="vac-card-cta"><span>Apply Now</span> <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                </div>
+
+                <p class="vac-empty" id="vacEmpty">No vacancies match your current filters. Try adjusting your search.</p>
+
+            </div>
+        </section>
+
+        <!-- ================= WHY APPLY THROUGH GERMAINE ================= -->
+        <section class="vac-section vac-section-tint">
+            <div class="vac-wrap">
+
+                <div class="vac-head vac-center sp-reveal">
+                    <span class="vac-eyebrow"><i class="fa-solid fa-shield-halved"></i> Why Apply Through Germaine</span>
+                    <h2>More Than Just <span class="vac-pink-text">Job Listings.</span></h2>
+                    <p>Germaine Career Services connects students and alumni to real opportunities, backed by support that goes beyond a simple job board.</p>
+                </div>
+
+                <div class="vac-why-grid">
+
+                    <article class="vac-why-card sp-reveal">
+                        <div class="vac-why-slideshow" aria-hidden="true">
+                            <img class="vac-why-slide" src="assets/images/gallery/student-services.jpg" alt="" loading="lazy">
+                            <img class="vac-why-slide" src="assets/images/gallery/campus-meeting.jpg" alt="" loading="lazy">
+                            <img class="vac-why-slide" src="assets/images/gallery/reception-1.jpg" alt="" loading="lazy">
+                        </div>
+                        <div class="vac-why-body">
+                            <h3>Verified Employers</h3>
+                            <p>Every opportunity listed is reviewed by our Career Services team, so you can apply with confidence knowing the listing is credible.</p>
+                        </div>
+                    </article>
+
+                    <article class="vac-why-card sp-reveal">
+                        <div class="vac-why-slideshow" aria-hidden="true">
+                            <img class="vac-why-slide" src="assets/images/gallery/ict-1.jpg" alt="" loading="lazy">
+                            <img class="vac-why-slide" src="assets/images/gallery/student-services.jpg" alt="" loading="lazy">
+                            <img class="vac-why-slide" src="assets/images/gallery/campus-meeting.jpg" alt="" loading="lazy">
+                        </div>
+                        <div class="vac-why-body">
+                            <h3>Career Support</h3>
+                            <p>Get help with your CV, interview preparation, and career guidance from our Alumni &amp; Career Services office at every step.</p>
+                        </div>
+                    </article>
+
+                    <article class="vac-why-card sp-reveal">
+                        <div class="vac-why-slideshow" aria-hidden="true">
+                            <img class="vac-why-slide" src="assets/images/gallery/campus-meeting.jpg" alt="" loading="lazy">
+                            <img class="vac-why-slide" src="assets/images/gallery/life-teamwork.jpg" alt="" loading="lazy">
+                            <img class="vac-why-slide" src="assets/images/gallery/ict-1.jpg" alt="" loading="lazy">
+                        </div>
+                        <div class="vac-why-body">
+                            <h3>Exclusive Opportunities</h3>
+                            <p>Many roles are shared directly with Germaine students and alumni first, giving you an early advantage in your job search.</p>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= STATISTICS ================= -->
+        <section class="vac-stats-wrap">
+            <div class="vac-wrap">
+                <div class="vac-stats sp-reveal">
+                    <div class="vac-stat"><h3 data-count="300" data-suffix="+">0</h3><p>Active Vacancies</p></div>
+                    <div class="vac-stat"><h3 data-count="150" data-suffix="+">0</h3><p>Hiring Partners</p></div>
+                    <div class="vac-stat"><h3 data-count="5000" data-suffix="+">0</h3><p>Graduates</p></div>
+                    <div class="vac-stat"><h3 data-count="95" data-suffix="%">0</h3><p>Placement Support</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FINAL CTA ================= -->
+        <section class="vac-final">
+            <div class="vac-wrap">
+                <div class="vac-final-inner sp-reveal">
+                    <h2>Ready to Launch Your Career?</h2>
+                    <p>Whether you are searching for your first graduate role or your next big opportunity, Germaine Career Services is here to help you take the next step.</p>
+                    <div class="vac-final-cta">
+                        <a href="#vacListings" class="vac-btn vac-btn-primary"><span>Browse Vacancies</span> <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="partner-with-us.html#pwInquiry" class="vac-btn vac-btn-outline"><span>Employer Registration</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+
+<footer class="footer">
+
+    <div class="footer-main">
+        <div class="container footer-grid">
+
+            <div class="footer-column">
+                <img src="assets/images/logo/logo-white.png" alt="Germaine Training Institute Logo" class="footer-logo" loading="lazy" decoding="async">
+                <p>Germaine Training Institute is committed to producing competent, innovative and industry-ready graduates through practical and competency-based education.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="ai-bootcamp.html">AI Bootcamp</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="apply.html">Scholarships</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-location-dot"></i> Pioneer Plaza, Mburu Gichua Road, Nakuru</li>
+                    <li><i class="fa-solid fa-phone"></i> +254 719 488 112</li>
+                    <li><i class="fa-solid fa-envelope"></i> admissions@germaineinstitute.com</li>
+                    <li><i class="fa-solid fa-clock"></i> Mon – Fri : 8:00 AM – 5:00 PM</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-map">
+        <iframe src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed" loading="lazy" allowfullscreen></iframe>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>© 2026 Germaine Training Institute. All Rights Reserved.</p>
+            <p>Designed & Developed by <strong>Emmanuel Elijah</strong></p>
+        </div>
+    </div>
+
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+<script defer src="assets/js/premium-theme.js"></script>
+<script defer src="assets/js/school-page.js"></script>
+
+<script defer src="assets/js/vacancies.js"></script>
+
+</body>
+
+</html>

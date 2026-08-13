@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% from "admin/_pagination.html" import render_pagination %}
+{% block title %}News{% endblock %}
+{% block content %}
+<div class="gti-topbar"><h1>News</h1><a class="gti-btn" href="{{ url_for('admin.news_create') }}">+ New Article</a></div>
+
+<form class="gti-toolbar" method="get">
+  <input type="text" name="q" placeholder="Search title or summary…" value="{{ q }}">
+  <select name="status">
+    <option value="">All statuses</option>
+    {% for s in statuses %}<option value="{{ s }}" {{ 'selected' if s == status }}>{{ s|title }}</option>{% endfor %}
+  </select>
+  <button type="submit">Filter</button>
+  {% if q or status %}<a class="gti-clear" href="{{ url_for('admin.news_list') }}">Clear</a>{% endif %}
+</form>
+
+<div class="gti-table-wrap">
+  {% if result.records %}
+  <table class="gti-table">
+    <thead><tr><th>Title</th><th>Category</th><th>Author</th><th>Status</th><th>Updated</th></tr></thead>
+    <tbody>
+      {% for a in result.records %}
+      <tr>
+        <td><a class="gti-row-link" href="{{ url_for('admin.news_edit', article_id=a.id) }}">{{ a.title }}</a></td>
+        <td>{{ a.category or '—' }}</td>
+        <td>{{ a.author or '—' }}</td>
+        <td><span class="gti-status-pill {{ a.status }}">{{ a.status|title }}</span></td>
+        <td>{{ a.updated_at.strftime('%d %b %Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="gti-empty">No articles match this view. Existing static news.html cards are unaffected.</div>{% endif %}
+</div>
+{{ render_pagination(result, 'admin.news_list', {'q': q, 'status': status}) }}
+{% endblock %}

@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+                META DATA
+    =========================================== -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Early theme application (prevents flash of wrong theme) -->
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        Germaine AI Bootcamp | Germaine Training Institute
+    </title>
+
+    <meta name="description"
+        content="Germaine AI Bootcamp — Germaine Training Institute's flagship AI programme. Master machine learning, generative AI and real-world AI tools, build a portfolio of real projects, and launch a career in artificial intelligence.">
+
+    <meta name="keywords"
+        content="Germaine AI Bootcamp, AI Course Kenya, Machine Learning Training, Generative AI Bootcamp, Artificial Intelligence Nakuru">
+
+    <meta name="author"
+        content="Germaine Training Institute">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title"
+        content="Germaine AI Bootcamp | Germaine Training Institute">
+
+    <meta property="og:description"
+        content="Master Artificial Intelligence. Build Real Projects. Launch an AI Career. Germaine Training Institute's flagship AI programme.">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:image"
+        content="https://site.germaineinstitute.ac.ke/assets/images/slide/ict.jpg">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/ai-bootcamp.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Germaine AI Bootcamp | Germaine Training Institute">
+    <meta name="twitter:description" content="Master Artificial Intelligence. Build Real Projects. Launch an AI Career. Germaine Training Institute's flagship AI programme.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/slide/ict.jpg">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/ai-bootcamp.html">
+
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/jpeg"
+        href="assets/images/logo/logo.jpg">
+
+    <!-- Preload critical above-the-fold assets -->
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+
+    <link rel="stylesheet"
+        href="assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="assets/css/responsive.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-theme.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-sections.css">
+
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+
+    <link rel="stylesheet" href="assets/css/school-page.css">
+
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+
+    <link rel="stylesheet"
+        href="assets/css/ai-bootcamp.css">
+
+    <link rel="stylesheet"
+        href="assets/css/ai-courses.css">
+
+    <link rel="stylesheet" href="assets/css/courses-menu.css">
+
+</head>
+
+<body class="aic-family-page">
+
+    <!-- ==========================================
+                PRELOADER
+    =========================================== -->
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ==========================================
+                WHATSAPP
+    =========================================== -->
+
+    <a href="https://wa.me/254719488112"
+        class="whatsapp"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+    <!-- ==========================================
+                FIXED TOP STACK (utility bar + header + announcement)
+    =========================================== -->
+
+        <!-- ==========================================
+                LEVEL 1 — UTILITY BAR
+    =========================================== -->
+
+    <div class="utility-bar" id="utilityBar">
+
+        <div class="container utility-bar-inner">
+
+            <div class="utility-left">
+
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+
+                <a href="ai-bootcamp.html" class="utility-link active"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+
+            </div>
+
+            <div class="utility-right">
+
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                FIXED TOP STACK (branding bar + main navigation + announcement)
+    =========================================== -->
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+
+    <!-- ==========================================
+                LEVEL 2 — BRANDING BAR
+    =========================================== -->
+
+    <header id="header">
+
+        <div class="branding-bar">
+
+            <div class="container branding-inner">
+
+                <a href="index.html" class="brand-logo-group">
+
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+
+                    <span class="brand-text">
+
+                        <span class="brand-name">Germaine Training Institute</span>
+
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+
+                    </span>
+
+                </a>
+
+                <div class="branding-right">
+
+                    <div class="branding-contact">
+
+                    <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+
+                    <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+
+                </div>
+
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                    LEVEL 3 — MAIN NAVIGATION
+        =========================================== -->
+
+        <nav class="navbar">
+
+            <div class="container navbar-inner">
+
+                <ul class="nav-links">
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li class="dropdown">
+
+                        <a href="about.html">About Us <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="about.html">Our Story</a>
+
+                            <a href="about.html">Mission &amp; Vision</a>
+
+                            <a href="about.html">Leadership</a>
+
+                            <a href="about.html">Accreditation</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown">
+
+                        <a href="admissions.html">Admissions <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="admissions.html#admission-form">Apply Online</a>
+
+                            <a href="admissions.html">Entry Requirements</a>
+
+                            <a href="admissions.html">Fees Structure</a>
+
+                            <a href="apply.html">Scholarships</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown mega-dropdown">
+
+                        <a href="courses.html">Academic Schools <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu mega-menu mega-menu-schools">
+
+                            <div class="mega-menu-col">
+
+                                <span class="mega-menu-col-title">Academic Schools</span>
+
+                                <a href="courses-health-sciences.html">School of Medical &amp; Health Sciences</a>
+
+                                <a href="courses-hospitality-tourism.html">School of Hospitality, Tourism &amp; Travel</a>
+
+                                <a href="courses-engineering-technology.html">School of Engineering</a>
+
+                                <a href="courses-computing-it.html">School of Computing &amp; Informatics</a>
+
+                                <a href="courses-cosmetology-fashion-design.html">School of Cosmetology, Fashion &amp; Design</a>
+
+                                <a href="courses-business-commerce.html">Business &amp; Social Sciences</a>
+
+                                <a href="courses-mass-communication-journalism.html">School of Communication &amp; Media</a>
+
+                                <a href="courses-agriculture.html">School of Agriculture</a>
+
+                                <a href="courses-virtual-learning.html">School of Virtual Learning</a>
+
+                            </div>
+</div>
+
+                    </li>
+
+                    <li><a href="courses-languages.html" class="nav-twoline"><span class="nav-line">Languages &amp;</span><span class="nav-line">Short Courses</span></a></li>
+
+                    <li><a href="campus.html">Student Life</a></li>
+
+                    <li><a href="news.html">News &amp; Events</a></li>
+
+                    <li><a href="contact.html">Contact Us</a></li>
+
+                </ul>
+
+                <div class="nav-buttons">
+
+                    <button class="search-btn" aria-label="Open search">
+
+                        <i class="fas fa-search"></i>
+
+                    </button>
+
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+                </div>
+
+                <!-- Mobile Menu -->
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ==========================================
+            ADMISSION ANNOUNCEMENT BAR
+    =========================================== -->
+
+    <section class="announcement-bar">
+
+        <div class="container announcement-container">
+
+            <div class="announcement-left">
+
+                <i class="fas fa-bullhorn"></i>
+
+                <span>
+
+                    September 2026 Intake Now Open &bull; Applications Ongoing
+
+                </span>
+
+            </div>
+
+            <a href="apply.html"
+                class="announcement-link">
+
+                Apply Now For Full Scholarship
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    </div>
+
+<!-- ==========================================
+            SEARCH POPUP
+    =========================================== -->
+
+    <div class="search-modal">
+
+        <div class="search-box">
+
+            <input aria-label="Search courses, departments or news"
+                type="text"
+                placeholder="Search courses, departments or news...">
+
+            <button aria-label="Submit search">
+
+                <i class="fas fa-search"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                MAIN CONTENT
+    =========================================== -->
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+        <header class="aic-nav" id="aicNav">
+            <div class="ai-wrap aic-nav-inner">
+                <a href="ai-bootcamp.html" class="aic-nav-brand">
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" loading="lazy">
+                    <span class="aic-nav-motto">Master AI. Build Real Projects. Launch Your Career.</span>
+                </a>
+                <nav class="aic-nav-links" id="aicNavLinks" aria-label="AI Bootcamp navigation">
+                    <a href="ai-bootcamp.html" class="aic-nav-link" data-nav="home">Home</a>
+                    <a href="ai-bootcamp-courses.html" class="aic-nav-link" data-nav="courses">Courses</a>
+                    <a href="contact.html" class="aic-nav-link">Contact Us</a>
+                    <a href="#aiApply" class="aic-nav-link aic-nav-apply">Apply</a>
+                    <span class="aic-nav-sep" aria-hidden="true"></span>
+                    <a href="index.html" class="aic-nav-link aic-nav-gti">Germaine Training Institute</a>
+                    <a href="EarnCash/frontend/pages/index.html" class="aic-nav-link aic-nav-earn">EarnFastCash</a>
+                </nav>
+                <button type="button" class="aic-nav-burger" id="aicNavBurger" aria-expanded="false" aria-controls="aicNavLinks" aria-label="Toggle AI Bootcamp navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ================= HERO ================= -->
+
+        <!-- ================= HERO =================
+             Built as an exact structural clone of the "Hire Our
+             Graduates" hero (graduate-hire.html / .gh-hero, .gh-hero-clean,
+             .gh-hero-panel etc.) — same full-bleed background, glass
+             frame, travelling border light, single centred glass panel
+             (eyebrow / heading / description / CTA), corner floating
+             badge, ambient particles and scroll chevron. The only
+             substantive change is the background: a looping muted video
+             in place of the 5-image crossfade slideshow. Namespaced
+             .ai-hh- (AI hero) to avoid clashing with .gh- on other pages,
+             but every rule value below mirrors graduate-hire.css exactly. -->
+        <section class="ai-hh-hero ai-hh-hero-clean" id="ai-hero">
+
+            <div class="ai-hh-video-wrap" aria-hidden="true">
+                <video class="ai-hh-video" autoplay muted loop playsinline
+                       poster="assets/images/ai-bootcamp-hero-poster.jpg">
+                    <source src="assets/video/ai-bootcamp-hero.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="ai-hh-overlay" aria-hidden="true"></div>
+
+            <span class="ai-hh-float-badge"><i class="fa-solid fa-star"></i> Flagship Programme</span>
+
+            <span class="ai-hh-particle p1" aria-hidden="true"></span>
+            <span class="ai-hh-particle p2" aria-hidden="true"></span>
+            <span class="ai-hh-particle p3" aria-hidden="true"></span>
+
+            <div class="ai-wrap">
+                <div class="ai-hh-panel sp-reveal">
+                    <span class="ai-eyebrow">AI Bootcamp</span>
+                    <h1>Germaine <span class="ai-pink">AI Bootcamp</span></h1>
+                    <p>Master Artificial Intelligence, build a portfolio of real projects, and launch a career in one of the world&rsquo;s fastest-growing fields &mdash; guided by industry mentors and a hands-on, project-based curriculum.</p>
+                    <div class="ai-hh-cta">
+                        <a href="#aiApply" class="ai-hh-btn ai-hh-btn-solid-pink"><i class="fa-solid fa-rocket"></i> Apply for AI Bootcamp <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="ai-bootcamp-courses.html" class="ai-hh-btn ai-hh-btn-glass"><i class="fa-solid fa-book-open"></i> Explore Programs</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#ai-snapshot" class="ai-hh-chevron" aria-label="Scroll down"><i class="fa-solid fa-chevron-down"></i></a>
+
+        </section>
+
+        <!-- ================= PROGRAMME SNAPSHOT ================= -->
+
+        <!-- Compact horizontal programme nav — quick links across Germaine's
+             technology-track programmes. Each card routes to its real, matching
+             AI Bootcamp catalogue page (assets/js/ai-courses-data.js). "Data
+             Protection Officer" has no dedicated page yet, so it points to the
+             general course catalogue until that page exists. -->
+        <section class="ai-pnav" id="ai-snapshot">
+            <div class="ai-wrap">
+                <div class="ai-pnav-row">
+                    <a href="ai-course-software-engineering.html" class="ai-pnav-card sp-reveal"><span class="ai-pnav-ic"><i class="fa-solid fa-laptop-code"></i></span><span>Software Engineering</span></a>
+                    <a href="ai-course-data-science.html" class="ai-pnav-card sp-reveal"><span class="ai-pnav-ic"><i class="fa-solid fa-chart-simple"></i></span><span>Data Courses</span></a>
+                    <a href="ai-course-cyber-security.html" class="ai-pnav-card sp-reveal"><span class="ai-pnav-ic"><i class="fa-solid fa-shield-halved"></i></span><span>Cyber Security</span></a>
+                    <a href="ai-course-ai-ml.html" class="ai-pnav-card sp-reveal"><span class="ai-pnav-ic"><i class="fa-solid fa-robot"></i></span><span>AI &amp; ML</span></a>
+                    <a href="courses.html" class="ai-pnav-card sp-reveal"><span class="ai-pnav-ic"><i class="fa-solid fa-user-shield"></i></span><span>DPO Programme</span></a>
+                    <a href="ai-course-high-school-bootcamp.html" class="ai-pnav-card sp-reveal"><span class="ai-pnav-ic"><i class="fa-solid fa-graduation-cap"></i></span><span>High School Bootcamp</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= WHY CHOOSE — premium 3-card slideshow ================= -->
+
+        <section class="ai-section ai-section-tint">
+
+            <div class="ai-wrap">
+
+                <div class="ai-head ai-head-center sp-reveal">
+                    <span class="ai-eyebrow"><i class="fa-solid fa-sparkles"></i> Why Choose Our AI Bootcamp</span>
+                    <h2>Build the Skills That Will <span class="ai-pink-text">Shape the Future</span>.</h2>
+                    <p>Artificial Intelligence is transforming every industry. Our AI Bootcamp equips you with practical skills, industry mentorship, and real-world projects that prepare you to innovate, automate, and lead in tomorrow&rsquo;s digital economy.</p>
+                </div>
+
+                <div class="ai-wc-grid">
+
+                    <article class="ai-wc-card sp-reveal">
+                        <div class="ai-wc-slideshow" aria-hidden="true">
+                            <img class="ai-wc-slide is-active" src="assets/images/slide/pexels-mikhail-nilov-9301196.jpg" alt="" loading="lazy">
+                            <img class="ai-wc-slide" src="assets/images/slide/ict.jpg" alt="" loading="lazy">
+                            <img class="ai-wc-slide" src="assets/images/slide/pexels-mikhail-nilov-9301316.jpg" alt="" loading="lazy">
+                            <img class="ai-wc-slide" src="assets/images/slide/pexels-jakubzerdzicki-35501997.jpg" alt="" loading="lazy">
+                        </div>
+                        <div class="ai-wc-body">
+                            <h3>Hands-On AI Learning</h3>
+                            <p>Move beyond theory by designing intelligent applications, building AI-powered solutions, creating automation workflows, and experimenting with modern generative AI tools through guided practical projects.</p>
+                            <a href="ai-bootcamp-courses.html" class="ai-wc-link">Discover More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="ai-wc-card sp-reveal">
+                        <div class="ai-wc-slideshow" aria-hidden="true">
+                            <img class="ai-wc-slide is-active" src="assets/images/slide/pexels-mikhail-nilov-8729816.jpg" alt="" loading="lazy">
+                            <img class="ai-wc-slide" src="assets/images/slide/pexels-jakubzerdzicki-36755617.jpg" alt="" loading="lazy">
+                            <img class="ai-wc-slide" src="assets/images/slide/pexels-mikhail-nilov-9301314.jpg" alt="" loading="lazy">
+                            <img class="ai-wc-slide" src="assets/images/slide/pexels-mikhail-nilov-9301821.jpg" alt="" loading="lazy">
+                        </div>
+                        <div class="ai-wc-body">
+                            <h3>Industry Mentorship &amp; Innovation</h3>
+                            <p>Learn directly from experienced mentors, collaborate on innovation challenges, receive expert feedback, and build a professional AI portfolio that demonstrates your skills to employers and clients.</p>
+                            <a href="ai-bootcamp-courses.html" class="ai-wc-link">Discover More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="ai-wc-card sp-reveal">
+                        <div class="ai-wc-slideshow" aria-hidden="true">
+                            <img class="ai-wc-slide is-active" src="assets/images/slide/pexels-mikhail-nilov-9301899.jpg" alt="" loading="lazy">
+                            <img class="ai-wc-slide" src="assets/images/slide/pexels-jakubzerdzicki-36950598.jpg" alt="" loading="lazy">
+                            <img class="ai-wc-slide" src="assets/images/slide/ict.jpg" alt="" loading="lazy">
+                            <img class="ai-wc-slide" src="assets/images/slide/pexels-mikhail-nilov-9301196.jpg" alt="" loading="lazy">
+                        </div>
+                        <div class="ai-wc-body">
+                            <h3>Career-Ready AI Skills</h3>
+                            <p>Develop practical expertise in prompt engineering, machine learning concepts, automation, ethical AI, data-driven decision making, and emerging technologies that prepare you for high-demand digital careers.</p>
+                            <a href="#aiApply" class="ai-wc-link">Discover More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= STUDENT EXPERIENCE ================= -->
+
+        <section class="ai-section" id="aiStudentExperience">
+
+            <div class="ai-wrap">
+
+                <div class="ai-head ai-head-center sp-reveal">
+                    <span class="ai-eyebrow"><i class="fa-solid fa-users"></i> Student Experience</span>
+                    <h2>Learn Alongside a <span class="ai-pink-text">Driven Community</span></h2>
+                    <p>Collaborative, project-based classes built around teamwork and real problem-solving.</p>
+                </div>
+
+                <div class="ai-exp-bento sp-reveal">
+
+                    <div class="ai-exp-panel">
+                        <div class="ai-exp-track">
+                            <div class="ai-exp-slide ai-active">
+                                <img src="assets/images/slide/pexels-mikhail-nilov-9301196.jpg" alt="AI Bootcamp students collaborating around a laptop" loading="lazy" decoding="async">
+                                <div class="ai-exp-cap"><h4>Team Project Work</h4><span>Students collaborating on live datasets</span></div>
+                            </div>
+                            <div class="ai-exp-slide">
+                                <img src="assets/images/slide/ict.jpg" alt="Student coding an AI project across multiple screens" loading="lazy" decoding="async">
+                                <div class="ai-exp-cap"><h4>Deep Focus Sessions</h4><span>Hands-on lab time with real code</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ai-exp-panel">
+                        <div class="ai-exp-track">
+                            <div class="ai-exp-slide ai-active">
+                                <img src="assets/images/slide/pexels-mikhail-nilov-9301314.jpg" alt="Bootcamp cohort reviewing a project together" loading="lazy" decoding="async">
+                                <div class="ai-exp-cap"><h4>Cohort Reviews</h4><span>Peer feedback on project builds</span></div>
+                            </div>
+                            <div class="ai-exp-slide">
+                                <img src="assets/images/slide/pexels-jakubzerdzicki-35501997.jpg" alt="Student analysing AI-generated data trends" loading="lazy" decoding="async">
+                                <div class="ai-exp-cap"><h4>Data-Driven Practice</h4><span>Working with real analytics tools</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ai-exp-panel">
+                        <div class="ai-exp-track">
+                            <div class="ai-exp-slide ai-active">
+                                <img src="assets/images/slide/pexels-mikhail-nilov-8729816.jpg" alt="Mentor reviewing a student's project notes" loading="lazy" decoding="async">
+                                <div class="ai-exp-cap"><h4>Mentor Check-Ins</h4><span>Guidance from industry professionals</span></div>
+                            </div>
+                            <div class="ai-exp-slide">
+                                <img src="assets/images/slide/pexels-jakubzerdzicki-36755617.jpg" alt="Reviewing model performance data on screen" loading="lazy" decoding="async">
+                                <div class="ai-exp-cap"><h4>Model Evaluation</h4><span>Testing and refining real projects</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= INDUSTRY MENTORSHIP ================= -->
+
+        <section class="ai-section">
+
+            <div class="ai-wrap ai-mentor-grid">
+
+                <div class="ai-mentor-img gwf-wrap sp-reveal">
+                    <div class="gwf-frame">
+                        <div class="gwf-glass">
+                            <img src="assets/images/slide/pexels-mikhail-nilov-8729816.jpg" alt="Industry mentor reviewing a student's work" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="gwf-badge">
+                        <h3>150+</h3>
+                        <p>Industry Mentors</p>
+                    </div>
+                </div>
+
+                <div class="ai-mentor-text sp-reveal">
+                    <span class="ai-eyebrow"><i class="fa-solid fa-people-arrows"></i> Industry Mentorship</span>
+                    <h2>Guided by People Who Work in <span class="ai-pink-text">AI Every Day</span></h2>
+                    <p>You won&rsquo;t learn AI in a vacuum. Throughout the Bootcamp, you&rsquo;ll get structured time with working AI, data and software professionals who review your projects, share real workplace context, and help you prepare for the job market.</p>
+
+                    <div class="ai-mentor-feats">
+
+                        <div class="ai-mentor-feat">
+                            <span class="ai-mentor-feat-ic"><i class="fa-solid fa-user-tie"></i></span>
+                            <div><h4>Real Industry Mentors</h4><p>Sessions led by practising AI and data professionals.</p></div>
+                        </div>
+
+                        <div class="ai-mentor-feat">
+                            <span class="ai-mentor-feat-ic"><i class="fa-solid fa-comments"></i></span>
+                            <div><h4>1-On-1 Guidance Sessions</h4><p>Personalised feedback on your projects and career direction.</p></div>
+                        </div>
+
+                        <div class="ai-mentor-feat">
+                            <span class="ai-mentor-feat-ic"><i class="fa-solid fa-file-circle-check"></i></span>
+                            <div><h4>Portfolio &amp; Interview Coaching</h4><p>Get your portfolio and interview skills ready for hiring managers.</p></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= APPLY ================= -->
+
+        <section class="ai-section" id="aiApply">
+
+            <div class="ai-wrap">
+
+                <div class="ai-apply-toggle-wrap sp-reveal">
+                    <button type="button" class="ai-apply-toggle-btn" id="aiApplyToggleBtn" aria-expanded="false" aria-controls="aiApplyCollapse">
+                        <span>Apply for AI Bootcamp</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="ai-apply-collapse" id="aiApplyCollapse">
+                <div class="ai-apply-panel sp-reveal">
+
+                    <form id="aiApplyForm">
+
+                        <div class="ai-apply-head">
+                            <h2>Apply to the AI Bootcamp</h2>
+                            <p>Tell us a little about yourself and our admissions team will reach out with next steps.</p>
+                        </div>
+
+                        <div class="ai-apply-selected" id="aiApplySelected" hidden>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div>
+                                <span class="ai-apply-selected-label">Selected Programme</span>
+                                <strong id="aiApplySelectedProgramme"></strong>
+                                <span id="aiApplySelectedMeta"></span>
+                            </div>
+                        </div>
+
+                        <div class="ai-field" id="aiApplyTrackField">
+                            <label for="aiApplyTrackSelect">Bootcamp Track <span class="ai-req">*</span></label>
+                            <div class="ai-input-wrap">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <select id="aiApplyTrackSelect" name="track" required>
+                                    <option value="" disabled selected>Select a bootcamp track</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="aiApplyProgramme" name="programme">
+                        <input type="hidden" id="aiApplyMode" name="learningMode">
+                        <input type="hidden" id="aiApplyStartDate" name="startDate">
+
+                        <div class="ai-row">
+
+                            <div class="ai-field">
+                                <label for="aiName">Full Name <span class="ai-req">*</span></label>
+                                <div class="ai-input-wrap">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="text" id="aiName" name="fullName" required placeholder="Your full name">
+                                </div>
+                            </div>
+
+                            <div class="ai-field">
+                                <label for="aiEmail">Email Address <span class="ai-req">*</span></label>
+                                <div class="ai-input-wrap">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <input type="email" id="aiEmail" name="email" required placeholder="you@example.com">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="ai-row">
+
+                            <div class="ai-field">
+                                <label for="aiPhone">Phone Number <span class="ai-req">*</span></label>
+                                <div class="ai-input-wrap">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <input type="tel" id="aiPhone" name="phone" required placeholder="+254 7XX XXX XXX">
+                                </div>
+                            </div>
+
+                            <div class="ai-field">
+                                <label for="aiEducation">Highest Education Level <span class="ai-req">*</span></label>
+                                <div class="ai-input-wrap">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                    <select id="aiEducation" name="education" required>
+                                        <option value="" disabled selected>Select an option</option>
+                                        <option>KCSE / High School</option>
+                                        <option>Certificate</option>
+                                        <option>Diploma</option>
+                                        <option>Undergraduate Degree</option>
+                                        <option>Postgraduate</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="ai-row">
+
+                            <div class="ai-field">
+                                <label for="aiIntake">Preferred Intake <span class="ai-req">*</span></label>
+                                <div class="ai-input-wrap">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <select id="aiIntake" name="intake" required>
+                                        <option value="" disabled selected>Select an intake</option>
+                                        <option>September 2026</option>
+                                        <option>January 2027</option>
+                                        <option>Next Available Cohort</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="ai-field">
+                                <label for="aiExperience">Used AI Tools Before? <span class="ai-req">*</span></label>
+                                <div class="ai-input-wrap">
+                                    <i class="fa-solid fa-microchip"></i>
+                                    <select id="aiExperience" name="aiExperience" required>
+                                        <option value="" disabled selected>Select an option</option>
+                                        <option>No, I&rsquo;m completely new</option>
+                                        <option>A little (ChatGPT etc.)</option>
+                                        <option>Yes, I use AI tools regularly</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="ai-field">
+                            <label for="aiHeard">How Did You Hear About Us?</label>
+                            <div class="ai-input-wrap">
+                                <i class="fa-solid fa-bullhorn"></i>
+                                <select id="aiHeard" name="heardFrom">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option>Social Media</option>
+                                    <option>Friend or Family</option>
+                                    <option>Germaine Website</option>
+                                    <option>School / Career Fair</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="ai-field">
+                            <label for="aiWhy">Why Do You Want to Join the AI Bootcamp? <span class="ai-req">*</span></label>
+                            <div class="ai-input-wrap ai-input-wrap-textarea">
+                                <i class="fa-solid fa-file-lines"></i>
+                                <textarea id="aiWhy" name="motivation" required rows="4" placeholder="Tell us about your goals and what draws you to AI."></textarea>
+                            </div>
+                        </div>
+
+                        <p class="ai-apply-error" id="aiApplyError" hidden></p>
+
+                        <button type="submit" class="ai-submit" id="aiApplySubmitBtn"><i class="fa-solid fa-paper-plane"></i> Submit Application</button>
+
+                    </form>
+
+                    <div class="ai-apply-success" id="aiApplySuccess" hidden>
+                        <span class="ai-apply-success-ic"><i class="fa-solid fa-circle-check"></i></span>
+                        <h2>Application Received!</h2>
+                        <p>Thank you for applying to the Germaine AI Bootcamp. Our admissions team will review your application and contact you shortly with next steps.</p>
+                    </div>
+
+                </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= TESTIMONIALS =================
+             Real Germaine graduate testimonials (reused from the homepage
+             testimonial set) rather than fictional AI-Bootcamp-specific
+             "success stories" — the Bootcamp is a new flagship programme
+             without its own graduate cohort yet, so this is framed
+             honestly as institute-wide voices rather than AI-specific
+             outcomes. -->
+
+        <section class="ai-section ai-section-tint" id="aiTestimonials">
+
+            <div class="ai-wrap">
+
+                <div class="ai-head ai-head-center sp-reveal">
+                    <span class="ai-eyebrow"><i class="fa-solid fa-quote-left"></i> What Our Graduates Say</span>
+                    <h2>Real Outcomes, <span class="ai-pink-text">Real Voices</span></h2>
+                    <p>Real experiences from learners building with AI.</p>
+                </div>
+
+                <!-- compact navy AI-insight testimonial module -->
+                <div class="ai-tst-module sp-reveal" id="aiTstModule">
+
+                    <div class="ai-tst-net" aria-hidden="true">
+                        <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g stroke="rgba(236,72,153,.5)" stroke-width="1">
+                                <line x1="20" y1="30" x2="70" y2="20"></line>
+                                <line x1="20" y1="30" x2="55" y2="70"></line>
+                                <line x1="70" y1="20" x2="110" y2="45"></line>
+                                <line x1="70" y1="20" x2="55" y2="70"></line>
+                                <line x1="55" y1="70" x2="110" y2="45"></line>
+                                <line x1="55" y1="70" x2="35" y2="110"></line>
+                                <line x1="55" y1="70" x2="95" y2="100"></line>
+                                <line x1="110" y1="45" x2="95" y2="100"></line>
+                            </g>
+                            <g fill="#FFFFFF">
+                                <circle cx="20" cy="30" r="3"></circle>
+                                <circle cx="70" cy="20" r="2.4"></circle>
+                                <circle cx="110" cy="45" r="3"></circle>
+                                <circle cx="55" cy="70" r="3.6" fill="#EC4899"></circle>
+                                <circle cx="35" cy="110" r="2.4"></circle>
+                                <circle cx="95" cy="100" r="3"></circle>
+                            </g>
+                        </svg>
+                    </div>
+                    <span class="ai-tst-scan" aria-hidden="true"></span>
+
+                    <span class="ai-tst-label"><span class="ai-tst-dot" aria-hidden="true"></span> GRADUATE INSIGHT</span>
+
+                    <div class="ai-tst-track">
+
+                        <figure class="ai-tst-slide is-active" data-index="0">
+                            <blockquote><p>&ldquo;The Germaine Training Institute equipped me with skills and experience for real life. I&rsquo;m now a proud owner of a programming and web development company employing three people.&rdquo;</p></blockquote>
+                            <figcaption>
+                                <span class="ai-tst-avatar">MA</span>
+                                <div><b>Moses Amboko</b><span>Kakamega &bull; ICT &amp; Software Development</span></div>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="ai-tst-slide" data-index="1">
+                            <blockquote><p>&ldquo;Two years after leaving college, I was voted the most valuable employee of a foreign company. GTI&rsquo;s practical lessons truly prepared me for the world of work.&rdquo;</p></blockquote>
+                            <figcaption>
+                                <span class="ai-tst-avatar">JN</span>
+                                <div><b>Jane Rose Nyambura</b><span>Dubai, UAE &bull; Alumna</span></div>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="ai-tst-slide" data-index="2">
+                            <blockquote><p>&ldquo;The GTI skilled my raw talent, enabling me to earn a living. I also appreciate the discipline, obedience and perseverance the Institute instills in every trainee.&rdquo;</p></blockquote>
+                            <figcaption>
+                                <span class="ai-tst-avatar">JK</span>
+                                <div><b>John Kamau</b><span>Nyeri &bull; Alumnus</span></div>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+                    <div class="ai-tst-nav">
+                        <button type="button" class="ai-tst-arrow" data-tst-prev aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                        <div class="ai-tst-dots">
+                            <button type="button" class="ai-tst-dotbtn is-active" data-tst-goto="0" aria-label="Show testimonial 1"></button>
+                            <button type="button" class="ai-tst-dotbtn" data-tst-goto="1" aria-label="Show testimonial 2"></button>
+                            <button type="button" class="ai-tst-dotbtn" data-tst-goto="2" aria-label="Show testimonial 3"></button>
+                        </div>
+                        <button type="button" class="ai-tst-arrow" data-tst-next aria-label="Next testimonial"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                    </div>
+
+                    <span class="ai-tst-tag">AI &bull; 2026</span>
+
+                </div>
+
+                <p class="ai-closing-quote sp-reveal">
+                    <span class="ai-closing-mark ai-closing-mark-open" aria-hidden="true">&ldquo;</span>
+                    Every innovation begins with a single step. Join a community of future <span class="ai-pink-text">AI engineers, software developers, data analysts</span>, and cybersecurity professionals building tomorrow&rsquo;s digital world.
+                    <span class="ai-closing-mark ai-closing-mark-close" aria-hidden="true">&rdquo;</span>
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- ================= FINAL CTA ================= -->
+
+        <section class="ai-fcta">
+
+            <div class="ai-fcta-bg" aria-hidden="true">
+                <svg class="ai-fcta-net" viewBox="0 0 900 400" preserveAspectRatio="none">
+                    <line x1="40" y1="60" x2="260" y2="140"></line>
+                    <line x1="260" y1="140" x2="180" y2="300"></line>
+                    <line x1="260" y1="140" x2="480" y2="90"></line>
+                    <line x1="480" y1="90" x2="700" y2="180"></line>
+                    <line x1="700" y1="180" x2="860" y2="70"></line>
+                    <line x1="700" y1="180" x2="640" y2="340"></line>
+                    <line x1="180" y1="300" x2="420" y2="360"></line>
+                    <line x1="420" y1="360" x2="640" y2="340"></line>
+                    <circle cx="40" cy="60" r="3.5"></circle>
+                    <circle cx="260" cy="140" r="3.5"></circle>
+                    <circle cx="180" cy="300" r="3.5"></circle>
+                    <circle cx="480" cy="90" r="3.5"></circle>
+                    <circle cx="700" cy="180" r="3.5"></circle>
+                    <circle cx="860" cy="70" r="3.5"></circle>
+                    <circle cx="640" cy="340" r="3.5"></circle>
+                    <circle cx="420" cy="360" r="3.5"></circle>
+                </svg>
+                <span class="ai-fcta-glow ai-fcta-glow-1"></span>
+                <span class="ai-fcta-glow ai-fcta-glow-2"></span>
+                <span class="ai-fcta-particle ai-fcta-p1"></span>
+                <span class="ai-fcta-particle ai-fcta-p2"></span>
+                <span class="ai-fcta-particle ai-fcta-p3"></span>
+                <span class="ai-fcta-particle ai-fcta-p4"></span>
+            </div>
+
+            <div class="ai-wrap">
+
+                <div class="ai-fcta-inner sp-reveal">
+
+                    <span class="ai-fcta-label">Start Your AI Journey</span>
+
+                    <h2 class="ai-fcta-heading">Your Future in Artificial Intelligence Starts Here</h2>
+
+                    <p class="ai-fcta-desc">Whether you&rsquo;re taking your first step into Artificial Intelligence, Software Engineering, Cyber Security, Data Science, or Cloud Computing, Germaine AI Bootcamp equips you with practical skills, industry mentorship, and real-world projects that prepare you for today&rsquo;s digital economy. Build your confidence, unlock new opportunities, and start creating the future through technology.</p>
+
+                    <div class="ai-fcta-row">
+                        <span class="ai-fcta-row-text">Ready to Build the Future?</span>
+                        <a href="ai-bootcamp-courses.html" class="ai-fcta-btn">Explore Our Programs <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+
+<footer class="footer">
+
+    <!-- Footer Main -->
+
+    <div class="footer-main">
+
+        <div class="container footer-grid">
+
+            <!-- About -->
+
+            <div class="footer-column">
+
+                <img src="assets/images/logo/logo-white.png"
+                     alt="Germaine Training Institute Logo"
+                     class="footer-logo" loading="lazy" decoding="async">
+
+                <p>
+
+                    Germaine Training Institute is committed to
+                    producing competent, innovative and
+                    industry-ready graduates through
+                    practical and competency-based education.
+
+                </p>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Quick Links
+
+                </h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="about.html">About Us</a></li>
+
+                    <li><a href="courses.html">Courses</a></li>
+
+                    <li><a href="admissions.html">Admissions</a></li>
+
+                    <li><a href="ai-bootcamp.html">AI Bootcamp</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+
+                    <li><a href="apply.html">Apply Now</a></li>
+
+                    <li><a href="apply.html">Scholarships</a></li>
+</ul>
+
+            </div>
+
+            <!-- Contact -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Contact Us
+
+                </h3>
+
+                <ul class="contact-list">
+
+                    <li>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Pioneer Plaza,
+                        Mburu Gichua Road,
+                        Nakuru
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        +254 719 488 112
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        admissions@germaineinstitute.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Mon – Fri : 8:00 AM – 5:00 PM
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Google Map -->
+
+    <div class="footer-map">
+
+        <iframe
+            src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed"
+            loading="lazy"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+    <!-- Bottom Footer -->
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <p>
+
+                © 2026 Germaine Training Institute.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Emmanuel Elijah</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+            BACK TO TOP
+========================================== -->
+
+<button class="back-to-top" aria-label="Back to top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+            JAVASCRIPT
+========================================== -->
+
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/ai-family-nav.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+
+<script defer src="assets/js/premium-theme.js"></script>
+
+<script defer src="assets/js/school-page.js"></script>
+
+<script src="assets/js/ai-courses-data.js"></script>
+<script src="assets/js/api-client.js"></script>
+<script src="assets/js/referral-capture.js"></script>
+<script defer src="assets/js/courses-menu.js"></script>
+
+<script defer src="assets/js/ai-bootcamp.js"></script>
+
+</body>
+
+</html>

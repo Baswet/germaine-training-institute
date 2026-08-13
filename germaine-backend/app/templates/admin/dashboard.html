@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="gti-topbar">
+  <h1>Dashboard</h1>
+  <span class="gti-crumb">Overview of incoming digital activity</span>
+</div>
+
+<div class="gti-section-title">Applications</div>
+<div class="gti-stats-grid">
+  <div class="gti-stat-card"><div class="num">{{ stats.total_applications }}</div><div class="label">Total Applications</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.applications_by_status.submitted }}</div><div class="label">Submitted</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.applications_by_status.under_review }}</div><div class="label">Under Review</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.applications_by_status.offered }}</div><div class="label">Offered</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.applications_by_status.enrolled }}</div><div class="label">Enrolled</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.applications_by_status.rejected }}</div><div class="label">Rejected</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.applications_by_status.withdrawn }}</div><div class="label">Withdrawn</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.scholarship_applications }}</div><div class="label">Scholarship Applications</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.programme_inquiries }}</div><div class="label">Programme Inquiries</div></div>
+</div>
+
+<div class="gti-section-title">Community &amp; Enquiries</div>
+<div class="gti-stats-grid">
+  <div class="gti-stat-card"><div class="num">{{ stats.alumni_total }}</div><div class="label">Alumni Registrations</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.graduate_requests_total }}</div><div class="label">Graduate Requests</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.graduate_requests_pending }}</div><div class="label">Graduate Requests — Pending</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.partnership_enquiries_total }}</div><div class="label">Partnership Enquiries</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.corporate_training_total }}</div><div class="label">Corporate Training Requests</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.contact_messages_total }}</div><div class="label">Contact Enquiries</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.contact_messages_new }}</div><div class="label">Contact Enquiries — New</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.newsletter_subscribers_active }}</div><div class="label">Newsletter Subscribers (Active)</div></div>
+</div>
+{% endblock %}

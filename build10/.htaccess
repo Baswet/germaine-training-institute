@@ -1,0 +1,15 @@
+# Germaine Training Institute — public site (build10/)
+# Custom branded error pages (Phase 4). Without this, a broken link or a
+# server hiccup falls through to the hosting provider's bare default error
+# page instead of the site's own 404.html / 500.html.
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+# Never let a request list a folder's raw file contents.
+Options -Indexes
+
+# Extra belt-and-braces rule so no stray dotfile (.env, .git, etc.) is ever
+# served if one is accidentally left inside this folder.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

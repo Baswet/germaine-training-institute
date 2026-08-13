@@ -1,0 +1,83 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Edit Article' if article else 'New Article' }}{% endblock %}
+{% block content %}
+<a class="gti-back-link" href="{{ url_for('admin.news_list') }}">&larr; Back to News</a>
+<div class="gti-topbar">
+  <h1>{{ article.title if article else 'New Article' }}</h1>
+  {% if article %}<span class="gti-status-pill {{ article.status }}">{{ article.status|title }}</span>{% endif %}
+</div>
+
+<div class="gti-detail-grid">
+  <div>
+    <form method="post" action="{{ url_for('admin.news_edit', article_id=article.id) if article else url_for('admin.news_create') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <div class="gti-form-section">
+        <h2>Article</h2>
+        <div class="gti-form-group">
+          <label for="nf-title">Title</label>
+          <input type="text" id="nf-title" name="title" maxlength="250" value="{{ article.title if article else '' }}" required>
+        </div>
+        <div class="gti-form-group">
+          <label for="nf-summary">Summary</label>
+          <textarea id="nf-summary" name="summary" maxlength="500">{{ article.summary if article else '' }}</textarea>
+          <span class="hint">Shown on the news listing card. Up to 500 characters.</span>
+        </div>
+        <div class="gti-form-group">
+          <label for="nf-body">Body</label>
+          <textarea id="nf-body" name="body" class="tall">{{ article.body if article else '' }}</textarea>
+        </div>
+        <div class="gti-form-group">
+          <label for="nf-category">Category</label>
+          <input type="text" id="nf-category" name="category" maxlength="100" value="{{ article.category if article else '' }}" placeholder="e.g. Announcements">
+        </div>
+        <div class="gti-form-group">
+          <label for="nf-author">Author</label>
+          <input type="text" id="nf-author" name="author" maxlength="150" value="{{ article.author if article else '' }}">
+        </div>
+        <div class="gti-form-group">
+          <label for="nf-image">Featured Image</label>
+          <select id="nf-image" name="featured_image_id">
+            <option value="">— None —</option>
+            {% for m in media %}<option value="{{ m.id }}" {{ 'selected' if article and article.featured_image_id == m.id }}>{{ m.original_filename or m.filename }}</option>{% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="gti-form-actions">
+        <button type="submit" class="gti-btn">{{ 'Save Changes' if article else 'Create Draft' }}</button>
+      </div>
+    </form>
+  </div>
+
+  <div>
+    {% if article %}
+    <div class="gti-panel">
+      <h2>Publishing</h2>
+      <div class="gti-field-row"><span class="k">Slug</span><span class="v">{{ article.slug }}</span></div>
+      <div class="gti-field-row"><span class="k">Status</span><span class="v"><span class="gti-status-pill {{ article.status }}">{{ article.status|title }}</span></span></div>
+      <div class="gti-field-row"><span class="k">Published</span><span class="v">{{ article.published_at.strftime('%d %b %Y') if article.published_at else '—' }}</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px;">
+        {% if article.status != 'published' %}
+        <form method="post" action="{{ url_for('admin.news_publish', article_id=article.id) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button type="submit" class="gti-btn gti-btn-green" style="width:100%;">Publish</button>
+        </form>
+        {% else %}
+        <form method="post" action="{{ url_for('admin.news_unpublish', article_id=article.id) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button type="submit" class="gti-btn gti-btn-secondary" style="width:100%;">Unpublish (back to draft)</button>
+        </form>
+        {% endif %}
+        {% if article.status != 'archived' %}
+        <form method="post" action="{{ url_for('admin.news_archive', article_id=article.id) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button type="submit" class="gti-btn gti-btn-red" style="width:100%;">Archive</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+    {% else %}
+    <div class="gti-panel"><p style="font-size:.85rem;color:var(--gti-text-muted);margin:0;">Save the article first — publishing options appear once it's created as a draft.</p></div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

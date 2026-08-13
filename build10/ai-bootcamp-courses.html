@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+                META DATA
+    =========================================== -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Early theme application (prevents flash of wrong theme) -->
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        AI Bootcamp Courses | Germaine Training Institute
+    </title>
+
+    <meta name="description"
+        content="Explore Germaine AI Bootcamp's full catalogue of technology programmes — Artificial Intelligence, Software Engineering, Cyber Security, Data Analytics, Cloud Computing, Python Programming, UI/UX Design and our High School Tech Bootcamp.">
+
+    <meta name="keywords"
+        content="Germaine AI Bootcamp Courses, Tech Bootcamp Kenya, Software Engineering Course, Cyber Security Course, Data Analytics Course, Cloud Computing Course, Python Course, UI UX Design Course">
+
+    <meta name="author"
+        content="Germaine Training Institute">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title"
+        content="AI Bootcamp Courses | Germaine Training Institute">
+
+    <meta property="og:description"
+        content="A full catalogue of Germaine AI Bootcamp's technology programmes, from Artificial Intelligence to Cyber Security, Data Analytics and more.">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:image"
+        content="https://site.germaineinstitute.ac.ke/assets/images/slide/ict.jpg">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/ai-bootcamp-courses.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Bootcamp Courses | Germaine Training Institute">
+    <meta name="twitter:description" content="A full catalogue of Germaine AI Bootcamp's technology programmes, from Artificial Intelligence to Cyber Security, Data Analytics and more.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/slide/ict.jpg">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/ai-bootcamp-courses.html">
+
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/jpeg"
+        href="assets/images/logo/logo.jpg">
+
+    <!-- Preload critical above-the-fold assets -->
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+
+    <link rel="stylesheet"
+        href="assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="assets/css/responsive.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-theme.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-sections.css">
+
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+
+    <link rel="stylesheet" href="assets/css/school-page.css">
+
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+
+    <link rel="stylesheet"
+        href="assets/css/ai-bootcamp.css">
+
+    <link rel="stylesheet"
+        href="assets/css/ai-courses.css">
+
+    <link rel="stylesheet"
+        href="assets/css/ai-courses-v2.css">
+
+    <link rel="stylesheet" href="assets/css/courses-menu.css">
+
+    <link rel="stylesheet" href="assets/css/ai-course-hero-v3.css">
+
+</head>
+
+<body class="aic-courses-hub aic-family-page">
+
+    <!-- ==========================================
+                PRELOADER
+    =========================================== -->
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ==========================================
+                WHATSAPP
+    =========================================== -->
+
+    <a href="https://wa.me/254719488112"
+        class="whatsapp"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+    <!-- ==========================================
+                FIXED TOP STACK (utility bar + header + announcement)
+    =========================================== -->
+
+        <!-- ==========================================
+                LEVEL 1 — UTILITY BAR
+    =========================================== -->
+
+    <div class="utility-bar" id="utilityBar">
+
+        <div class="container utility-bar-inner">
+
+            <div class="utility-left">
+
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+
+                <a href="ai-bootcamp.html" class="utility-link active"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+
+            </div>
+
+            <div class="utility-right">
+
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                FIXED TOP STACK (branding bar + main navigation + announcement)
+    =========================================== -->
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+
+    <!-- ==========================================
+                LEVEL 2 — BRANDING BAR
+    =========================================== -->
+
+    <header id="header">
+
+        <div class="branding-bar">
+
+            <div class="container branding-inner">
+
+                <a href="index.html" class="brand-logo-group">
+
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+
+                    <span class="brand-text">
+
+                        <span class="brand-name">Germaine Training Institute</span>
+
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+
+                    </span>
+
+                </a>
+
+                <div class="branding-right">
+
+                    <div class="branding-contact">
+
+                    <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+
+                    <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+
+                </div>
+
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                    LEVEL 3 — MAIN NAVIGATION
+        =========================================== -->
+
+        <nav class="navbar">
+
+            <div class="container navbar-inner">
+
+                <ul class="nav-links">
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li class="dropdown">
+
+                        <a href="about.html">About Us <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="about.html">Our Story</a>
+
+                            <a href="about.html">Mission &amp; Vision</a>
+
+                            <a href="about.html">Leadership</a>
+
+                            <a href="about.html">Accreditation</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown">
+
+                        <a href="admissions.html">Admissions <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="admissions.html#admission-form">Apply Online</a>
+
+                            <a href="admissions.html">Entry Requirements</a>
+
+                            <a href="admissions.html">Fees Structure</a>
+
+                            <a href="apply.html">Scholarships</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown mega-dropdown">
+
+                        <a href="courses.html">Academic Schools <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu mega-menu mega-menu-schools">
+
+                            <div class="mega-menu-col">
+
+                                <span class="mega-menu-col-title">Academic Schools</span>
+
+                                <a href="courses-health-sciences.html">School of Medical &amp; Health Sciences</a>
+
+                                <a href="courses-hospitality-tourism.html">School of Hospitality, Tourism &amp; Travel</a>
+
+                                <a href="courses-engineering-technology.html">School of Engineering</a>
+
+                                <a href="courses-computing-it.html">School of Computing &amp; Informatics</a>
+
+                                <a href="courses-cosmetology-fashion-design.html">School of Cosmetology, Fashion &amp; Design</a>
+
+                                <a href="courses-business-commerce.html">Business &amp; Social Sciences</a>
+
+                                <a href="courses-mass-communication-journalism.html">School of Communication &amp; Media</a>
+
+                                <a href="courses-agriculture.html">School of Agriculture</a>
+
+                                <a href="courses-virtual-learning.html">School of Virtual Learning</a>
+
+                            </div>
+</div>
+
+                    </li>
+
+                    <li><a href="courses-languages.html" class="nav-twoline"><span class="nav-line">Languages &amp;</span><span class="nav-line">Short Courses</span></a></li>
+
+                    <li><a href="campus.html">Student Life</a></li>
+
+                    <li><a href="news.html">News &amp; Events</a></li>
+
+                    <li><a href="contact.html">Contact Us</a></li>
+
+                </ul>
+
+                <div class="nav-buttons">
+
+                    <button class="search-btn" aria-label="Open search">
+
+                        <i class="fas fa-search"></i>
+
+                    </button>
+
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+                </div>
+
+                <!-- Mobile Menu -->
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ==========================================
+            ADMISSION ANNOUNCEMENT BAR
+    =========================================== -->
+
+    <section class="announcement-bar">
+
+        <div class="container announcement-container">
+
+            <div class="announcement-left">
+
+                <i class="fas fa-bullhorn"></i>
+
+                <span>
+
+                    September 2026 Intake Now Open &bull; Applications Ongoing
+
+                </span>
+
+            </div>
+
+            <a href="apply.html"
+                class="announcement-link">
+
+                Apply Now For Full Scholarship
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    </div>
+
+<!-- ==========================================
+            SEARCH POPUP
+    =========================================== -->
+
+    <div class="search-modal">
+
+        <div class="search-box">
+
+            <input aria-label="Search courses, departments or news"
+                type="text"
+                placeholder="Search courses, departments or news...">
+
+            <button aria-label="Submit search">
+
+                <i class="fas fa-search"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                MAIN CONTENT
+    =========================================== -->
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+        <header class="aic-nav" id="aicNav">
+            <div class="ai-wrap aic-nav-inner">
+                <a href="ai-bootcamp.html" class="aic-nav-brand">
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" loading="lazy">
+                    <span class="aic-nav-motto">Master AI. Build Real Projects. Launch Your Career.</span>
+                </a>
+                <nav class="aic-nav-links" id="aicNavLinks" aria-label="AI Bootcamp navigation">
+                    <a href="ai-bootcamp.html" class="aic-nav-link" data-nav="home">Home</a>
+                    <a href="ai-bootcamp-courses.html" class="aic-nav-link" data-nav="courses">Courses</a>
+                    <a href="contact.html" class="aic-nav-link">Contact Us</a>
+                    <a href="ai-bootcamp.html#aiApply" class="aic-nav-link aic-nav-apply">Apply</a>
+                    <span class="aic-nav-sep" aria-hidden="true"></span>
+                    <a href="index.html" class="aic-nav-link aic-nav-gti">Germaine Training Institute</a>
+                    <a href="EarnCash/frontend/pages/index.html" class="aic-nav-link aic-nav-earn">EarnFastCash</a>
+                </nav>
+                <button type="button" class="aic-nav-burger" id="aicNavBurger" aria-expanded="false" aria-controls="aicNavLinks" aria-label="Toggle AI Bootcamp navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ================= HERO ================= -->
+        <section class="aic-hero">
+            <div class="ai-wrap aic-hero-grid">
+
+                <div class="aic-hero-text sp-reveal">
+                    <span class="ai-eyebrow"><i class="fa-solid fa-layer-group"></i> Technology Bootcamp Programmes</span>
+                    <h1 class="aic-hero-title">Explore Our Technology <span class="ai-pink-text">Bootcamp Programmes</span></h1>
+                    <p class="aic-hero-desc">Discover practical, industry-focused programmes designed to equip learners with in-demand digital skills through project-based learning, expert mentorship, and real-world experience.</p>
+                    <div class="aic-hero-cta">
+                        <a href="#aicProgrammes" class="ai-btn ai-btn-primary">Explore Programmes <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="ai-bootcamp.html#aiApply" class="ai-btn ai-btn-outline">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="gwf-wrap aic-hero-media sp-reveal">
+                    <div class="gwf-frame">
+                        <div class="gwf-glass">
+                            <img src="assets/images/slide/pexels-jakubzerdzicki-35501997.jpg" alt="Germaine AI Bootcamp students working on a technology programme project" loading="eager">
+                        </div>
+                    </div>
+                    <div class="gwf-badge">
+                        <h3>14</h3>
+                        <p>Bootcamp Programmes</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= CATEGORY PILL NAV ================= -->
+        <section class="aic-pills-wrap">
+            <div class="ai-wrap">
+                <nav class="aic-pills" aria-label="Filter programmes by category">
+                    <a href="#aicProgrammes" class="aic-pill is-active" data-category="all"><i class="fa-solid fa-layer-group"></i> All Programmes</a>
+                    <a href="#aicProgrammes" class="aic-pill" data-category="ai"><i class="fa-solid fa-brain"></i> Artificial Intelligence</a>
+                    <a href="#aicProgrammes" class="aic-pill" data-category="software-engineering"><i class="fa-solid fa-code"></i> Software Engineering</a>
+                    <a href="#aicProgrammes" class="aic-pill" data-category="cyber-security"><i class="fa-solid fa-shield-halved"></i> Cyber Security</a>
+                    <a href="#aicProgrammes" class="aic-pill" data-category="data-analytics"><i class="fa-solid fa-chart-line"></i> Data Analytics</a>
+                    <a href="#aicProgrammes" class="aic-pill" data-category="cloud-computing"><i class="fa-solid fa-cloud"></i> Cloud Computing</a>
+                    <a href="#aicProgrammes" class="aic-pill" data-category="python-programming"><i class="fa-brands fa-python"></i> Python Programming</a>
+                    <a href="#aicProgrammes" class="aic-pill" data-category="ui-ux-design"><i class="fa-solid fa-pen-ruler"></i> UI/UX Design</a>
+                    <a href="#aicProgrammes" class="aic-pill" data-category="ai-for-business"><i class="fa-solid fa-briefcase"></i> AI for Business</a>
+                    <a href="#aicProgrammes" class="aic-pill" data-category="high-school-bootcamp"><i class="fa-solid fa-graduation-cap"></i> High School Bootcamp</a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- ================= FEATURED PROGRAMMES ================= -->
+        <section class="ai-section ai-section-tint" id="aicProgrammes">
+            <div class="ai-wrap">
+
+                <div class="ai-head ai-head-center sp-reveal">
+                    <span class="ai-eyebrow"><i class="fa-solid fa-star"></i> Featured Programmes</span>
+                    <h2>A Programme for Every <span class="ai-pink-text">Tech Career Path</span></h2>
+                    <p>Fourteen practical, project-based programmes covering the skills employers are hiring for right now.</p>
+                </div>
+
+                <div class="aic-grid">
+
+                    <article class="aic-card sp-reveal" id="course-ai-ml" data-category="ai">
+                        <div class="aic-card-media">
+                            <img src="pics/ai-ml-hands-on.jpg" alt="Students working hands-on with AI tools in a Germaine computer lab" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Artificial Intelligence &amp; Machine Learning</h3>
+                            <p>Master Generative AI, Prompt Engineering, Machine Learning, Computer Vision, Natural Language Processing, and AI deployment through hands-on projects.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 16 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Full-time</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Hybrid</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 145,000</div>
+                            <a href="ai-course-ai-ml.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-software-engineering" data-category="software-engineering">
+                        <div class="aic-card-media">
+                            <img src="pics/software-engineering-lab.jpg" alt="Germaine software engineering students collaborating in a computer lab" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Software Engineering</h3>
+                            <p>Learn modern full-stack software development using HTML, CSS, JavaScript, React, Python, Flask, SQL, APIs, Git, and cloud deployment while building production-ready applications.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 20 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Full-time</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Hybrid</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> From KSh 169,000</div>
+                            <a href="ai-course-software-engineering.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-cyber-security" data-category="cyber-security">
+                        <div class="aic-card-media">
+                            <img src="pics/cybersecurity-hacker-workstation.jpg" alt="Student working at a laptop with live security data displayed behind them" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Cyber Security</h3>
+                            <p>Develop practical cybersecurity skills including networking, ethical hacking, penetration testing, digital forensics, cloud security, and incident response.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 14 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Full-time</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 195,000</div>
+                            <a href="ai-course-cyber-security.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-data-analytics" data-category="data-analytics">
+                        <div class="aic-card-media">
+                            <img src="pics/data-analytics-visual.jpg" alt="Hands typing on a laptop with a data analytics visualisation overlay" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Data Analytics</h3>
+                            <p>Master Excel, SQL, Power BI, Python, dashboards, data visualisation, and business intelligence using real-world datasets.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 12 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Part-time</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 50,000</div>
+                            <a href="ai-course-data-analytics.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-cloud-computing" data-category="cloud-computing">
+                        <div class="aic-card-media">
+                            <img src="pics/cloud-network-infrastructure.jpg" alt="Close-up of cloud server network infrastructure and cabling" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Cloud Computing &amp; DevOps</h3>
+                            <p>Learn Docker, Kubernetes, AWS fundamentals, CI/CD pipelines, Linux administration, automation, and infrastructure deployment.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 14 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Full-time</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 115,000</div>
+                            <a href="ai-course-cloud-computing.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-python-programming" data-category="python-programming">
+                        <div class="aic-card-media">
+                            <img src="pics/students-computer-lab.jpg" alt="Students working together at computers in a Germaine lab" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Python Programming</h3>
+                            <p>A beginner-friendly bootcamp covering Python fundamentals, automation, APIs, databases, and object-oriented programming.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 8 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Part-time</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 55,000</div>
+                            <a href="ai-course-python-programming.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-ui-ux-design" data-category="ui-ux-design">
+                        <div class="aic-card-media">
+                            <img src="assets/images/slide/pexels-mikhail-nilov-9301821.jpg" alt="Student sketching a UI/UX wireframe" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>UI/UX Design</h3>
+                            <p>Learn user research, wireframing, prototyping, Figma, accessibility, design systems, and responsive interface design.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 10 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Part-time</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Hybrid</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 145,000</div>
+                            <a href="ai-course-ui-ux-design.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-high-school-bootcamp" data-category="high-school-bootcamp">
+                        <div class="aic-card-media">
+                            <img src="assets/images/slide/pexels-mikhail-nilov-9301899.jpg" alt="High school students in a technology bootcamp session" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>High School Tech Bootcamp</h3>
+                            <p>Introduce students to coding, robotics, AI fundamentals, cybersecurity awareness, digital creativity, and problem-solving.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 2&ndash;4 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Holiday Programme</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> In-person</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 15,000</div>
+                            <a href="ai-course-high-school-bootcamp.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-data-science" data-category="data-analytics">
+                        <div class="aic-card-media">
+                            <img src="pics/students-ai-lab-session.jpg" alt="Students collaborating on a data science project in a lab session" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Data Science</h3>
+                            <p>Build a rigorous foundation in Python, statistics, machine learning and deep learning, then go further into large language models and production-ready AI workflows.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 31 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Hybrid</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> From KSh 169,000</div>
+                            <a href="ai-course-data-science.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-intro-cybersecurity" data-category="cyber-security">
+                        <div class="aic-card-media">
+                            <img src="pics/cybersecurity-lock-icon.png" alt="Cyber security lock and network icons displayed over a laptop keyboard" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Introduction to Cyber Security</h3>
+                            <p>A beginner-friendly foundation in networking, cryptography, threat intelligence and incident response — the recommended starting point before the full Cyber Security programme.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 5 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 35,000</div>
+                            <a href="ai-course-intro-cybersecurity.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-intro-devops" data-category="cloud-computing">
+                        <div class="aic-card-media">
+                            <img src="pics/server-rack-cabling.jpg" alt="Close-up of a technician connecting server rack network cabling" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Introduction to DevOps Engineering</h3>
+                            <p>Learn CI/CD pipelines, Infrastructure as Code and containerisation through hands-on labs — a practical entry point into cloud and automation roles.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 10 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 50,000</div>
+                            <a href="ai-course-intro-devops.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-generative-ai-essentials" data-category="ai-for-business">
+                        <div class="aic-card-media">
+                            <img src="pics/professional-ai-business.jpg" alt="A working professional using AI tools at a laptop in a modern office" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Generative AI Essentials</h3>
+                            <p>A fast-paced, non-technical course teaching working professionals to use generative AI for writing, research, presentations and data insight.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 2 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 20,000</div>
+                            <a href="ai-course-generative-ai-essentials.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-ai-agents-automation" data-category="ai-for-business">
+                        <div class="aic-card-media">
+                            <img src="assets/images/slide/pexels-mohammad-yasir-3365802-5198392.jpg" alt="Close-up of automated data workflows on a screen" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>AI Agents &amp; Workflow Automation</h3>
+                            <p>Design no-code workflows and AI-powered agents that automate real business tasks — no coding background required.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 3 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> From KSh 35,000</div>
+                            <a href="ai-course-ai-agents-automation.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="aic-card sp-reveal" id="course-digital-marketing-ai" data-category="ai-for-business">
+                        <div class="aic-card-media">
+                            <img src="assets/images/slide/working.jpg" alt="Marketing professionals presenting in a boardroom" loading="lazy" decoding="async">
+                        </div>
+                        <div class="aic-card-body">
+                            <h3>Digital Marketing with AI</h3>
+                            <p>Master digital marketing strategy, content, SEO and performance campaigns accelerated by today's leading AI tools.</p>
+                            <div class="aic-card-meta">
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-clock"></i> 4 Weeks</span>
+                                    <span class="aic-meta-chip"><i class="fa-solid fa-laptop"></i> Remote</span>
+                            </div>
+                            <div class="aic-card-price"><i class="fa-solid fa-tag"></i> KSh 50,000</div>
+                            <a href="ai-course-digital-marketing-ai.html" class="aic-card-cta">Explore Programme <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="aic-empty-state" id="aicEmptyState">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>No programmes found in this category yet. Explore another category above.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+
+<footer class="footer">
+
+    <!-- Footer Main -->
+
+    <div class="footer-main">
+
+        <div class="container footer-grid">
+
+            <!-- About -->
+
+            <div class="footer-column">
+
+                <img src="assets/images/logo/logo-white.png"
+                     alt="Germaine Training Institute Logo"
+                     class="footer-logo" loading="lazy" decoding="async">
+
+                <p>
+
+                    Germaine Training Institute is committed to
+                    producing competent, innovative and
+                    industry-ready graduates through
+                    practical and competency-based education.
+
+                </p>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Quick Links
+
+                </h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="about.html">About Us</a></li>
+
+                    <li><a href="courses.html">Courses</a></li>
+
+                    <li><a href="admissions.html">Admissions</a></li>
+
+                    <li><a href="ai-bootcamp.html">AI Bootcamp</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+
+                    <li><a href="apply.html">Apply Now</a></li>
+
+                    <li><a href="apply.html">Scholarships</a></li>
+</ul>
+
+            </div>
+
+            <!-- Contact -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Contact Us
+
+                </h3>
+
+                <ul class="contact-list">
+
+                    <li>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Pioneer Plaza,
+                        Mburu Gichua Road,
+                        Nakuru
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        +254 719 488 112
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        admissions@germaineinstitute.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Mon – Fri : 8:00 AM – 5:00 PM
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Google Map -->
+
+    <div class="footer-map">
+
+        <iframe
+            src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed"
+            loading="lazy"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+    <!-- Bottom Footer -->
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <p>
+
+                © 2026 Germaine Training Institute.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Emmanuel Elijah</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+            BACK TO TOP
+========================================== -->
+
+<button class="back-to-top" aria-label="Back to top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+            JAVASCRIPT
+========================================== -->
+
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/ai-family-nav.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+
+<script defer src="assets/js/premium-theme.js"></script>
+
+<script defer src="assets/js/school-page.js"></script>
+
+<script src="assets/js/ai-courses-data.js"></script>
+<script src="assets/js/api-client.js"></script>
+<script src="assets/js/referral-capture.js"></script>
+<script defer src="assets/js/courses-menu.js"></script>
+
+<script defer src="assets/js/ai-courses.js"></script>
+
+<script>
+    /* Guarantees this page's hero copy and course cards are visible on
+       load rather than depending entirely on school-page.js's scroll-
+       reveal IntersectionObserver, which can leave real, load-bearing
+       content (hero text, course cards, images) stuck at opacity:0 if
+       the observer's first pass runs before layout has fully settled.
+       This is not decorative content a visitor should have to scroll
+       to trigger — it's the course catalogue itself. */
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            document.querySelectorAll(".sp-reveal:not(.sp-show)").forEach(function (el) {
+                el.classList.add("sp-show");
+            });
+        }, 50);
+    });
+</script>
+
+</body>
+
+</html>

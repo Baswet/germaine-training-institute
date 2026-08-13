@@ -1,0 +1,172 @@
+/*==================================================
+    GERMAINE — STUDENT LIFE HERO
+    Structural clone of the Alumni Registration hero
+    (.alu-hero — see alumni.css): full-bleed crossfade
+    photo slideshow, floating badge, ambient particles,
+    single fully-transparent glass panel defined only by
+    an always-on travelling border light.
+
+    This file intentionally reuses the exact same class
+    names, values and animation timings as alumni.css so
+    the two pages render as one shared hero design system.
+    Only the content and images differ (set in campus.html).
+    Alumni's own file/page is untouched.
+==================================================*/
+
+:root{
+    --alu-navy:#123A92;
+    --alu-navy-2:#1B4FB8;
+    --alu-pink:#EC4899;
+    --alu-pink-2:#F472B6;
+    --alu-line:rgba(18,58,146,.1);
+}
+
+@property --alu-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes aluTravel{ to{ --alu-a:360deg; } }
+@keyframes aluFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-9px); }
+}
+
+.alu-wrap{ max-width:1280px; margin:0 auto; padding:0 32px; }
+
+.alu-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--alu-pink); background:rgba(236,72,153,.08);
+    border:1px solid rgba(236,72,153,.18); padding:8px 18px 8px 14px; border-radius:999px;
+    margin-bottom:20px;
+}
+.alu-pink-text{ color:var(--alu-pink); }
+
+/*==========================
+    BUTTONS
+==========================*/
+.alu-btn{
+    position:relative; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:16px 34px; border-radius:999px; font-weight:700; font-size:.96rem;
+    text-decoration:none; border:1px solid transparent; cursor:pointer; overflow:hidden;
+    transition:transform .35s ease, box-shadow .35s ease, filter .35s ease; white-space:nowrap;
+}
+.alu-btn-primary{
+    background:linear-gradient(115deg,var(--alu-pink) 0%,var(--alu-navy) 100%); color:#fff;
+    box-shadow:0 16px 38px rgba(236,72,153,.3), 0 8px 20px rgba(18,58,146,.18);
+}
+.alu-btn-primary::before{
+    content:''; position:absolute; inset:0; z-index:0;
+    background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);
+    transform:translateX(-120%); transition:transform .6s ease;
+}
+.alu-btn-primary:hover::before{ transform:translateX(120%); }
+.alu-btn-primary:hover{ transform:translateY(-3px); box-shadow:0 22px 48px rgba(236,72,153,.4), 0 10px 26px rgba(18,58,146,.24); }
+.alu-btn-outline{
+    background:rgba(255,255,255,.7); color:var(--alu-navy); border-color:var(--alu-line);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+}
+.alu-btn-outline:hover{ transform:translateY(-3px); border-color:rgba(236,72,153,.35); background:#fff; box-shadow:0 16px 34px rgba(18,58,146,.12); }
+.alu-btn i{ font-size:.82rem; position:relative; z-index:1; }
+.alu-btn span{ position:relative; z-index:1; }
+
+/*==========================
+    HERO — full-bleed crossfade photo slideshow, floating
+    badge, ambient particles, single fully-transparent
+    glass panel defined only by an always-on travelling
+    border light.
+==========================*/
+.alu-hero{
+    position:relative; overflow:hidden; isolation:isolate;
+    min-height:74vh; display:flex; align-items:flex-end;
+    padding:40px 0 72px;
+}
+/* Step 9: slideshow layer already spans edge-to-edge (inset:0 on .alu-hero,
+   which itself has no horizontal padding) — the fix here is switching each
+   slide from background-size:cover (was cropping the photos) to `contain`,
+   which always shows the full, undistorted frame. A navy backdrop fills any
+   letterbox space so uncovered edges still read as intentional. Height,
+   position, timing and every other hero element are untouched. */
+.alu-hero-slideshow{ position:absolute; inset:0; z-index:0; background:#0B1B3D; }
+.alu-hero-slide{
+    position:absolute; inset:0; background-size:contain; background-repeat:no-repeat;
+    background-position:center;
+    opacity:0; animation:aluHeroFade 25s ease-in-out infinite;
+}
+.alu-hero-slide:nth-child(1){ animation-delay:0s; }
+.alu-hero-slide:nth-child(2){ animation-delay:5s; }
+.alu-hero-slide:nth-child(3){ animation-delay:10s; }
+.alu-hero-slide:nth-child(4){ animation-delay:15s; }
+.alu-hero-slide:nth-child(5){ animation-delay:20s; }
+@keyframes aluHeroFade{
+    0%{ opacity:0; } 4%{ opacity:1; } 20%{ opacity:1; } 24%{ opacity:0; } 100%{ opacity:0; }
+}
+.alu-hero-overlay{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:
+        radial-gradient(680px 460px at 14% 12%, rgba(236,72,153,.18), transparent 62%),
+        radial-gradient(680px 460px at 86% 86%, rgba(18,58,146,.5), transparent 62%),
+        linear-gradient(180deg, rgba(8,20,45,.55), rgba(8,20,45,.26) 55%, rgba(8,20,45,.62));
+}
+.alu-hero-float-badge{
+    position:absolute; z-index:3; top:26px; right:26px;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 16px; border-radius:999px;
+    background:rgba(255,255,255,.14); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.32); color:#FFFFFF;
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.03em;
+}
+.alu-hero-float-badge i{ color:var(--alu-pink-2); }
+.alu-particle{ position:absolute; z-index:2; border-radius:50%; background:#FFFFFF; opacity:.35; pointer-events:none; }
+.alu-particle.p1{ width:5px; height:5px; top:22%; left:12%; animation:aluFloat 9s ease-in-out infinite; }
+.alu-particle.p2{ width:7px; height:7px; top:58%; left:78%; animation:aluFloat 11s ease-in-out infinite 1.2s; }
+.alu-particle.p3{ width:4px; height:4px; top:42%; left:48%; animation:aluFloat 7s ease-in-out infinite 2s; }
+
+/* fully transparent — defined only by the travelling border light,
+   same crystal-transparent treatment used on Alumni / Hire Our Graduates */
+.alu-hero-panel{
+    position:relative; isolation:isolate; z-index:3;
+    max-width:690px; padding:38px 42px; border-radius:28px;
+    background:transparent; border:1px solid rgba(236,72,153,.18);
+}
+.alu-hero-panel::before{
+    content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+    border-radius:inherit; padding:1.5px;
+    background:conic-gradient(from var(--alu-a), transparent 0 68%, var(--alu-pink) 82%, #FFFFFF 88%, var(--alu-navy) 95%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:aluTravel 8s linear infinite;
+}
+.alu-hero-panel > *{ position:relative; z-index:2; }
+.alu-hero-panel .alu-eyebrow{ margin-bottom:14px; }
+.alu-hero-panel h1{
+    font-family:'Poppins',sans-serif; font-weight:800; letter-spacing:-.01em;
+    font-size:clamp(2.1rem,3.8vw,2.8rem); line-height:1.15; color:#FFFFFF; margin:0 0 16px;
+    text-shadow:0 2px 4px rgba(8,20,45,.4), 0 10px 30px rgba(8,20,45,.4);
+}
+.alu-hero-panel p{
+    font-size:1rem; line-height:1.75; color:rgba(255,255,255,.92); margin:0 0 28px; max-width:560px;
+    text-shadow:0 1px 3px rgba(8,20,45,.3), 0 6px 20px rgba(8,20,45,.3);
+}
+.alu-hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+
+.alu-hero-chevron{
+    position:absolute; z-index:3; left:50%; bottom:24px; transform:translateX(-50%);
+    width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:#FFFFFF; font-size:1.05rem; text-decoration:none;
+    border:1px solid rgba(255,255,255,.4); background:rgba(255,255,255,.12);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    animation:aluChev 2.2s ease-in-out infinite; transition:background .3s ease, border-color .3s ease;
+}
+.alu-hero-chevron:hover{ background:var(--alu-pink); border-color:var(--alu-pink); }
+@keyframes aluChev{
+    0%,100%{ transform:translateX(-50%) translateY(0); }
+    50%{ transform:translateX(-50%) translateY(7px); }
+}
+@media(prefers-reduced-motion:reduce){
+    .alu-hero-slide, .alu-hero-panel::before, .alu-particle, .alu-hero-chevron{ animation:none !important; }
+}
+@media(max-width:900px){
+    .alu-hero{ min-height:60vh; padding:32px 0 60px; }
+    .alu-hero-panel{ padding:30px 26px; max-width:none; }
+}
+@media(max-width:600px){
+    .alu-hero-float-badge{ font-size:.64rem; padding:7px 12px; top:18px; right:18px; }
+}

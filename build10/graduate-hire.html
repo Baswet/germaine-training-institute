@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+                META DATA
+    =========================================== -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Early theme application (prevents flash of wrong theme) -->
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title>
+        Hire Our Graduates | Germaine Training Institute
+    </title>
+
+    <meta name="description"
+        content="Hire job-ready, competency-based graduates from Germaine Training Institute across ICT, business, engineering, hospitality, health and more. Fast, pre-screened, free hiring support for employers.">
+
+    <meta name="keywords"
+        content="Germaine Training Institute, TVET Kenya, Diploma Courses, Certificate Courses, Nakuru College">
+
+    <meta name="author"
+        content="Germaine Training Institute">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title"
+        content="Germaine Training Institute">
+
+    <meta property="og:description"
+        content="Hire job-ready, competency-based graduates from Germaine Training Institute across ICT, business, engineering, hospitality, health and more. Fast, pre-screened, free hiring support for employers.">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:image"
+        content="https://site.germaineinstitute.ac.ke/assets/images/hero/hero-students.jpg">
+
+    <meta property="og:url" content="https://site.germaineinstitute.ac.ke/graduate-hire.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Germaine Training Institute">
+    <meta name="twitter:description" content="Hire job-ready, competency-based graduates from Germaine Training Institute across ICT, business, engineering, hospitality, health and more. Fast, pre-screened, free hiring support for employers.">
+    <meta name="twitter:image" content="https://site.germaineinstitute.ac.ke/assets/images/hero/hero-students.jpg">
+
+    <link rel="canonical" href="https://site.germaineinstitute.ac.ke/graduate-hire.html">
+
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/jpeg"
+        href="assets/images/logo/logo.jpg">
+
+    <!-- Preload critical above-the-fold assets -->
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+
+    <link rel="stylesheet"
+        href="assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="assets/css/responsive.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-theme.css">
+
+    <link rel="stylesheet"
+        href="assets/css/graduate-hire.css">
+
+    <link rel="stylesheet"
+        href="assets/css/graduate-hire-elevate.css">
+
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+
+    <link rel="stylesheet" href="assets/css/school-page.css">
+
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+
+    <link rel="stylesheet" href="assets/css/graduate-profile-form.css">
+
+</head>
+
+<body class="ghire-page">
+
+    <!-- ==========================================
+                PRELOADER
+    =========================================== -->
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ==========================================
+                WHATSAPP
+    =========================================== -->
+
+    <a href="https://wa.me/254719488112"
+        class="whatsapp"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+    <!-- ==========================================
+                FIXED TOP STACK (utility bar + header + announcement)
+    =========================================== -->
+
+        <!-- ==========================================
+                LEVEL 1 — UTILITY BAR
+    =========================================== -->
+
+    <div class="utility-bar" id="utilityBar">
+
+        <div class="container utility-bar-inner">
+
+            <div class="utility-left">
+
+                <a href="graduate-hire.html" class="utility-link active"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+
+                <a href="ai-bootcamp.html" class="utility-link"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+
+            </div>
+
+            <div class="utility-right">
+
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                FIXED TOP STACK (branding bar + main navigation + announcement)
+    =========================================== -->
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+    <span class="nv-cursor-glow" id="navCursorGlow" aria-hidden="true"></span>
+
+    <!-- ==========================================
+                LEVEL 2 — BRANDING BAR
+    =========================================== -->
+
+    <header id="header">
+
+        <div class="branding-bar">
+
+            <div class="container branding-inner">
+
+                <a href="index.html" class="brand-logo-group">
+
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+
+                    <span class="brand-text">
+
+                        <span class="brand-name">Germaine Training Institute</span>
+
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+
+                    </span>
+
+                </a>
+
+                <div class="branding-right">
+
+                    <div class="branding-contact">
+
+                    <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+
+                    <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+
+                </div>
+
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                    LEVEL 3 — MAIN NAVIGATION
+        =========================================== -->
+
+        <nav class="navbar">
+
+            <div class="container navbar-inner">
+
+                <ul class="nav-links">
+
+                    <!-- Employer & Industry Services context menu — this page is
+                         part of the Hire Our Graduates / Corporate Training /
+                         Partner With Us employer portal, so the main nav swaps
+                         to a focused set of employer-relevant links instead of
+                         the full academic menu. Same styling, hover, dropdown
+                         and sticky behaviour as every other page. -->
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="graduate-hire.html" class="active">Hire Our Graduates</a></li>
+
+                    <li><a href="EarnCash/frontend/pages/index.html">Earn Fast Cash</a></li>
+
+                    <li><a href="corporate-training.html">Corporate Training</a></li>
+
+                    <li><a href="partner-with-us.html">Partner With Us</a></li>
+
+                    <li><a href="contact.html">Contact Us</a></li>
+
+                </ul>
+
+                <div class="nav-buttons">
+
+                    <button class="search-btn" aria-label="Open search">
+
+                        <i class="fas fa-search"></i>
+
+                    </button>
+
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                </div>
+
+                <!-- Mobile Menu -->
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ==========================================
+            ADMISSION ANNOUNCEMENT BAR
+    =========================================== -->
+
+    <section class="announcement-bar">
+
+        <div class="container announcement-container">
+
+            <div class="announcement-left">
+
+                <i class="fas fa-bullhorn"></i>
+
+                <span>
+
+                    September 2026 Intake Now Open &bull; Applications Ongoing
+
+                </span>
+
+            </div>
+
+            <a href="apply.html"
+                class="announcement-link">
+
+                Apply Now For Full Scholarship
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    </div>
+
+<!-- ==========================================
+            SEARCH POPUP
+    =========================================== -->
+
+    <div class="search-modal">
+
+        <div class="search-box">
+
+            <input aria-label="Search courses, departments or news"
+                type="text"
+                placeholder="Search courses, departments or news...">
+
+            <button aria-label="Submit search">
+
+                <i class="fas fa-search"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                MAIN CONTENT
+    =========================================== -->
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page ghire">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+<div class="gh-cursor-glow" id="ghCursorGlow" aria-hidden="true"></div>
+
+<!-- ==========================================================
+        HIRE OUR GRADUATES  (graduate-hire page)
+=========================================================== -->
+
+<!-- ================= HERO ================= -->
+<section class="gh-hero gh-hero-clean">
+    <div class="gh-slideshow" aria-hidden="true">
+        <div class="gh-slide" style="background-image:url('assets/images/slide/ict.jpg')"></div>
+        <div class="gh-slide" style="background-image:url('assets/images/slide/plumbing.jpg')"></div>
+        <div class="gh-slide" style="background-image:url('assets/images/slide/hospitality.jpg')"></div>
+        <div class="gh-slide" style="background-image:url('assets/images/slide/cosmatologist.jpg')"></div>
+        <div class="gh-slide" style="background-image:url('assets/images/slide/journalism.jpg')"></div>
+    </div>
+    <div class="gh-hero-overlay" aria-hidden="true"></div>
+
+    <span class="gh-hero-float-badge"><i class="fa-solid fa-building"></i> 400+ Employers Trust Us</span>
+
+    <span class="gh-particle p1" aria-hidden="true"></span>
+    <span class="gh-particle p2" aria-hidden="true"></span>
+    <span class="gh-particle p3" aria-hidden="true"></span>
+
+    <div class="gh-wrap">
+        <div class="gh-hero-panel gh-glass gh-reveal">
+            <span class="gh-eyebrow">Hire Our Graduates</span>
+            <h2>Build Your Workforce with Industry-Ready Professionals</h2>
+            <p>Employers trust Germaine Training Institute for practical, industry-ready talent across technology, business, hospitality, engineering, healthcare, media and construction.</p>
+            <div class="gh-hero-cta">
+                <a href="mailto:admissions@germaineinstitute.com?subject=Hire%20Germaine%20Graduates" class="gh-btn gh-btn-solid-pink" data-gp-trigger>Request Graduate Profiles <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="tel:+254719488112" class="gh-btn gh-btn-glass"><i class="fa-solid fa-phone"></i> Talk to Us</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="#gh-stats" class="gh-hero-chevron" aria-label="Scroll down"><i class="fa-solid fa-chevron-down"></i></a>
+</section>
+
+<!-- ================= STATISTICS ================= -->
+<section class="gh-section gh-stats" id="gh-stats">
+    <span class="gh-particle p1" aria-hidden="true"></span>
+    <span class="gh-particle p2" aria-hidden="true"></span>
+    <div class="gh-wrap">
+        <div class="gh-head gh-reveal">
+            <span class="gh-eyebrow">Our Track Record</span>
+            <h2>Proven Results, Real Impact</h2>
+        </div>
+        <div class="gh-stats-grid gh-glass gh-reveal">
+            <div class="gh-stat" data-delay="0"><i class="fa-solid fa-user-graduate"></i><div class="gh-stat-num" data-count="7500" data-suffix="+">0</div><span>Number Trained</span></div>
+            <div class="gh-stat" data-delay="1"><i class="fa-solid fa-building"></i><div class="gh-stat-num" data-count="400" data-suffix="+">0</div><span>Companies That Hired Us</span></div>
+            <div class="gh-stat" data-delay="2"><i class="fa-solid fa-chart-line"></i><div class="gh-stat-num" data-count="75" data-suffix="%">0</div><span>Placement Rate</span></div>
+            <div class="gh-stat" data-delay="3"><i class="fa-solid fa-rocket"></i><div class="gh-stat-num" data-count="150" data-suffix="+">0</div><span>Successful Business Start-Ups</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= WHY HIRE OUR GRADUATES ================= -->
+<section class="gh-section" id="gh-why">
+    <div class="gh-wrap">
+        <div class="gh-head gh-reveal">
+            <span class="gh-eyebrow">Why Hire Our Graduates</span>
+            <h2>Talent Trained for the Real World</h2>
+            <p>Our competency-based curriculum, hands-on workshops and mandatory industrial attachment produce graduates who are productive from their very first week.</p>
+        </div>
+        <div class="gh-why-grid">
+            <article class="gh-feature gh-glass gh-reveal" data-delay="0"><div class="gh-feature-img"><img src="assets/images/slide/plumbing.jpg" alt="Competency-Based Skills" loading="lazy"></div><div class="gh-feature-body"><h3>Competency-Based Skills</h3><p>Every programme is CBET-aligned to real occupational standards, so graduates master practical, job-relevant competencies &mdash; not just theory.</p></div></article>
+            <article class="gh-feature gh-glass gh-reveal" data-delay="1"><div class="gh-feature-img"><img src="assets/images/slide/pexels-harrun-muhammad-116282236-37198880.jpg" alt="Real Workplace Experience" loading="lazy"></div><div class="gh-feature-body"><h3>Real Workplace Experience</h3><p>Through workshops, live projects and supervised industrial attachment, our trainees arrive job-ready and confident on the tools of their trade.</p></div></article>
+            <article class="gh-feature gh-glass gh-reveal" data-delay="2"><div class="gh-feature-img"><img src="assets/images/slide/pexels-mikhail-nilov-9301899.jpg" alt="Professional &amp; Work-Ready" loading="lazy"></div><div class="gh-feature-body"><h3>Professional &amp; Work-Ready</h3><p>Beyond technical skills, graduates build discipline, communication and teamwork &mdash; the soft skills that make them dependable long-term hires.</p></div></article>
+        </div>
+    </div>
+</section>
+
+<!-- ================= WHAT OUR GRADUATES CAN DO ================= -->
+<section class="gh-capabilities" id="ghCapabilities">
+    <span class="ghc-grid-overlay" aria-hidden="true"></span>
+    <span class="ghc-particle p1" aria-hidden="true"></span>
+    <span class="ghc-particle p2" aria-hidden="true"></span>
+    <span class="ghc-particle p3" aria-hidden="true"></span>
+
+    <div class="gh-wrap ghc-layout">
+
+        <div class="ghc-intro gh-reveal">
+            <span class="ghc-eyebrow">What Our Graduates</span>
+            <h2 class="ghc-heading">Can Do</h2>
+            <p class="ghc-lead">Across disciplines, our graduates bring practical skills, professional confidence and the ability to contribute in real-world environments.</p>
+            <a href="#ghcCards" class="ghc-cta">Explore Capabilities <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="ghc-cards" id="ghcCards">
+            <div class="ghc-card gh-reveal" data-delay="0">
+                <span class="ghc-card-line" aria-hidden="true"></span>
+                <i class="fa-solid fa-screwdriver-wrench ghc-card-icon"></i>
+                <h3>Technical Excellence</h3>
+                <p>Apply programme-specific technical skills to real workplace tasks.</p>
+            </div>
+            <div class="ghc-card gh-reveal" data-delay="1">
+                <span class="ghc-card-line" aria-hidden="true"></span>
+                <i class="fa-solid fa-laptop-code ghc-card-icon"></i>
+                <h3>Digital Proficiency</h3>
+                <p>Work confidently with modern digital tools and technologies.</p>
+            </div>
+            <div class="ghc-card gh-reveal" data-delay="2">
+                <span class="ghc-card-line" aria-hidden="true"></span>
+                <i class="fa-solid fa-puzzle-piece ghc-card-icon"></i>
+                <h3>Problem Solving</h3>
+                <p>Analyse challenges and develop practical, effective solutions.</p>
+            </div>
+            <div class="ghc-card gh-reveal" data-delay="0">
+                <span class="ghc-card-line" aria-hidden="true"></span>
+                <i class="fa-solid fa-comments ghc-card-icon"></i>
+                <h3>Communication Skills</h3>
+                <p>Communicate clearly and professionally with teams, clients and stakeholders.</p>
+            </div>
+            <div class="ghc-card gh-reveal" data-delay="1">
+                <span class="ghc-card-line" aria-hidden="true"></span>
+                <i class="fa-solid fa-arrows-rotate ghc-card-icon"></i>
+                <h3>Adaptability</h3>
+                <p>Learn quickly, adjust to new environments and embrace changing demands.</p>
+            </div>
+            <div class="ghc-card gh-reveal" data-delay="2">
+                <span class="ghc-card-line" aria-hidden="true"></span>
+                <i class="fa-solid fa-scale-balanced ghc-card-icon"></i>
+                <h3>Professional Ethics</h3>
+                <p>Demonstrate reliability, responsibility, integrity and commitment.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= PARTNERS / ACCREDITATION ================= -->
+<section class="gh-partners">
+    <div class="gh-wrap">
+        <div class="gh-head gh-reveal">
+            <span class="gh-eyebrow">Trusted &amp; Accredited</span>
+            <h2>Recognised Training. Industry Partners.</h2>
+        </div>
+        <div class="gh-logos">
+            <div class="gh-logo gh-reveal"><img src="assets/images/partners/tveta.png" alt="TVETA" loading="lazy"></div><div class="gh-logo gh-reveal"><img src="assets/images/partners/nita.png" alt="NITA" loading="lazy"></div><div class="gh-logo gh-reveal"><img src="assets/images/partners/knec.jpg" alt="KNEC" loading="lazy"></div><div class="gh-logo gh-reveal"><img src="assets/images/partners/kasneb.png" alt="KASNEB" loading="lazy"></div>
+            <div class="gh-logo gh-reveal"><img src="assets/images/partners/cisco.png" alt="Cisco" loading="lazy"></div><div class="gh-logo gh-reveal"><img src="assets/images/partners/tvet-cdacc.png" alt="TVET CDACC" loading="lazy"></div><div class="gh-logo gh-reveal"><img src="assets/images/partners/khpoa.png" alt="Kenya Health Professions Oversight Authority" loading="lazy"></div><div class="gh-logo gh-reveal"><img src="assets/images/partners/kra.png" alt="Kenya Revenue Authority" loading="lazy"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FAQ + HIRE JOB-READY GRADUATES (combined) =================
+     One unified pink glass panel replacing the previous separate FAQ
+     section and Hire CTA section: FAQ accordion on the left, a
+     compact recruitment CTA + contact strip on the right, divided by
+     a thin pink line. Same real FAQ content and same CTA destination
+     (mailto + Request Graduate Profile modal) as before — only the
+     visual presentation and the two-sections-into-one structure
+     changed. -->
+<section class="gh-section ghfr-section" id="gh-faqreq">
+    <span class="ghfr-grid-overlay" aria-hidden="true"></span>
+    <span class="ghfr-particle p1" aria-hidden="true"></span>
+    <span class="ghfr-particle p2" aria-hidden="true"></span>
+    <span class="ghfr-particle p3" aria-hidden="true"></span>
+
+    <div class="gh-wrap">
+        <div class="ghfr-panel gh-reveal">
+
+            <div class="ghfr-badge-row">
+                <span class="ghfr-badge">Frequently Asked Questions</span>
+            </div>
+
+            <div class="ghfr-grid">
+
+                <div class="ghfr-col ghfr-faq-col">
+                    <div class="gh-faq-list gh-faq-list-panel">
+                        <div class="gh-faq-item"><button class="gh-faq-q" type="button">How do I request graduate profiles? <i class="fa-solid fa-chevron-down"></i></button><div class="gh-faq-a"><p>Complete the request form and submit your recruitment requirements. Our Career Services Office will match your needs with suitable Germaine graduates.</p></div></div>
+                        <div class="gh-faq-item"><button class="gh-faq-q" type="button">How long does the matching process take? <i class="fa-solid fa-chevron-down"></i></button><div class="gh-faq-a"><p>Most requests are reviewed within 2&ndash;3 working days, after which suitable graduate profiles are shared.</p></div></div>
+                        <div class="gh-faq-item"><button class="gh-faq-q" type="button">Can I request graduates from a specific department? <i class="fa-solid fa-chevron-down"></i></button><div class="gh-faq-a"><p>Yes. You can request graduates from any Germaine academic school or allow us to recommend suitable candidates across multiple disciplines.</p></div></div>
+                        <div class="gh-faq-item"><button class="gh-faq-q" type="button">Is there a fee for requesting graduate profiles? <i class="fa-solid fa-chevron-down"></i></button><div class="gh-faq-a"><p>No. Employers can submit graduate profile requests free of charge through the Career Services Office.</p></div></div>
+                        <div class="gh-faq-item"><button class="gh-faq-q" type="button">Can I recruit graduates for internships or attachments? <i class="fa-solid fa-chevron-down"></i></button><div class="gh-faq-a"><p>Yes. Employers may request graduates for internships, industrial attachments, contract positions, or permanent employment opportunities.</p></div></div>
+                    </div>
+                </div>
+
+                <span class="ghfr-divider" aria-hidden="true"></span>
+
+                <div class="ghfr-col ghfr-cta-col">
+                    <h2 class="ghfr-cta-heading">Hire Job-Ready Graduates from <span class="ghfr-pink">Germaine</span></h2>
+                    <p class="ghfr-cta-desc">Connect with industry-ready graduates equipped with practical skills, professional values and workplace experience.</p>
+                    <a href="mailto:admissions@germaineinstitute.com?subject=Hire%20Germaine%20Graduates" class="ghfr-btn" data-gp-trigger>Request Graduate Profiles <i class="fa-solid fa-arrow-right"></i></a>
+
+                    <div class="ghfr-contact-strip">
+                        <span class="ghfr-contact-label">Need More Information?</span>
+                        <p>Our team can help you find the right talent.</p>
+                        <a href="contact.html" class="ghfr-contact-link">Contact Us <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+    <!-- ==========================================
+                SIDE NAVIGATION (push panel)
+    =========================================== -->
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+
+    <!-- ==========================================
+                REQUEST OUR GRADUATE PROFILE — MODAL FORM
+    =========================================== -->
+
+    <div class="gp-modal" id="gpModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gpModalTitle">
+
+        <div class="gp-modal-backdrop" id="gpModalBackdrop"></div>
+
+        <div class="gp-modal-panel">
+
+            <button type="button" class="gp-modal-close" id="gpModalClose" aria-label="Close form">
+                <i data-lucide="x"></i>
+            </button>
+
+            <form class="gp-form" id="gpForm" novalidate>
+
+                <div class="gp-modal-head">
+                    <span class="gp-modal-icon"><i data-lucide="users"></i></span>
+                    <h2 id="gpModalTitle">Request Our Graduate Profile</h2>
+                    <p>Looking for skilled, industry-ready graduates? Complete the form below and our Career Services Office will connect you with suitable graduate profiles that match your recruitment needs.</p>
+                </div>
+
+                <div class="gp-field">
+                    <label for="gpCompany">Company Name <span class="gp-req">*</span></label>
+                    <div class="gp-input-wrap">
+                        <i data-lucide="building-2"></i>
+                        <input type="text" id="gpCompany" name="company" required placeholder="Your company name">
+                    </div>
+                </div>
+
+                <div class="gp-field">
+                    <label for="gpContact">Contact Person <span class="gp-req">*</span></label>
+                    <div class="gp-input-wrap">
+                        <i data-lucide="user"></i>
+                        <input type="text" id="gpContact" name="contact" required placeholder="Full name">
+                    </div>
+                </div>
+
+                <div class="gp-row">
+
+                    <div class="gp-field">
+                        <label for="gpEmail">Email Address <span class="gp-req">*</span></label>
+                        <div class="gp-input-wrap">
+                            <i data-lucide="mail"></i>
+                            <input type="email" id="gpEmail" name="email" required placeholder="you@company.com">
+                        </div>
+                    </div>
+
+                    <div class="gp-field">
+                        <label for="gpPhone">Phone Number <span class="gp-req">*</span></label>
+                        <div class="gp-input-wrap">
+                            <i data-lucide="phone"></i>
+                            <input type="tel" id="gpPhone" name="phone" required placeholder="+254 7XX XXX XXX">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="gp-field">
+                    <label for="gpPosition">Job Position <span class="gp-req">*</span></label>
+                    <div class="gp-input-wrap">
+                        <i data-lucide="briefcase"></i>
+                        <input type="text" id="gpPosition" name="position" required placeholder="e.g. Software Developer, Registered Nurse, Electrical Technician">
+                    </div>
+                </div>
+
+                <div class="gp-row">
+
+                    <div class="gp-field">
+                        <label for="gpDept">Department Needed <span class="gp-req">*</span></label>
+                        <div class="gp-input-wrap">
+                            <i data-lucide="graduation-cap"></i>
+                            <select id="gpDept" name="department" required>
+                                <option value="" disabled selected>Select a department</option>
+                                <option>Any Department</option>
+                                <option>School of Medical &amp; Health Sciences</option>
+                                <option>School of Engineering</option>
+                                <option>School of Computing &amp; Informatics</option>
+                                <option>School of Hospitality, Tourism &amp; Travel</option>
+                                <option>School of Business &amp; Social Sciences</option>
+                                <option>School of Communication &amp; Media</option>
+                                <option>School of Agriculture</option>
+                                <option>School of Cosmetology, Fashion &amp; Design</option>
+                                <option>School of Virtual Learning</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="gp-field">
+                        <label for="gpCount">No. of Profiles Required <span class="gp-req">*</span></label>
+                        <div class="gp-input-wrap">
+                            <i data-lucide="users"></i>
+                            <input type="number" id="gpCount" name="count" min="1" step="1" required placeholder="e.g. 2">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="gp-field">
+                    <label for="gpDesc">Brief Job Description <span class="gp-req">*</span></label>
+                    <div class="gp-input-wrap gp-input-wrap-textarea">
+                        <i data-lucide="file-text"></i>
+                        <textarea id="gpDesc" name="description" required rows="4" placeholder="Briefly describe the position and the skills or qualifications you are looking for."></textarea>
+                    </div>
+                </div>
+
+                <div class="gp-field">
+                    <label for="gpFile">Upload Job Description <span class="gp-optional">(Optional)</span></label>
+                    <label class="gp-file-drop" for="gpFile" id="gpFileDrop">
+                        <i data-lucide="upload"></i>
+                        <span id="gpFileLabel">PDF, DOC or DOCX &mdash; click to upload</span>
+                        <input type="file" id="gpFile" name="jobDescriptionFile" accept=".pdf,.doc,.docx">
+                    </label>
+                </div>
+
+                <button type="submit" class="gp-submit">
+                    <i data-lucide="send"></i> Request Graduate Profiles
+                </button>
+
+            </form>
+
+            <div class="gp-success" id="gpSuccess" hidden>
+                <span class="gp-success-icon"><i data-lucide="check-circle-2"></i></span>
+                <h2>Request Submitted Successfully!</h2>
+                <p>Thank you for your request. Our Career Services Office has received your application and will review your requirements. Suitable graduate profiles will be shared with you as soon as possible.</p>
+                <button type="button" class="gp-btn-done" id="gpDoneBtn">Close</button>
+            </div>
+
+        </div>
+
+    </div>
+
+<footer class="footer">
+
+    <!-- Footer Main -->
+
+    <div class="footer-main">
+
+        <div class="container footer-grid">
+
+            <!-- About -->
+
+            <div class="footer-column">
+
+                <img src="assets/images/logo/logo-white.png"
+                     alt="Germaine Training Institute Logo"
+                     class="footer-logo" loading="lazy" decoding="async">
+
+                <p>
+
+                    Germaine Training Institute is committed to
+                    producing competent, innovative and
+                    industry-ready graduates through
+                    practical and competency-based education.
+
+                </p>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Quick Links
+
+                </h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="about.html">About Us</a></li>
+
+                    <li><a href="courses.html">Courses</a></li>
+
+                    <li><a href="admissions.html">Admissions</a></li>
+
+                    <li><a href="news.html">News</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+
+                
+
+                    <li><a href="apply.html">Apply Now</a></li>
+
+                    <li><a href="apply.html">Scholarships</a></li>
+</ul>
+
+            </div>
+
+            
+
+            <!-- Contact -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Contact Us
+
+                </h3>
+
+                <ul class="contact-list">
+
+                    <li>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Pioneer Plaza,
+                        Mburu Gichua Road,
+                        Nakuru
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        +254 719 488 112
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        admissions@germaineinstitute.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Mon – Fri : 8:00 AM – 5:00 PM
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Google Map -->
+
+    <div class="footer-map">
+
+        <iframe
+            src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed"
+            loading="lazy"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+    <!-- Bottom Footer -->
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <p>
+
+                © 2026 Germaine Training Institute.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Emmanuel Elijah</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+            BACK TO TOP
+========================================== -->
+
+<button class="back-to-top" aria-label="Back to top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+            JAVASCRIPT
+========================================== -->
+
+<script defer src="assets/js/api-client.js"></script>
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+<script defer src="assets/js/graduate-hire.js"></script>
+
+<script defer src="assets/js/premium-theme.js"></script>
+
+<script defer src="assets/js/school-page.js"></script>
+
+<!-- Lucide icons — used only inside the Request Graduate Profile modal -->
+<script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script defer src="assets/js/graduate-profile-form.js"></script>
+
+</body>
+
+</html>

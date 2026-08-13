@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ record.organisation }}{% endblock %}
+{% block content %}
+{% set back_endpoint = 'admin.partnerships_list' if record.enquiry_type == 'partnership' else 'admin.corporate_training_list' %}
+<a class="gti-back-link" href="{{ url_for(back_endpoint) }}">&larr; Back</a>
+<div class="gti-topbar"><h1>{{ record.organisation }}</h1></div>
+
+<div class="gti-detail-grid">
+  <div>
+    <div class="gti-panel">
+      <h2>Enquiry</h2>
+      <div class="gti-field-row"><span class="k">Organisation</span><span class="v">{{ record.organisation }}</span></div>
+      <div class="gti-field-row"><span class="k">Contact Name</span><span class="v">{{ record.contact_name }}</span></div>
+      <div class="gti-field-row"><span class="k">Email</span><span class="v">{{ record.email }}</span></div>
+      <div class="gti-field-row"><span class="k">Phone</span><span class="v">{{ record.phone or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Type</span><span class="v">{{ record.enquiry_type.replace('_',' ')|title }}</span></div>
+      <div class="gti-field-row" style="display:block;"><span class="k">Message</span><p class="v" style="text-align:left;margin:6px 0 0;max-width:100%;white-space:pre-wrap;">{{ record.message or '—' }}</p></div>
+    </div>
+  </div>
+  <div>
+    <div class="gti-panel">
+      <h2>Details</h2>
+      <div class="gti-field-row"><span class="k">Submitted</span><span class="v">{{ record.submitted_at.strftime('%d %b %Y, %H:%M') }} UTC</span></div>
+      <div class="gti-field-row"><span class="k">Status</span><span class="v"><span class="gti-badge gti-badge-blue">{{ record.status|title }}</span></span></div>
+    </div>
+    <div class="gti-panel">
+      <h2>Update Status</h2>
+      <form class="gti-status-form" method="post" action="{{ url_for('admin.partner_enquiry_status_update', enquiry_id=record.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <select name="status">
+          {% for s in statuses %}<option value="{{ s }}" {{ 'selected' if s == record.status }}>{{ s|title }}</option>{% endfor %}
+        </select>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

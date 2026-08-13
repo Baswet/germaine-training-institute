@@ -1,0 +1,1026 @@
+/*==================================================
+    GERMAINE — ACADEMIC SCHOOL PAGE SYSTEM
+    Shared by every courses-*.html page. Builds on
+    style.css / premium-theme.css / premium-sections.css
+    (same --pt-* tokens), adds the school-page-specific
+    components: compact hero, about split, programme
+    table, why/career grid, career portals, principal card.
+==================================================*/
+
+:root{
+    --sp-ease:.4s cubic-bezier(.25,.8,.25,1);
+}
+
+@property --sp-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes spTravel{ to{ --sp-a:360deg; } }
+@keyframes spFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-8px); } }
+@keyframes spReveal{ to{ opacity:1; transform:none; } }
+@keyframes spMesh{ 0%,100%{ background-position:0% 0%, 100% 100%; } 50%{ background-position:20% 15%, 80% 85%; } }
+
+.sp-reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s var(--sp-ease), transform .7s var(--sp-ease); }
+.sp-reveal.sp-show{ opacity:1; transform:none; }
+
+/*==================================================
+    CONTINUOUS PAGE BACKGROUND
+    One shared animated mesh sits behind every section
+    on the page so nothing feels like a separate block.
+==================================================*/
+.sp-page{ position:relative; isolation:isolate; }
+.sp-page-bg{
+    position:fixed; inset:0; z-index:-10; pointer-events:none;
+    background:
+        radial-gradient(ellipse 900px 600px at 10% 0%, rgba(236, 72, 153, .08), transparent 60%),
+        radial-gradient(ellipse 800px 700px at 95% 30%, rgba(236, 72, 153, .06), transparent 60%),
+        radial-gradient(ellipse 700px 600px at 20% 100%, rgba(236, 72, 153, .07), transparent 55%),
+        linear-gradient(180deg,#FFFFFF,#FFFFFF);
+    background-size:200% 200%, 200% 200%, 200% 200%, 100% 100%;
+    animation:spMesh 22s ease-in-out infinite;
+}
+
+/*==================================================
+    AMBIENT AI ENERGY SYSTEM
+    Five additional fixed layers sit between the base
+    mesh (-10) and page content (auto/0): a drifting
+    micro-grid, large ultra-soft floating blobs,
+    a couple of slow travelling light lines, floating
+    particles, and a gentle diagonal shine sweep.
+    All are aria-hidden, pointer-events:none, use only
+    transform/opacity/background-position, and are fully
+    disabled under prefers-reduced-motion.
+==================================================*/
+@keyframes spGridDrift{
+    0%{ background-position:0 0, 0 0; }
+    100%{ background-position:480px 480px, 480px 480px; }
+}
+.sp-bg-grid{
+    position:fixed; inset:-60px; z-index:-9; pointer-events:none;
+    background-image:
+        linear-gradient(rgba(16, 42, 92, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 42, 92, .035) 1px, transparent 1px);
+    background-size:46px 46px, 46px 46px;
+    animation:spGridDrift 70s linear infinite;
+}
+
+.sp-bg-blobs{ position:fixed; inset:0; z-index:-8; pointer-events:none; overflow:hidden; }
+.sp-blob{ position:absolute; border-radius:50%; opacity:.05; filter:blur(190px); will-change:transform; }
+.sp-blob-1{ display:none; }
+.sp-blob-2{ width:460px; height:460px; top:12%; right:-160px; background:var(--pt-gold,#EC4899); animation:spBlobB 38s ease-in-out infinite; }
+.sp-blob-3{ width:500px; height:500px; bottom:-180px; left:22%; background:var(--pt-pink,#EC4899); animation:spBlobC 36s ease-in-out infinite; }
+.sp-blob-4{ width:420px; height:420px; bottom:6%; right:6%; background:#FFFFFF; animation:spBlobA 28s ease-in-out infinite reverse; }
+.sp-blob-5{ width:380px; height:380px; top:42%; left:42%; background:#102A5C; animation:spBlobB 40s ease-in-out infinite reverse; }
+@keyframes spBlobA{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(60px,44px) scale(1.08); } }
+@keyframes spBlobB{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-54px,60px) scale(.95); } }
+@keyframes spBlobC{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(46px,-56px) scale(1.05); } }
+
+.sp-bg-lines{ position:fixed; inset:0; z-index:-7; pointer-events:none; overflow:hidden; }
+.sp-light-line{ position:absolute; height:1px; width:52%; opacity:.5; }
+.sp-line-cyan{ background:linear-gradient(90deg, transparent, rgba(236, 72, 153, .55), transparent); }
+.sp-line-white{ background:linear-gradient(90deg, transparent, rgba(255, 255, 255, .75), transparent); }
+.sp-light-line-1{ top:16%; left:-60%; animation:spLineTravel 27s linear infinite; }
+.sp-light-line-2{ top:54%; left:-60%; animation:spLineTravel 33s linear infinite 7s; }
+.sp-light-line-3{ top:82%; left:-60%; animation:spLineTravel 30s linear infinite 14s; }
+@keyframes spLineTravel{ 0%{ transform:translateX(0); } 100%{ transform:translateX(220vw); } }
+
+.sp-page-particles{ position:fixed; inset:0; z-index:-6; pointer-events:none; overflow:hidden; }
+.sp-page-particles span{
+    position:absolute; width:3px; height:3px; border-radius:50%;
+    background:var(--pt-blue-2,#EC4899); opacity:.2;
+    animation-name:spDrift; animation-timing-function:ease-in-out; animation-iteration-count:infinite;
+}
+@keyframes spDrift{
+    0%{ transform:translate(0,0); }
+    33%{ transform:translate(14px,-20px); }
+    66%{ transform:translate(-12px,12px); }
+    100%{ transform:translate(0,0); }
+}
+
+.sp-bg-shine{ position:fixed; inset:0; z-index:-5; pointer-events:none; overflow:hidden; }
+.sp-bg-shine::before{
+    content:""; position:absolute; top:-20%; left:-30%; width:36%; height:140%;
+    background:linear-gradient(115deg, transparent, rgba(255, 255, 255, .3), transparent);
+    transform:rotate(8deg); translate:0;
+    animation:spShineSweep 19s ease-in-out infinite;
+    will-change:translate;
+}
+/* GPU-composited — `translate` instead of `left`, no layout thrash on this
+   always-on, full-viewport decorative sweep. */
+@keyframes spShineSweep{ 0%,100%{ translate:0; } 50%{ translate:417% 0; } }
+
+/*==================================================
+    1. PREMIUM HERO TEMPLATE
+    Reusable two-column hero: left = heading/copy/CTA/
+    stat bar, right = custom hex-clipped photo frame with
+    floating glass stat cards. Swap only the text, image
+    src and stat numbers per page — structure never changes.
+==================================================*/
+/* top padding trimmed from 22px to 30px-balanced now that the motto
+   strip above the hero is gone — the section no longer opens with an
+   awkward empty band before the heading. */
+.sp-hv{ position:relative; overflow:hidden; isolation:isolate; padding:30px 0 40px; }
+
+/* ---- decorative background (scoped to hero, scrolls with it) ---- */
+.sp-hv-bg{ position:absolute; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
+.sp-hv-blob{ position:absolute; border-radius:50%; filter:blur(80px); opacity:.14; }
+.sp-hv-blob-1{ display:none; }
+.sp-hv-blob-2{ width:320px; height:320px; top:10%; right:-100px; background:var(--pt-pink,#EC4899); animation:spBlobC 34s ease-in-out infinite; }
+.sp-hv-blob-3{ width:280px; height:280px; bottom:-80px; left:38%; background:var(--pt-gold,#EC4899); opacity:.1; animation:spBlobB 38s ease-in-out infinite; }
+.sp-hv-hexgrid{
+    position:absolute; inset:-20%; opacity:.05;
+    background-image:
+        linear-gradient(30deg, rgba(16, 42, 92, .5) 1px, transparent 1px),
+        linear-gradient(150deg, rgba(16, 42, 92, .5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 42, 92, .5) 1px, transparent 1px);
+    background-size:52px 90px, 52px 90px, 52px 90px;
+    animation:spGridDrift 80s linear infinite;
+}
+.sp-hv-line{ position:absolute; height:1px; width:46%; opacity:.5; background:linear-gradient(90deg, transparent, rgba(236, 72, 153, .55), transparent); }
+.sp-hv-line-1{ top:20%; left:-55%; animation:spLineTravel 22s linear infinite; }
+.sp-hv-line-2{ top:72%; left:-55%; animation:spLineTravel 27s linear infinite 5s; background:linear-gradient(90deg, transparent, rgba(236, 72, 153, .4), transparent); }
+.sp-hv-particles{ position:absolute; inset:0; }
+.sp-hv-particles span{
+    position:absolute; width:3px; height:3px; border-radius:50%;
+    background:var(--pt-gold,#EC4899); opacity:.3;
+    animation-name:spDrift; animation-timing-function:ease-in-out; animation-iteration-count:infinite;
+}
+
+/* ---- top tagline strip — REMOVED per brief.
+   The "INNOVATE • LEARN • EXCEL" strip and its separator dots are gone;
+   the hero now begins directly with the school badge. Rule kept as a
+   no-op guard in case any cached page still ships the markup. ---- */
+.sp-hv-topbar{ display:none !important; }
+
+/* ---- main two-column grid ---- */
+.sp-hv-main{ display:grid; grid-template-columns:1.15fr 1fr; gap:32px; align-items:center; }
+.sp-hv-left{ order:2; }
+.sp-hv-right{ order:1; }
+.sp-hv-left{ position:relative; z-index:1; }
+/* With the motto strip and the duplicate badge pill both removed, the
+   heading is now the first element in the hero column. It sits flush at
+   the top with no leftover gap, and the column is vertically centred
+   against the photo by .sp-hv-main's align-items:center. */
+/* breadcrumb "back to hub" pill — used on the Languages/Short Courses
+   category pages, sitting on the light hero background, so it needs
+   navy text/border rather than the dark-panel .lsc-back treatment. */
+.sp-hv-back{
+    display:inline-flex; align-items:center; gap:7px;
+    margin-bottom:12px; padding:6px 13px;
+    border-radius:50px; cursor:pointer; text-decoration:none;
+    background:rgba(16, 42, 92, .05);
+    border:1px solid rgba(16, 42, 92, .14);
+    color:var(--pt-navy,#102A5C);
+    font-family:'Montserrat',sans-serif; font-weight:600; font-size:.72rem;
+    transition:background .25s ease, border-color .25s ease, transform .25s ease;
+}
+.sp-hv-back:hover{
+    background:rgba(236, 72, 153, .08);
+    border-color:rgba(236, 72, 153, .3);
+    color:var(--pt-pink,#EC4899);
+    transform:translateX(-2px);
+}
+
+.sp-hv-left h1{
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:2.15rem; line-height:1.18;
+    color:var(--pt-navy,#102A5C); margin:0 0 14px;
+}
+.sp-hv-left > h1:first-child{ margin-top:0; }
+.sp-hl-pink{ color:var(--pt-pink,#EC4899); }
+.sp-hv-left > p{ font-size:.92rem; line-height:1.6; color:var(--pt-slate,#102A5C); max-width:520px; margin-bottom:14px; }
+
+.sp-hv-features{ position:relative; padding-left:16px; margin-bottom:22px; display:flex; flex-direction:column; gap:4px; }
+.sp-hv-features::before{ content:""; position:absolute; left:0; top:2px; bottom:2px; width:2px; background:linear-gradient(180deg,var(--pt-pink,#EC4899),var(--pt-blue-2,#EC4899)); border-radius:2px; }
+.sp-hv-features li{ list-style:none; font-size:.85rem; color:var(--pt-navy,#102A5C); font-weight:600; }
+
+.sp-hv-statbar{ display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; }
+.sp-hv-stat{
+    position:relative; overflow:hidden; flex:1; min-width:108px;
+    display:flex; flex-direction:column; align-items:flex-start; gap:2px;
+    padding:12px 14px; border-radius:16px;
+    background:var(--pt-glass,rgba(255, 255, 255, .72)); backdrop-filter:blur(14px) saturate(140%);
+    border:1px solid rgba(236, 72, 153, 0.14); box-shadow:0 10px 22px rgba(16, 42, 92, .06), 0 0 18px rgba(236, 72, 153, 0.14);
+    transition:transform var(--sp-ease), box-shadow var(--sp-ease);
+}
+.sp-hv-stat:hover{ transform:translateY(-3px); box-shadow:0 16px 30px rgba(16, 42, 92, .12), 0 0 16px rgba(236, 72, 153, .12); }
+.sp-hv-stat i{ color:var(--pt-pink,#EC4899); font-size:.85rem; margin-bottom:2px; }
+.sp-hv-stat strong{ font-family:'Poppins',sans-serif; font-weight:800; font-size:1.15rem; color:var(--pt-navy,#102A5C); line-height:1; }
+.sp-hv-stat span{ font-size:.66rem; color:var(--pt-slate,#102A5C); font-weight:600; text-transform:uppercase; letter-spacing:.4px; }
+
+/* ---- right: custom-framed photo ---- */
+.sp-hv-right{ position:relative; isolation:isolate; padding:26px 10px 46px 26px; }
+.sp-hv-frame-wrap{
+    position:relative; aspect-ratio:6/5; width:100%;
+    clip-path:polygon(6% 0%, 100% 0%, 100% 84%, 94% 100%, 0% 100%, 0% 16%);
+    filter:drop-shadow(0 26px 44px rgba(16, 42, 92, .24));
+    transition:filter .4s ease;
+}
+.sp-hv-right:hover .sp-hv-frame-wrap{ filter:drop-shadow(0 32px 54px rgba(16, 42, 92, .3)); }
+.sp-hv-right:hover .sp-hv-photo{ transform:scale(1.03); }
+.sp-hv-frame-wrap::before{
+    content:""; position:absolute; inset:-5px; z-index:0;
+    clip-path:polygon(6% 0%, 100% 0%, 100% 84%, 94% 100%, 0% 100%, 0% 16%);
+    background:conic-gradient(from var(--sp-a),
+        var(--pt-pink,#EC4899) 0deg, transparent 90deg, transparent 180deg,
+        var(--pt-blue-2,#EC4899) 240deg, transparent 300deg, var(--pt-gold,#EC4899) 340deg, var(--pt-pink,#EC4899) 360deg);
+    animation:spTravel 9s linear infinite;
+}
+.sp-hv-frame-wrap::after{
+    content:""; position:absolute; inset:3px; z-index:1;
+    clip-path:polygon(6% 0%, 100% 0%, 100% 84%, 94% 100%, 0% 100%, 0% 16%);
+    background:rgba(255, 255, 255, .9);
+}
+.sp-hv-photo{
+    position:relative; z-index:2; display:block; width:100%; height:100%; object-fit:contain; object-position:center;
+    clip-path:polygon(6% 0%, 100% 0%, 100% 84%, 94% 100%, 0% 100%, 0% 16%);
+    transition:transform .5s cubic-bezier(.25,.8,.25,1);
+    /* contain (not cover) so the full photo is always visible, never
+       cropped — any letterbox space reveals the white ::after "mat"
+       layer already sitting behind the photo, keeping the premium
+       framed look intact. */
+}
+/* .sp-hv-frame-shine: moving light sweep removed per brief — element is kept
+   in the markup (harmless empty span) so nothing needs to change in the 15
+   pages that reference it, it just no longer renders anything. */
+.sp-hv-frame-shine{ display:none; }
+
+/* corner badge, overlaps top-right of the frame */
+.sp-hv-corner-badge{
+    position:absolute; top:0; right:0; z-index:4;
+    display:flex; align-items:center; gap:10px;
+    padding:12px 18px; border-radius:16px;
+    background:linear-gradient(135deg, rgba(16, 42, 92, .86), rgba(236, 72, 153, .72));
+    backdrop-filter:blur(14px); box-shadow:0 16px 30px rgba(16, 42, 92, .22), 0 0 18px rgba(236, 72, 153, 0.3);
+    color:#FFFFFF; max-width:200px;
+    animation:spFloat 6s ease-in-out infinite;
+}
+.sp-hv-corner-badge i{ font-size:1.05rem; color:var(--pt-gold,#EC4899); flex-shrink:0; }
+.sp-hv-corner-badge span{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:.62rem; letter-spacing:.6px; line-height:1.5; }
+
+/* floating stat card, overlaps bottom-left of the frame */
+.sp-hv-floatcard{
+    position:absolute; left:0; bottom:14px; z-index:4;
+    display:flex; align-items:center; gap:12px;
+    padding:14px 20px; border-radius:20px;
+    background:var(--pt-glass,rgba(255, 255, 255, .85)); backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid rgba(236, 72, 153, 0.16); box-shadow:0 20px 40px rgba(16, 42, 92, .16), 0 0 18px rgba(236, 72, 153, 0.24);
+    animation:spFloat 7s ease-in-out infinite 1s;
+}
+.sp-hv-floatcard i{ font-size:1.5rem; color:var(--pt-pink,#EC4899); }
+.sp-hv-floatcard strong{ display:block; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.3rem; color:var(--pt-navy,#102A5C); line-height:1.1; }
+.sp-hv-floatcard span{ font-size:.7rem; color:var(--pt-slate,#102A5C); font-weight:600; }
+
+/* bottom-right corner tagline */
+.sp-hv-corner-tag{
+    position:absolute; right:24px; bottom:8px; z-index:1;
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:.78rem; color:var(--pt-navy,#102A5C);
+    text-align:right; opacity:.75;
+}
+.sp-hv-corner-tag span{ color:var(--pt-pink,#EC4899); }
+
+.sp-badge{
+    display:inline-flex; align-items:center; gap:8px; position:relative; overflow:hidden;
+    padding:7px 16px; border-radius:50px; margin-bottom:12px;
+    background:rgba(236, 72, 153, .06); border:1px solid rgba(236, 72, 153, .28);
+    font-family:'Montserrat',sans-serif; font-weight:600; font-size:.72rem;
+    letter-spacing:1.2px; text-transform:uppercase; color:var(--pt-blue,#EC4899);
+    max-width:100%; white-space:normal; line-height:1.4;
+}
+.sp-badge::before{
+    content:""; position:absolute; inset:0; padding:1px; border-radius:50px;
+    background:conic-gradient(from var(--sp-a), transparent 0 65%, var(--pt-pink,#EC4899) 82%, var(--pt-blue-2,#EC4899) 92%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 7s linear infinite; pointer-events:none;
+}
+
+/* ---- integrated "About the School" glass card ---- */
+.sp-hv-about-card{
+    position:relative; isolation:isolate; overflow:hidden;
+    margin-top:18px; padding:22px 24px 24px; border-radius:24px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(236, 72, 153, .07), transparent 55%),
+        radial-gradient(circle at 0% 100%, rgba(236, 72, 153, .06), transparent 55%),
+        var(--pt-glass,rgba(255, 255, 255, .76));
+    backdrop-filter:blur(22px) saturate(150%); -webkit-backdrop-filter:blur(22px) saturate(150%);
+    border:1px solid rgba(236, 72, 153, .18);
+    box-shadow:0 26px 54px rgba(16, 42, 92, .12), inset 0 1px 0 rgba(255, 255, 255, .85);
+}
+.sp-hv-about-card p{
+    position:relative; z-index:1;
+    color:var(--pt-navy,#102A5C);
+    font-size:.94rem; line-height:1.75;
+}
+/* travelling light rim — white, pink, navy-blue */
+.sp-hv-about-card::before{
+    content:""; position:absolute; inset:0; padding:1.4px; border-radius:inherit; z-index:0;
+    background:conic-gradient(from var(--sp-a),
+        rgba(255, 255, 255, .7) 0deg, transparent 40deg, transparent 140deg,
+        rgba(236, 72, 153, .6) 200deg, transparent 260deg, rgba(236, 72, 153, .55) 320deg, rgba(255, 255, 255, .7) 360deg);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 15s linear infinite; pointer-events:none;
+}
+/* slow reflection sweep across the glass */
+.sp-hv-about-card::after{
+    content:""; position:absolute; top:-40%; left:-60%; width:42%; height:220%; z-index:0; pointer-events:none;
+    background:linear-gradient(120deg, transparent, rgba(255, 255, 255, .4), transparent);
+    transform:rotate(10deg); animation:spShineSweep 17s ease-in-out infinite;
+}
+.sp-hv-about-card h2{ position:relative; z-index:1; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:var(--pt-navy,#102A5C); margin-bottom:8px; }
+.sp-hv-about-card > p{ position:relative; z-index:1; font-size:.85rem; line-height:1.7; color:var(--pt-slate,#102A5C); margin-bottom:18px; }
+.sp-hv-about-card .sp-hero-cta{ position:relative; z-index:1; margin:0; }
+
+/* primary CTA inside the About card — pink-to-magenta gradient (scoped override, global .btn-primary elsewhere stays blue) */
+.sp-hv-about-card .btn-primary{
+    background:linear-gradient(115deg, var(--pt-pink,#EC4899) 0%, #EC4899 55%, var(--pt-pink,#EC4899) 100%);
+    box-shadow:0 14px 30px rgba(236, 72, 153, .32);
+}
+.sp-hv-about-card .btn-primary:hover{
+    background:linear-gradient(115deg, #EC4899 0%, var(--pt-blue,#EC4899) 100%);
+    box-shadow:0 18px 36px rgba(236, 72, 153, .3), 0 0 22px rgba(236, 72, 153, .3);
+    transform:translateY(-2px);
+}
+/* secondary CTA — frosted white glass, navy border, pink hover glow */
+.sp-hv-about-card .btn-ghost{
+    background:rgba(255, 255, 255, .6); backdrop-filter:blur(10px);
+    border-color:rgba(236, 72, 153, 0.36); color:var(--pt-navy,#102A5C);
+}
+.sp-hv-about-card .btn-ghost:hover{
+    border-color:var(--pt-pink,#EC4899); color:var(--pt-pink,#EC4899);
+    box-shadow:0 12px 26px rgba(236, 72, 153, .18); transform:translateY(-2px);
+}
+
+/* Hero CTAs sit side by side on desktop/tablet, equal height and
+   visually balanced widths; they stack full-width on mobile. */
+.sp-hero-cta{ display:flex; align-items:stretch; gap:18px; flex-wrap:nowrap; }
+.sp-hero-cta .btn-primary,
+.sp-hero-cta .btn-ghost{
+    flex:1 1 0; min-width:0;
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    padding:12px 20px; font-size:.85rem; text-align:center; white-space:nowrap;
+}
+@media(max-width:1180px){
+    .sp-hero-cta{ gap:14px; }
+    .sp-hero-cta .btn-primary,
+    .sp-hero-cta .btn-ghost{ padding:11px 16px; font-size:.8rem; }
+}
+@media(max-width:560px){
+    .sp-hero-cta{ flex-wrap:wrap; gap:11px; }
+    .sp-hero-cta .btn-primary,
+    .sp-hero-cta .btn-ghost{ flex:1 1 100%; white-space:normal; }
+}
+
+@media(max-width:1180px){
+    .sp-hv-main{ grid-template-columns:1fr; gap:34px; }
+    .sp-hv-right{ padding:26px 10px 60px 10px; max-width:520px; margin:0 auto; }
+}
+@media(max-width:640px){
+    .sp-hv-topbar{ display:none; }
+    .sp-hv-left h1{ font-size:1.6rem; }
+    .sp-hv-statbar{ gap:8px; }
+    .sp-hv-stat{ min-width:44%; }
+    .sp-hv-corner-badge{ max-width:150px; padding:10px 14px; }
+    .sp-hv-corner-tag{ display:none; }
+}
+
+
+/*==================================================
+    2. ABOUT THE SCHOOL — 60/40 split
+==================================================*/
+.sp-about{ padding:44px 0; position:relative; }
+.sp-about-grid{ display:grid; grid-template-columns:1.5fr 1fr; gap:44px; align-items:center; }
+.sp-about-text{
+    position:relative; padding:22px 24px; border-radius:22px;
+    background:rgba(255, 255, 255, .38); backdrop-filter:blur(10px);
+    border:1px solid rgba(236, 72, 153, .07);
+}
+.sp-about-text h2{ font-family:'Poppins',sans-serif; font-weight:700; font-size:1.5rem; color:var(--pt-navy,#102A5C); margin-bottom:12px; }
+.sp-about-text p{ font-size:.95rem; line-height:1.75; color:var(--pt-slate,#102A5C); }
+.sp-about-media{ position:relative; }
+.sp-about-frame{
+    position:relative; border-radius:38% 62% 58% 42% / 50% 45% 55% 50%;
+    overflow:hidden; height:320px;
+    background:#FFFFFF;
+    border:4px solid rgba(255, 255, 255, .9);
+    box-shadow:0 26px 54px rgba(236, 72, 153, .2), 0 0 0 1px rgba(236, 72, 153, .06), 0 0 34px rgba(236, 72, 153, .16);
+    animation:spBlobMorph 16s ease-in-out infinite;
+}
+@keyframes spBlobMorph{
+    0%,100%{ border-radius:38% 62% 58% 42% / 50% 45% 55% 50%; }
+    50%{ border-radius:58% 42% 42% 58% / 45% 55% 45% 55%; }
+}
+/* contain — not cover — so the full "About the School" photo is always
+   visible inside the animated blob frame; the white frame background
+   fills any letterbox space instead of cropping the subject. */
+.sp-about-frame img{ width:100%; height:100%; object-fit:contain; object-position:center; }
+.sp-about-frame::before{
+    content:""; position:absolute; inset:0; padding:2px; z-index:2;
+    border-radius:inherit;
+    background:conic-gradient(from var(--sp-a), transparent 0 65%, var(--pt-blue-2,#EC4899) 84%, var(--pt-gold,#EC4899) 93%, transparent 100%);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 8s linear infinite; pointer-events:none;
+}
+
+/*==================================================
+    3. OUR PROGRAMMES — search/filter + glass table
+==================================================*/
+.sp-programmes{ padding:26px 0 20px; position:relative; }
+
+/* the toolbar + programme grid float together as one premium glass object,
+   the modern equivalent of the old fee-table — same data, no fee column,
+   framed in glass with a continuous travelling-light border */
+.sp-prog-shell{
+    position:relative; isolation:isolate; overflow:hidden;
+    border-radius:20px; padding:14px 16px 16px;
+    background:
+        radial-gradient(circle at 6% 0%, rgba(236, 72, 153, .07), transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(236, 72, 153, .07), transparent 50%),
+        rgba(255, 255, 255, .68);
+    backdrop-filter:blur(24px) saturate(145%);
+    -webkit-backdrop-filter:blur(24px) saturate(145%);
+    border:1px solid rgba(236, 72, 153, .1);
+    box-shadow:0 30px 70px rgba(236, 72, 153, .1), inset 0 1px 0 rgba(255, 255, 255, .7);
+}
+.sp-prog-shell::before{
+    content:""; position:absolute; inset:0; padding:1.5px; border-radius:inherit; z-index:0;
+    background:conic-gradient(from var(--sp-a),
+        transparent 0deg, rgba(236, 72, 153, .6) 70deg, rgba(255, 255, 255, .85) 100deg, transparent 140deg,
+        transparent 280deg, rgba(236, 72, 153, .4) 340deg, transparent 360deg);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 16s linear infinite; pointer-events:none;
+}
+.sp-prog-toolbar,.sp-prog-grid,.sp-no-results{ position:relative; z-index:1; }
+
+.sp-prog-toolbar{
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    margin-bottom:14px; padding:10px 14px; border-radius:16px; overflow:hidden;
+    background:rgba(255, 255, 255, .55); backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(236, 72, 153, .08);
+}
+/* header reflection, sweeps once every ~8s like a slow scanning glass shine */
+.sp-prog-toolbar::after{
+    content:""; position:absolute; top:0; left:-40%; width:26%; height:100%; z-index:0; pointer-events:none;
+    background:linear-gradient(100deg, transparent, rgba(255, 255, 255, .55), transparent);
+    translate:0;
+    animation:spToolbarSheen 8s ease-in-out infinite;
+    will-change:translate;
+}
+@keyframes spToolbarSheen{ 0%{ translate:0; } 55%,100%{ translate:654% 0; } }
+.sp-prog-toolbar > *{ position:relative; z-index:1; }
+.sp-search{
+    position:relative; isolation:isolate; flex:1; min-width:220px; max-width:340px;
+}
+.sp-search input{
+    width:100%; padding:11px 16px 11px 40px; border-radius:50px;
+    border:1px solid rgba(236, 72, 153, .15); background:rgba(255, 255, 255, .68);
+    backdrop-filter:blur(14px) saturate(150%); -webkit-backdrop-filter:blur(14px) saturate(150%);
+    font-size:.88rem; color:var(--pt-navy,#102A5C);
+    outline:none; transition:var(--sp-ease); position:relative; z-index:1;
+}
+.sp-search input:focus{ border-color:var(--pt-blue,#EC4899); box-shadow:0 0 0 4px rgba(236, 72, 153, .1); }
+.sp-search i{ position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--pt-slate,#102A5C); font-size:.85rem; z-index:2; }
+/* animated glow ring, only visible while the search field has focus */
+.sp-search::after{
+    content:""; position:absolute; inset:0; padding:1.4px; border-radius:50px; z-index:0;
+    opacity:0; transition:opacity .3s ease; pointer-events:none;
+    background:conic-gradient(from var(--sp-a), transparent 0deg, rgba(236, 72, 153, .65) 90deg, transparent 180deg, rgba(236, 72, 153, .5) 270deg, transparent 360deg);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 6s linear infinite;
+}
+.sp-search:focus-within::after{ opacity:1; }
+.sp-filters{ display:flex; gap:8px; flex-wrap:wrap; }
+.sp-filter-btn{
+    position:relative; overflow:hidden;
+    padding:9px 16px; border-radius:50px; font-size:.8rem; font-weight:600;
+    border:1px solid rgba(236, 72, 153, .15); background:rgba(255, 255, 255, .55);
+    backdrop-filter:blur(8px);
+    color:var(--pt-slate,#102A5C); cursor:pointer; transition:var(--sp-ease);
+}
+.sp-filter-btn:hover{ border-color:var(--pt-blue,#EC4899); color:var(--pt-blue,#EC4899); transform:translateY(-1px); }
+.sp-filter-btn.active{
+    background:linear-gradient(135deg,var(--pt-blue,#EC4899),var(--pt-blue-2,#EC4899));
+    color:#FFFFFF; border-color:transparent; box-shadow:0 10px 22px rgba(236, 72, 153, .25);
+}
+.sp-filter-btn.active::before{
+    content:""; position:absolute; inset:0; border-radius:50px; padding:1px; pointer-events:none;
+    background:conic-gradient(from var(--sp-a), transparent, rgba(255, 255, 255, .85) 35deg, transparent 90deg);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 5s linear infinite;
+}
+
+.sp-level-badge{ display:inline-block; padding:3px 9px; border-radius:50px; font-size:.67rem; font-weight:700; white-space:nowrap; }
+.sp-level-badge.lvl-diploma{ background:rgba(236, 72, 153, .1); color:var(--pt-blue,#EC4899); }
+.sp-level-badge.lvl-certificate{ background:rgba(236, 72, 153, .15); color:var(--pt-accent-dark,#EC4899); }
+.sp-level-badge.lvl-artisan{ background:rgba(236, 72, 153, .1); color:var(--pt-pink,#EC4899); }
+.sp-level-badge.lvl-professional{ background:rgba(16, 42, 92, .12); color:#102A5C; }
+.sp-apply-link{ display:inline-flex; align-items:center; gap:6px; font-size:.8rem; font-weight:600; color:var(--pt-blue,#EC4899); white-space:nowrap; }
+.sp-apply-link i{ transition:transform .3s ease; }
+.sp-no-results{ text-align:center; padding:34px 20px; color:var(--pt-slate,#102A5C); font-size:.9rem; }
+
+/*==================================================
+    3b. SCHOOL NAVIGATION SIDEBAR + BODY LAYOUT
+==================================================*/
+.sp-body{ padding:6px 0 0; position:relative; }
+.sp-body-layout{ display:grid; grid-template-columns:288px 1fr; gap:24px; align-items:start; }
+
+/* Languages & Short Courses page only — no Academic Schools sidebar here
+   by design, so content expands to the container's full standard max
+   width (same .container max-width used sitewide) and stays centered. */
+.sp-body-layout--no-sidebar{ display:block; }
+
+.sp-sidebar{ position:sticky; top:18px; align-self:start; }
+.sp-sidebar-inner{
+    position:relative; isolation:isolate; overflow:hidden;
+    border-radius:30px; padding:22px;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(16, 42, 92, .16), transparent 45%),
+        radial-gradient(circle at 100% 90%, rgba(16, 42, 92, .10), transparent 50%),
+        linear-gradient(165deg, rgba(16, 42, 92, .92), rgba(16, 42, 92, .94));
+    backdrop-filter:blur(24px) saturate(145%);
+    -webkit-backdrop-filter:blur(24px) saturate(145%);
+    border:1px solid rgba(236, 72, 153, 0.34);
+    box-shadow:0 26px 60px rgba(16, 42, 92, .32), 0 0 34px rgba(16, 42, 92, .10), inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+/* animated travelling-light rim — electric blue / cyan / white, running
+   continuously around the glass edge (darker theme variant) */
+.sp-sidebar-inner::before{
+    content:""; position:absolute; inset:0; padding:1.4px; border-radius:inherit; z-index:0;
+    background:conic-gradient(from var(--sp-a),
+        transparent 0deg, rgba(16, 42, 92, .65) 60deg, transparent 130deg,
+        transparent 230deg, rgba(16, 42, 92, .6) 300deg, transparent 360deg);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 14s linear infinite; pointer-events:none;
+}
+/* slow diagonal glass reflection sweep across the sidebar surface */
+.sp-sidebar-inner::after{
+    content:""; position:absolute; top:-40%; left:-70%; width:55%; height:220%; z-index:0; pointer-events:none;
+    background:linear-gradient(120deg, transparent, rgba(255, 255, 255, .14), transparent);
+    transform:rotate(10deg); animation:spShineSweep 13s ease-in-out infinite;
+}
+.sp-sidebar-head{
+    position:relative; z-index:1;
+    display:flex; align-items:center; gap:9px; padding:6px 8px 14px;
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:.72rem;
+    letter-spacing:1.1px; text-transform:uppercase; color:rgba(255, 255, 255, .65);
+    border-bottom:1px solid rgba(255, 255, 255, .12); margin-bottom:10px;
+}
+.sp-sidebar-head i{ color:#102A5C; }
+.sp-sidebar-nav{ position:relative; z-index:1; display:flex; flex-direction:column; gap:6px; max-height:70vh; overflow-y:auto; }
+.sp-sidebar-nav::-webkit-scrollbar{ width:4px; }
+.sp-sidebar-nav::-webkit-scrollbar-thumb{ background:rgba(16, 42, 92, .3); border-radius:4px; }
+
+.sp-nav-item{
+    position:relative; isolation:isolate; overflow:hidden;
+    display:flex; align-items:center; gap:16px; width:100%;
+    padding:22px 20px; border-radius:16px; border:1px solid transparent; border-left:3px solid transparent;
+    background:rgba(255, 255, 255, .05); backdrop-filter:blur(6px); cursor:pointer; text-align:left;
+    transition:var(--sp-ease);
+}
+.sp-nav-item:hover{
+    background:rgba(16, 42, 92, .14); border-color:rgba(236, 72, 153, 0.26);
+    transform:translateY(-1px); box-shadow:0 10px 22px rgba(16, 42, 92, .2), 0 0 16px rgba(16, 42, 92, .16);
+}
+.sp-nav-item::after{
+    content:""; position:absolute; top:0; left:-60%; width:35%; height:100%; z-index:0; pointer-events:none;
+    background:linear-gradient(100deg, transparent, rgba(255, 255, 255, .16), transparent);
+    transform:skewX(-15deg); transition:left .55s ease;
+}
+.sp-nav-item:hover::after{ left:130%; }
+.sp-nav-item.active{
+    background:linear-gradient(135deg, rgba(16, 42, 92, .32), rgba(16, 42, 92, .16));
+    border-color:rgba(236, 72, 153, .4);
+    border-left:3px solid #FFFFFF;
+    transform:scale(1.02);
+    box-shadow:0 12px 28px rgba(16, 42, 92, .28), 0 0 22px rgba(16, 42, 92, .32), inset 0 1px 0 rgba(255, 255, 255, .14);
+    animation:spNavPulse 3.2s ease-in-out infinite;
+}
+@keyframes spNavPulse{
+    0%,100%{ box-shadow:0 12px 28px rgba(16, 42, 92, .24), 0 0 20px rgba(16, 42, 92, .24), inset 0 1px 0 rgba(255, 255, 255, .14); }
+    50%{ box-shadow:0 14px 32px rgba(16, 42, 92, .32), 0 0 34px rgba(16, 42, 92, .42), inset 0 1px 0 rgba(255, 255, 255, .14); }
+}
+.sp-nav-item.active::before{
+    content:""; position:absolute; inset:0; padding:1.4px; border-radius:16px; z-index:0;
+    background:conic-gradient(from var(--sp-a), rgba(16, 42, 92, .9) 0deg, transparent 70deg, transparent 190deg, rgba(16, 42, 92, .8) 270deg, transparent 360deg);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 5s linear infinite; pointer-events:none;
+}
+.sp-nav-text{ position:relative; z-index:1; flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
+.sp-nav-name{ font-size:.86rem; font-weight:700; line-height:1.25; color:#FFFFFF; }
+.sp-nav-count{ font-size:.71rem; color:rgba(255, 255, 255, .6); }
+.sp-nav-arrow{ position:relative; z-index:1; font-size:.65rem; color:rgba(255, 255, 255, .5); opacity:0; transform:translateX(-3px); transition:var(--sp-ease); }
+.sp-nav-item:hover .sp-nav-arrow,.sp-nav-item.active .sp-nav-arrow{ opacity:1; transform:none; }
+.sp-nav-item.active .sp-nav-arrow{ color:#102A5C; }
+
+.sp-content{ min-width:0; }
+
+/*==================================================
+    3c. PROGRAMME TABLE — one continuous, compact glass
+    table (search + level filter apply across all rows).
+    Columns: Programme | Duration | Level
+==================================================*/
+.sp-prog-grid{ display:block; }
+
+/* Fixed-height scroll container so long programme lists (the Languages
+   school has 42) don't stretch the page. The search/filter toolbar sits
+   outside this box, so filtering stays visible while the list scrolls. */
+.sp-prog-table-wrap{
+    overflow-x:auto; overflow-y:auto; -webkit-overflow-scrolling:touch;
+    max-height:400px;
+    scroll-behavior:smooth;
+    border-radius:22px;
+    background:var(--pt-glass,rgba(255, 255, 255, .72));
+    backdrop-filter:blur(18px) saturate(130%); -webkit-backdrop-filter:blur(18px) saturate(130%);
+    border:1px solid rgba(236, 72, 153, 0.14);
+    box-shadow:0 14px 34px rgba(16, 42, 92, .06), 0 0 18px rgba(236, 72, 153, 0.14);
+    padding:6px 10px;
+    /* Firefox */
+    scrollbar-width:thin;
+    scrollbar-color:var(--pt-pink,#EC4899) transparent;
+}
+/* custom scrollbar — matches the pink accent */
+.sp-prog-table-wrap::-webkit-scrollbar{ width:8px; height:8px; }
+.sp-prog-table-wrap::-webkit-scrollbar-track{ background:transparent; }
+.sp-prog-table-wrap::-webkit-scrollbar-thumb{
+    background:var(--pt-pink,#EC4899); border-radius:10px;
+}
+.sp-prog-table-wrap::-webkit-scrollbar-thumb:hover{ background:var(--pt-navy,#102A5C); }
+.sp-prog-table{ width:100%; border-collapse:separate; border-spacing:0 3px; min-width:420px; }
+
+/* sticky column headers so PROGRAMME / DURATION / LEVEL stay visible
+   while the list scrolls inside .sp-prog-table-wrap */
+.sp-prog-table thead th{
+    position:sticky; top:0; z-index:20;
+    text-align:left; padding:7px 10px;
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:.64rem;
+    letter-spacing:.5px; text-transform:uppercase; color:var(--pt-slate,#102A5C);
+    white-space:nowrap;
+    background:var(--pt-glass,rgba(255, 255, 255, .92));
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    box-shadow:0 2px 6px rgba(16, 42, 92, .06), 0 0 18px rgba(236, 72, 153, 0.14);
+}
+.sp-prog-table thead th:last-child{ text-align:right; }
+
+.sp-prog-row{
+    transition:background .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.sp-prog-row:hover{
+    background:var(--pt-pink,#EC4899);
+    transform:translateX(3px);
+    box-shadow:0 8px 20px rgba(236, 72, 153, .28);
+}
+.sp-prog-row:hover td,
+.sp-prog-row:hover .sp-col-duration,
+.sp-prog-row:hover .sp-col-duration i{ color:#FFFFFF; }
+.sp-prog-row:hover .sp-level-badge{ background:rgba(255, 255, 255, .25); color:#FFFFFF; }
+.sp-prog-row td{
+    padding:7px 10px; vertical-align:middle; font-size:.82rem; color:var(--pt-navy,#102A5C);
+    border-top:1px solid rgba(236, 72, 153, 0.11);
+}
+.sp-prog-row td:last-child{ text-align:right; }
+
+.sp-col-name{ font-weight:600; min-width:200px; line-height:1.3; }
+.sp-col-duration{ color:var(--pt-slate,#102A5C); font-size:.76rem; white-space:nowrap; }
+.sp-col-duration i{ color:var(--pt-pink,#EC4899); font-size:.66rem; margin-right:4px; }
+
+/*==================================================
+    3c-2. PROGRAMME TRACK SELECTOR (Languages &amp; Short
+    Courses page only) — two glass option cards using the
+    exact same filter-button / mini-card glass language and
+    travelling-light accent already used across this page.
+    Selecting a track filters the SAME programme table,
+    search box and level filters used everywhere else here.
+==================================================*/
+.sp-track-select{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px; }
+.sp-track-card{
+    position:relative; isolation:isolate; overflow:hidden;
+    display:flex; align-items:center; gap:12px; width:100%;
+    padding:16px 18px; border-radius:20px; cursor:pointer; text-align:left;
+    background:rgba(255, 255, 255, .55);
+    backdrop-filter:blur(16px) saturate(140%); -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid rgba(236, 72, 153, .16);
+    box-shadow:0 10px 26px rgba(16, 42, 92, .06);
+    transition:var(--sp-ease);
+}
+.sp-track-card:hover{ transform:translateY(-3px); border-color:rgba(236, 72, 153, .4); box-shadow:0 20px 44px rgba(16, 42, 92, .1), 0 0 24px rgba(236, 72, 153, .18); }
+.sp-track-card.active{
+    background:linear-gradient(135deg, rgba(16, 42, 92, .94), rgba(16, 42, 92, .82));
+    border-color:transparent;
+    box-shadow:0 16px 36px rgba(16, 42, 92, .28), 0 0 26px rgba(236, 72, 153, .22);
+}
+.sp-track-card.active::before{
+    content:""; position:absolute; inset:0; padding:1.4px; border-radius:20px; z-index:0; pointer-events:none;
+    background:conic-gradient(from var(--sp-a), transparent, rgba(236, 72, 153, .8) 60deg, transparent 130deg, transparent 230deg, rgba(236, 72, 153, .7) 300deg, transparent 360deg);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 8s linear infinite;
+}
+.sp-track-icon{ position:relative; z-index:1; font-size:1.5rem; line-height:1; flex-shrink:0; }
+.sp-track-body{ position:relative; z-index:1; display:flex; flex-direction:column; gap:2px; min-width:0; }
+.sp-track-title{ font-family:'Poppins',sans-serif; font-weight:700; font-size:.92rem; color:var(--pt-navy,#102A5C); transition:color .25s ease; }
+.sp-track-card.active .sp-track-title{ color:#FFFFFF; }
+.sp-track-sub{ font-size:.7rem; color:var(--pt-slate,#102A5C); opacity:.75; transition:color .25s ease; }
+.sp-track-card.active .sp-track-sub{ color:rgba(255, 255, 255, .75); }
+
+/* category sub-headers inside the programme table, shown only when the
+   Professional Short Courses track is active — same table, no new grid. */
+.sp-prog-group-row td{
+    padding:14px 10px 6px !important; font-family:'Montserrat',sans-serif; font-weight:700; font-size:.68rem;
+    letter-spacing:1.2px; text-transform:uppercase; color:#EC4899; border-top:none !important; background:none !important;
+}
+.sp-prog-group-row:hover td{ background:none !important; color:#EC4899 !important; transform:none !important; }
+.sp-prog-group-row:first-child td{ padding-top:6px !important; }
+
+@media (max-width:640px){
+    .sp-track-select{ grid-template-columns:1fr; }
+}
+
+/*==================================================
+    4. WHY CHOOSE THIS SCHOOL + CAREER OPPORTUNITIES —
+    two compact cards side by side (not merged). Deep
+    Germaine blue glass, white typography, compact
+    padding per the darker premium theme.
+==================================================*/
+.sp-why-career{ padding:10px 0; }
+.sp-two-col{ display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:stretch; }
+.sp-mini-card{
+    position:relative; isolation:isolate; overflow:hidden; height:100%;
+    border-radius:22px; padding:16px 18px 14px;
+    background:rgba(255, 255, 255, .9);
+    backdrop-filter:blur(20px) saturate(140%);
+    -webkit-backdrop-filter:blur(20px) saturate(140%);
+    border:1px solid rgba(236, 72, 153, .22);
+    box-shadow:0 20px 50px rgba(16, 42, 92, .08), inset 0 1px 0 rgba(255, 255, 255, .6);
+    transition:transform var(--sp-ease), box-shadow var(--sp-ease), border-color var(--sp-ease);
+}
+.sp-mini-card:hover{ transform:translateY(-4px); border-color:rgba(236, 72, 153, .4); box-shadow:0 28px 60px rgba(16, 42, 92, .12), 0 0 30px rgba(236, 72, 153, .22); }
+.sp-mini-card::before{
+    content:""; position:absolute; inset:0; padding:1.4px; border-radius:24px; z-index:2;
+    background:conic-gradient(from var(--sp-a),
+        rgba(236, 72, 153, .6) 0deg, transparent 55deg,
+        transparent 160deg, rgba(236, 72, 153, .5) 210deg, transparent 270deg,
+        rgba(16, 42, 92, .35) 320deg, transparent 360deg);
+    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 11s linear infinite; pointer-events:none;
+}
+.sp-mini-glow{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:
+        radial-gradient(circle at 10% 0%, rgba(236, 72, 153, .1), transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(16, 42, 92, .06), transparent 45%);
+}
+.sp-mini-head{ position:relative; z-index:1; display:flex; align-items:center; gap:10px; margin-bottom:11px; }
+.sp-combo-icon{
+    width:34px; height:34px; border-radius:11px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:.88rem; color:var(--pt-pink,#EC4899);
+    background:rgba(236, 72, 153, .1); border:1px solid rgba(236, 72, 153, .25);
+    box-shadow:0 10px 22px rgba(236, 72, 153, .12);
+    animation:spFloat 5s ease-in-out infinite;
+}
+.sp-combo-icon-gold{ background:rgba(236, 72, 153, .1); }
+.sp-combo-icon-blue{ background:rgba(236, 72, 153, .1); }
+.sp-mini-head h3{ font-family:'Poppins',sans-serif; font-weight:700; font-size:.98rem; color:var(--pt-navy,#102A5C); }
+
+.sp-benefit-list{ position:relative; z-index:1; list-style:none; display:flex; flex-direction:column; gap:6px; }
+.sp-benefit-list li{ display:flex; align-items:center; gap:9px; font-size:.83rem; font-weight:500; color:var(--pt-navy,#102A5C); transition:transform .3s ease; }
+.sp-benefit-list li:hover{ transform:translateX(3px); }
+.sp-benefit-list li i{ color:var(--pt-pink,#EC4899); flex-shrink:0; }
+.sp-career-list{ display:grid; grid-template-columns:1fr 1fr; gap:5px 16px; }
+.sp-career-list li{ font-size:.8rem; color:var(--pt-navy,#102A5C); }
+.sp-career-list li i{ color:var(--pt-pink,#EC4899); }
+
+/* Career Opportunities — scrollable so a long list doesn't stretch the card */
+.career-list-container{
+    position:relative; z-index:1;
+    max-height:220px;
+    overflow-y:auto;
+    scroll-behavior:smooth;
+    padding-right:8px;
+    scrollbar-width:thin;
+    scrollbar-color:var(--pt-pink,#EC4899) transparent;
+}
+.career-list-container::-webkit-scrollbar{ width:6px; }
+.career-list-container::-webkit-scrollbar-track{ background:transparent; }
+.career-list-container::-webkit-scrollbar-thumb{ background:var(--pt-pink,#EC4899); border-radius:10px; }
+.career-list-container::-webkit-scrollbar-thumb:hover{ background:var(--pt-navy,#102A5C); }
+.career-list-container .sp-benefit-list,
+.career-list-container .sp-career-grid{ position:static; z-index:auto; }
+
+.sp-combo-cta{ position:relative; z-index:1; font-size:.8rem; padding:10px 20px; }
+
+/*==================================================
+    DEPARTMENT SELECTOR
+    Compact glass pills above the programme listing, so a
+    visitor can switch department without going back to the
+    Academics page. Only rendered for schools with departments.
+==================================================*/
+.sp-deptbar{
+    display:flex; align-items:center; flex-wrap:wrap; gap:10px;
+    padding:12px 16px; margin-bottom:6px; border-radius:16px;
+    background:rgba(255, 255, 255, .55);
+    backdrop-filter:blur(16px) saturate(140%); -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid rgba(236, 72, 153, .16);
+    box-shadow:0 8px 22px rgba(16, 42, 92, .05);
+}
+.sp-deptbar-label{
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:.68rem;
+    letter-spacing:1.2px; text-transform:uppercase; color:#EC4899; flex-shrink:0;
+}
+.sp-deptbar-row{ display:flex; flex-wrap:wrap; gap:8px; }
+.sp-deptbtn{
+    padding:8px 16px; border-radius:50px; cursor:pointer;
+    background:rgba(255, 255, 255, .7); border:1px solid rgba(16, 42, 92, .08);
+    font-family:'Montserrat',sans-serif; font-size:.76rem; font-weight:600;
+    color:var(--pt-navy,#102A5C); transition:var(--sp-ease);
+}
+.sp-deptbtn:hover{ border-color:rgba(236, 72, 153, .45); background:#FFFFFF; transform:translateY(-1px); }
+.sp-deptbtn.active{
+    background:linear-gradient(135deg, #EC4899, #F472B6);
+    border-color:transparent; color:#FFFFFF;
+    box-shadow:0 8px 20px rgba(236, 72, 153, .28);
+}
+@media(max-width:640px){
+    .sp-deptbar{ padding:11px 13px; gap:8px; }
+    .sp-deptbtn{ padding:7px 13px; font-size:.72rem; }
+}
+
+/*==================================================
+    CAREER PORTALS
+    Centred heading + responsive row of glass pill buttons
+    linking to real external job platforms for this field.
+    Pooled and de-duplicated across the school's departments.
+==================================================*/
+.sp-portals{ padding:8px 0 2px; }
+.sp-portals-head{ text-align:center; max-width:520px; margin:0 auto 10px; }
+.sp-portals-head h2{
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem;
+    color:var(--pt-navy,#102A5C); margin:0 0 3px;
+}
+.sp-portals-head p{ font-size:.78rem; line-height:1.45; color:rgba(16, 42, 92, .66); margin:0; }
+
+/* Compact list — this school/department's job portals only (never
+   pooled across every department). Two columns on wider screens,
+   single column on narrow ones; small icon + name per row, minimal
+   spacing, no bulky pill/card shapes. */
+.sp-portals-row{
+    display:grid; grid-template-columns:1fr 1fr; gap:4px 14px;
+    max-width:640px; margin:0 auto;
+    background:rgba(255, 255, 255, .5);
+    backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border:1px solid rgba(236, 72, 153, .16); border-radius:16px;
+    padding:10px 14px;
+    box-shadow:0 8px 22px rgba(16, 42, 92, .05);
+}
+.sp-portal-item{
+    display:flex; align-items:center; gap:8px;
+    padding:6px 4px; border-radius:8px;
+    font-size:.78rem; font-weight:600; color:var(--pt-navy,#102A5C); text-decoration:none;
+    transition:color .2s ease, background .2s ease, transform .2s ease;
+}
+.sp-portal-item i{ font-size:.62rem; color:var(--pt-pink,#EC4899); flex-shrink:0; }
+.sp-portal-item span{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.sp-portal-item:hover{
+    color:var(--pt-pink,#EC4899);
+    background:rgba(236, 72, 153, .07);
+    transform:translateX(2px);
+}
+@media(max-width:640px){
+    .sp-portals-row{ grid-template-columns:1fr; padding:8px 12px; }
+    .sp-portal-item{ font-size:.76rem; }
+}
+
+/*==================================================
+    5. CAREER PORTALS — compact horizontal strip
+==================================================*/
+.sp-portals{ padding:24px 0; }
+.sp-portals-head{ text-align:center; margin-bottom:16px; }
+.sp-portals-head h3{ font-family:'Poppins',sans-serif; font-weight:700; font-size:1.1rem; color:var(--pt-navy,#102A5C); margin-bottom:4px; }
+.sp-portals-head p{ font-size:.82rem; color:var(--pt-slate,#102A5C); }
+.sp-portals-strip{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+    padding:20px; border-radius:24px;
+    background:rgba(255, 255, 255, .9);
+    backdrop-filter:blur(20px) saturate(140%); -webkit-backdrop-filter:blur(20px) saturate(140%);
+    border:1px solid rgba(236, 72, 153, .22);
+    box-shadow:0 20px 50px rgba(16, 42, 92, .08), inset 0 1px 0 rgba(255, 255, 255, .6);
+}
+.sp-portal-card{
+    display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:50px;
+    background:rgba(236, 72, 153, .06); border:1px solid rgba(236, 72, 153, .25);
+    font-size:.8rem; font-weight:600; color:var(--pt-navy,#102A5C);
+    transition:var(--sp-ease);
+}
+.sp-portal-card:hover{ background:rgba(255, 255, 255, .95); color:var(--pt-navy,#102A5C); border-color:var(--pt-pink,#EC4899); backdrop-filter:blur(10px); transform:translateY(-2px); box-shadow:0 10px 22px rgba(16, 42, 92, .14); }
+.sp-portal-card img{ width:20px; height:20px; border-radius:5px; object-fit:contain; }
+.sp-portal-card i.sp-portal-icon{ font-size:.9rem; color:var(--pt-pink,#EC4899); width:20px; text-align:center; }
+.sp-portal-card i.sp-arrow{ font-size:.7rem; color:rgba(16, 42, 92, .5); }
+
+/*==================================================
+    5b. ENTRY REQUIREMENTS + STARTING FEE — premium
+    glass card replacing the old "Career Portals" strip.
+    Two columns: requirement tiers on the left, starting
+    tuition fee highlight on the right, with a travelling
+    border light matching the rest of the site.
+==================================================*/
+.sp-reqfees{ padding:16px 0 26px; }
+.sp-reqfees-card{
+    position:relative; isolation:isolate; overflow:hidden;
+    border-radius:20px; padding:2px;
+    background:linear-gradient(135deg, rgba(236, 72, 153, .16), rgba(16, 42, 92, .14));
+}
+.sp-reqfees-card::before{
+    content:""; position:absolute; inset:0; padding:1.4px; border-radius:20px; z-index:0;
+    background:conic-gradient(from var(--sp-rf-a,0deg),
+        transparent 0 62%, #EC4899 74%, #102A5C 84%, #EC4899 92%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spReqFeesTravel 12s linear infinite; pointer-events:none;
+}
+@property --sp-rf-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes spReqFeesTravel{ to{ --sp-rf-a:360deg; } }
+.sp-reqfees-grid{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:1.4fr 1px 1fr; align-items:stretch;
+    background:rgba(255, 255, 255, .92);
+    backdrop-filter:blur(22px) saturate(150%); -webkit-backdrop-filter:blur(22px) saturate(150%);
+    border-radius:18px; overflow:hidden;
+}
+.sp-reqfees-col{ padding:18px 20px; }
+.sp-reqfees-divider{ background:linear-gradient(180deg, transparent, rgba(16, 42, 92, .14), transparent); }
+.sp-reqfees-head{ display:flex; align-items:center; gap:9px; margin-bottom:12px; }
+.sp-reqfees-ic{
+    flex-shrink:0; width:30px; height:30px; border-radius:9px;
+    display:flex; align-items:center; justify-content:center; font-size:.85rem;
+    background:rgba(236, 72, 153, .1); color:var(--pt-pink,#EC4899);
+}
+.sp-reqfees-head h3{ font-family:'Poppins',sans-serif; font-weight:700; font-size:.92rem; color:var(--pt-navy,#102A5C); margin:0; }
+.sp-reqfees-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0; }
+.sp-reqfees-list li{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:8px 0; border-bottom:1px dashed rgba(16, 42, 92, .12); font-size:.8rem;
+}
+.sp-reqfees-list li:last-child{ border-bottom:none; }
+.sp-reqfees-level{ font-weight:700; color:var(--pt-navy,#102A5C); }
+.sp-reqfees-level i{ color:var(--pt-pink,#EC4899); margin-right:6px; font-size:.72rem; }
+.sp-reqfees-grade{ color:rgba(16, 42, 92, .72); font-weight:500; text-align:right; }
+.sp-reqfees-fee{
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+    background:linear-gradient(150deg, rgba(236, 72, 153, .08), rgba(16, 42, 92, .05));
+}
+.sp-fee-label{ font-size:.64rem; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--pt-pink,#EC4899); margin-bottom:4px; }
+.sp-fee-amount{ font-family:'Poppins',sans-serif; font-weight:800; font-size:1.35rem; color:var(--pt-navy,#102A5C); line-height:1.15; }
+.sp-fee-period{ font-size:.72rem; color:rgba(16, 42, 92, .6); margin-bottom:12px; }
+.sp-reqfees-fee .sp-combo-cta{ margin-top:auto; }
+@media(max-width:768px){
+    .sp-reqfees-grid{ grid-template-columns:1fr; }
+    .sp-reqfees-divider{ height:1px; background:linear-gradient(90deg, transparent, rgba(16, 42, 92, .14), transparent); }
+    .sp-reqfees-fee{ align-items:flex-start; }
+}
+@media (prefers-reduced-motion: reduce){ .sp-reqfees-card::before{ animation:none; } }
+
+/*==================================================
+    RESPONSIVE
+==================================================*/
+@media(max-width:1180px){
+    .sp-body-layout{ grid-template-columns:285px 1fr; gap:22px; }
+}
+@media(max-width:1024px){
+    .sp-body-layout{ grid-template-columns:265px 1fr; gap:20px; }
+}
+@media(max-width:960px){
+    .sp-about-grid{ grid-template-columns:1fr; gap:26px; }
+    .sp-about-frame{ height:260px; }
+}
+@media(max-width:768px){
+    .sp-body-layout{ grid-template-columns:1fr; }
+    .sp-two-col{ grid-template-columns:1fr; }
+}
+@media(max-width:640px){
+    .sp-hero h1{ font-size:1.5rem; }
+    .sp-hero{ min-height:0; padding:26px 0; }
+    .sp-prog-toolbar{ flex-direction:column; align-items:stretch; }
+    .sp-search{ max-width:none; }
+    .sp-career-list{ grid-template-columns:1fr; }
+    .sp-mini-card{ padding:22px 20px; }
+}
+@media (prefers-reduced-motion: reduce){
+    .sp-page-bg,.sp-badge::before,.sp-about-frame,.sp-about-frame::before,.sp-hero-particles span,
+    .sp-nav-item.active::before,.sp-mini-card::before,
+    .sp-bg-grid,.sp-blob,.sp-light-line,.sp-page-particles span,.sp-bg-shine::before,
+    .sp-sidebar-inner::before,.sp-sidebar-inner::after,
+    .sp-search::after,.sp-filter-btn.active::before,
+    .sp-prog-shell::before,.sp-prog-toolbar::after,
+    .sp-combo-icon,
+    .sp-hv-blob,.sp-hv-hexgrid,.sp-hv-line,.sp-hv-particles span,
+    .sp-hv-frame-wrap::before,.sp-hv-frame-shine::before,
+    .sp-hv-corner-badge,.sp-hv-floatcard,
+    .sp-hv-about-card::before,.sp-hv-about-card::after{ animation:none !important; }
+    .sp-nav-item.active{ animation:none !important; transform:none; }
+    .sp-bg-blobs,.sp-bg-lines,.sp-page-particles,.sp-bg-shine{ display:none; }
+    .sp-hv-blob,.sp-hv-hexgrid,.sp-hv-line,.sp-hv-particles{ display:none; }
+    .sp-reveal{ opacity:1; transform:none; }
+}

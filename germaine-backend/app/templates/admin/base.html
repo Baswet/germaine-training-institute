@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>{% block title %}Admin{% endblock %} — GTI Administration Portal</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/admin.css') }}">
+</head>
+<body>
+<div class="gti-shell">
+  <aside class="gti-sidebar">
+    <div class="gti-sidebar-brand">GTI Admin<span>Germaine Training Institute</span></div>
+    <nav class="gti-nav">
+      <a href="{{ url_for('admin.dashboard') }}" class="{{ 'active' if request.endpoint == 'admin.dashboard' }}">Dashboard</a>
+
+      <div class="gti-nav-label">Admissions</div>
+      <a href="{{ url_for('admin.applications_list') }}" class="{{ 'active' if request.endpoint in ['admin.applications_list','admin.application_detail'] }}">Applications</a>
+      <a href="{{ url_for('admin.scholarships_list') }}" class="{{ 'active' if request.endpoint == 'admin.scholarships_list' }}">Scholarship Applications</a>
+
+      <div class="gti-nav-label">Student Records</div>
+      <a href="{{ url_for('admin.alumni_list') }}" class="{{ 'active' if request.endpoint in ['admin.alumni_list','admin.alumni_detail'] }}">Alumni</a>
+
+      <div class="gti-nav-label">Enquiries</div>
+      <a href="{{ url_for('admin.contact_list') }}" class="{{ 'active' if request.endpoint in ['admin.contact_list','admin.contact_detail'] }}">Contact</a>
+      <a href="{{ url_for('admin.graduate_requests_list') }}" class="{{ 'active' if request.endpoint in ['admin.graduate_requests_list','admin.graduate_request_detail'] }}">Graduate Requests</a>
+      <a href="{{ url_for('admin.partnerships_list') }}" class="{{ 'active' if request.endpoint == 'admin.partnerships_list' }}">Partnerships</a>
+      <a href="{{ url_for('admin.corporate_training_list') }}" class="{{ 'active' if request.endpoint == 'admin.corporate_training_list' }}">Corporate Training</a>
+
+      <div class="gti-nav-label">Marketing</div>
+      <a href="{{ url_for('admin.newsletter_list') }}" class="{{ 'active' if request.endpoint == 'admin.newsletter_list' }}">Newsletter Subscribers</a>
+
+      <div class="gti-nav-label">Content Management</div>
+      <a href="{{ url_for('admin.content_editor') }}" class="{{ 'active' if request.endpoint == 'admin.content_editor' }}">Website Content</a>
+      <a href="{{ url_for('admin.content_list_items', list_key='homepage_hero_slides') }}" class="{{ 'active' if request.endpoint == 'admin.content_list_items' }}">Homepage &amp; Student Life Lists</a>
+      <a href="{{ url_for('admin.news_list') }}" class="{{ 'active' if request.endpoint in ['admin.news_list','admin.news_create','admin.news_edit'] }}">News</a>
+      <a href="{{ url_for('admin.media_library') }}" class="{{ 'active' if request.endpoint == 'admin.media_library' }}">Media Library</a>
+
+      <div class="gti-nav-label">Academics</div>
+      <a href="{{ url_for('admin.academics_schools_list') }}" class="{{ 'active' if request.endpoint in ['admin.academics_schools_list','admin.academics_school_edit'] }}">Schools</a>
+      <a href="{{ url_for('admin.academics_programmes_list') }}" class="{{ 'active' if request.endpoint in ['admin.academics_programmes_list','admin.academics_programme_edit'] }}">Programmes</a>
+      <a href="{{ url_for('admin.academics_categories_list') }}" class="{{ 'active' if request.endpoint in ['admin.academics_categories_list','admin.academics_category_edit'] }}">AI Bootcamp Categories</a>
+    </nav>
+    <div class="gti-sidebar-foot">
+      {{ admin.name if admin else '' }}
+      <form method="post" action="{{ url_for('admin.logout') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token if csrf_token else '' }}">
+        <button type="submit" class="gti-logout-btn">Log out</button>
+      </form>
+    </div>
+  </aside>
+  <main class="gti-main">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="gti-flash gti-flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</div>
+</body>
+</html>

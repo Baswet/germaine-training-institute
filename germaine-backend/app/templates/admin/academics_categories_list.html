@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+{% block title %}AI Bootcamp Categories{% endblock %}
+{% block content %}
+<div class="gti-topbar"><h1>AI Bootcamp Categories</h1></div>
+<div class="gti-table-wrap">
+  {% if categories %}
+  <table class="gti-table">
+    <thead><tr><th>Label</th><th>Slug</th><th>Icon</th><th>Programmes</th></tr></thead>
+    <tbody>
+      {% for c in categories %}
+      <tr>
+        <td><a class="gti-row-link" href="{{ url_for('admin.academics_category_edit', category_id=c.id) }}">{{ c.label }}</a></td>
+        <td>{{ c.slug }}</td>
+        <td>{{ c.icon or '—' }}</td>
+        <td>{{ c.programmes|length }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="gti-empty">No categories found.</div>{% endif %}
+</div>
+{% endblock %}

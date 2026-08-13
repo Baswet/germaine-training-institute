@@ -1,0 +1,34 @@
+{% extends "admin/base.html" %}
+{% from "admin/_pagination.html" import render_pagination %}
+{% block title %}Programmes{% endblock %}
+{% block content %}
+<div class="gti-topbar"><h1>Programmes</h1></div>
+<form class="gti-toolbar" method="get">
+  <input type="text" name="q" placeholder="Search programme name…" value="{{ q }}">
+  <select name="programme_type">
+    <option value="">All types</option>
+    <option value="academic" {{ 'selected' if programme_type == 'academic' }}>Academic</option>
+    <option value="ai_bootcamp" {{ 'selected' if programme_type == 'ai_bootcamp' }}>AI Bootcamp</option>
+  </select>
+  <button type="submit">Filter</button>
+  {% if q or programme_type %}<a class="gti-clear" href="{{ url_for('admin.academics_programmes_list') }}">Clear</a>{% endif %}
+</form>
+<div class="gti-table-wrap">
+  {% if result.records %}
+  <table class="gti-table">
+    <thead><tr><th>Name</th><th>Type</th><th>School / Category</th><th>Active</th></tr></thead>
+    <tbody>
+      {% for p in result.records %}
+      <tr>
+        <td><a class="gti-row-link" href="{{ url_for('admin.academics_programme_edit', programme_id=p.id) }}">{{ p.name }}</a></td>
+        <td><span class="gti-badge gti-badge-neutral">{{ 'AI Bootcamp' if p.programme_type == 'ai_bootcamp' else 'Academic' }}</span></td>
+        <td>{{ p.school.name if p.school else (p.category.label if p.category else '—') }}</td>
+        <td><span class="gti-badge {{ 'gti-badge-green' if p.is_active else 'gti-badge-neutral' }}">{{ 'Active' if p.is_active else 'Inactive' }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="gti-empty">No programmes match this view.</div>{% endif %}
+</div>
+{{ render_pagination(result, 'admin.academics_programmes_list', {'q': q, 'programme_type': programme_type}) }}
+{% endblock %}

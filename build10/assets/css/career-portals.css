@@ -1,0 +1,183 @@
+/*==================================================
+    GERMAINE — CAREER PORTALS (Explore Programmes page)
+    Compact, dense card grid. Everything here is scoped to
+    .cp- classes so it cannot leak into any other section.
+
+    Deliberately small: short card padding, tight link rows,
+    reduced headings — the whole block takes far less vertical
+    space than the previous oversized layout while staying
+    readable.
+==================================================*/
+
+.cp-section{
+    padding:44px 0 52px;
+    position:relative;
+}
+
+.cp-head{
+    text-align:center;
+    max-width:620px;
+    margin:0 auto 24px;
+}
+
+.cp-head .section-tag{
+    display:inline-block;
+    margin-bottom:8px;
+}
+
+.cp-head h2{
+    font-family:var(--font-heading,'Poppins',sans-serif);
+    font-weight:800;
+    font-size:clamp(1.25rem, 2.2vw, 1.6rem);
+    color:var(--text-heading,#102A5C);
+    margin:0 0 6px;
+    line-height:1.2;
+}
+
+.cp-head p{
+    font-size:.82rem;
+    line-height:1.5;
+    color:var(--text-body,#4a5568);
+    margin:0;
+}
+
+/*==================================================
+    GRID — 3 compact columns on desktop
+==================================================*/
+.cp-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:12px;
+    align-items:start;
+}
+
+/*==================================================
+    CARD — small glass panel
+==================================================*/
+.cp-card{
+    position:relative;
+    isolation:isolate;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    padding:14px 15px 13px;
+    border-radius:14px;
+    background:rgba(255, 255, 255, .58);
+    backdrop-filter:blur(14px) saturate(135%);
+    -webkit-backdrop-filter:blur(14px) saturate(135%);
+    border:1px solid rgba(236, 72, 153, .16);
+    box-shadow:0 6px 18px rgba(16, 42, 92, .06);
+    transition:transform .28s cubic-bezier(.25,.8,.25,1),
+               box-shadow .28s ease,
+               border-color .28s ease;
+}
+
+.cp-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(236, 72, 153, .4);
+    box-shadow:0 14px 30px rgba(16, 42, 92, .1), 0 0 18px rgba(236, 72, 153, .14);
+}
+
+.cp-card-head{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.cp-card-parent{
+    font-family:var(--font-button,'Montserrat',sans-serif);
+    font-weight:700;
+    font-size:.6rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--primary,#EC4899);
+    line-height:1.2;
+}
+
+.cp-card h3{
+    font-family:var(--font-heading,'Poppins',sans-serif);
+    font-weight:700;
+    font-size:.88rem;
+    line-height:1.25;
+    color:var(--text-heading,#102A5C);
+    margin:0;
+}
+
+.cp-card-desc{
+    font-size:.71rem;
+    line-height:1.45;
+    color:var(--text-body,#4a5568);
+    margin:0;
+    opacity:.88;
+}
+
+/*==================================================
+    LINK LIST — clean, compact vertical rows
+==================================================*/
+.cp-links{
+    list-style:none;
+    margin:0;
+    padding:8px 0 0;
+    display:flex;
+    flex-direction:column;
+    gap:1px;
+    border-top:1px solid rgba(16, 42, 92, .08);
+}
+
+.cp-links a{
+    display:flex;
+    align-items:flex-start;
+    gap:7px;
+    padding:5px 7px;
+    border-radius:7px;
+    font-size:.735rem;
+    line-height:1.35;
+    font-weight:500;
+    color:var(--text-heading,#102A5C);
+    text-decoration:none;
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.cp-links a i{
+    font-size:.6rem;
+    margin-top:3px;
+    flex-shrink:0;
+    color:var(--primary,#EC4899);
+    transition:transform .2s ease;
+}
+
+.cp-links a:hover{
+    background:rgba(236, 72, 153, .09);
+    color:var(--primary,#EC4899);
+    transform:translateX(2px);
+}
+
+.cp-links a:hover i{
+    transform:translate(1px, -1px);
+}
+
+.cp-links a:focus-visible{
+    outline:2px solid rgba(236, 72, 153, .6);
+    outline-offset:1px;
+}
+
+/*==================================================
+    RESPONSIVE — 2 columns tablet, 1 column mobile
+==================================================*/
+@media(max-width:992px){
+    .cp-grid{ grid-template-columns:repeat(2, 1fr); gap:11px; }
+}
+
+@media(max-width:600px){
+    .cp-section{ padding:34px 0 40px; }
+    .cp-grid{ grid-template-columns:1fr; gap:10px; }
+    .cp-card{ padding:13px 14px 12px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .cp-card,
+    .cp-links a,
+    .cp-links a i{ transition:none; }
+    .cp-card:hover{ transform:none; }
+    .cp-links a:hover{ transform:none; }
+}

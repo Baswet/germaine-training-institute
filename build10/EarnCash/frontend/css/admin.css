@@ -1,0 +1,456 @@
+/* ==========================================================
+                EARNCASH ADMIN SYSTEM
+                FUTURISTIC GLASS UI
+========================================================== */
+
+
+
+
+
+
+/* ==========================
+        ADMIN LOGIN
+=========================== */
+
+
+
+.admin-login{
+
+
+    min-height:100vh;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    padding:30px;
+
+
+}
+
+
+
+
+
+
+
+.admin-login-card{
+
+
+    width:420px;
+
+
+    padding:45px;
+
+
+    border-radius:45px;
+
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+
+
+
+.admin-logo{
+
+
+    width:90px;
+
+
+    height:90px;
+
+
+    margin:auto;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    font-size:2.5rem;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #4f73ff,
+
+        #c1d0ff
+
+    );
+
+
+    color:white;
+
+
+    box-shadow:
+
+
+    0 0 40px rgba(105,144,255,.4);
+
+
+}
+
+
+
+
+
+
+
+
+.admin-login-card h1{
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+
+
+
+
+
+.admin-error{
+
+
+    display:none;
+
+
+    margin:20px 0;
+
+
+    padding:15px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+
+    rgba(102,80,255,.15);
+
+
+    color:red;
+
+
+}
+/* ==========================
+        ADMIN DASHBOARD
+=========================== */
+
+
+
+.admin-main{
+
+
+    padding:60px 0;
+
+
+}
+
+
+
+
+
+
+
+.admin-main h1{
+
+
+    font-size:
+
+
+    2.8rem;
+
+
+}
+
+
+
+
+
+
+
+.admin-stats{
+
+
+    margin-top:40px;
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+
+    repeat(3,1fr);
+
+
+    gap:25px;
+
+
+}
+
+
+
+
+
+
+
+.admin-stat-card{
+
+
+    padding:30px;
+
+
+    border-radius:35px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:20px;
+
+
+    transition:.4s;
+
+
+}
+
+
+
+
+
+.admin-stat-card:hover{
+
+
+    transform:
+
+
+    translateY(-10px);
+
+
+}
+
+
+
+
+
+
+
+.admin-icon{
+
+
+    width:60px;
+
+
+    height:60px;
+
+
+    border-radius:20px;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #4f73ff,
+
+        #c1d0ff
+
+    );
+
+
+    color:white;
+
+
+    font-size:1.4rem;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+        ADMIN PANELS
+=========================== */
+
+
+.admin-panel{
+
+
+    margin-top:35px;
+
+
+    padding:40px;
+
+
+    border-radius:40px;
+
+
+}
+
+
+
+
+
+
+
+.admin-panel h2{
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+
+
+
+
+/* USER ROWS */
+
+
+.user-row,
+
+
+.withdraw-row{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    padding:18px 0;
+
+
+    border-bottom:
+
+
+    1px solid rgba(15,23,42,.08);
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+        RESPONSIVE
+=========================== */
+
+
+
+@media(max-width:900px){
+
+
+
+.admin-stats{
+
+
+    grid-template-columns:
+
+
+    1fr;
+
+
+}
+
+
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
+
+
+.admin-login-card{
+
+
+    width:100%;
+
+
+    padding:30px;
+
+
+}
+
+
+
+.admin-panel{
+
+
+    padding:25px 20px;
+
+
+}
+
+
+
+}

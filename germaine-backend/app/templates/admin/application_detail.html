@@ -1,0 +1,83 @@
+{% extends "admin/base.html" %}
+{% block title %}Application {{ application.reference_code }}{% endblock %}
+{% block content %}
+<a class="gti-back-link" href="{{ url_for('admin.applications_list') }}">&larr; Back to Applications</a>
+<div class="gti-topbar"><h1>Application {{ application.reference_code }}</h1></div>
+
+<div class="gti-detail-grid">
+  <div>
+    <div class="gti-panel">
+      <h2>Applicant Information</h2>
+      <div class="gti-field-row"><span class="k">Full Name</span><span class="v">{{ application.applicant.full_name }}</span></div>
+      <div class="gti-field-row"><span class="k">Email</span><span class="v">{{ application.applicant.email }}</span></div>
+      <div class="gti-field-row"><span class="k">Phone</span><span class="v">{{ application.applicant.phone }}</span></div>
+      <div class="gti-field-row"><span class="k">National ID</span><span class="v">{{ application.applicant.national_id or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Date of Birth</span><span class="v">{{ application.applicant.date_of_birth or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Gender</span><span class="v">{{ application.applicant.gender or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">County</span><span class="v">{{ application.applicant.county or '—' }}</span></div>
+    </div>
+
+    <div class="gti-panel">
+      <h2>Academic Information</h2>
+      <div class="gti-field-row"><span class="k">Programme</span><span class="v">{{ application.programme.name if application.programme else '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">School</span><span class="v">{{ application.programme.school.name if application.programme and application.programme.school else '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Learning Mode</span><span class="v">{{ application.programme_mode.label if application.programme_mode else '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Education Level</span><span class="v">{{ application.education_level or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">KCSE Grade</span><span class="v">{{ application.kcse_grade or '—' }}</span></div>
+    </div>
+  </div>
+
+  <div>
+    <div class="gti-panel">
+      <h2>Application Information</h2>
+      <div class="gti-field-row"><span class="k">Reference Code</span><span class="v">{{ application.reference_code }}</span></div>
+      <div class="gti-field-row"><span class="k">Type</span><span class="v">{{ application.application_type.replace('_',' ')|title }}</span></div>
+      <div class="gti-field-row"><span class="k">Consent</span><span class="v">{{ 'Yes' if application.consent else 'No' }}</span></div>
+      <div class="gti-field-row"><span class="k">Submitted</span><span class="v">{{ application.submitted_at.strftime('%d %b %Y, %H:%M') }} UTC</span></div>
+      <div class="gti-field-row"><span class="k">Last Updated</span><span class="v">{{ application.updated_at.strftime('%d %b %Y, %H:%M') }} UTC</span></div>
+      <div class="gti-field-row"><span class="k">Current Status</span><span class="v"><span class="gti-badge gti-badge-blue">{{ application.status.replace('_',' ')|title }}</span></span></div>
+    </div>
+
+    <div class="gti-panel">
+      <h2>Update Status</h2>
+      <form class="gti-status-form" method="post" action="{{ url_for('admin.application_status_update', app_id=application.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <select name="status">
+          {% for s in statuses %}
+            <option value="{{ s }}" {{ 'selected' if s == application.status }}>{{ s.replace('_',' ')|title }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+
+    {% if application.referred_by_earncash_user %}
+    <div class="gti-panel">
+      <h2>EarnFastCash Referral</h2>
+      <div class="gti-field-row"><span class="k">Referred By</span><span class="v">{{ application.referred_by_earncash_user.fullname }} ({{ application.referred_by_earncash_user.referral_code }})</span></div>
+      <div class="gti-field-row"><span class="k">Referrer Email</span><span class="v">{{ application.referred_by_earncash_user.email }}</span></div>
+      <div class="gti-field-row">
+        <span class="k">Tuition Payment</span>
+        <span class="v">
+          {% if application.tuition_confirmed_at %}
+            <span class="gti-badge gti-badge-green">Confirmed {{ application.tuition_confirmed_at.strftime('%d %b %Y') }}</span>
+          {% else %}
+            <span class="gti-badge">Not yet confirmed</span>
+          {% endif %}
+        </span>
+      </div>
+
+      {% if not application.tuition_confirmed_at %}
+      <form method="post" action="{{ url_for('admin.application_confirm_tuition', app_id=application.id) }}" style="margin-top:12px;">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button type="submit">Confirm Tuition Payment &amp; Award Referral Commission</button>
+      </form>
+      {% if not application.programme_mode or application.programme_mode.fee_amount is none %}
+      <p style="margin-top:8px; font-size:.85rem; color:#888;">No published fee on file for this programme mode — confirming will record the payment but cannot compute a real commission amount.</p>
+      {% endif %}
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

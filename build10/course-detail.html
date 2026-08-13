@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+                META DATA
+    =========================================== -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Early theme application (prevents flash of wrong theme) -->
+    <script>
+        (function(){
+            try{
+                var t = localStorage.getItem("germaine-theme");
+                if(!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+                    t = "dark";
+                }
+                if(t === "dark"){
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <title id="pageTitle">
+        Programme Details | Germaine Training Institute
+    </title>
+
+    <meta name="description" id="pageDescription"
+        content="Explore full programme details, fees, entry requirements and career opportunities at Germaine Training Institute.">
+
+    <meta name="author" content="Germaine Training Institute">
+
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/jpeg"
+        href="assets/images/logo/logo.jpg">
+
+    <!-- Preload critical above-the-fold assets -->
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+
+    <link rel="stylesheet"
+        href="assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="assets/css/responsive.css">
+
+    <link rel="stylesheet"
+        href="assets/css/premium-theme.css">
+
+    <link rel="stylesheet" href="assets/css/global-refinements.css">
+
+    <link rel="stylesheet" href="assets/css/school-page.css">
+
+    <link rel="stylesheet" href="assets/css/nav-refresh.css">
+
+</head>
+
+<body class="course-detail-page">
+
+    <!-- ==========================================
+                PRELOADER
+    =========================================== -->
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ==========================================
+                WHATSAPP
+    =========================================== -->
+
+    <a href="https://wa.me/254719488112"
+        class="whatsapp"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+    <!-- ==========================================
+                FIXED TOP STACK (utility bar + header + announcement)
+    =========================================== -->
+
+        <!-- ==========================================
+                LEVEL 1 — UTILITY BAR
+    =========================================== -->
+
+    <div class="utility-bar" id="utilityBar">
+
+        <div class="container utility-bar-inner">
+
+            <div class="utility-left">
+
+                <a href="graduate-hire.html" class="utility-link"><i class="fa-solid fa-user-tie"></i>Hire our Graduates</a>
+
+                <a href="EarnCash/frontend/pages/index.html" class="utility-link"><i class="fa-solid fa-hand-holding-dollar"></i>Earn Cash Fast</a>
+
+                <a href="ai-bootcamp.html" class="utility-link"><i class="fa-solid fa-robot"></i>AI Bootcamps</a>
+
+                <a href="apply.html#applyWizard" class="utility-link utility-scholarship"><i class="fa-solid fa-award"></i>Full Scholarship</a>
+
+                <a href="corporate-training.html" class="utility-link"><i class="fa-solid fa-building"></i>Corporate Training</a>
+
+                <a href="partner-with-us.html" class="utility-link"><i class="fa-solid fa-handshake"></i>Partner with Us</a>
+
+            </div>
+
+            <div class="utility-right">
+
+                <a href="alumni.html" class="utility-link"><i class="fa-solid fa-address-card"></i>Alumni Registration</a>
+
+                <a href="vacancies.html" class="utility-link"><i class="fa-solid fa-briefcase"></i>Vacancies</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                FIXED TOP STACK (branding bar + main navigation + announcement)
+    =========================================== -->
+
+    <div class="fixed-top-stack" id="fixedTopStack">
+
+    <!-- ==========================================
+                LEVEL 2 — BRANDING BAR
+    =========================================== -->
+
+    <header id="header">
+
+        <div class="branding-bar">
+
+            <div class="container branding-inner">
+
+                <a href="index.html" class="brand-logo-group">
+
+                    <img src="assets/images/logo/logo.jpg" alt="Germaine Training Institute" class="brand-logo-img" loading="eager">
+
+                    <span class="brand-text">
+
+                        <span class="brand-name">Germaine Training Institute</span>
+
+                        <span class="brand-tagline"><span class="brand-tagline-line">My Skills,</span><span class="brand-tagline-line">My Dream</span></span>
+
+                    </span>
+
+                </a>
+
+                <div class="branding-right">
+
+                    <div class="branding-contact">
+
+                    <a href="tel:+254719488112"><i class="fas fa-phone"></i> +254 719 488 112</a>
+
+                    <a href="mailto:admissions@germaineinstitute.com"><i class="fas fa-envelope"></i> admissions@germaineinstitute.com</a>
+
+                </div>
+
+                    <a href="apply.html#applyWizard" class="apply-btn"><span class="apply-btn-label">Apply Scholarship Now</span><span class="apply-btn-label-sticky">Apply for Full Scholarship Now</span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                    LEVEL 3 — MAIN NAVIGATION
+        =========================================== -->
+
+        <nav class="navbar">
+
+            <div class="container navbar-inner">
+
+                <ul class="nav-links">
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li class="dropdown">
+
+                        <a href="about.html">About Us <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="about.html">Our Story</a>
+
+                            <a href="about.html">Mission &amp; Vision</a>
+
+                            <a href="about.html">Leadership</a>
+
+                            <a href="about.html">Accreditation</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown">
+
+                        <a href="admissions.html">Admissions <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu">
+
+                            <a href="admissions.html#admission-form">Apply Online</a>
+
+                            <a href="admissions.html">Entry Requirements</a>
+
+                            <a href="admissions.html">Fees Structure</a>
+
+                            <a href="apply.html">Scholarships</a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="dropdown mega-dropdown">
+
+                        <a href="courses.html" class="active">Academic Schools <i class="fa-solid fa-chevron-down"></i></a>
+
+                        <div class="dropdown-menu mega-menu mega-menu-schools">
+
+                            <div class="mega-menu-col">
+
+                                <span class="mega-menu-col-title">Academic Schools</span>
+
+                                <a href="courses-health-sciences.html">School of Medical &amp; Health Sciences</a>
+
+                                <a href="courses-hospitality-tourism.html">School of Hospitality, Tourism &amp; Travel</a>
+
+                                <a href="courses-engineering-technology.html">School of Engineering</a>
+
+                                <a href="courses-computing-it.html">School of Computing &amp; Informatics</a>
+
+                                <a href="courses-cosmetology-fashion-design.html">School of Cosmetology, Fashion &amp; Design</a>
+
+                                <a href="courses-business-commerce.html">Business &amp; Social Sciences</a>
+
+                                <a href="courses-mass-communication-journalism.html">School of Communication &amp; Media</a>
+
+                                <a href="courses-agriculture.html">School of Agriculture</a>
+
+                                <a href="courses-virtual-learning.html">School of Virtual Learning</a>
+
+                            </div>
+</div>
+
+                    </li>
+
+                    <li><a href="courses-languages.html" class="nav-twoline"><span class="nav-line">Languages &amp;</span><span class="nav-line">Short Courses</span></a></li>
+
+                    <li><a href="campus.html">Student Life</a></li>
+
+                    <li><a href="news.html">News &amp; Events</a></li>
+
+                    <li><a href="contact.html">Contact Us</a></li>
+
+                </ul>
+
+                <div class="nav-buttons">
+
+                    <button class="search-btn">
+
+                        <i class="fas fa-search"></i>
+
+                    </button>
+
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+
+                        <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                </div>
+
+                <!-- Mobile Menu -->
+
+                <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="sideNav" aria-label="Toggle navigation menu">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ==========================================
+            ADMISSION ANNOUNCEMENT BAR
+    =========================================== -->
+
+    <section class="announcement-bar">
+
+        <div class="container announcement-container">
+
+            <div class="announcement-left">
+
+                <i class="fas fa-bullhorn"></i>
+
+                <span>
+
+                    September 2026 Intake Now Open &bull; Applications Ongoing
+
+                </span>
+
+            </div>
+
+            <a href="apply.html"
+                class="announcement-link">
+
+                Apply Now For Full Scholarship
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    </div>
+
+<!-- ==========================================
+            SEARCH POPUP
+    =========================================== -->
+
+    <div class="search-modal">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                placeholder="Search courses, departments or news...">
+
+            <button>
+
+                <i class="fas fa-search"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                MAIN CONTENT
+    =========================================== -->
+
+    <div class="page-shell" id="pageShell">
+
+    <main class="sp-page">
+        <div class="sp-page-bg" aria-hidden="true"></div>
+        <div class="sp-bg-grid" aria-hidden="true"></div>
+        <div class="sp-bg-blobs" aria-hidden="true">
+            <span class="sp-blob sp-blob-1"></span>
+            <span class="sp-blob sp-blob-2"></span>
+            <span class="sp-blob sp-blob-3"></span>
+            <span class="sp-blob sp-blob-4"></span>
+            <span class="sp-blob sp-blob-5"></span>
+        </div>
+        <div class="sp-bg-lines" aria-hidden="true"></div>
+        <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
+        <div class="sp-bg-shine" aria-hidden="true"></div>
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="course-hero" id="courseHero">
+
+    <div class="course-hero-bg" id="courseHeroBg"></div>
+    <div class="course-hero-overlay"></div>
+
+    <div class="container course-hero-content">
+
+        <div class="breadcrumb" id="courseBreadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <a href="courses.html">Courses</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span id="breadcrumbTitle">Programme</span>
+        </div>
+
+        <span class="course-level-tag" id="courseLevelTag">Diploma</span>
+
+        <h1 id="courseTitle">Loading Programme&hellip;</h1>
+
+        <p class="course-hero-school" id="courseSchool"></p>
+
+        <div class="course-hero-tags" id="courseHeroTags">
+            <!-- populated by JS: duration, fee, intake, mode, campus -->
+        </div>
+
+        <div class="course-hero-buttons">
+            <a href="admissions.html" class="btn-primary">
+                Apply Scholarship Now <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="assets/images/about/BROCHURE-2023.pdf" download class="btn-secondary">
+                <i class="fa-solid fa-download"></i> Download Brochure
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= ABOUT THE PROGRAMME ================= -->
+
+<section class="content-section">
+
+    <div class="container two-col reverse">
+
+        <img id="courseImage" src="assets/images/schools/ict.jpg" alt="" loading="lazy">
+
+        <div>
+            <span class="section-tag">ABOUT THE PROGRAMME</span>
+            <h2 id="overviewTitle">About This Programme</h2>
+
+            <p id="overviewWhatItIs"></p>
+            <p id="overviewWhoFor"></p>
+            <p id="overviewCareerOutlook"></p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= LEARNING OUTCOMES ================= -->
+
+<section class="content-section alt">
+
+    <div class="container">
+
+        <div class="section-heading center">
+            <span class="section-tag">WHAT YOU WILL GAIN</span>
+            <h2>Learning Outcomes</h2>
+            <p>By the end of this programme, students will be able to:</p>
+        </div>
+
+        <div class="outcomes-grid" id="overviewOutcomes"></div>
+
+    </div>
+
+</section>
+
+<!-- ================= COURSE SUMMARY ================= -->
+
+<section class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading center">
+            <span class="section-tag">AT A GLANCE</span>
+            <h2>Course Summary</h2>
+        </div>
+
+        <div class="summary-grid" id="summaryGrid"></div>
+
+    </div>
+
+</section>
+
+<!-- ================= ENTRY REQUIREMENTS ================= -->
+
+<section class="content-section alt">
+
+    <div class="container">
+
+        <div class="requirements-card">
+
+            <div class="requirements-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+
+            <div>
+                <span class="section-tag">ADMISSION CRITERIA</span>
+                <h2>Entry Requirements</h2>
+                <ul class="check-list" id="entryRequirementsList"></ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FEE STRUCTURE ================= -->
+
+<section class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading center">
+            <span class="section-tag">INVESTMENT</span>
+            <h2>Fee Structure</h2>
+            <p>On admission, pay admission charges plus 50% of the termly fee. Balance is payable within the term.</p>
+        </div>
+
+        <div class="fee-tables-grid">
+
+            <div class="info-table-wrap">
+                <table class="fee-table">
+                    <thead>
+                        <tr><th colspan="2">One-Time Fees</th></tr>
+                    </thead>
+                    <tbody id="feeOneTimeBody"></tbody>
+                </table>
+            </div>
+
+            <div class="info-table-wrap">
+                <table class="fee-table">
+                    <thead>
+                        <tr><th colspan="2">Recurring Term Fees</th></tr>
+                    </thead>
+                    <tbody id="feeRecurringBody"></tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="fee-total-highlight">
+            <span>Estimated First-Term Total</span>
+            <strong id="feeTotal">&mdash;</strong>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CAREER OPPORTUNITIES ================= -->
+
+<section class="content-section alt">
+
+    <div class="container">
+
+        <div class="section-heading center">
+            <span class="section-tag">WHERE YOU CAN WORK</span>
+            <h2>Career Opportunities</h2>
+        </div>
+
+        <div class="career-grid" id="careerGrid"></div>
+
+    </div>
+
+</section>
+
+<!-- ================= RELATED PROGRAMMES ================= -->
+
+<section class="content-section" id="relatedSection">
+
+    <div class="container">
+
+        <div class="section-heading center">
+            <span class="section-tag">YOU MAY ALSO LIKE</span>
+            <h2>Related Programmes</h2>
+        </div>
+
+        <div class="related-grid" id="relatedGrid"></div>
+
+    </div>
+
+</section>
+
+<!-- ================= APPLICATION GUIDE ================= -->
+
+<section class="content-section alt">
+
+    <div class="container">
+
+        <div class="section-heading center">
+            <span class="section-tag">GET STARTED</span>
+            <h2>Application Guide</h2>
+        </div>
+
+        <div class="apply-timeline" id="applyTimeline" data-animate></div>
+
+        <div class="apply-timeline-cta">
+            <a href="apply.html#applyWizard" class="btn-primary">
+                Start Application <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PRINCIPAL'S REMARKS ================= -->
+
+<section class="principal-section">
+
+    <div class="container">
+
+        <div class="principal-card" data-animate>
+
+            <div class="principal-portrait">
+                <img src="assets/images/about/welcome.jpg"
+                    alt="Portrait of the Principal of Germaine Training Institute"
+                    loading="lazy" width="200" height="200">
+            </div>
+
+            <div class="principal-message">
+
+                <span class="principal-quote-mark" aria-hidden="true">&ldquo;</span>
+
+                <p>
+                    Whichever programme you choose, you are joining a community built on
+                    academic excellence, practical learning and innovation. Our trainers
+                    and industry partners walk with every student from admission to
+                    career placement, because your success is our success. I warmly
+                    welcome you to Germaine Training Institute.
+                </p>
+
+                <div class="principal-signature">
+                    <div>
+                        <span class="principal-name">Mrs. Grace Wambui</span>
+                        <span class="principal-title">Principal, Germaine Training Institute</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    </main>
+
+    <!-- ==========================================
+                SIDE NAVIGATION (push panel)
+    =========================================== -->
+
+    <div id="site-nav-mount"></div>
+
+    <div class="side-nav-backdrop" id="sideNavBackdrop"></div>
+
+    </div>
+<footer class="footer">
+
+    <!-- Newsletter -->
+
+    <section class="newsletter">
+
+        <div class="container newsletter-container">
+
+            <div class="newsletter-text">
+
+                <h2>
+
+                    Stay Updated
+
+                </h2>
+
+                <p>
+
+                    Subscribe to receive admissions updates,
+                    scholarships, events and institute news.
+
+                </p>
+
+            </div>
+
+            <form class="newsletter-form">
+
+                <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    required>
+
+                <button type="submit">
+
+                    Subscribe
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- Footer Main -->
+
+    <div class="footer-main">
+
+        <div class="container footer-grid">
+
+            <!-- About -->
+
+            <div class="footer-column">
+
+                <img src="assets/images/logo/logo-white.png"
+                     alt="Germaine Training Institute Logo"
+                     class="footer-logo" loading="lazy" decoding="async">
+
+                <p>
+
+                    Germaine Training Institute is committed to
+                    producing competent, innovative and
+                    industry-ready graduates through
+                    practical and competency-based education.
+
+                </p>
+
+                <div class="footer-social">
+
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Quick Links
+
+                </h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="about.html">About Us</a></li>
+
+                    <li><a href="courses.html">Courses</a></li>
+
+                    <li><a href="admissions.html">Admissions</a></li>
+
+                    <li><a href="news.html">News</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+
+                
+
+                    <li><a href="apply.html">Apply Now</a></li>
+
+                    <li><a href="apply.html">Scholarships</a></li>
+</ul>
+
+            </div>
+
+            
+
+            <!-- Contact -->
+
+            <div class="footer-column">
+
+                <h3>
+
+                    Contact Us
+
+                </h3>
+
+                <ul class="contact-list">
+
+                    <li>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Pioneer Plaza,
+                        Mburu Gichua Road,
+                        Nakuru
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        +254 719 488 112
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        admissions@germaineinstitute.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Mon – Fri : 8:00 AM – 5:00 PM
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Google Map -->
+
+    <div class="footer-map">
+
+        <iframe
+            src="https://www.google.com/maps?q=Nakuru%20Pioneer%20Plaza&output=embed"
+            loading="lazy"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+    <!-- Bottom Footer -->
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <p>
+
+                © 2026 Germaine Training Institute.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Emmanuel Elijah</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+            BACK TO TOP
+========================================== -->
+
+<button class="back-to-top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+            JAVASCRIPT
+========================================== -->
+
+<script defer src="assets/js/courses-data.js"></script>
+<script defer src="assets/js/api-client.js"></script>
+<script defer src="assets/js/site-nav.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/header-premium.js"></script>
+<script defer src="assets/js/course-detail.js"></script>
+
+<script defer src="assets/js/premium-theme.js"></script>
+
+<script defer src="assets/js/school-page.js"></script>
+<script defer src="assets/js/newsletter-form.js"></script>
+
+</body>
+
+</html>

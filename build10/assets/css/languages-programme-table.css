@@ -1,0 +1,549 @@
+/*==================================================
+    GERMAINE — LANGUAGES & SHORT COURSES
+    Category-card experience + compact programme table.
+
+    Everything is scoped to body.lsc-page (set on the Languages and
+    Short Courses pages only) so it
+    cannot affect the shared .sp-* components used by the nine
+    Academic School pages. Colours, radii, glass, shadows and
+    hover timing are deliberately copied from the Academic
+    Schools / Departments components so this page reads as part
+    of the same family.
+==================================================*/
+
+body.lsc-page .lsc-sub{
+    margin-top:6px;
+    font-size:.86rem;
+    line-height:1.55;
+    color:var(--pt-slate,#5b6b8c);
+    max-width:640px;
+}
+
+/*==================================================
+    1. CATEGORY CARDS — matches the Academic Schools
+    department cards (.ash-deptcard) exactly: name +
+    arrow only, no image, description, tag or button.
+==================================================*/
+body.lsc-page .lsc-category-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:10px;
+    margin-top:4px;
+}
+
+body.lsc-page .lsc-catcard{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    width:100%;
+    padding:14px 16px;
+    text-align:left;
+    text-decoration:none;
+    cursor:pointer;
+    border-radius:16px;
+    background:var(--pt-glass, rgba(255, 255, 255, .72));
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border:1px solid rgba(236, 72, 153, .16);
+    transition:transform .35s cubic-bezier(.25,.8,.25,1),
+               box-shadow .35s ease,
+               border-color .35s ease,
+               background .35s ease;
+}
+
+body.lsc-page .lsc-catcard:hover,
+body.lsc-page .lsc-catcard:focus-visible{
+    transform:translateY(-3px);
+    border-color:rgba(236, 72, 153, .5);
+    background:rgba(236, 72, 153, .06);
+    box-shadow:0 16px 34px rgba(236, 72, 153, .16);
+    outline:none;
+}
+
+body.lsc-page .lsc-catcard.is-active{
+    border-color:transparent;
+    background:rgba(236, 72, 153, .08);
+    box-shadow:0 16px 34px rgba(236, 72, 153, .2);
+}
+
+/* travelling accent edge on the selected card */
+body.lsc-page .lsc-catcard.is-active::before{
+    content:"";
+    position:absolute; inset:0; z-index:4;
+    padding:1.6px; border-radius:16px; pointer-events:none;
+    background:conic-gradient(from var(--sp-a,0deg), transparent 0 66%,
+        var(--pt-pink,#EC4899) 80%, #FFFFFF 89%, var(--pt-navy,#102A5C) 96%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 9s linear infinite;
+}
+
+body.lsc-page .lsc-catcard-name{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:.85rem;
+    line-height:1.3;
+    color:var(--pt-navy,#102A5C);
+}
+
+body.lsc-page .lsc-catcard-arrow{
+    flex-shrink:0; font-size:.72rem; color:#EC4899;
+    opacity:0; transform:translateX(-4px);
+    transition:opacity .25s ease, transform .25s ease;
+}
+body.lsc-page .lsc-catcard:hover .lsc-catcard-arrow,
+body.lsc-page .lsc-catcard:focus-visible .lsc-catcard-arrow,
+body.lsc-page .lsc-catcard.is-active .lsc-catcard-arrow{ opacity:1; transform:none; }
+
+/*==================================================
+    2. DETAIL VIEW — overview, table, requirements, careers
+==================================================*/
+body.lsc-page .lsc-detail{ margin-top:22px; }
+body.lsc-page .lsc-detail[hidden]{ display:none; }
+
+body.lsc-page .lsc-detail-inner{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    animation:lscFade .4s cubic-bezier(.25,.8,.25,1);
+}
+
+@keyframes lscFade{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:none; }
+}
+
+/* ---- overview ---- */
+body.lsc-page .lsc-overview{
+    position:relative;
+    padding:20px 22px;
+    border-radius:20px;
+    background:linear-gradient(135deg, rgba(16, 42, 92, .96), rgba(16, 42, 92, .86) 55%, rgba(124, 19, 80, .82));
+    box-shadow:0 18px 38px rgba(16, 42, 92, .22);
+    color:#FFFFFF;
+}
+
+body.lsc-page .lsc-back{
+    display:inline-flex; align-items:center; gap:7px;
+    margin-bottom:12px; padding:6px 13px;
+    border-radius:50px; cursor:pointer;
+    background:rgba(255, 255, 255, .12);
+    border:1px solid rgba(255, 255, 255, .2);
+    color:#FFFFFF;
+    font-family:'Montserrat',sans-serif; font-weight:600; font-size:.7rem;
+    transition:background .25s ease, transform .25s ease;
+}
+body.lsc-page .lsc-back:hover{ background:rgba(255, 255, 255, .22); transform:translateX(-2px); }
+body.lsc-page .lsc-back i{ font-size:.64rem; }
+
+body.lsc-page .lsc-overview-tag{
+    display:block;
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:.64rem;
+    letter-spacing:1.2px; text-transform:uppercase;
+    color:#FBCFE8; margin-bottom:5px;
+}
+body.lsc-page .lsc-overview h3{
+    font-family:'Poppins',sans-serif; font-weight:800;
+    font-size:1.35rem; margin:0 0 8px; line-height:1.2; color:#FFFFFF;
+}
+body.lsc-page .lsc-overview p{
+    font-size:.85rem; line-height:1.65; margin:0;
+    color:rgba(255, 255, 255, .9); max-width:840px;
+}
+
+/* ---- shared block chrome ---- */
+body.lsc-page .lsc-block-head{
+    display:flex; align-items:center; gap:10px; margin-bottom:11px;
+}
+body.lsc-page .lsc-block-ic{
+    display:flex; align-items:center; justify-content:center;
+    width:34px; height:34px; border-radius:11px; flex-shrink:0;
+    background:rgba(236, 72, 153, .12);
+    border:1px solid rgba(236, 72, 153, .26);
+    color:var(--pt-pink,#EC4899); font-size:.85rem;
+}
+body.lsc-page .lsc-block-head h3{
+    font-family:'Poppins',sans-serif; font-weight:700;
+    font-size:1.05rem; color:var(--pt-navy,#102A5C); margin:0;
+}
+body.lsc-page .lsc-count{
+    display:inline-block; margin-left:6px; padding:2px 9px;
+    border-radius:50px; background:rgba(236, 72, 153, .12);
+    color:var(--pt-pink,#EC4899); font-size:.7rem; font-weight:700;
+    vertical-align:middle;
+}
+
+body.lsc-page .lsc-card{
+    padding:16px 18px;
+    border-radius:20px;
+    background:var(--pt-glass, rgba(255, 255, 255, .72));
+    backdrop-filter:blur(16px) saturate(130%);
+    -webkit-backdrop-filter:blur(16px) saturate(130%);
+    border:1px solid rgba(236, 72, 153, .14);
+    box-shadow:0 12px 30px rgba(16, 42, 92, .06);
+}
+
+/*==================================================
+    3. PROGRAMME TABLE — 3 columns, compact
+    (no Level, no Entry Requirements, no per-row Apply)
+==================================================*/
+body.lsc-page .sp-prog-table--languages{
+    min-width:460px;
+}
+
+body.lsc-page .sp-col-fee{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:.82rem;
+    color:var(--pt-navy,#102A5C);
+    white-space:nowrap;
+    text-align:right;
+}
+
+body.lsc-page .sp-prog-table--languages thead th.sp-col-fee{
+    text-align:right;
+}
+
+body.lsc-page .sp-prog-row:hover .sp-col-fee{ color:#FFFFFF; }
+
+/*==================================================
+    4. ENTRY REQUIREMENTS — deduplicated list
+==================================================*/
+body.lsc-page .lsc-req-list{
+    list-style:none; margin:0; padding:0;
+    display:flex; flex-direction:column; gap:8px;
+}
+body.lsc-page .lsc-req-item{
+    display:flex; align-items:flex-start; gap:12px;
+    padding:9px 11px; border-radius:13px;
+    background:rgba(236, 72, 153, .05);
+    border:1px solid rgba(236, 72, 153, .12);
+}
+body.lsc-page .lsc-req-badge{
+    display:inline-flex; align-items:center; gap:7px; flex-shrink:0;
+    padding:5px 12px; border-radius:50px;
+    background:var(--pt-navy,#102A5C); color:#FFFFFF;
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:.7rem;
+    white-space:nowrap;
+}
+body.lsc-page .lsc-req-badge i{ font-size:.64rem; color:#F9A8D4; }
+body.lsc-page .lsc-req-applies{
+    font-size:.755rem; line-height:1.5; color:var(--pt-slate,#5b6b8c); padding-top:4px;
+}
+body.lsc-page .lsc-req-note{
+    margin:12px 0 0; padding-top:11px;
+    border-top:1px solid rgba(16, 42, 92, .08);
+    font-size:.72rem; line-height:1.5; color:var(--pt-slate,#5b6b8c);
+    display:flex; gap:7px; align-items:flex-start;
+}
+body.lsc-page .lsc-req-note i{ color:var(--pt-pink,#EC4899); margin-top:3px; flex-shrink:0; font-size:.7rem; }
+
+/*==================================================
+    5. CAREER OPPORTUNITIES — this category only
+==================================================*/
+body.lsc-page .lsc-career-grid{
+    list-style:none; margin:0; padding:0;
+    display:grid; grid-template-columns:1fr 1fr; gap:8px 18px;
+}
+body.lsc-page .lsc-career-grid li{
+    display:flex; align-items:flex-start; gap:9px;
+    font-size:.79rem; line-height:1.45; color:var(--pt-navy,#102A5C);
+}
+body.lsc-page .lsc-career-grid li i{
+    color:var(--pt-pink,#EC4899); font-size:.72rem; margin-top:3px; flex-shrink:0;
+}
+
+/*==================================================
+    6. RESPONSIVE
+==================================================*/
+@media(max-width:992px){
+    body.lsc-page .lsc-category-grid{ grid-template-columns:repeat(2, 1fr); gap:14px; }
+    body.lsc-page .lsc-career-grid{ grid-template-columns:1fr; }
+}
+
+@media(max-width:640px){
+    body.lsc-page .lsc-category-grid{ grid-template-columns:1fr; gap:10px; }
+    body.lsc-page .lsc-overview{ padding:16px 16px; }
+    body.lsc-page .lsc-overview h3{ font-size:1.15rem; }
+    body.lsc-page .lsc-card{ padding:14px 14px; }
+    body.lsc-page .lsc-req-item{ flex-direction:column; gap:6px; }
+    body.lsc-page .lsc-req-applies{ padding-top:0; }
+    /* table keeps its horizontal scroll (.sp-prog-table-wrap) on small screens */
+}
+
+@media (prefers-reduced-motion: reduce){
+    body.lsc-page .lsc-catcard{ transition:none; }
+    body.lsc-page .lsc-catcard:hover{ transform:none; }
+    body.lsc-page .lsc-detail-inner{ animation:none; }
+    body.lsc-page .lsc-catcard.is-active::before{ animation:none; }
+}
+
+/*==================================================
+    8. CATEGORY FEATURE IMAGE (Short Courses detail view)
+    Large hero image for the selected category — full width,
+    16:9 so little is cropped, with the category name overlaid.
+==================================================*/
+body.lsc-page .sc-feature{
+    position:relative;
+    width:100%;
+    aspect-ratio:21 / 9;
+    min-height:200px;
+    max-height:330px;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 18px 40px rgba(16, 42, 92, .16);
+}
+@supports not (aspect-ratio: 21 / 9){
+    body.lsc-page .sc-feature{ height:300px; }
+}
+body.lsc-page .sc-feature img{
+    display:block;
+    width:100%; max-width:100%; height:100%;
+    object-fit:cover;
+    object-position:center;
+}
+body.lsc-page .sc-feature-veil{
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(16, 42, 92, .88) 0%, rgba(16, 42, 92, .3) 45%, transparent 78%);
+}
+body.lsc-page .sc-feature-cap{
+    position:absolute; left:0; right:0; bottom:0;
+    display:flex; flex-direction:column; gap:4px;
+    padding:20px 24px;
+}
+body.lsc-page .sc-feature-tag{
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:.66rem;
+    letter-spacing:1.2px; text-transform:uppercase; color:#F9A8D4;
+}
+body.lsc-page .sc-feature-name{
+    font-family:'Poppins',sans-serif; font-weight:800;
+    font-size:clamp(1.2rem, 2.6vw, 1.75rem); color:#FFFFFF; line-height:1.15;
+}
+
+/* the Short Courses table carries an Apply button per row */
+body.lsc-page .sp-col-action{ text-align:right; white-space:nowrap; }
+body.lsc-page .sp-row-btn{
+    position:relative;
+    display:inline-flex; align-items:center; gap:6px;
+    padding:7px 14px; border-radius:50px;
+    background:linear-gradient(115deg, var(--pt-navy,#102A5C) 0%, #1a3d7c 100%);
+    color:#FFFFFF !important;
+    font-family:'Montserrat',sans-serif; font-weight:600; font-size:.7rem;
+    white-space:nowrap;
+    box-shadow:0 6px 14px rgba(16, 42, 92, .22);
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+body.lsc-page .sp-row-btn i{ font-size:.62rem; transition:transform .25s ease; }
+body.lsc-page .sp-row-btn:hover{
+    background:linear-gradient(115deg, #EC4899 0%, #BE185D 100%);
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(236, 72, 153, .32);
+}
+body.lsc-page .sp-row-btn:hover i{ transform:translateX(2px); }
+body.lsc-page .sp-prog-row:hover .sp-row-btn{
+    background:#FFFFFF; color:var(--pt-pink,#EC4899) !important;
+}
+
+
+@media(max-width:640px){
+    body.lsc-page .lang-sc-link{ padding:12px 13px; gap:11px; }
+    body.lsc-page .lang-sc-sub{ display:none; }
+    body.lsc-page .sc-feature{ min-height:160px; max-height:220px; }
+    body.lsc-page .sc-feature-cap{ padding:14px 16px; }
+    body.lsc-page .sp-row-btn{ padding:6px 11px; font-size:.66rem; }
+}
+
+/*==================================================
+    9. TOP SELECTOR — Languages / Short Courses
+    Two card-style options below the hero, using exactly the
+    same glass, radius, shadow and hover language as the
+    Academic Schools cards.
+==================================================*/
+body.lsc-page .lsc-switch{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:26px;
+}
+
+body.lsc-page .lsc-switch-card{
+    position:relative;
+    isolation:isolate;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    width:100%;
+    padding:18px 20px;
+    text-align:left;
+    cursor:pointer;
+    border-radius:20px;
+    background:var(--pt-glass, rgba(255, 255, 255, .7));
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid rgba(236, 72, 153, .18);
+    box-shadow:0 10px 26px rgba(16, 42, 92, .07);
+    transition:transform .32s cubic-bezier(.25,.8,.25,1),
+               box-shadow .32s ease,
+               border-color .32s ease,
+               background .32s ease;
+}
+
+body.lsc-page .lsc-switch-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(236, 72, 153, .48);
+    box-shadow:0 22px 44px rgba(16, 42, 92, .12), 0 0 24px rgba(236, 72, 153, .2);
+}
+
+body.lsc-page .lsc-switch-card:focus-visible{
+    outline:2px solid var(--pt-pink,#EC4899);
+    outline-offset:3px;
+}
+
+/* clearly highlighted active state */
+body.lsc-page .lsc-switch-card.active{
+    background:linear-gradient(135deg, rgba(16, 42, 92, .96), rgba(16, 42, 92, .86) 55%, rgba(190, 24, 93, .9));
+    border-color:transparent;
+    box-shadow:0 18px 40px rgba(16, 42, 92, .26), 0 0 26px rgba(236, 72, 153, .28);
+}
+
+body.lsc-page .lsc-switch-card.active::before{
+    content:"";
+    position:absolute; inset:0; z-index:0;
+    padding:1.6px; border-radius:20px; pointer-events:none;
+    background:conic-gradient(from var(--sp-a,0deg), transparent 0 66%,
+        var(--pt-pink,#EC4899) 80%, #FFFFFF 89%, var(--pt-pink,#EC4899) 96%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spTravel 9s linear infinite;
+}
+
+body.lsc-page .lsc-switch-icon{
+    position:relative; z-index:1;
+    font-size:1.6rem; line-height:1; flex-shrink:0;
+}
+
+body.lsc-page .lsc-switch-body{
+    position:relative; z-index:1;
+    display:flex; flex-direction:column; gap:3px; min-width:0; flex:1;
+}
+
+body.lsc-page .lsc-switch-title{
+    font-family:'Poppins',sans-serif;
+    font-weight:700; font-size:1.02rem;
+    color:var(--pt-navy,#102A5C);
+    transition:color .3s ease;
+}
+body.lsc-page .lsc-switch-card.active .lsc-switch-title{ color:#FFFFFF; }
+
+body.lsc-page .lsc-switch-sub{
+    font-size:.72rem; line-height:1.45;
+    color:var(--pt-slate,#5b6b8c);
+    transition:color .3s ease;
+}
+body.lsc-page .lsc-switch-card.active .lsc-switch-sub{ color:rgba(255, 255, 255, .8); }
+
+/* tick appears only on the active card */
+body.lsc-page .lsc-switch-tick{
+    position:relative; z-index:1;
+    flex-shrink:0;
+    width:24px; height:24px;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
+    background:var(--pt-pink,#EC4899);
+    color:#FFFFFF; font-size:.66rem;
+    opacity:0; transform:scale(.6);
+    transition:opacity .3s ease, transform .3s cubic-bezier(.25,.8,.25,1);
+}
+body.lsc-page .lsc-switch-card.active .lsc-switch-tick{ opacity:1; transform:scale(1); }
+
+/*==================================================
+    10. PANELS — animated cross-fade between sections
+==================================================*/
+body.lsc-page .lsc-panel[hidden]{ display:none; }
+
+body.lsc-page .lsc-panel.lsc-anim{
+    animation:lscPanelIn .42s cubic-bezier(.25,.8,.25,1);
+}
+
+@keyframes lscPanelIn{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:none; }
+}
+
+/*==================================================
+    11. RESPONSIVE
+==================================================*/
+@media(max-width:760px){
+    /* stack the selector cards with equal width and spacing */
+    body.lsc-page .lsc-switch{ grid-template-columns:1fr; gap:12px; }
+    body.lsc-page .lsc-switch-card{ padding:15px 16px; gap:12px; }
+    body.lsc-page .lsc-switch-icon{ font-size:1.4rem; }
+    body.lsc-page .lsc-switch-title{ font-size:.95rem; }
+}
+
+/*==================================================
+    SCHOLARSHIP CTA — replaces the generic "Stay Updated"
+    newsletter block on the Short Courses / Languages hub
+    pages. Compact single-row banner, brand pink→navy gradient.
+==================================================*/
+
+body.lsc-page .lsc-scholar-cta{
+    padding:36px 0;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(120deg, var(--primary-dark,#102A5C) 0%, #1B3A73 55%, var(--primary,#EC4899) 130%);
+}
+body.lsc-page .lsc-scholar-cta::before{
+    content:'';
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 85% 30%, rgba(255,255,255,.16), transparent 55%);
+    pointer-events:none;
+}
+body.lsc-page .lsc-scholar-inner{
+    position:relative; z-index:1;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:24px; flex-wrap:wrap;
+}
+body.lsc-page .lsc-scholar-text{ display:flex; align-items:center; gap:14px; }
+body.lsc-page .lsc-scholar-ic{
+    flex-shrink:0; width:46px; height:46px; border-radius:14px;
+    background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3);
+    display:flex; align-items:center; justify-content:center;
+    color:#FFFFFF; font-size:1.15rem;
+}
+body.lsc-page .lsc-scholar-text h2{
+    font-family:'Poppins',sans-serif; font-size:1.15rem; font-weight:700;
+    color:#FFFFFF; margin:0 0 3px;
+}
+body.lsc-page .lsc-scholar-text p{
+    font-size:.85rem; color:rgba(255,255,255,.85); margin:0;
+}
+body.lsc-page .lsc-scholar-btn{
+    flex-shrink:0;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 24px; border-radius:50px;
+    background:#FFFFFF; color:var(--primary-dark,#102A5C);
+    font-weight:700; font-size:.88rem; text-decoration:none;
+    box-shadow:0 10px 24px rgba(0,0,0,.18);
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+body.lsc-page .lsc-scholar-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,0,0,.24); color:var(--primary-dark,#102A5C); }
+
+@media(max-width:640px){
+    body.lsc-page .lsc-scholar-cta{ padding:28px 0; }
+    body.lsc-page .lsc-scholar-inner{ flex-direction:column; text-align:center; }
+    body.lsc-page .lsc-scholar-text{ flex-direction:column; }
+    body.lsc-page .lsc-scholar-btn{ width:100%; justify-content:center; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    body.lsc-page .lsc-switch-card{ transition:none; }
+    body.lsc-page .lsc-switch-card:hover{ transform:none; }
+    body.lsc-page .lsc-switch-card.active::before{ animation:none; }
+    body.lsc-page .lsc-panel.lsc-anim{ animation:none; }
+    body.lsc-page .lsc-switch-tick{ transition:none; }
+}
