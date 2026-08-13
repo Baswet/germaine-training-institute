@@ -76,3 +76,7 @@ Thumbs.db
 imagesss/
 gitignore/
 New folder/
+
+# Stray empty nested git repo created by an earlier session (left on disk, untracked).
+germaine-training-institute/
+.deltest

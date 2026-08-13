@@ -25,4 +25,4 @@ Disallow: /EarnCash/frontend/pages/withdrawal.html
 Disallow: /EarnCash/frontend/pages/admin.html
 Disallow: /EarnCash/frontend/pages/admin-login.html
 
-Sitemap: https://site.germaineinstitute.ac.ke/sitemap.xml
+Sitemap: https://germaineinstitute.com/sitemap.xml
