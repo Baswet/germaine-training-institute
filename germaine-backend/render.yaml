@@ -36,6 +36,19 @@ services:
     startCommand: gunicorn wsgi:app --workers 2 --timeout 60 --bind 0.0.0.0:$PORT
     healthCheckPath: /health
     envVars:
+      # Pins the build/runtime interpreter. Render's default Python
+      # version changes over time (3.14.3 for any service created on or
+      # after 2026-02-11) and psycopg[binary]==3.2.2 — the exact,
+      # already-tested version pinned in requirements.txt below — only
+      # ships prebuilt wheels through cp312; there is no cp313/cp314
+      # wheel for it yet, which is what broke the first deploy attempt.
+      # 3.12 is a released, fully-supported Render Python version and
+      # needs no dependency or code change. Also mirrored in
+      # .python-version (in this same rootDir) as a second, redundant
+      # way to set it — the env var here takes precedence per Render's
+      # own docs, so the two can never disagree.
+      - key: PYTHON_VERSION
+        value: 3.12.7
       - key: FLASK_ENV
         value: production
       - key: SECRET_KEY
