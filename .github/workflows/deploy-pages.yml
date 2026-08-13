@@ -1,0 +1,109 @@
+# Germaine Training Institute — public site deployment to GitHub Pages.
+#
+# Publishes the static frontend in build10/ straight from the `main`
+# branch. GitHub's "deploy from a branch" option can only serve a
+# branch's root or a /docs folder, so it cannot serve build10/ — this
+# workflow is what makes "source = main, directory = build10" possible
+# without moving or duplicating a single file.
+#
+# Scope: static frontend only. The Flask backend (germaine-backend/)
+# and PostgreSQL are deliberately NOT deployed here.
+
+name: Deploy public site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "build10/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+# GITHUB_TOKEN permissions needed to publish to Pages. Nothing here can
+# read repository secrets, and no secret is referenced by this workflow.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two publishes at once; let an in-flight one finish rather
+# than cancelling it, so the live site is never left half-deployed.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # enablement: true turns Pages on for this repository automatically
+      # on the first run, so Pages does not have to be switched on by hand
+      # in Settings beforehand.
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # Guard rail: fail loudly rather than publishing anything sensitive
+      # if the contents of build10/ ever change shape. The EarnCash Flask
+      # backend and its database schema live inside build10/ and must
+      # never be served publicly.
+      - name: Assert no backend or secret material in the publish payload
+        run: |
+          set -e
+          cd build10
+          found=0
+          for pattern in ".env" "*.sql" "*.pem" "*.key"; do
+            if find . -name "$pattern" -not -path "./_archive/*" | grep -q .; then
+              echo "REFUSING TO PUBLISH: found $pattern inside build10/"
+              find . -name "$pattern" -not -path "./_archive/*"
+              found=1
+            fi
+          done
+          if [ -d "EarnCash/backend" ] && find EarnCash/backend -name "*.py" | grep -q .; then
+            echo "NOTE: EarnCash/backend contains Python source; it is excluded below."
+          fi
+          [ "$found" = "0" ] || exit 1
+          echo "Publish payload clean."
+
+      # Build the exact payload that gets served. Mirrors what was
+      # verified locally: the static site only, with the EarnCash Flask
+      # backend, its SQL schema, internal engineering reports, archives
+      # and caches stripped out.
+      - name: Assemble static site
+        run: |
+          set -e
+          mkdir -p _site
+          rsync -a \
+            --exclude 'EarnCash/backend/' \
+            --exclude 'EarnCash/database/' \
+            --exclude '_archive/' \
+            --exclude '.fuse_hidden*' \
+            --exclude '__pycache__/' \
+            --exclude 'venv/' \
+            --exclude '.env' \
+            --exclude '.write_test' \
+            --exclude '.htaccess' \
+            --exclude '*.pyc' \
+            --exclude '*.md' \
+            build10/ _site/
+          # .nojekyll stops Pages running a Jekyll build, which would
+          # otherwise drop underscore-prefixed asset files such as
+          # assets/images/_contact_sheet.jpg.
+          touch _site/.nojekyll
+          echo "Pages published: $(find _site -type f | wc -l) files, $(du -sh _site | cut -f1)"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
