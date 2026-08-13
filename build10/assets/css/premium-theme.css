@@ -428,66 +428,14 @@ body{
 }
 
 /*==================================================
-    7. TRAVELLING LIGHT SYSTEM — reusable border scanner
-    Adds an animated conic border trace on hover to the
-    same set of premium cards, echoing the accent used
-    on the homepage Academic Programmes + Hire pages.
+    7. TRAVELLING LIGHT SYSTEM — removed.
+    Previously added an animated conic border trace on hover to
+    .value-card/.team-card/.news-card/.category-card/.school-card/
+    .principal-card/.programme-card/.outcome-card/.career-card/
+    .feature-card/.ash-card. Cards keep their normal hover elevation
+    and shadow (defined elsewhere per component); only the moving
+    border light was removed.
 ==================================================*/
-
-.value-card,
-.team-card,
-.news-card,
-.category-card,
-.school-card,
-.principal-card,
-.programme-card,
-.outcome-card,
-.career-card,
-.feature-card,
-.ash-card{
-    --pt-edge:conic-gradient(from var(--pt-a), transparent 0 68%, var(--pt-pink-light) 80%, var(--pt-pink) 88%, var(--pt-gold) 95%, transparent 100%);
-}
-
-.value-card::after,
-.team-card::after,
-.news-card::after,
-.category-card::after,
-.school-card::after,
-.principal-card::after,
-.programme-card::after,
-.outcome-card::after,
-.career-card::after,
-.feature-card::after,
-.ash-card::after{
-    content:"";
-    position:absolute; inset:0; z-index:2; pointer-events:none;
-    border-radius:inherit;
-    padding:1.4px;
-    background:var(--pt-edge);
-    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
-    -webkit-mask-composite:xor;
-    mask-composite:exclude;
-    opacity:0;
-    transition:opacity .4s ease;
-    animation:ptScan 5s linear infinite paused;
-}
-
-.value-card:hover::after,
-.team-card:hover::after,
-.news-card:hover::after,
-.category-card:hover::after,
-.school-card:hover::after,
-.principal-card:hover::after,
-.programme-card:hover::after,
-.outcome-card:hover::after,
-.career-card:hover::after,
-.feature-card:hover::after,
-.ash-card:hover::after{
-    opacity:1;
-    animation-play-state:running;
-}
-
-@keyframes ptScan{ to{ --pt-a:360deg; } }
 
 /*==================================================
     8. AMBIENT PARTICLES / STREAKS

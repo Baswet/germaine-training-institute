@@ -11,8 +11,6 @@
     from style.css / premium-sections.css directly.
 ==================================================*/
 
-@property --ab-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
-@keyframes abTravel{ to{ --ab-a:360deg; } }
 @keyframes abReveal{ to{ opacity:1; transform:none; } }
 
 .ab-reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.25,.8,.25,1), transform .7s cubic-bezier(.25,.8,.25,1); }
@@ -127,18 +125,6 @@
 }
 .ab-vcard:hover .ab-vcard-veil,
 .ab-vcard:focus-visible .ab-vcard-veil{ opacity:.97; }
-
-/* travelling border light — retained */
-.ab-vcard::before{
-    content:""; position:absolute; inset:0; padding:1.4px; border-radius:24px; z-index:4;
-    background:conic-gradient(from var(--ab-vc-a,0deg), transparent 0 70%, #EC4899 82%, #FFFFFF 90%, #EC4899 96%, transparent 100%);
-    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:abValueTravel 10s linear infinite; pointer-events:none;
-    opacity:.85;
-}
-@property --ab-vc-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
-@keyframes abValueTravel{ to{ --ab-vc-a:360deg; } }
 
 /* ---------- COVER (visible by default) ---------- */
 .ab-vcard-cover{
@@ -364,17 +350,6 @@
     height:186px; border-radius:16px;
     perspective:1200px;
     cursor:pointer; outline:none;
-}
-
-/* travelling conic-gradient border light — sits on a static wrapper
-   behind the flipping inner element so the animated frame never
-   distorts during the 3D rotation */
-.ab-flip-card::before{
-    content:""; position:absolute; inset:0; padding:1.6px; border-radius:22px; z-index:0;
-    background:conic-gradient(from var(--ab-vc-a,0deg), transparent 0 68%, #EC4899 80%, #FFFFFF 88%, #102A5C 95%, transparent 100%);
-    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:abValueTravel 9s linear infinite; pointer-events:none;
 }
 
 .ab-flip-inner{
@@ -814,15 +789,8 @@
     box-shadow:0 0 40px rgba(236, 72, 153, .3), 0 16px 36px rgba(16, 42, 92, .3);
 }
 
-/* travelling pink / cyan border light, masked to the card edge */
-.bento-card::before{
-    content:""; position:absolute; inset:0; padding:1.6px; border-radius:20px; z-index:0;
-    background:conic-gradient(from var(--ab-a),
-        transparent 0 62%, #EC4899 74%, #F472B6 84%, #EC4899 92%, transparent 100%);
-    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:abTravel 12s linear infinite; pointer-events:none;
-}
+/* travelling border light removed — bento cards keep their static
+   border and hover elevation only */
 
 /* ---------- auto-rotating backgrounds ----------
    Real <img loading="lazy"> elements (not CSS background-image) so the

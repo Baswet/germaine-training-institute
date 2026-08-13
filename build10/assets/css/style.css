@@ -2797,16 +2797,8 @@ header#header.sticky .branding-location{
     background:rgba(255, 255, 255, .8);
     box-shadow:0 26px 60px rgba(16, 42, 92, .12), 0 0 30px rgba(236, 72, 153, .16);
 }
-@property --tst-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
-@keyframes tstTravel{ to{ --tst-a:360deg; } }
-.testimonial-slide::after{  /* travelling neon border */
-    content:""; position:absolute; inset:8px; z-index:1; border-radius:24px; padding:1px;
-    background:conic-gradient(from var(--tst-a), transparent 0 62%, #EC4899 76%, #FFFFFF 85%, #EC4899 93%, transparent 100%);
-    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:tstTravel 13s linear infinite;
-    pointer-events:none;
-}
+/* travelling neon border removed — cards now stay static, keeping only
+   the elevation + shadow hover effect above */
 .testimonial-slide > .testimonial-quote-mark,
 .testimonial-slide > .testimonial-stars,
 .testimonial-slide > p,
@@ -3048,11 +3040,8 @@ header#header.sticky .branding-location{
     align-items:start;
 }
 
-/* each footer column becomes its own glass card, matching the
-   travelling-border-light language used across the rest of the site */
-@property --ft-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
-@keyframes ftTravel{ to{ --ft-a:360deg; } }
-
+/* each footer column is its own glass card — travelling border-light
+   removed, keeping only the static border + hover elevation/glow */
 .footer-column{
     position:relative; isolation:isolate; overflow:hidden;
     background:rgba(255, 255, 255, .06);
@@ -3066,13 +3055,6 @@ header#header.sticky .branding-location{
     transform:translateY(-6px);
     border-color:rgba(236, 72, 153, .4);
     box-shadow:0 0 32px rgba(236, 72, 153, .22);
-}
-.footer-column::before{
-    content:""; position:absolute; inset:0; padding:1.4px; border-radius:26px; z-index:0;
-    background:conic-gradient(from var(--ft-a), transparent 0 62%, #EC4899 74%, var(--accent-cyan) 84%, #EC4899 92%, transparent 100%);
-    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:ftTravel 11s linear infinite; pointer-events:none;
 }
 .footer-column > *{ position:relative; z-index:1; }
 
@@ -4580,19 +4562,8 @@ grid-template-columns:1fr;
     transition:var(--transition);
     overflow:hidden;
 }
-/* electric-blue / cyan / white travelling border light on hover */
-.logo-item::before{
-    content:"";
-    position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit;
-    padding:1.4px;
-    background:conic-gradient(from var(--pt-a,0deg), transparent 0 70%, #102A5C 84%, #FFFFFF 90%, #102A5C 96%, transparent 100%);
-    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    opacity:0; transition:opacity .4s ease;
-    animation:ptScan 5s linear infinite paused;
-}
-.logo-item:hover::before{ opacity:1; animation-play-state:running; }
-
+/* travelling border light removed — hover now relies on the
+   shadow/background change below only */
 .logo-item:hover{
     border-color:rgba(255, 255, 255, .55);
     background:rgba(255, 255, 255, .22);

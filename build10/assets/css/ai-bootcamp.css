@@ -75,9 +75,6 @@
    value below mirrors graduate-hire.css 1:1; the only real change is
    swapping the 5-image crossfade slideshow for a looping muted video. */
 
-@property --ai-hh-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
-@keyframes aiHhTravel{ to{ --ai-hh-a:360deg; } }
-
 .ai-hh-hero{
     position:relative; overflow:hidden; text-align:left;
     min-height:74vh; display:flex; align-items:flex-end;
@@ -107,18 +104,8 @@
     box-shadow:inset 0 1px 0 rgba(255,255,255,.5), inset 0 0 46px rgba(255,255,255,.16), 0 20px 60px rgba(16,42,92,.14);
     background:linear-gradient(160deg, rgba(255,255,255,.14), transparent 42%);
 }
-/* travelling light around the glass margins */
-.ai-hh-hero::after{
-    content:""; position:absolute; inset:16px; z-index:3; pointer-events:none;
-    border-top-left-radius:22px; border-top-right-radius:22px;
-    border-bottom-left-radius:48% 12%; border-bottom-right-radius:48% 12%;
-    padding:2px;
-    background:conic-gradient(from var(--ai-hh-a),
-        transparent 0 60%, var(--ai-pink) 74%, #FFFFFF 82%, var(--ai-navy) 90%, var(--ai-pink-2) 97%, transparent 100%);
-    -webkit-mask:linear-gradient(#102A5C 0 0) content-box, linear-gradient(#102A5C 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:aiHhTravel 14s linear infinite;
-}
+/* travelling light around the glass margins — removed, glass frame
+   above (.ai-hh-hero::before) stays as the static border treatment */
 
 /* animated scroll-down chevron */
 .ai-hh-chevron{
@@ -174,17 +161,7 @@
         0 0 18px rgba(236,72,153,.12),
         0 0 30px rgba(18,58,146,.08);
 }
-/* travelling edge light — alternates pink / navy, slow and continuous */
-.ai-hh-panel::before{
-    content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
-    border-radius:inherit; padding:1.4px;
-    background:conic-gradient(from var(--ai-hh-a),
-        transparent 0 55%, var(--ai-pink) 68%, #FFFFFF 78%, var(--ai-navy) 88%, transparent 100%);
-    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:aiHhTravel 16s linear infinite;
-    opacity:.85;
-}
+/* travelling edge light removed — panel keeps its static glass border */
 /* faint reflection sweeping across the crystal surface */
 .ai-hh-panel::after{
     content:""; position:absolute; top:0; bottom:0; left:-60%; width:40%; z-index:1; pointer-events:none;
@@ -296,14 +273,6 @@
     border-radius:24px;
     box-shadow:0 14px 40px rgba(16,42,92,.1);
     overflow:hidden; transition:transform .4s ease, box-shadow .4s ease, background .4s ease;
-}
-.ai-wc-card::after{   /* travelling pink border light — slow, elegant, no flashing */
-    content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
-    border-radius:inherit; padding:1.5px;
-    background:conic-gradient(from var(--ai-hh-a), transparent 0 70%, var(--ai-pink) 84%, #fff 90%, var(--ai-navy) 96%, transparent 100%);
-    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:aiHhTravel 9s linear infinite;
 }
 .ai-wc-card:hover{
     transform:translateY(-8px) scale(1.02);
@@ -487,30 +456,12 @@
     padding:34px 40px 30px;
     box-shadow:0 24px 60px rgba(8,20,45,.32);
 }
-.ai-tst-module::before{
-    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-    border-radius:inherit; padding:1.4px;
-    background:conic-gradient(from var(--ai-tst-a,0deg), transparent 0 72%, var(--ai-pink) 86%, #FFFFFF 92%, transparent 100%);
-    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:aiTstTravel 9s linear infinite;
-}
-@property --ai-tst-a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
-@keyframes aiTstTravel{ to{ --ai-tst-a:360deg; } }
-
 /* small neural-network decoration, low-opacity, top-right corner */
 .ai-tst-net{ position:absolute; top:-10px; right:-6px; width:110px; height:110px; opacity:.5; z-index:0; pointer-events:none; }
 .ai-tst-net svg{ width:100%; height:100%; }
 
-/* subtle scanning line sweeping through the module */
-.ai-tst-scan{
-    position:absolute; left:0; right:0; height:1px; z-index:0; pointer-events:none;
-    background:linear-gradient(90deg, transparent, rgba(236,72,153,.5), transparent);
-    animation:aiTstScan 6s ease-in-out infinite;
-}
-@keyframes aiTstScan{
-    0%{ top:8%; opacity:0; } 10%{ opacity:.7; } 50%{ top:92%; opacity:.7; } 60%{ opacity:0; } 100%{ top:92%; opacity:0; }
-}
+/* sweeping scan-line effect removed; .ai-tst-scan element left inert */
+.ai-tst-scan{ display:none; }
 
 .ai-tst-label{
     position:relative; z-index:1; display:inline-flex; align-items:center; gap:7px;

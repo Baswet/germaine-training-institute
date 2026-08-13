@@ -206,7 +206,28 @@
         radial-gradient(circle at 12% 18%, rgba(255,255,255,.16), transparent 55%),
         radial-gradient(circle at 88% 20%, rgba(11,27,77,.28), transparent 50%) !important;
 }
-.aic-hero2-title .ai-pink-text{ color:#fff; text-shadow:0 2px 18px rgba(7,26,82,.45); text-decoration:underline; text-decoration-color:rgba(255,255,255,.5); text-underline-offset:6px; }
+.aic-hero2-title .ai-pink-text{ color:#fff; text-shadow:0 2px 18px rgba(7,26,82,.45); }
+
+/* Cyber Security hero heading only — larger, bolder, more breathing
+   room, underline artifact removed. Scoped to .aic-hero2-title-cyber
+   (added only on ai-course-cyber-security.html) so no other course
+   page's heading is affected. */
+.aic-hero2-title-cyber{
+    font-size:clamp(2.3rem, 4.6vw, 3.4rem);
+    font-weight:800;
+    line-height:1.12;
+    letter-spacing:-.01em;
+    margin:0 0 22px;
+}
+.aic-hero2-title-cyber .ai-pink-text{
+    text-decoration:none;
+}
+@media(max-width:640px){
+    .aic-hero2-title-cyber{
+        font-size:clamp(1.9rem, 8vw, 2.4rem);
+        margin:0 0 16px;
+    }
+}
 .aic-hero2-back{ border-color:rgba(255,255,255,.4); }
 .aic-hero2-back:hover{ border-color:#fff; }
 .aic-intake-badge{ background:rgba(7,26,82,.28); border-color:rgba(255,255,255,.3); }
@@ -302,14 +323,6 @@
     transform:translateY(-4px);
     box-shadow:0 20px 42px rgba(236,25,104,.3);
 }
-#aicSkills .aic-skill-card::after{
-    content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px;
-    background:conic-gradient(from 0deg, transparent 0%, transparent 80%, rgba(255,111,181,.9) 88%, #fff 92%, var(--ai-hero-pink-1) 96%, transparent 100%);
-    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:aicTravelLight 4.5s linear infinite;
-    pointer-events:none;
-}
 #aicSkills .aic-skill-ic{
     width:38px; height:38px; margin-bottom:10px; border-radius:12px; font-size:1rem;
 }
@@ -317,11 +330,6 @@
 #aicSkills .aic-skill-card p{ font-size:.8rem; line-height:1.48; }
 #aicSkills .aic-skill-num{ color:rgba(236,25,104,.4); }
 
-@keyframes aicTravelLight{ to{ transform:rotate(360deg); } }
-
-@media (prefers-reduced-motion:reduce){
-    #aicSkills .aic-skill-card::after{ animation:none; }
-}
 @media (max-width:576px){
     #aicSkills{ padding:36px 0 40px; }
 }
