@@ -676,16 +676,34 @@ h1, h2, h3, h4, h5, h6{ padding-left:0; padding-right:0; }
     one line, so single-line captions/subtext are
     unaffected in practice; the exclusion list below is a
     belt-and-braces guard for any <p> used as UI chrome.
+
+    text-wrap:pretty asks the browser's line-breaking
+    algorithm to avoid orphaned single words on the last
+    line (supported in Chromium/Safari; browsers without
+    support just fall back to normal wrapping, no harm).
+    hyphens:none + word-break/overflow-wrap:normal keep
+    every word intact — no mid-word splits, ever. Final
+    line of a justified paragraph is NOT force-stretched
+    (that would need text-align-last:justify, which is
+    deliberately never set) so it reads naturally ragged.
 ==================================================*/
 p{
     text-align:justify;
     text-justify:inter-word;
+    text-wrap:pretty;
     max-width:65ch;
     line-height:1.8;
-    hyphens:auto;
-    -webkit-hyphens:auto;
-    -ms-hyphens:auto;
-    overflow-wrap:break-word;
+    word-break:normal;
+    overflow-wrap:normal;
+    hyphens:none;
+    -webkit-hyphens:none;
+    -ms-hyphens:none;
+}
+
+/* headings and other short text: natural alignment, balanced wrapping
+   where the browser supports it, never justified */
+h1, h2, h3, h4, h5, h6{
+    text-wrap:balance;
 }
 
 /* UI chrome: never justify/constrain these even if a <p> is used inside them */
@@ -728,7 +746,7 @@ label p,
 @media(max-width:768px){
     p{
         text-align:left;
-        hyphens:auto;
+        hyphens:none;
     }
 }
 

@@ -85,18 +85,6 @@
 .ab-who-badge i{ color:#EC4899; }
 .ab-who-content p{ font-size:.94rem; line-height:1.65; color:var(--text-body); margin-bottom:14px; }
 
-.ab-who-chips{
-    list-style:none; margin:0; padding:0;
-    display:flex; flex-wrap:wrap; gap:8px 10px;
-}
-.ab-who-chips li{
-    display:inline-flex; align-items:center; gap:6px;
-    padding:6px 12px; border-radius:50px;
-    background:rgba(236, 72, 153, .08); border:1px solid rgba(236, 72, 153, .22);
-    font-size:.76rem; font-weight:600; color:#102A5C;
-}
-.ab-who-chips li i{ color:#EC4899; font-size:.68rem; }
-
 /* ---------- one shared glass container for the four value items ---------- */
 /* Four individual premium glass cards (MKU-inspired, original Germaine
    execution) — icon badge, travelling border light, hover lift. Replaces
@@ -341,18 +329,19 @@
 }
 
 .ab-promise-body p{
-    font-size:1rem;
+    font-size:1.08rem;
     line-height:1.85;
-    color:#3f4a63;
+    color:#102A5C;
+    font-weight:600;
     margin:0 0 18px;
     max-width:56ch;
 }
 
 /* opening statement carries a touch more weight */
 .ab-promise-body p:first-child{
-    font-size:1.06rem;
-    color:#2f3a52;
-    font-weight:500;
+    font-size:1.14rem;
+    color:#102A5C;
+    font-weight:700;
 }
 
 .ab-promise-body p:last-child{ margin-bottom:0; }
@@ -620,7 +609,7 @@
     color:#334155; margin:0 0 14px;
 }
 .lg-desc{
-    font-size:1rem; line-height:1.9; color:#475569;
+    font-size:1rem; line-height:1.9; color:#102A5C;
     max-width:560px; margin:0 0 28px;
 }
 .lg-cta{ display:flex; flex-wrap:wrap; gap:14px; }
@@ -716,7 +705,8 @@
 .lg-voice-card p{
     margin:0 0 2px; font-size:.7rem; line-height:1.35; color:#1E293B; font-weight:600;
 }
-.lg-voice-card span{ font-size:.62rem; color:#64748B; font-weight:600; }
+.lg-voice-name{ display:block; font-size:.64rem; color:#102A5C; font-weight:700; }
+.lg-voice-role{ display:block; font-size:.58rem; color:#64748B; font-weight:600; margin-top:1px; }
 
 @media(prefers-reduced-motion:reduce){
     .lg-blob-frame, .lg-token, .lg-voice-card{ animation:none; }
@@ -757,7 +747,10 @@
         radial-gradient(circle at 50% 0%, rgba(236, 72, 153, .14), transparent 45%),
         linear-gradient(#102A5C, #1E3A8A);
     border-radius:28px;
-    padding:34px 30px 30px;
+    /* Horizontal padding trimmed (was 30px) so the photo grid uses more of
+       the available width instead of leaving a wide navy strip either side
+       — vertical padding is kept for breathing room around the header. */
+    padding:34px 14px 30px;
     box-shadow:0 12px 40px rgba(16, 42, 92, .25);
 }
 
@@ -900,7 +893,7 @@
 }
 
 @media(max-width:768px){
-    .life-section .container{ padding:24px 18px 22px; border-radius:22px; }
+    .life-section .container{ padding:24px 10px 22px; border-radius:22px; }
     .bento-grid{ grid-template-columns:1fr; grid-template-rows:none; grid-auto-rows:200px; }
     .bento-card.featured{ grid-row:auto; grid-column:auto; }
 }
@@ -983,13 +976,6 @@
     box-shadow:0 10px 30px rgba(16, 42, 92, .14), 0 0 14px rgba(236, 72, 153, .14);
     color:#102A5C;
 }
-.ab-who-chips li{
-    background:rgba(255, 255, 255, .55);
-    border-color:rgba(16, 42, 92, .14);
-    color:#102A5C;
-}
-.ab-who-chips li i{ color:#EC4899; }
-
 /* ---------- flip cards: navy-forward glass, pink kept only as a small accent ---------- */
 .ab-flip-icon{
     background:rgba(255, 255, 255, .18);
@@ -999,7 +985,6 @@
 .ab-flip-corner-br{ border-bottom-color:#F9A8D4; border-right-color:#F9A8D4; }
 
 /* ---------- headings & section tags — pink stays only as a small accent ---------- */
-#ab-who .section-tag,
 #ab-gallery .recognised-title{
     color:#EC4899;
 }
@@ -1007,9 +992,12 @@
 #ab-gallery .life-header h2 span,
 #ab-who .ab-who-content h2 span{ color:#EC4899; }
 
-/* body copy stays navy for readability */
-#ab-who .ab-who-content p,
-#ab-gallery .life-header p{ color:#334e78; }
+/* body copy stays navy for readability on the white "Who We Are" panel.
+   #ab-gallery .life-header p is intentionally NOT included here — that
+   paragraph sits on the dark navy gradient background of the "Explore
+   Campus Life" panel below, where it needs to stay light (see
+   .life-header p in this same file) rather than dark-on-dark. */
+#ab-who .ab-who-content p{ color:#102A5C; }
 
 /* ---------- scroll-reveal keeps working, just pink glows ---------- */
 .ab-reveal{ will-change:opacity, transform; }
