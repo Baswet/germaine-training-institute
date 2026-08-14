@@ -288,6 +288,12 @@
 .alu-row-compact .alu-field select.has-value + label{
     top:5px; font-size:.6rem;
 }
+/* Same static-label treatment as the base .alu-field select rule above —
+   a compact-row select always shows visible text, so its label must
+   rest above the field permanently rather than only on focus/has-value. */
+.alu-row-compact .alu-field select + label{
+    top:5px; font-size:.6rem;
+}
 .alu-form-compact .alu-form-submit{ margin-top:22px; }
 
 .alu-form-head{ text-align:center; margin-bottom:36px; }
@@ -328,6 +334,16 @@
 .alu-field select.has-value + label,
 .alu-field textarea:focus + label,
 .alu-field textarea:not(:placeholder-shown) + label{
+    top:6px; font-size:.68rem; font-weight:700; letter-spacing:.04em; color:var(--alu-pink);
+}
+/* Unlike text inputs (which use an invisible placeholder=" " so the
+   resting label is the only visible text until the user types),
+   a <select> always shows its own visible text — either the
+   placeholder-style disabled option or a real chosen value. A
+   floating label that only moves up via :focus/.has-value therefore
+   overlaps the select's own text on first load and after a reset.
+   Selects get a permanently static label above the field instead. */
+.alu-field select + label{
     top:6px; font-size:.68rem; font-weight:700; letter-spacing:.04em; color:var(--alu-pink);
 }
 .alu-field select{ appearance:none; -webkit-appearance:none; cursor:pointer;

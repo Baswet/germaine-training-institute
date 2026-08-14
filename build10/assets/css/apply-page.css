@@ -114,8 +114,8 @@ body.apply-page section:not(.announcement-bar){ position:relative; }
 /*========== COMPACT SPACING + TYPOGRAPHY (scoped to this page only)
     Condensed application form: 38px control height, tighter labels and
     row rhythm, smaller headings, reduced margins, smaller buttons. ========== */
-body.apply-page .form-row{ gap:10px; margin-bottom:9px; }
-body.apply-page .form-group{ gap:3px; margin-bottom:9px; }
+body.apply-page .form-row{ gap:9px; margin-bottom:7px; }
+body.apply-page .form-group{ gap:3px; margin-bottom:7px; }
 body.apply-page .form-group label{
     font-size:.74rem; font-weight:700; letter-spacing:.1px; line-height:1.3;
     color:var(--ap-text-label);
@@ -146,12 +146,23 @@ body.apply-page .form-group textarea:focus{
     box-shadow:0 0 0 4px rgba(236, 72, 153, .14);
     outline:none;
 }
-body.apply-page .ap-card{ padding:16px 18px; }
-body.apply-page .ap-step-head{ margin-bottom:13px; }
+body.apply-page .ap-card{ padding:14px 16px; }
+body.apply-page .ap-step-head{ margin-bottom:10px; }
 body.apply-page .ap-step-sub{ color:var(--ap-text-secondary); }
 body.apply-page .ap-guide-list li,
 body.apply-page .ap-fieldset-head,
 body.apply-page .ap-doc-note{ color:var(--ap-text-secondary); }
+/* Further compaction pass — tighten the remaining section/field rhythm
+   without touching field count, labels, validation, or the API payload. */
+body.apply-page .ap-compact-grid{ gap:7px 12px; }
+body.apply-page .ap-guidelines{ margin-bottom:12px; }
+body.apply-page .ap-guidelines-head{ margin-bottom:8px !important; }
+body.apply-page .ap-guide-list li{ padding:3px 0; }
+body.apply-page .ap-wizard-card{ margin-bottom:10px; }
+body.apply-page .ap-fieldset-head{ margin:7px 0 5px; padding-top:6px; }
+body.apply-page .ap-terms{ margin:10px 0 3px; }
+body.apply-page .ap-safe-badge{ padding:8px 14px; }
+body.apply-page .ap-step-title{ font-size:1.32rem; margin:0 0 4px; }
 
 /* fieldset section headers inside a wizard step */
 .ap-fieldset-head{

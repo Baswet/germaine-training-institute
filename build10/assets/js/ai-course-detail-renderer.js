@@ -632,7 +632,15 @@
         });
 
         closeBtn.addEventListener("click", closeModal);
-        backdrop.addEventListener("click", closeModal);
+        /* .acm-modal is the full-viewport flex wrapper that visually sits
+           above .acm-backdrop, so it — not the backdrop — is what actually
+           receives clicks in the empty area around the panel. Event-target
+           checking ensures only a click that lands directly on that empty
+           wrapper (not inside .acm-panel, which bubbles up as a descendant
+           target) closes the modal. */
+        modal.addEventListener("click", function (e) {
+            if (e.target === modal) closeModal();
+        });
         document.addEventListener("keydown", function (e) {
             if (e.key === "Escape" && !modal.hidden) closeModal();
         });

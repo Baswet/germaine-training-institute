@@ -45,7 +45,7 @@
 
     var state = {
         mode: "", modeLabel: "",
-        fullname: "", phone: "", email: "", idnum: "", county: "", gender: "", dob: "",
+        fullname: "", phone: "", email: "", idnum: "", county: "", gender: "",
         eduLevel: "", kcseGrade: "",
         schoolId: "", schoolName: "",
         programme: "",
@@ -229,7 +229,6 @@
         state.phone = $("#apPhone").value.trim();
         state.email = $("#apEmail").value.trim();
         state.idnum = $("#apIdnum").value.trim();
-        state.dob = $("#apDob").value;
         state.gender = $("#apGender").value;
         state.county = $("#apCounty").value;
         state.eduLevel = $("#apEduLevel").value;
@@ -237,7 +236,6 @@
 
         markInvalid("#apFullname", !state.fullname);
         markInvalid("#apPhone", !state.phone);
-        markInvalid("#apDob", !state.dob);
         markInvalid("#apGender", !state.gender);
         markInvalid("#apCounty", !state.county);
         markInvalid("#apEduLevel", !state.eduLevel);
@@ -250,7 +248,7 @@
 
         markInvalid("#apProgrammeSearch", !state.programme);
 
-        var personalOk = !!(state.fullname && state.phone && state.dob &&
+        var personalOk = !!(state.fullname && state.phone &&
             state.gender && state.county && state.eduLevel);
 
         return personalOk && modeOk && schoolOk && !!state.programme;
@@ -330,7 +328,6 @@
                     email: state.email,
                     phone: "254" + state.phone,
                     national_id: state.idnum || undefined,
-                    date_of_birth: state.dob || undefined,
                     gender: state.gender || undefined,
                     county: state.county || undefined,
                     education_level: state.eduLevel || undefined,

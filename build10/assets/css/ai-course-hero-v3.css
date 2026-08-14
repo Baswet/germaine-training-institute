@@ -606,6 +606,15 @@ body.acm-lock{
     padding:20px;
     overflow-y:auto;
 }
+/* The [hidden] attribute must always win over the display:flex/block
+   rules above — without this override, an author stylesheet rule
+   beats the browser's default "[hidden]{display:none}" UA rule and
+   the modal/backdrop stay permanently visible and occupying page
+   space, even before the user clicks Apply Now. */
+.acm-backdrop[hidden],
+.acm-modal[hidden]{
+    display:none !important;
+}
 .acm-panel{
     position:relative;
     width:100%;
