@@ -6,8 +6,8 @@ One-off deploy step for the Applicant Leads feature (run via cPanel
    ~/_claude_backups/. If pg_dump is not installed it logs that and continues,
    because the migration below is additive only (two new tables).
 2. Runs `flask db upgrade` (Flask-Migrate) to head c4d9e2a7b1f0. It refuses
-   unless the current DB revision is the expected live head e5f2a9c1d7b3 (or
-   already c4d9e2a7b1f0).
+   unless the current DB revision is b7c1d9e4f2a8 or e5f2a9c1d7b3 (or already
+   c4d9e2a7b1f0).
 3. Writes a log to ~/_claude_backups/leads_deploy_log.txt.
 
 Never logs DATABASE_URL, SECRET_KEY or any env value: error messages are
@@ -29,7 +29,9 @@ os.chdir(ROOT)
 BACKUPS = Path.home() / "_claude_backups"
 BACKUPS.mkdir(exist_ok=True)
 LOG = BACKUPS / "leads_deploy_log.txt"
-EXPECTED_PREVIOUS = "e5f2a9c1d7b3"
+# b7c1d9e4f2a8: live DB was found one step behind (e5f2a9c1d7b3 alumni_email_optional
+# never applied); owner approved applying it together with the lead migration.
+EXPECTED_PREVIOUS = ("e5f2a9c1d7b3", "b7c1d9e4f2a8")
 TARGET = "c4d9e2a7b1f0"
 lines = []
 
@@ -57,11 +59,11 @@ try:
     with app.app_context():
         current = [r[0] for r in db.session.execute(db.text("SELECT version_num FROM alembic_version"))]
         log(f"DB revision before: {current}")
-        if current not in ([EXPECTED_PREVIOUS], [TARGET]):
+        if not (len(current) == 1 and (current[0] in EXPECTED_PREVIOUS or current[0] == TARGET)):
             log("ABORT: unexpected DB revision; nothing changed.")
             raise SystemExit(2)
 
-        if current == [EXPECTED_PREVIOUS]:
+        if current[0] in EXPECTED_PREVIOUS:
             # ---- backup
             pg_dump = shutil.which("pg_dump")
             if pg_dump:
