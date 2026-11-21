@@ -1,7 +1,7 @@
 """Applicant leads: real-time lead capture + lead audit log (additive only)
 
 Revision ID: c4d9e2a7b1f0
-Revises: 8b1f4c9d2e3a
+Revises: e5f2a9c1d7b3 (live head; GitHub main head was 8b1f4c9d2e3a)
 Create Date: 2026-11-21
 
 ADDITIVE ONLY. Creates two new tables and their indexes; touches no
@@ -28,7 +28,7 @@ import sqlalchemy as sa
 
 
 revision = 'c4d9e2a7b1f0'
-down_revision = '8b1f4c9d2e3a'
+down_revision = 'e5f2a9c1d7b3'
 branch_labels = None
 depends_on = None
 
