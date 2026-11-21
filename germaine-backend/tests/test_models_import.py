@@ -22,7 +22,8 @@ ported here 1:1 as additive-only tables — see app/models/earncash_*.py
 and app/models/__init__.py for the full rationale. The 9th model,
 EarnCashApplicationCommission, is the additive GTI-application referral
 bridge added later (see app/models/earncash_application_commission.py).
-The combined registry is therefore 28, not 19.
+The combined registry was therefore 28; the 2 applicant-lead models
+(LEAD_MODELS below) bring it to 30.
 """
 
 from app import models
@@ -65,7 +66,15 @@ EARNCASH_MODELS = {
     "EarnCashApplicationCommission",
 }
 
-EXPECTED_MODELS = STEP_2_MODELS | CMS_MODELS | EARNCASH_MODELS
+# Applicant lead capture (additive): leads + a lead-scoped admin audit log.
+# ApplicantLeadAuditLog is deliberately scoped to leads only — the generic,
+# speculative "AuditLog" below stays forbidden.
+LEAD_MODELS = {
+    "ApplicantLead",
+    "ApplicantLeadAuditLog",
+}
+
+EXPECTED_MODELS = STEP_2_MODELS | CMS_MODELS | EARNCASH_MODELS | LEAD_MODELS
 
 # Explicitly forbidden speculative models (Step 2 §35 / Step 3 instructions).
 # "News" (bare) stays forbidden — the real model is "NewsArticle", added
@@ -92,7 +101,7 @@ def test_step2_baseline_models_unchanged():
 
 def test_all_models_exported_match_registry():
     assert set(models.__all__) == EXPECTED_MODELS
-    assert len(models.__all__) == 28
+    assert len(models.__all__) == 30
 
 
 def test_earncash_models_use_prefixed_tablenames():

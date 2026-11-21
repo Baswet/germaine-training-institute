@@ -30,6 +30,9 @@ than stand up a second server and a second database engine, its 8
 tables were ported here 1:1 (see each earncash_*.py file's docstring
 for the MySQL -> PostgreSQL conversion notes) as `earncash_`-prefixed
 tables — additive only, no existing table touched or renamed.
+
+ApplicantLead + ApplicantLeadAuditLog (additive) back the real-time
+applicant lead capture feature — see app/models/applicant_lead.py.
 """
 
 from app.models.school import School
@@ -60,6 +63,7 @@ from app.models.earncash_withdrawal import EarnCashWithdrawal
 from app.models.earncash_notification import EarnCashNotification
 from app.models.earncash_admin_log import EarnCashAdminLog
 from app.models.earncash_application_commission import EarnCashApplicationCommission
+from app.models.applicant_lead import ApplicantLead, ApplicantLeadAuditLog
 
 __all__ = [
     "School",
@@ -90,4 +94,6 @@ __all__ = [
     "EarnCashNotification",
     "EarnCashAdminLog",
     "EarnCashApplicationCommission",
+    "ApplicantLead",
+    "ApplicantLeadAuditLog",
 ]
