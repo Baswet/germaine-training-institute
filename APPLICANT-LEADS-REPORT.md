@@ -1,7 +1,6 @@
 # Applicant Lead Capture — Implementation Report & Deployment Guide
 
-**Status: implemented and tested in an isolated staging environment. NOT deployed.**
-Production deployment needs your explicit approval and the pre-deployment steps in §12.
+**Status: DEPLOYED TO PRODUCTION on 21 Nov 2026, ~03:56 EAT, with the owner's explicit approval.** See §13 for the deployment record.
 
 | | |
 |---|---|
@@ -131,7 +130,7 @@ Local only: PostgreSQL 16 on a private socket (`gti_staging`, `gti_test`), Flask
 ## 11. Outstanding issues
 
 1. **Production ↔ GitHub drift (most important).** Live code (63 files, 6 migrations) isn't in GitHub. Pulling it through the browser wasn't feasible: tool output is capped at about 2 KB per read, cPanel began throttling after about 20 reads, and then Chrome disconnected. **Recommended next step:** create a `production-snapshot` branch from the live source (excluding `.env*`, logs, `instance/`, `var/`, `tmp/`, venv, `*.bak*`), then rebase this feature branch onto it.
-2. `down_revision` must be set to the live head (§12 step 2).
+2. ~~`down_revision` must be set to the live head~~ (done: `e5f2a9c1d7b3`).
 3. Hook edits must be re-applied to the **live** versions of the shared files (§12 step 4), not copied from this branch.
 4. Rate limiting is per Passenger worker process (good enough against spam; dedup does not depend on it).
 5. Existing in the repo: `apply.html` marks email as optional, but the GitHub `create_application` requires it. The live server appears to have fixed this (`applicant.py.pre-optemail`, migration `e5f2a9c1d7b3`). Leads are captured either way.
@@ -183,3 +182,27 @@ In the migration, change `down_revision = '8b1f4c9d2e3a'` to the head from step 
 **8. Frontend** (`/home2/germaine/germaineinstitute.ac.ke/`): upload `assets/js/lead-capture.js`. Then apply the notice + `<script>` edits to the live `apply.html` and the 3 hooks to the live `apply-wizard.js`. `CORS_ALLOWED_ORIGINS` must already include `https://germaineinstitute.ac.ke` (it does for the existing forms — verify only, don't change). Confirm in your own browser's DevTools that typing a name and phone sends one `leads/capture` request returning 200. Then delete that lead from the dashboard; it was your own test.
 
 **Rollback:** restore the backed-up files; `flask --app wsgi db downgrade <previous head>` (drops only the 2 new tables and the lead data); restart.
+
+## 13. Production deployment record (21 Nov 2026)
+
+Carried out through the owner's cPanel session (Chrome) after explicit approval ("make it live").
+
+| Step | Result |
+|---|---|
+| Source backups | `~/_claude_backups/gti-backend-src-20261121.zip` (backend, no `.env*`/logs) and `gti-site-src-20261121.zip` (HTML/JS/CSS) |
+| Live migration chain read | Linear, file head `e5f2a9c1d7b3`. **Live DB was at `b7c1d9e4f2a8`**: `e5f2a9c1d7b3` (alumni.email → nullable) had never been applied |
+| Migration parent | `c4d9e2a7b1f0.down_revision` set to `e5f2a9c1d7b3` |
+| New files uploaded (verified byte-for-byte) | `app/models/applicant_lead.py`, `app/services/lead_service.py`, `app/utils/phone.py`, `app/utils/rate_limit.py`, `app/blueprints/admin/lead_routes.py`, 3 admin templates, migration `c4d9e2a7b1f0`, `scripts/predeploy_check_leads.py`, `assets/js/lead-capture.js` |
+| DB backup | `~/_claude_backups/gti-db-before-leads-20261121-034929.dump` (pg_dump, 196 KB) |
+| Migration (owner approved applying the pending one too) | `b7c1d9e4f2a8 → e5f2a9c1d7b3 → c4d9e2a7b1f0`, RESULT OK, both new tables present |
+| Hook edits to live files (originals saved as `~/_claude_backups/leads-bak-20261121__<path>`) | `app/models/__init__.py`, `app/blueprints/admin/__init__.py`, `app/templates/admin/base.html`, `app/static/admin/admin.css`, `app/blueprints/admissions/routes.py`, site `apply.html`, site `assets/js/apply-wizard.js`. Each anchor matched exactly once; written content verified |
+| Pre-restart check (`scripts/leads_import_check.py`) | App builds, 5 routes registered, capture `{}`→422, `/admin/leads`→302, health 200, 0 rows created |
+| Passenger | Restarted from Setup Python App |
+| Live smoke (`scripts/leads_live_smoke.py`, real public URLs) | health 200 · capture `{}`→422 with CORS for `https://germaineinstitute.ac.ke` · `/admin/leads`→302 · live `apply.html` has notice + script · `lead-capture.js` 200 · wizard hooks present. **RESULT OK** |
+
+Live `admissions/routes.py` differs from this branch: it already had a document-upload-token block after `create_application`. The hook was inserted on the line straight after `create_application(payload)`, before that block, and uses `_lead_`-prefixed aliases (`_lead_error`, `_lead_log`, …) so it can't clash with names in the live file.
+
+**Rollback:** copy each `leads-bak-20261121__*` file back over its live path, restart, then (optionally)
+`flask --app wsgi db downgrade e5f2a9c1d7b3` (drops only the two lead tables). The DB dump above restores everything to before the deploy.
+
+Helper scripts left on the server (inert/read-only or self-guarding): `scripts/predeploy_check_leads.py`, `leads_deploy_migrate.py` (refuses to run now that the DB is at head), `leads_import_check.py`, `leads_live_smoke.py`. Log: `~/_claude_backups/leads_deploy_log.txt`.
