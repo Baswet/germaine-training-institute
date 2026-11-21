@@ -1,0 +1,73 @@
+{% extends "admin/base.html" %}
+{% from "admin/_pagination.html" import render_pagination %}
+{% block title %}Applicant Leads{% endblock %}
+{% block content %}
+<div class="gti-topbar">
+  <h1>Applicant Leads</h1>
+  <span class="gti-crumb">People who entered their name and phone on the application form</span>
+</div>
+
+<div class="gti-stats-grid">
+  <div class="gti-stat-card"><div class="num">{{ stats.total }}</div><div class="label">Total Leads</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.new_today }}</div><div class="label">New Leads Today</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.contacted }}</div><div class="label">Contacted Leads</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.interested }}</div><div class="label">Interested Applicants</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.incomplete }}</div><div class="label">Incomplete Applications</div></div>
+  <div class="gti-stat-card"><div class="num">{{ stats.completed }}</div><div class="label">Completed Applications</div></div>
+  <div class="gti-stat-card"><a href="{{ url_for('admin.leads_list', uncontacted='1') }}" style="text-decoration:none;"><div class="num">{{ stats.not_contacted }}</div><div class="label">Not Yet Contacted &rarr;</div></a></div>
+</div>
+
+<form class="gti-toolbar" method="get">
+  <input type="text" name="q" placeholder="Search name or phone…" value="{{ filters.q }}" maxlength="100">
+  <select name="lead_status" aria-label="Follow-up status">
+    <option value="">All follow-up statuses</option>
+    {% for s in lead_statuses %}<option value="{{ s }}" {{ 'selected' if s == filters.lead_status }}>{{ status_labels[s] }}</option>{% endfor %}
+  </select>
+  <select name="app_status" aria-label="Application status">
+    <option value="">All application statuses</option>
+    {% for k, label in app_statuses.items() %}<option value="{{ k }}" {{ 'selected' if k == filters.app_status }}>{{ label }}</option>{% endfor %}
+  </select>
+  <select name="sort" aria-label="Sort">
+    {% for k, label in sorts.items() %}<option value="{{ k }}" {{ 'selected' if k == filters.sort }}>{{ label }}</option>{% endfor %}
+  </select>
+  <label class="gti-check"><input type="checkbox" name="uncontacted" value="1" {{ 'checked' if filters.uncontacted }}> Not yet contacted</label>
+  <button type="submit">Filter</button>
+  {% if filters.q or filters.lead_status or filters.app_status or filters.uncontacted or filters.sort != 'newest' %}<a class="gti-clear" href="{{ url_for('admin.leads_list') }}">Clear</a>{% endif %}
+</form>
+
+<div class="gti-table-wrap">
+  {% if result.records %}
+  <table class="gti-table gti-leads-table">
+    <thead><tr>
+      <th>Applicant Name</th><th>Phone Number</th><th>Email</th><th>Programme</th>
+      <th>Date Captured</th><th>Last Activity</th><th>Application Status</th><th>Follow-up Status</th><th>Actions</th>
+    </tr></thead>
+    <tbody>
+      {% for l in result.records %}
+      <tr>
+        <td><a class="gti-row-link" href="{{ url_for('admin.lead_detail', lead_id=l.id) }}">{{ l.applicant_name }}</a></td>
+        <td>{{ '—' if l.anonymized_at else '+' ~ l.normalized_phone }}</td>
+        <td>{{ l.email or '—' }}</td>
+        <td>{{ l.programme or '—' }}</td>
+        <td>{{ l.first_captured_at|eat('%d %b %Y %H:%M') }}</td>
+        <td>{{ l.last_activity_at|eat('%d %b %Y %H:%M') }}</td>
+        <td><span class="gti-badge gti-badge-{{ 'green' if l.application_id else 'amber' }}">{{ l.application_status }}</span></td>
+        <td><span class="gti-badge gti-badge-{{ {'new_lead':'blue','contacted':'neutral','interested':'green','follow_up_required':'amber','application_submitted':'green','not_interested':'red'}[l.lead_status] }}">{{ l.status_label }}</span></td>
+        <td>
+          <div class="gti-lead-actions">
+            <a href="{{ url_for('admin.lead_detail', lead_id=l.id) }}">View</a>
+            {% if not l.anonymized_at %}
+            <a class="call" href="tel:+{{ l.normalized_phone }}">Call</a>
+            <a class="wa" href="https://wa.me/{{ l.normalized_phone }}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            {% endif %}
+            <a class="del" href="{{ url_for('admin.lead_delete_confirm', lead_id=l.id) }}">Delete</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="gti-empty">No applicant leads match this view.</div>{% endif %}
+</div>
+{{ render_pagination(result, 'admin.leads_list', filters) }}
+{% endblock %}

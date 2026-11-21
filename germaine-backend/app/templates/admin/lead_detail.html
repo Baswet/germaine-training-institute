@@ -1,0 +1,95 @@
+{% extends "admin/base.html" %}
+{% block title %}Lead — {{ lead.applicant_name }}{% endblock %}
+{% block content %}
+<a class="gti-back-link" href="{{ url_for('admin.leads_list') }}">&larr; Back to Applicant Leads</a>
+<div class="gti-topbar">
+  <h1>{{ lead.applicant_name }}</h1>
+  <span class="gti-badge gti-badge-{{ 'green' if lead.application_id else 'amber' }}">Application: {{ lead.application_status }}</span>
+</div>
+
+<div class="gti-detail-grid">
+  <div>
+    <div class="gti-panel">
+      <h2>Captured Information</h2>
+      {% if lead.anonymized_at %}
+      <div class="gti-warning">Personal details were removed on {{ lead.anonymized_at|eat }} (EAT).</div>
+      {% endif %}
+      <div class="gti-field-row"><span class="k">Name</span><span class="v">{{ lead.applicant_name }}</span></div>
+      <div class="gti-field-row"><span class="k">Phone (as typed)</span><span class="v">{{ lead.phone_number }}</span></div>
+      <div class="gti-field-row"><span class="k">Phone (normalized)</span><span class="v">{{ '—' if lead.anonymized_at else '+' ~ lead.normalized_phone }}</span></div>
+      <div class="gti-field-row"><span class="k">Email</span><span class="v">{{ lead.email or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">School</span><span class="v">{{ lead.school or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Programme</span><span class="v">{{ lead.programme or '—' }}</span></div>
+      <div class="gti-field-row"><span class="k">Form</span><span class="v">{{ lead.source_page or '—' }} ({{ lead.application_type }})</span></div>
+      <div class="gti-field-row"><span class="k">First captured</span><span class="v">{{ lead.first_captured_at|eat }} EAT</span></div>
+      <div class="gti-field-row"><span class="k">Details last changed</span><span class="v">{{ lead.last_updated_at|eat }} EAT</span></div>
+      <div class="gti-field-row"><span class="k">Last activity</span><span class="v">{{ lead.last_activity_at|eat }} EAT</span></div>
+      <div class="gti-field-row"><span class="k">Linked application</span><span class="v">
+        {% if lead.application %}<a href="{{ url_for('admin.application_detail', app_id=lead.application.id) }}">{{ lead.application.reference_code }}</a>{% else %}None yet{% endif %}
+      </span></div>
+      {% if not lead.anonymized_at %}
+      <div class="gti-contact-btns">
+        <a class="gti-btn" href="tel:+{{ lead.normalized_phone }}">Call Applicant</a>
+        <a class="gti-btn gti-btn-green" href="https://wa.me/{{ lead.normalized_phone }}" target="_blank" rel="noopener noreferrer">WhatsApp Applicant</a>
+      </div>
+      <p class="gti-notice">Opens your phone's dialer or WhatsApp. Nothing is sent automatically.</p>
+      {% endif %}
+    </div>
+
+    {% if duplicates %}
+    <div class="gti-panel">
+      <h2>Possible Duplicates (same phone number)</h2>
+      <p class="gti-notice">Captured from a different browser or device. These are not merged automatically because identity can't be verified. Review them and delete any duplicates.</p>
+      {% for d in duplicates %}
+      <div class="gti-field-row"><span class="k"><a href="{{ url_for('admin.lead_detail', lead_id=d.id) }}">{{ d.applicant_name }}</a></span><span class="v">{{ d.first_captured_at|eat('%d %b %Y') }} · {{ d.status_label }} · {{ d.application_status }}</span></div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="gti-panel">
+      <h2>Activity Log</h2>
+      {% if audit %}
+      <ul class="gti-audit">
+        {% for a in audit %}<li>{{ a.created_at|eat }} — <strong>{{ a.action.replace('_', ' ') }}</strong>{% if a.detail %}: {{ a.detail }}{% endif %}{% if a.admin_user %} · {{ a.admin_user.name }}{% endif %}</li>{% endfor %}
+      </ul>
+      {% else %}<p class="gti-notice">No admin actions recorded yet.</p>{% endif %}
+    </div>
+  </div>
+
+  <div>
+    <div class="gti-panel">
+      <h2>Follow-up</h2>
+      <form method="post" action="{{ url_for('admin.lead_follow_up_update', lead_id=lead.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <div class="gti-form-group">
+          <label for="lead_status">Follow-up status</label>
+          <select id="lead_status" name="lead_status">
+            {% for s in lead_statuses %}
+              {% if s != 'application_submitted' or lead.application_id %}
+              <option value="{{ s }}" {{ 'selected' if s == lead.lead_status }}>{{ status_labels[s] }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          {% if not lead.application_id %}<span class="hint">"Application Submitted" is set automatically when the applicant submits.</span>{% endif %}
+        </div>
+        <div class="gti-form-group">
+          <label for="contacted_at">Date contacted</label>
+          <input type="datetime-local" id="contacted_at" name="contacted_at" value="{{ lead.contacted_at|eat('%Y-%m-%dT%H:%M') if lead.contacted_at else '' }}" style="width:100%;padding:9px 11px;border:1px solid var(--gti-border);border-radius:6px;">
+          <span class="hint">Nairobi time. Leave empty to keep it unchanged.</span>
+        </div>
+        <div class="gti-form-group">
+          <label for="follow_up_notes">Follow-up notes</label>
+          <textarea id="follow_up_notes" name="follow_up_notes" maxlength="5000" rows="6">{{ lead.follow_up_notes or '' }}</textarea>
+        </div>
+        <div class="gti-form-actions"><button type="submit" class="gti-btn">Save follow-up</button></div>
+      </form>
+    </div>
+
+    <div class="gti-panel">
+      <h2>Remove</h2>
+      <a class="gti-btn gti-btn-red" href="{{ url_for('admin.lead_delete_confirm', lead_id=lead.id) }}">Delete lead…</a>
+      <p class="gti-notice">You'll be asked to confirm. Submitted applications are never deleted.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

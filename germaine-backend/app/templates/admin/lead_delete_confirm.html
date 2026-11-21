@@ -1,0 +1,63 @@
+{% extends "admin/base.html" %}
+{% block title %}Delete lead — {{ lead.applicant_name }}{% endblock %}
+{% block content %}
+<a class="gti-back-link" href="{{ url_for('admin.lead_detail', lead_id=lead.id) }}">&larr; Back to lead</a>
+<div class="gti-topbar"><h1>Delete applicant lead?</h1></div>
+
+<div class="gti-panel" style="max-width:640px;">
+  <h2>You are about to delete</h2>
+  <div class="gti-field-row"><span class="k">Name</span><span class="v"><strong>{{ lead.applicant_name }}</strong></span></div>
+  <div class="gti-field-row"><span class="k">Phone</span><span class="v">{{ '—' if lead.anonymized_at else '+' ~ lead.normalized_phone }}</span></div>
+  <div class="gti-field-row"><span class="k">Captured</span><span class="v">{{ lead.first_captured_at|eat }} EAT</span></div>
+  <div class="gti-field-row"><span class="k">Follow-up status</span><span class="v">{{ lead.status_label }}</span></div>
+
+  {% if lead.application_id %}
+  <div class="gti-warning" style="margin-top:16px;">
+    <strong>This lead is linked to a submitted application{% if lead.application %} ({{ lead.application.reference_code }}){% endif %}.</strong>
+    Deleting the lead removes only this follow-up record. The application, applicant details, documents,
+    PDFs and payment records are <strong>not</strong> deleted or changed. To keep the record for statistics
+    without the personal details, use <em>Anonymise instead</em> below.
+  </div>
+  {% else %}
+  <p class="gti-notice" style="margin-top:16px;">This person hasn't submitted an application. Only this lead record will be deleted, and this can't be undone.</p>
+  {% endif %}
+
+  <form method="post" action="{{ url_for('admin.lead_delete', lead_id=lead.id) }}" data-once>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <input type="hidden" name="confirm" value="yes">
+    {% if lead.application_id %}
+    <label class="gti-form-checkbox" style="margin:12px 0;">
+      <input type="checkbox" name="confirm_linked" value="yes" required>
+      I understand this lead is linked to a submitted application, and only the lead record will be deleted.
+    </label>
+    {% endif %}
+    <div class="gti-form-actions">
+      <button type="submit" class="gti-btn gti-btn-red">Delete lead permanently</button>
+      <a class="gti-btn gti-btn-secondary" href="{{ url_for('admin.lead_detail', lead_id=lead.id) }}">Cancel</a>
+    </div>
+  </form>
+
+  {% if not lead.anonymized_at %}
+  <hr style="border:none;border-top:1px solid var(--gti-border);margin:22px 0;">
+  <form method="post" action="{{ url_for('admin.lead_anonymise', lead_id=lead.id) }}" data-once>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <input type="hidden" name="confirm" value="yes">
+    <p class="gti-notice">Anonymise instead: removes name, phone, email and notes but keeps the dates, status and application link, e.g. to honour an erasure request while keeping admissions statistics.</p>
+    <button type="submit" class="gti-btn gti-btn-secondary">Anonymise instead</button>
+  </form>
+  {% endif %}
+</div>
+
+<script>
+  /* Prevent double submission (double-clicks / repeated requests). The server
+     is idempotent too: a second delete for the same lead just reports it was
+     already deleted. */
+  document.querySelectorAll("form[data-once]").forEach(function (f) {
+    f.addEventListener("submit", function (e) {
+      if (f.dataset.sent) { e.preventDefault(); return; }
+      f.dataset.sent = "1";
+      f.querySelectorAll("button[type=submit]").forEach(function (b) { b.disabled = true; b.textContent = "Working…"; });
+    });
+  });
+</script>
+{% endblock %}

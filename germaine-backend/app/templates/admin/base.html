@@ -17,6 +17,7 @@
       <div class="gti-nav-label">Admissions</div>
       <a href="{{ url_for('admin.applications_list') }}" class="{{ 'active' if request.endpoint in ['admin.applications_list','admin.application_detail'] }}">Applications</a>
       <a href="{{ url_for('admin.scholarships_list') }}" class="{{ 'active' if request.endpoint == 'admin.scholarships_list' }}">Scholarship Applications</a>
+      <a href="{{ url_for('admin.leads_list') }}" class="{{ 'active' if request.endpoint and request.endpoint.startswith('admin.lead') }}">Applicant Leads</a>
 
       <div class="gti-nav-label">Student Records</div>
       <a href="{{ url_for('admin.alumni_list') }}" class="{{ 'active' if request.endpoint in ['admin.alumni_list','admin.alumni_detail'] }}">Alumni</a>
