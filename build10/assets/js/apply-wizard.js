@@ -172,6 +172,8 @@
                 if (hidden) hidden.value = name;
                 state.programme = name;
                 list.classList.remove("open");
+                // Lets lead-capture.js pick up the chosen programme (no-op if absent).
+                try { document.dispatchEvent(new CustomEvent("gti:programme-selected")); } catch (err) { /* old browsers */ }
                 markInvalid("#apProgrammeSearch", false);
             });
         });
@@ -336,6 +338,10 @@
                     application_type: "scholarship",
                     consent: true
                 };
+                // Optional: links this submission to the applicant's captured lead.
+                // Lead capture is independent — if it isn't loaded, nothing changes.
+                var leadToken = window.GTILeadCapture && window.GTILeadCapture.token();
+                if (leadToken) payload.lead_token = leadToken;
 
                 return window.GermaineAPI.post("/api/admissions/applications", payload).then(function (res) {
                     setSubmitting(false);
@@ -344,6 +350,7 @@
                         showSubmitError((fieldErrors && fieldErrors[0]) || res.message || "We couldn't submit your application. Please check your details and try again.");
                         return;
                     }
+                    if (window.GTILeadCapture) { try { window.GTILeadCapture.markSubmitted(); } catch (err) { /* ignore */ } }
                     showSuccess();
                 });
             })

@@ -7,7 +7,7 @@
   <span class="gti-crumb">People who entered their name and phone on the application form</span>
 </div>
 
-<div class="gti-stats-grid">
+<div class="gti-stats-grid gti-leads-stats">
   <div class="gti-stat-card"><div class="num">{{ stats.total }}</div><div class="label">Total Leads</div></div>
   <div class="gti-stat-card"><div class="num">{{ stats.new_today }}</div><div class="label">New Leads Today</div></div>
   <div class="gti-stat-card"><div class="num">{{ stats.contacted }}</div><div class="label">Contacted Leads</div></div>
@@ -45,17 +45,16 @@
     <tbody>
       {% for l in result.records %}
       <tr>
-        <td><a class="gti-row-link" href="{{ url_for('admin.lead_detail', lead_id=l.id) }}">{{ l.applicant_name }}</a></td>
+        <td class="wrap"><a class="gti-row-link" href="{{ url_for('admin.lead_detail', lead_id=l.id) }}">{{ l.applicant_name }}</a></td>
         <td>{{ '—' if l.anonymized_at else '+' ~ l.normalized_phone }}</td>
-        <td>{{ l.email or '—' }}</td>
-        <td>{{ l.programme or '—' }}</td>
-        <td>{{ l.first_captured_at|eat('%d %b %Y %H:%M') }}</td>
-        <td>{{ l.last_activity_at|eat('%d %b %Y %H:%M') }}</td>
+        <td class="wrap">{{ l.email or '—' }}</td>
+        <td class="wrap">{{ l.programme or '—' }}</td>
+        <td class="date">{{ l.first_captured_at|eat('%d %b %Y, %H:%M') }}</td>
+        <td class="date">{{ l.last_activity_at|eat('%d %b %Y, %H:%M') }}</td>
         <td><span class="gti-badge gti-badge-{{ 'green' if l.application_id else 'amber' }}">{{ l.application_status }}</span></td>
         <td><span class="gti-badge gti-badge-{{ {'new_lead':'blue','contacted':'neutral','interested':'green','follow_up_required':'amber','application_submitted':'green','not_interested':'red'}[l.lead_status] }}">{{ l.status_label }}</span></td>
         <td>
           <div class="gti-lead-actions">
-            <a href="{{ url_for('admin.lead_detail', lead_id=l.id) }}">View</a>
             {% if not l.anonymized_at %}
             <a class="call" href="tel:+{{ l.normalized_phone }}">Call</a>
             <a class="wa" href="https://wa.me/{{ l.normalized_phone }}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
