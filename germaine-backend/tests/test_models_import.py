@@ -74,7 +74,13 @@ LEAD_MODELS = {
     "ApplicantLeadAuditLog",
 }
 
-EXPECTED_MODELS = STEP_2_MODELS | CMS_MODELS | EARNCASH_MODELS | LEAD_MODELS
+# News & Events publication (additive): 1:1 article extension + events.
+NEWSROOM_MODELS = {
+    "NewsArticleMeta",
+    "NewsEvent",
+}
+
+EXPECTED_MODELS = STEP_2_MODELS | CMS_MODELS | EARNCASH_MODELS | LEAD_MODELS | NEWSROOM_MODELS
 
 # Explicitly forbidden speculative models (Step 2 §35 / Step 3 instructions).
 # "News" (bare) stays forbidden — the real model is "NewsArticle", added
@@ -101,7 +107,7 @@ def test_step2_baseline_models_unchanged():
 
 def test_all_models_exported_match_registry():
     assert set(models.__all__) == EXPECTED_MODELS
-    assert len(models.__all__) == 30
+    assert len(models.__all__) == 32
 
 
 def test_earncash_models_use_prefixed_tablenames():

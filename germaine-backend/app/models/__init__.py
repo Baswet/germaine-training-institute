@@ -64,6 +64,7 @@ from app.models.earncash_notification import EarnCashNotification
 from app.models.earncash_admin_log import EarnCashAdminLog
 from app.models.earncash_application_commission import EarnCashApplicationCommission
 from app.models.applicant_lead import ApplicantLead, ApplicantLeadAuditLog
+from app.models.newsroom import NewsArticleMeta, NewsEvent
 
 __all__ = [
     "School",
@@ -96,4 +97,6 @@ __all__ = [
     "EarnCashApplicationCommission",
     "ApplicantLead",
     "ApplicantLeadAuditLog",
+    "NewsArticleMeta",
+    "NewsEvent",
 ]
