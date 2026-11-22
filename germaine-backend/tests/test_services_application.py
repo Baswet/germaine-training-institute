@@ -198,3 +198,14 @@ def test_general_application_for_non_academic_programme_unaffected(db_app):
         row = application_service.create_application(
             _base_payload(data["ai_programme"].id, application_type="general"))
         assert row.application_type == "general"
+
+
+def test_scholarship_rejected_for_languages_school(db_app):
+    with db_app.app_context():
+        data = seed_minimal_catalogue()
+        data["school"].name = "School of Languages"
+        from app.extensions import db
+        db.session.commit()
+        with pytest.raises(ValidationError):
+            application_service.create_application(
+                _base_payload(data["academic"].id, application_type="scholarship"))

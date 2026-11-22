@@ -45,16 +45,19 @@ def create_application(payload: dict) -> Application:
         raise NotFoundError(f"No active programme found with id {payload['programme_id']}.")
 
     # GTI-SCHOLARSHIP-ACADEMIC: the Full Scholarship (and the bursary letter
-    # issued with it) is offered for Academic School programmes only, using
-    # the existing classification programme_type == 'academic'. Applied only
-    # when the request explicitly says "scholarship", so the general,
-    # driving-school, AI-bootcamp and short-course flows are unaffected.
-    if (payload.get("application_type") or "").strip().lower() == "scholarship" \
-            and (programme.programme_type or "").strip().lower() != "academic":
-        raise ValidationError({"programme_id": [
-            "The Full Scholarship is available for Academic School programmes only. "
-            "Please choose a course from one of the Academic Schools."
-        ]})
+    # issued with it) is offered for Academic School programmes only:
+    # programme_type == 'academic', excluding the School of Languages (the
+    # same school-name test notification_service.detect_category() uses).
+    # Applied only when the request explicitly says "scholarship", so the
+    # general, driving-school, AI-bootcamp and short-course flows are unaffected.
+    if (payload.get("application_type") or "").strip().lower() == "scholarship":
+        _school = getattr(programme, "school", None)
+        _school_name = (getattr(_school, "name", "") or "").strip().lower()
+        if (programme.programme_type or "").strip().lower() != "academic" or "language" in _school_name:
+            raise ValidationError({"programme_id": [
+                "The Full Scholarship is available for Academic School programmes only. "
+                "Please choose a course from one of the Academic Schools."
+            ]})
 
     programme_mode = None
     programme_mode_id = payload.get("programme_mode_id")
