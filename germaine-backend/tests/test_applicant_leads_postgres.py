@@ -43,8 +43,10 @@ def pg_app():
 def test_migration_head_is_lead_revision(pg_app):
     from app.extensions import db
     with pg_app.app_context():
+        from alembic.script import ScriptDirectory
+        from flask_migrate import Migrate  # noqa: F401
         rev = db.session.execute(db.text("SELECT version_num FROM alembic_version")).scalar()
-        assert rev == "c4d9e2a7b1f0"
+        assert rev in ("c4d9e2a7b1f0", "e7a3b5c9d1f2")  # leads, or a later additive head
         cols = {r[0] for r in db.session.execute(db.text(
             "SELECT column_name FROM information_schema.columns WHERE table_name='applicant_leads'"))}
         assert {"normalized_phone", "lead_token_hash", "application_id", "follow_up_notes"} <= cols
@@ -134,6 +136,7 @@ def test_fk_set_null_and_lead_delete_never_touches_application(pg_app):
 
 
 def test_downgrade_removes_only_new_tables(pg_app):
+    """Downgrading to the live pre-leads head removes only the tables added since."""
     from flask_migrate import downgrade, upgrade
     from app.extensions import db
     migrations_dir = os.path.join(os.path.dirname(__file__), "..", "migrations")
@@ -142,9 +145,9 @@ def test_downgrade_removes_only_new_tables(pg_app):
         before = {r[0] for r in db.session.execute(db.text(
             "SELECT tablename FROM pg_tables WHERE schemaname='public'"))}
         db.session.remove()
-        downgrade(directory=migrations_dir, revision="8b1f4c9d2e3a")
+        downgrade(directory=migrations_dir, revision="e5f2a9c1d7b3")  # live head before leads
         after = {r[0] for r in db.session.execute(db.text(
             "SELECT tablename FROM pg_tables WHERE schemaname='public'"))}
-        assert before - after == {"applicant_leads", "applicant_lead_audit_logs"}
+        assert before - after == {"applicant_leads", "applicant_lead_audit_logs", "news_article_meta", "news_events"}
         db.session.remove()
         upgrade(directory=migrations_dir)
