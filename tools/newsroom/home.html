@@ -1,0 +1,130 @@
+<div class="nr-page" data-nr-page="home">
+__HERO__
+<div class="nr-wrap nr-toolbar" id="nr-top">
+    <div class="nr-toolbar-inner">
+        <form class="nr-search" role="search">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <label class="nr-sr" for="nrSearch">Search news and events</label>
+            <input type="search" id="nrSearch" placeholder="Search news and events…" autocomplete="off">
+        </form>
+        <nav class="nr-jump" aria-label="Sections">
+            <a href="#nr-latest">Latest</a><a href="#nr-categories">Categories</a><a href="#nr-events">Events</a><a href="#nr-weekend">This weekend</a>
+        </nav>
+    </div>
+    <div class="nr-search-results nr-hidden" id="nrSearchResults" aria-live="polite"></div>
+    <div class="nr-breaking nr-hidden" id="nrBreaking" role="alert"></div>
+    <div class="nr-trending nr-hidden" id="nrTrending">
+        <span class="nr-trending-label"><i class="fa-solid fa-fire" aria-hidden="true"></i><span>TRENDING</span></span>
+        <div class="nr-trending-track" id="nrTrendingTrack"></div>
+    </div>
+</div>
+
+<section class="nr-section nr-hidden" id="nrFeatured" aria-labelledby="nrFeaturedTitle">
+    <div class="nr-wrap">
+        <div class="nr-head"><div><span class="nr-kicker">Top stories</span><h2 class="nr-title" id="nrFeaturedTitle">Today's biggest stories</h2></div></div>
+        <div class="nr-mosaic" id="nrMosaic"></div>
+    </div>
+</section>
+
+<section class="nr-section" id="nr-latest" aria-labelledby="nrLatestTitle">
+    <div class="nr-wrap nr-columns">
+        <div>
+            <div class="nr-head"><div><span class="nr-kicker">Updated daily</span><h2 class="nr-title" id="nrLatestTitle">The Latest</h2></div></div>
+            <div class="nr-filters" id="nrFilters" role="group" aria-label="Filter by category"></div>
+            <div class="nr-latest-list" id="nrLatestList"><div class="nr-loading">Loading stories…</div></div>
+            <div class="nr-more nr-hidden" id="nrMore"><button type="button" class="nr-btn" id="nrMoreBtn">Load more stories</button></div>
+        </div>
+        <aside class="nr-side">
+            <div class="nr-panel nr-hidden" id="nrBriefPanel">
+                <h3>Daily Brief</h3><p class="nr-sub" id="nrBriefDate"></p>
+                <ol class="nr-brief" id="nrBrief"></ol>
+            </div>
+            <div class="nr-panel nr-hidden" id="nrMostReadPanel">
+                <h3>Most Read</h3><p class="nr-sub">Based on actual reads on this site</p>
+                <ol class="nr-brief nr-mostread" id="nrMostRead"></ol>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<section class="nr-section" id="nr-categories" aria-labelledby="nrCatsTitle">
+    <div class="nr-wrap">
+        <div class="nr-head"><div><span class="nr-kicker">Find your beat</span><h2 class="nr-title" id="nrCatsTitle">Discover by Category</h2></div></div>
+        <div class="nr-cats" id="nrCats"></div>
+    </div>
+</section>
+
+<section class="nr-section nr-hidden" id="nrWatch" aria-labelledby="nrWatchTitle">
+    <div class="nr-wrap">
+        <div class="nr-head"><div><span class="nr-kicker">Video</span><h2 class="nr-title" id="nrWatchTitle">Watch</h2><p class="nr-sub">From publishers' official channels</p></div></div>
+        <div class="nr-rail" id="nrWatchRail"></div>
+    </div>
+</section>
+
+<section class="nr-section nr-hidden" id="nrPicks" aria-labelledby="nrPicksTitle">
+    <div class="nr-wrap">
+        <div class="nr-head"><div><span class="nr-kicker">Worth your time</span><h2 class="nr-title" id="nrPicksTitle">Editor's Picks</h2></div></div>
+        <div class="nr-rail" id="nrPicksRail"></div>
+    </div>
+</section>
+
+<section class="nr-section nr-hidden" id="nrOpp" aria-labelledby="nrOppTitle">
+    <div class="nr-wrap">
+        <div class="nr-head"><div><span class="nr-kicker">Education &amp; opportunities</span><h2 class="nr-title" id="nrOppTitle">Opportunities</h2><p class="nr-sub">Always confirm requirements and deadlines on the official source before applying.</p></div></div>
+        <div class="nr-rail" id="nrOppRail"></div>
+    </div>
+</section>
+
+<section class="nr-section" id="nr-events" aria-labelledby="nrEventsTitle">
+    <div class="nr-wrap nr-events-band">
+        <div class="nr-wrap" style="padding:0;">
+            <div class="nr-head" style="padding-top:26px;"><div><span class="nr-kicker">Events</span><h2 class="nr-title" id="nrEventsTitle">What's on in Kenya</h2><p class="nr-sub">Conferences, tech meet-ups, concerts, festivals and more. Status updates automatically.</p></div></div>
+            <div id="nrFeatureEvent"></div>
+            <div class="nr-event-controls">
+                <label class="nr-sr" for="nrCounty">County</label>
+                <select id="nrCounty"><option value="">All counties</option></select>
+                <label class="nr-sr" for="nrEventCat">Event type</label>
+                <select id="nrEventCat">
+                    <option value="">All event types</option>
+                    <option value="conference">Conferences</option><option value="technology">Technology</option>
+                    <option value="business">Business</option><option value="exhibition">Exhibitions &amp; Expos</option>
+                    <option value="concert">Concerts</option><option value="festival">Festivals</option>
+                    <option value="culture">Arts &amp; Culture</option><option value="sports">Sports</option>
+                    <option value="workshop">Workshops</option><option value="career">Career</option><option value="student">Student</option>
+                </select>
+            </div>
+            <div class="nr-events-grid" id="nrEventsGrid"><div class="nr-loading">Loading events…</div></div>
+
+            <div class="nr-cal-weekend">
+                <div class="nr-cal" aria-labelledby="nrCalMonth">
+                    <div class="nr-cal-head">
+                        <button type="button" id="nrCalPrev" aria-label="Previous month"><i class="fa-solid fa-chevron-left"></i></button>
+                        <strong id="nrCalMonth" aria-live="polite"></strong>
+                        <button type="button" id="nrCalNext" aria-label="Next month"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="nr-cal-grid" id="nrCalGrid"></div>
+                    <div class="nr-cal-list" id="nrCalList"></div>
+                </div>
+                <div class="nr-weekend" id="nr-weekend">
+                    <h3>YOUR WEEKEND, PLANNED.</h3>
+                    <p class="nr-sub" id="nrWeekendRange"></p>
+                    <ul id="nrWeekendList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="nr-section nr-hidden" id="nrGti" aria-labelledby="nrGtiTitle">
+    <div class="nr-wrap">
+        <div class="nr-gti">
+            <div class="nr-head"><div><span class="nr-kicker">From the institute</span><h2 class="nr-title" id="nrGtiTitle">GTI Institutional Updates</h2><p class="nr-sub">Official news from Germaine Training Institute.</p></div></div>
+            <div class="nr-gti-grid" id="nrGtiGrid"></div>
+        </div>
+    </div>
+</section>
+
+<div class="nr-wrap">
+    <p class="nr-disclaimer">GTI News &amp; Events publishes short original summaries with full credit and links to the original publishers. Stories are selected and checked by GTI editors. Spotted an error? Email <a href="mailto:admissions@germaineinstitute.ac.ke">admissions@germaineinstitute.ac.ke</a>.</p>
+</div>
+</div>

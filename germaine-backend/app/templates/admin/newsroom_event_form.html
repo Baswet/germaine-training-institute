@@ -1,0 +1,81 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Edit Event' if event else 'New Event' }}{% endblock %}
+{% block content %}
+{% macro v(field) -%}
+{%- if form is not none and form.get(field) is not none -%}{{ form.get(field) }}
+{%- elif event is not none and event[field] is not none -%}{{ event[field] }}{%- endif -%}
+{%- endmacro %}
+<a class="gti-back-link" href="{{ url_for('admin.newsroom_index', tab='events') }}">&larr; Back to Events</a>
+<div class="gti-topbar">
+  <h1>{{ event.title if event else 'New Event' }}</h1>
+  {% if event %}<span class="gti-status-pill {{ event.publication_status }}">{{ event.publication_status|title }}</span>{% endif %}
+</div>
+<div class="gti-detail-grid">
+  <div>
+    <form method="post" enctype="multipart/form-data" action="{{ url_for('admin.newsroom_event_edit', event_id=event.id) if event else url_for('admin.newsroom_event_new') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <div class="gti-form-section">
+        <h2>Event</h2>
+        <div class="gti-form-group"><label for="ev-title">Title</label><input type="text" id="ev-title" name="title" maxlength="250" value="{{ v('title') }}" required></div>
+        <div class="gti-form-group"><label for="ev-cat">Category</label>
+          <select id="ev-cat" name="category" required><option value="">— Choose —</option>
+          {% for k, label in categories %}<option value="{{ k }}" {{ 'selected' if v('category') == k }}>{{ label }}</option>{% endfor %}</select></div>
+        <div class="gti-form-group"><label for="ev-desc">Description (original wording)</label><textarea id="ev-desc" name="description" class="tall">{{ v('description') }}</textarea></div>
+        <div class="gti-form-group"><label for="ev-org">Organizer</label><input type="text" id="ev-org" name="organizer" maxlength="200" value="{{ v('organizer') }}" required></div>
+      </div>
+      <div class="gti-form-section">
+        <h2>When &amp; where</h2>
+        <div class="gti-form-group"><label for="ev-sd">Start date</label><input type="date" id="ev-sd" name="start_date" value="{{ v('start_date') }}" required></div>
+        <div class="gti-form-group"><label for="ev-ed">End date</label><input type="date" id="ev-ed" name="end_date" value="{{ v('end_date') }}"></div>
+        <div class="gti-form-group"><label for="ev-st">Time</label><input type="text" id="ev-st" name="start_time" maxlength="40" value="{{ v('start_time') }}" placeholder="e.g. 9:00 AM – 5:00 PM (leave blank if not announced)"></div>
+        <div class="gti-form-group"><label for="ev-dn">Date note</label><input type="text" id="ev-dn" name="date_note" maxlength="250" value="{{ v('date_note') }}" placeholder="e.g. Also on 28–29 Nov"></div>
+        <div class="gti-form-group"><label for="ev-venue">Venue</label><input type="text" id="ev-venue" name="venue" maxlength="250" value="{{ v('venue') }}"></div>
+        <div class="gti-form-group"><label for="ev-county">County</label><input type="text" id="ev-county" name="county" maxlength="60" value="{{ v('county') }}" placeholder="e.g. Nairobi"></div>
+      </div>
+      <div class="gti-form-section">
+        <h2>Links, image &amp; status</h2>
+        <div class="gti-form-group"><label for="ev-src">Official event page (required to publish)</label><input type="url" id="ev-src" name="source_url" maxlength="600" value="{{ v('source_url') }}" placeholder="https://"></div>
+        <div class="gti-form-group"><label for="ev-reg">Registration / tickets link</label><input type="url" id="ev-reg" name="registration_url" maxlength="600" value="{{ v('registration_url') }}" placeholder="https://"></div>
+        <div class="gti-form-group"><label for="ev-img">Image from Media Library</label>
+          <select id="ev-img" name="image_id"><option value="">— None (category artwork is used) —</option>
+          {% for m in media %}<option value="{{ m.id }}" {{ 'selected' if event and event.image_id == m.id }}>{{ m.original_filename or m.filename }}</option>{% endfor %}</select></div>
+        <div class="gti-form-group"><label for="ev-file">…or upload a new image</label><input type="file" id="ev-file" name="image_file" accept="image/jpeg,image/png,image/webp">
+          <input type="text" name="image_alt" maxlength="250" placeholder="Image description (alt text)" style="margin-top:6px;"></div>
+        <div class="gti-form-group"><label for="ev-ov">Status override</label>
+          <select id="ev-ov" name="status_override">
+            <option value="">Automatic (from dates)</option>
+            <option value="cancelled" {{ 'selected' if v('status_override') == 'cancelled' }}>Cancelled</option>
+            <option value="postponed" {{ 'selected' if v('status_override') == 'postponed' }}>Postponed</option>
+          </select></div>
+        <div class="gti-form-group gti-form-checkbox"><input type="checkbox" id="ev-feat" name="is_featured" value="1" {{ 'checked' if (form is not none and form.get('is_featured')) or (event is not none and event.is_featured and form is none) }}><label for="ev-feat" style="margin:0;">Featured event</label></div>
+      </div>
+      <div class="gti-form-actions"><button type="submit" class="gti-btn">{{ 'Save Changes' if event else 'Save Draft' }}</button></div>
+    </form>
+  </div>
+  <div>
+    {% if event %}
+    <div class="gti-panel">
+      <h2>Publishing</h2>
+      <div class="gti-field-row"><span class="k">Slug</span><span class="v">{{ event.slug }}</span></div>
+      <div class="gti-field-row"><span class="k">Status now</span><span class="v">{{ status|upper }}</span></div>
+      {% if event.publication_status == 'published' %}
+      <div class="gti-field-row"><span class="k">Public page</span><span class="v"><a href="https://germaineinstitute.ac.ke/event.html?slug={{ event.slug }}" target="_blank" rel="noopener">View</a></span></div>
+      {% endif %}
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px;">
+        {% if event.publication_status != 'published' %}
+        <form method="post" action="{{ url_for('admin.newsroom_event_publish', event_id=event.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit" class="gti-btn gti-btn-green" style="width:100%;">Publish</button></form>
+        {% else %}
+        <form method="post" action="{{ url_for('admin.newsroom_event_unpublish', event_id=event.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit" class="gti-btn gti-btn-secondary" style="width:100%;">Unpublish</button></form>
+        {% endif %}
+        <form method="post" action="{{ url_for('admin.newsroom_event_delete', event_id=event.id) }}" style="border-top:1px solid #e6e9ef;padding-top:10px;">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <input type="text" name="confirm" placeholder="Type DELETE to confirm" style="margin-bottom:6px;width:100%;">
+          <button type="submit" class="gti-btn gti-btn-red" style="width:100%;">Delete event</button></form>
+      </div>
+    </div>
+    {% else %}
+    <div class="gti-panel"><p style="font-size:.85rem;color:var(--gti-text-muted);margin:0;">Save the draft first. An event can be published once its official page link is added.</p></div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

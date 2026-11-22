@@ -1,0 +1,71 @@
+{% extends "admin/base.html" %}
+{% block title %}Newsroom{% endblock %}
+{% block content %}
+<div class="gti-topbar">
+  <h1>Newsroom — News &amp; Events</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <a class="gti-btn" href="{{ url_for('admin.newsroom_story_new') }}">+ New Story</a>
+    <a class="gti-btn gti-btn-secondary" href="{{ url_for('admin.newsroom_event_new') }}">+ New Event</a>
+  </div>
+</div>
+<div class="gti-notice" style="margin-bottom:14px;">Every external story must credit the original publisher and link the original article. Write original summaries — never copy the publisher's text. Event status (upcoming / ongoing / completed) is calculated automatically from the dates.</div>
+
+<form class="gti-toolbar" method="get">
+  <input type="hidden" name="tab" value="{{ tab }}">
+  <input type="text" name="q" placeholder="Search titles…" value="{{ q }}">
+  <button type="submit">Search</button>
+  {% if q %}<a class="gti-clear" href="{{ url_for('admin.newsroom_index', tab=tab) }}">Clear</a>{% endif %}
+</form>
+
+<div style="display:flex;gap:8px;margin:6px 0 14px;">
+  <a class="gti-btn gti-btn-small {{ '' if tab == 'stories' else 'gti-btn-secondary' }}" href="{{ url_for('admin.newsroom_index', tab='stories', q=q) }}">Stories ({{ stories|length }})</a>
+  <a class="gti-btn gti-btn-small {{ '' if tab == 'events' else 'gti-btn-secondary' }}" href="{{ url_for('admin.newsroom_index', tab='events', q=q) }}">Events ({{ events|length }})</a>
+</div>
+
+{% if tab == 'events' %}
+<div class="gti-table-wrap">
+  {% if events %}
+  <table class="gti-table">
+    <thead><tr><th>Event</th><th>Category</th><th>Dates</th><th>County</th><th>Status</th><th>Publication</th></tr></thead>
+    <tbody>
+    {% for e in events %}{% set st = event_status(e) %}
+      <tr>
+        <td><a class="gti-row-link" href="{{ url_for('admin.newsroom_event_edit', event_id=e.id) }}">{{ e.title }}</a>{% if e.is_featured %} <span class="gti-badge gti-badge-blue">Featured</span>{% endif %}</td>
+        <td>{{ event_labels.get(e.category, e.category) }}</td>
+        <td>{{ e.start_date.strftime('%d %b %Y') }}{% if e.end_date and e.end_date != e.start_date %} – {{ e.end_date.strftime('%d %b %Y') }}{% endif %}</td>
+        <td>{{ e.county or '—' }}</td>
+        <td><span class="gti-badge {{ {'upcoming':'gti-badge-blue','ongoing':'gti-badge-green','completed':'gti-badge-neutral'}.get(st, 'gti-badge-red') }}">{{ st|upper }}</span></td>
+        <td><span class="gti-status-pill {{ e.publication_status }}">{{ e.publication_status|title }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="gti-empty">No events yet.</div>{% endif %}
+</div>
+{% else %}
+<div class="gti-table-wrap">
+  {% if stories %}
+  <table class="gti-table">
+    <thead><tr><th>Story</th><th>Category</th><th>Source</th><th>Flags</th><th>Reads</th><th>Status</th></tr></thead>
+    <tbody>
+    {% for a in stories %}{% set m = a.meta %}
+      <tr>
+        <td><a class="gti-row-link" href="{{ url_for('admin.newsroom_story_edit', article_id=a.id) }}">{{ a.title }}</a></td>
+        <td>{{ news_labels.get(m.news_category, '—') if m else '—' }}</td>
+        <td>{{ (m.source_name if m and m.is_external else 'GTI (institutional)') or '—' }}</td>
+        <td>
+          {% if m and m.is_featured %}<span class="gti-badge gti-badge-blue">Featured</span>{% endif %}
+          {% if m and m.is_trending %}<span class="gti-badge gti-badge-amber">Trending</span>{% endif %}
+          {% if m and m.is_breaking %}<span class="gti-badge gti-badge-red">Breaking</span>{% endif %}
+          {% if m and m.is_editors_pick %}<span class="gti-badge gti-badge-green">Editor's pick</span>{% endif %}
+        </td>
+        <td>{{ m.view_count if m else 0 }}</td>
+        <td><span class="gti-status-pill {{ a.status }}">{{ a.status|title }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="gti-empty">No newsroom stories yet.</div>{% endif %}
+</div>
+{% endif %}
+{% endblock %}

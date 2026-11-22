@@ -1,0 +1,112 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Edit Story' if article else 'New Story' }}{% endblock %}
+{% block content %}
+{% macro v(field, default='') -%}
+{%- if form is not none and form.get(field) is not none -%}{{ form.get(field) }}
+{%- elif meta is not none and meta[field] is not none -%}{{ meta[field] }}
+{%- elif article is not none and field in ['title','summary','body','author'] and article[field] -%}{{ article[field] }}
+{%- else -%}{{ default }}{%- endif -%}
+{%- endmacro %}
+{% macro flag(field) -%}{{ 'checked' if (form is not none and form.get(field)) or (meta is not none and meta[field]) }}{%- endmacro %}
+<a class="gti-back-link" href="{{ url_for('admin.newsroom_index') }}">&larr; Back to Newsroom</a>
+<div class="gti-topbar">
+  <h1>{{ article.title if article else 'New Story' }}</h1>
+  {% if article %}<span class="gti-status-pill {{ article.status }}">{{ article.status|title }}</span>{% endif %}
+</div>
+
+<div class="gti-detail-grid">
+  <div>
+    <form method="post" enctype="multipart/form-data" action="{{ url_for('admin.newsroom_story_edit', article_id=article.id) if article else url_for('admin.newsroom_story_new') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <div class="gti-form-section">
+        <h2>Story</h2>
+        <div class="gti-form-group"><label for="ns-title">Headline</label>
+          <input type="text" id="ns-title" name="title" maxlength="250" value="{{ v('title') }}" required>
+          <span class="hint">Write your own headline — accurate, no clickbait.</span></div>
+        <div class="gti-form-group"><label for="ns-summary">Summary (original wording)</label>
+          <textarea id="ns-summary" name="summary" maxlength="500" required>{{ v('summary') }}</textarea>
+          <span class="hint">Shown on cards. Summarise in your own words; do not paste the publisher's text.</span></div>
+        <div class="gti-form-group"><label for="ns-body">Key points (optional)</label>
+          <textarea id="ns-body" name="body" class="tall">{{ v('body') }}</textarea>
+          <span class="hint">A short original write-up shown on the story page. One paragraph per line.</span></div>
+        <div class="gti-form-group"><label for="ns-cat">Category</label>
+          <select id="ns-cat" name="news_category" required>
+            <option value="">— Choose —</option>
+            {% for k, label in categories %}<option value="{{ k }}" {{ 'selected' if v('news_category') == k }}>{{ label }}</option>{% endfor %}
+          </select></div>
+      </div>
+
+      <div class="gti-form-section">
+        <h2>Source &amp; attribution</h2>
+        <div class="gti-form-group gti-form-checkbox">
+          <input type="checkbox" id="ns-ext" name="is_external" value="1" {{ 'checked' if (form is none and (meta is none or meta.is_external)) or (form is not none and form.get('is_external')) }}>
+          <label for="ns-ext" style="margin:0;">External story (reported by another publisher)</label></div>
+        <div class="gti-form-group"><label for="ns-src">Original publisher</label>
+          <input type="text" id="ns-src" name="source_name" maxlength="150" value="{{ v('source_name') }}" placeholder="e.g. Citizen Digital"></div>
+        <div class="gti-form-group"><label for="ns-url">Original article link</label>
+          <input type="url" id="ns-url" name="source_url" maxlength="600" value="{{ v('source_url') }}" placeholder="https://"></div>
+        <div class="gti-form-group"><label for="ns-pub">Originally published (Nairobi time)</label>
+          <input type="datetime-local" id="ns-pub" name="source_published_at" value="{{ (meta.source_published_at|eat('%Y-%m-%dT%H:%M')) if meta is not none and meta.source_published_at and form is none else (form.get('source_published_at') if form is not none else '') }}"></div>
+        <div class="gti-form-group"><label for="ns-author">Reporter (if credited by the publisher)</label>
+          <input type="text" id="ns-author" name="author" maxlength="150" value="{{ v('author') }}"></div>
+      </div>
+
+      <div class="gti-form-section">
+        <h2>Image &amp; video</h2>
+        <div class="gti-form-group"><label for="ns-img">Image from Media Library</label>
+          <select id="ns-img" name="featured_image_id">
+            <option value="">— None (category artwork is used) —</option>
+            {% for m in media %}<option value="{{ m.id }}" {{ 'selected' if article and article.featured_image_id == m.id }}>{{ m.original_filename or m.filename }}</option>{% endfor %}
+          </select></div>
+        <div class="gti-form-group"><label for="ns-file">…or upload a new image</label>
+          <input type="file" id="ns-file" name="image_file" accept="image/jpeg,image/png,image/webp">
+          <input type="text" name="image_alt" maxlength="250" placeholder="Image description (alt text)" style="margin-top:6px;">
+          <span class="hint">Only use images you have the right to publish (your own photos, licensed or official press images).</span></div>
+        <div class="gti-form-group"><label for="ns-credit">Image credit</label>
+          <input type="text" id="ns-credit" name="image_credit" maxlength="200" value="{{ v('image_credit') }}"></div>
+        <div class="gti-form-group"><label for="ns-video">YouTube video (official publisher channel only)</label>
+          <input type="url" id="ns-video" name="video_url" maxlength="600" value="{{ v('video_url') }}" placeholder="https://www.youtube.com/watch?v=…"></div>
+        <div class="gti-form-group"><label for="ns-dur">Video duration</label>
+          <input type="text" id="ns-dur" name="video_duration" maxlength="20" value="{{ v('video_duration') }}" placeholder="e.g. 3:42"></div>
+      </div>
+
+      <div class="gti-form-section">
+        <h2>Placement</h2>
+        <div class="gti-form-group gti-form-checkbox"><input type="checkbox" id="f1" name="is_featured" value="1" {{ flag('is_featured') }}><label for="f1" style="margin:0;">Featured (top stories mosaic)</label></div>
+        <div class="gti-form-group"><label for="ns-rank">Feature priority (higher = larger slot)</label>
+          <input type="number" id="ns-rank" name="feature_rank" value="{{ v('feature_rank', 0) }}"></div>
+        <div class="gti-form-group gti-form-checkbox"><input type="checkbox" id="f2" name="is_trending" value="1" {{ flag('is_trending') }}><label for="f2" style="margin:0;">Trending (only if widely reported)</label></div>
+        <div class="gti-form-group"><label for="ns-tn">Why it's trending (optional)</label>
+          <input type="text" id="ns-tn" name="trending_note" maxlength="200" value="{{ v('trending_note') }}" placeholder="e.g. Reported by Nation, Citizen and The Standard"></div>
+        <div class="gti-form-group gti-form-checkbox"><input type="checkbox" id="f3" name="is_breaking" value="1" {{ flag('is_breaking') }}><label for="f3" style="margin:0;">Breaking — genuine, developing, high-impact news only</label></div>
+        <div class="gti-form-group gti-form-checkbox"><input type="checkbox" id="f4" name="is_editors_pick" value="1" {{ flag('is_editors_pick') }}><label for="f4" style="margin:0;">Editor's pick</label></div>
+      </div>
+      <div class="gti-form-actions"><button type="submit" class="gti-btn">{{ 'Save Changes' if article else 'Save Draft' }}</button></div>
+    </form>
+  </div>
+
+  <div>
+    {% if article %}
+    <div class="gti-panel">
+      <h2>Publishing</h2>
+      <div class="gti-field-row"><span class="k">Slug</span><span class="v">{{ article.slug }}</span></div>
+      <div class="gti-field-row"><span class="k">Reads</span><span class="v">{{ meta.view_count if meta else 0 }}</span></div>
+      <div class="gti-field-row"><span class="k">Published</span><span class="v">{{ article.published_at|eat }}</span></div>
+      {% if article.status == 'published' %}
+      <div class="gti-field-row"><span class="k">Public page</span><span class="v"><a href="https://germaineinstitute.ac.ke/news-article.html?slug={{ article.slug }}" target="_blank" rel="noopener">View</a></span></div>
+      {% endif %}
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px;">
+        {% if article.status != 'published' %}
+        <form method="post" action="{{ url_for('admin.newsroom_story_publish', article_id=article.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit" class="gti-btn gti-btn-green" style="width:100%;">Publish</button></form>
+        {% else %}
+        <form method="post" action="{{ url_for('admin.newsroom_story_unpublish', article_id=article.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit" class="gti-btn gti-btn-secondary" style="width:100%;">Unpublish</button></form>
+        {% endif %}
+        <form method="post" action="{{ url_for('admin.newsroom_story_remove', article_id=article.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit" class="gti-btn gti-btn-red" style="width:100%;">Remove from publication</button></form>
+      </div>
+    </div>
+    {% else %}
+    <div class="gti-panel"><p style="font-size:.85rem;color:var(--gti-text-muted);margin:0;">Save the draft first — publishing options appear afterwards. External stories can only be published once the publisher and original link are filled in.</p></div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

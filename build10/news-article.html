@@ -25,12 +25,12 @@
         })();
     </script>
 
-    <title id="cmsArticleTitleTag">
-        News Article | Germaine Training Institute
+    <title>
+        News | Germaine Training Institute
     </title>
 
     <meta name="description"
-        content="Read the latest news from Germaine Training Institute.">
+        content="News summary from GTI News &amp; Events, with a link to the original publisher.">
 
     <meta name="keywords"
         content="Germaine Training Institute, TVET Kenya, Diploma Courses, Certificate Courses, Nakuru College">
@@ -41,25 +41,25 @@
     <!-- Open Graph -->
 
     <meta property="og:title"
-        content="Germaine Training Institute">
+        content="News | Germaine Training Institute">
 
     <meta property="og:description"
-        content="Read the latest news from Germaine Training Institute.">
+        content="News summary from GTI News &amp; Events, with a link to the original publisher.">
 
     <meta property="og:type"
-        content="article">
+        content="website">
 
     <meta property="og:image"
         content="https://germaineinstitute.com/assets/images/hero/hero-students.jpg">
 
-    <meta property="og:url" content="https://germaineinstitute.com/news-article.html">
+    <meta property="og:url" content="https://germaineinstitute.ac.ke/news-article.html">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Germaine Training Institute">
-    <meta name="twitter:description" content="Read the latest news from Germaine Training Institute.">
+    <meta name="twitter:title" content="News | Germaine Training Institute">
+    <meta name="twitter:description" content="News summary from GTI News &amp; Events, with a link to the original publisher.">
     <meta name="twitter:image" content="https://germaineinstitute.com/assets/images/hero/hero-students.jpg">
 
-    <link rel="canonical" href="https://germaineinstitute.com/news-article.html">
+    <link rel="canonical" href="https://germaineinstitute.ac.ke/news-article.html">
 
     <!-- Favicon -->
 
@@ -104,6 +104,7 @@
 
     <link rel="stylesheet" href="assets/css/nav-refresh.css">
 
+    <link rel="stylesheet" href="assets/css/newsroom.css?v=20261122">
 </head>
 
 <body>
@@ -418,87 +419,14 @@
         <div class="sp-page-particles" id="spPageParticles" aria-hidden="true"></div>
         <div class="sp-bg-shine" aria-hidden="true"></div>
 
-<!-- ================= ARTICLE HEADER ================= -->
-
-<section class="page-header">
-
-    <div class="container page-header-content">
-
-        <span class="section-tag" id="cmsArticleCategory">NEWS &amp; UPDATES</span>
-
-        <h1 id="cmsArticleTitle">Loading Article&hellip;</h1>
-
-        <div class="breadcrumb">
-            <a href="index.html">Home</a>
-            <i class="fa-solid fa-chevron-right"></i>
-            <a href="news.html">News</a>
-            <i class="fa-solid fa-chevron-right"></i>
-            <span id="cmsArticleBreadcrumb">Article</span>
-        </div>
-
-    </div>
-
+<div class="nr-page" data-nr-page="article">
+<article class="nr-detail" id="nrArticle" aria-live="polite"><div class="nr-loading">Loading story…</div></article>
+<section class="nr-related nr-hidden" id="nrRelated" aria-labelledby="nrRelatedTitle">
+    <div class="nr-head"><div><span class="nr-kicker">Keep reading</span><h2 class="nr-title" id="nrRelatedTitle">Related stories</h2></div><a class="nr-link" href="news.html#nr-latest">All news →</a></div>
+    <div class="nr-related-grid" id="nrRelatedGrid"></div>
 </section>
+</div>
 
-<!-- ================= ARTICLE CONTENT =================
-     Minimal, new page (Step 7 CMS addition) — no article detail page
-     existed anywhere in the project before this. Reuses existing
-     typography classes only (.news-content h3/p rhythm, .container);
-     no new CSS file was introduced for this single content block. -->
-
-<section class="content-section">
-
-    <div class="container" style="max-width:860px;">
-
-        <div id="articleLoadingState" style="text-align:center;padding:60px 0;color:var(--text-light,#666);">
-            <i class="fa-solid fa-spinner fa-spin"></i> Loading article&hellip;
-        </div>
-
-        <div id="articleNotFoundState" style="display:none;text-align:center;padding:60px 0;">
-            <h2>Article Not Found</h2>
-            <p>This article may have been unpublished or the link is incorrect.</p>
-            <a href="news.html" class="btn-primary" style="display:inline-block;margin-top:16px;">&larr; Back to News</a>
-        </div>
-
-        <article id="articleBody" style="display:none;">
-            <div class="news-image" style="border-radius:14px;overflow:hidden;margin-bottom:24px;max-height:420px;">
-                <img id="cmsArticleImage" src="assets/images/campus/classroom.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-
-            <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;color:var(--text-light,#666);font-size:.92rem;margin-bottom:18px;">
-                <span id="cmsArticleDate"><i class="fa-solid fa-calendar"></i></span>
-                <span id="cmsArticleAuthor" style="display:none;"><i class="fa-solid fa-user"></i></span>
-            </div>
-
-            <div id="cmsArticleSummary" style="font-size:1.1rem;font-weight:500;margin-bottom:22px;"></div>
-
-            <div id="cmsArticleBodyText" style="line-height:1.85;"></div>
-
-            <div style="margin-top:34px;">
-                <a href="news.html" class="news-link">&larr; Back to All News</a>
-            </div>
-        </article>
-
-    </div>
-
-</section>
-
-<!-- ================= NEWSLETTER CTA ================= -->
-
-<section class="cta-section">
-
-    <div class="container cta-container">
-        <div class="cta-content">
-            <span>STAY IN THE LOOP</span>
-            <h2>Never Miss an Update</h2>
-            <p>Subscribe at the bottom of this page for admissions news, deadlines and events.</p>
-        </div>
-        <div class="cta-buttons">
-            <a href="admissions.html" class="btn-primary">Apply Scholarship Now</a>
-        </div>
-    </div>
-
-</section>
 
 </main>
 
@@ -618,7 +546,7 @@
 
                     <li><a href="contact.html">Contact</a></li>
 
-
+                
 
                     <li><a href="apply.html">Apply Now</a></li>
 
@@ -627,7 +555,7 @@
 
             </div>
 
-
+            
 
             <!-- Contact -->
 
@@ -745,7 +673,7 @@
 
 <script defer src="assets/js/school-page.js"></script>
 <script defer src="assets/js/newsletter-form.js"></script>
-<script defer src="assets/js/news-article-detail.js"></script>
+<script defer src="assets/js/newsroom.js?v=20261122"></script>
 
 </body>
 

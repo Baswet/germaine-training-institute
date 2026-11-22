@@ -35,6 +35,7 @@
       <a href="{{ url_for('admin.content_editor') }}" class="{{ 'active' if request.endpoint == 'admin.content_editor' }}">Website Content</a>
       <a href="{{ url_for('admin.content_list_items', list_key='homepage_hero_slides') }}" class="{{ 'active' if request.endpoint == 'admin.content_list_items' }}">Homepage &amp; Student Life Lists</a>
       <a href="{{ url_for('admin.news_list') }}" class="{{ 'active' if request.endpoint in ['admin.news_list','admin.news_create','admin.news_edit'] }}">News</a>
+      <a href="{{ url_for('admin.newsroom_index') }}" class="{{ 'active' if request.endpoint and request.endpoint.startswith('admin.newsroom') }}">News &amp; Events</a>
       <a href="{{ url_for('admin.media_library') }}" class="{{ 'active' if request.endpoint == 'admin.media_library' }}">Media Library</a>
 
       <div class="gti-nav-label">Academics</div>
