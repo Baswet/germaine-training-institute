@@ -170,3 +170,31 @@ def test_create_application_referral_code_from_suspended_earncash_user_ignored(d
         payload = _base_payload(data["academic"].id, referral_code="ECREF0002")
         app_row = application_service.create_application(payload)
         assert app_row.referred_by_earncash_user_id is None
+
+
+# --- Full Scholarship is for Academic School programmes only ------------------
+
+def test_scholarship_rejected_for_non_academic_programme(db_app):
+    with db_app.app_context():
+        data = seed_minimal_catalogue()
+        payload = _base_payload(data["ai_programme"].id, application_type="scholarship")
+        with pytest.raises(ValidationError) as exc_info:
+            application_service.create_application(payload)
+        assert "programme_id" in exc_info.value.errors
+        assert "Academic School" in exc_info.value.errors["programme_id"][0]
+
+
+def test_scholarship_allowed_for_academic_programme(db_app):
+    with db_app.app_context():
+        data = seed_minimal_catalogue()
+        row = application_service.create_application(
+            _base_payload(data["academic"].id, application_type="scholarship"))
+        assert row.application_type == "scholarship"
+
+
+def test_general_application_for_non_academic_programme_unaffected(db_app):
+    with db_app.app_context():
+        data = seed_minimal_catalogue()
+        row = application_service.create_application(
+            _base_payload(data["ai_programme"].id, application_type="general"))
+        assert row.application_type == "general"
