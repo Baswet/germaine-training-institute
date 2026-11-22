@@ -3,8 +3,8 @@
   BURSARY RECOMMENDATION LETTER  (page 2 of the Full Scholarship document)
 
   Digital recreation of the Institute's official bursary letter
-  (Bursary_letter_2026.doc) on the GTI letterhead. Wording and the
-  23rd November, 2026 date are reproduced as issued.
+  (Bursary_letter_2026.doc) on the GTI letterhead. Wording is reproduced
+  as issued; the letter carries no date (removed at the owner's request).
 
   Filled from the saved application only:
     student name   -> "REF: Bursary Application for ..."
@@ -35,7 +35,6 @@
         thro: "Thro!",
         chief: "Chief/Sub-Chief (Location/Sub-location)",
         chiefNote: "(Chief/Sub-Chief to sign and stamp)",
-        date: ["23", "rd", " November, 2026"],
         ref: "REF: Bursary Application for ",
         p1: "This is to bring to your attention that the above named person is a student at Germaine Training Institute.",
         p2: "He/she is studying a course leading to the award of {AWARD} in",
@@ -189,15 +188,8 @@
         times("normal", 11.5);
         doc.text(TEXT.chiefNote, L, y);
 
-        /* date (right, with superscript) */
-        y += 40;
-        times("bold", 11.5);
-        var w1 = doc.getTextWidth(TEXT.date[0]), w3 = doc.getTextWidth(TEXT.date[2]);
-        doc.setFontSize(7.5); var w2 = doc.getTextWidth(TEXT.date[1]); doc.setFontSize(11.5);
-        var x = R - (w1 + w2 + w3);
-        doc.text(TEXT.date[0], x, y);
-        doc.setFontSize(7.5); doc.text(TEXT.date[1], x + w1, y - 4.5);
-        doc.setFontSize(11.5); doc.text(TEXT.date[2], x + w1 + w2, y);
+        /* no date line (removed at the owner's request) */
+        y += 4;
 
         /* REF line */
         y += 44;
@@ -315,7 +307,7 @@
             TEXT.addressees.map(dotted).join("") +
             '<div class="gbl-row">' + esc(TEXT.thro) + "</div>" + dotted(TEXT.chief) +
             "<div>" + esc(TEXT.chiefNote) + "</div></div>" +
-            '<div class="gbl-date">' + TEXT.date[0] + "<sup>" + TEXT.date[1] + "</sup>" + esc(TEXT.date[2]) + "</div>" +
+            '<div style="height:18px"></div>' +
             '<div class="gbl-ref">' + esc(TEXT.ref) + (f.name ? esc(f.name.toUpperCase()) : "……………………………………") + "</div>" +
             '<p class="gbl-p">' + esc(TEXT.p1) + "</p>" +
             '<p class="gbl-p">' + p2 + "</p>" +
