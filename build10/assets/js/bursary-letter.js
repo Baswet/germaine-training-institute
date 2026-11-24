@@ -12,8 +12,17 @@
   Everything else (NG-CDF / NGAAF / County committee / Chief lines) stays
   as dotted blanks for the student and the Chief to complete.
 
-  NO SIGNATURE is reproduced: a clear space is left above
-  "Mr. Douglas Onsare, Chief Principal" for a wet signature and stamp.
+  SIGNATURE - reuses the Chief Principal's existing signature asset
+  (assets/images/logo/signature-chief-principal.png, the same file the
+  admission letter uses), unchanged in colour and proportion. It is drawn
+  ONLY when the document is produced through the authorised admin path
+  (letter-render.html, which renders solely on request from the admin
+  portal after an admin approves). The copy shown to an applicant at
+  submission keeps a clear space for signature and stamp instead, so a
+  bursary recommendation never appears signed before approval.
+
+  "Other Funding Organizations" line: added from the institute's revised
+  letter (Bursary_letter_2__2026.doc, the line marked in red).
 
   INTEGRATION - additive. apply-acknowledgement.js calls
     window.GTIBursaryLetter.addTo(doc, app)  -> after page 1 is drawn
@@ -24,13 +33,17 @@
     "use strict";
 
     var CREST_SRC = "assets/images/logo/logo.jpg";
+    var SIGNATURE_SRC = "assets/images/logo/signature-chief-principal.png";
+    /* Authorised path only: letter-render.html is the admin-approval renderer. */
+    var AUTHORISED = /\/letter-render\.html$/i.test(window.location.pathname || "");
 
     var TEXT = {
         to: "To",
         addressees: [
             "National Government Constituency development Fund (NG-CDF)",
             "National Government Affirmative Action Fund (NGAAF)",
-            "County Bursary Committee (County & Ward)"
+            "County Bursary Committee (County & Ward)",
+            "Other Funding Organizations"
         ],
         thro: "Thro!",
         chief: "Chief/Sub-Chief (Location/Sub-location)",
@@ -78,7 +91,7 @@
     function fields(app) {
         app = app || {};
         var sp = splitProgramme(app.programme);
-        return { name: titleCase(app.fullName), award: sp.award, course: sp.course };
+        return { name: titleCase(app.fullName), award: sp.award, course: sp.course, ref: String(app.reference || "").trim() };
     }
 
     /* ---------------- crest: the GTI logo without its outer ring ---------------- */
@@ -126,8 +139,31 @@
         return crestPromise;
     }
 
+    /* ---------------- signature: the existing asset, drawn onto white ---------------- */
+    var signPromise = null;
+    function signature() {
+        if (!AUTHORISED) return Promise.resolve(null);
+        if (signPromise) return signPromise;
+        signPromise = new Promise(function (resolve) {
+            var img = new Image();
+            img.onload = function () {
+                try {
+                    var c = document.createElement("canvas");
+                    c.width = img.naturalWidth; c.height = img.naturalHeight;
+                    var x = c.getContext("2d");
+                    x.fillStyle = "#ffffff"; x.fillRect(0, 0, c.width, c.height);
+                    x.drawImage(img, 0, 0);
+                    resolve({ url: c.toDataURL("image/jpeg", 0.92), w: img.naturalWidth, h: img.naturalHeight });
+                } catch (e) { resolve(null); }
+            };
+            img.onerror = function () { resolve(null); };
+            img.src = SIGNATURE_SRC;
+        });
+        return signPromise;
+    }
+
     /* ---------------- PDF page (jsPDF, A4 portrait, points) ---------------- */
-    function drawPage(doc, f, cr) {
+    function drawPage(doc, f, cr, sign) {
         var PW = 595.28, PH = 841.89, L = 72, R = PW - 66, cx = PW / 2;
         function col(c) { doc.setTextColor(c[0], c[1], c[2]); }
         function times(style, size) { doc.setFont("times", style).setFontSize(size); }
@@ -174,14 +210,14 @@
         /* addressees */
         var y = 152;
         times("bold", 11.5); col(INK);
-        doc.text(TEXT.to, L, y); y += 30;
+        doc.text(TEXT.to, L, y); y += 28;
         TEXT.addressees.forEach(function (a) {
             times("bold", 11.5); col(INK);
             doc.text(a, L, y);
             dots(L + doc.getTextWidth(a) + 3, R, y);
-            y += 30;
+            y += 28;
         });
-        doc.text(TEXT.thro, L, y); y += 30;
+        doc.text(TEXT.thro, L, y); y += 28;
         doc.text(TEXT.chief, L, y);
         dots(L + doc.getTextWidth(TEXT.chief) + 3, R, y);
         y += 15;
@@ -222,13 +258,24 @@
         y += 6;
         times("normal", 11.5);
         doc.text(TEXT.closing, L, y);
-        y += 62;                                  /* blank: wet signature + stamp */
+        /* signature space: 62pt. The existing signature is placed in it only on the
+           authorised path, proportionally scaled (never stretched), above the name. */
+        if (sign) {
+            var sw = 102, sh = sw * sign.h / sign.w;
+            if (sh > 46) { sh = 46; sw = sh * sign.w / sign.h; }
+            doc.addImage(sign.url, "JPEG", L, y + 6, sw, sh);
+        }
+        y += 62;
         doc.text(TEXT.signName, L, y);
         doc.text(TEXT.signTitle, L, y + 16);
 
         /* footer */
         doc.setFont("helvetica", "normal").setFontSize(6.8); col(GREY);
         doc.text(TEXT.reg, cx, PH - 118, { align: "center" });
+        if (f.ref) {
+            doc.setFontSize(7);
+            doc.text("Bursary Recommendation Letter  |  GTI Application No: " + f.ref, R, PH - 132, { align: "right" });
+        }
         var gap = 4, bw = (PW - 80 - 3 * gap) / 4, bx = 40, by = PH - 112, bh = 40;
         TEXT.footer.forEach(function (lines) {
             doc.setFillColor(NAVY[0], NAVY[1], NAVY[2]).rect(bx, by, bw, bh, "F");
@@ -243,8 +290,8 @@
     }
 
     function addTo(doc, app) {
-        return crest().then(function (cr) {
-            try { return drawPage(doc, fields(app), cr); }
+        return Promise.all([crest(), signature()]).then(function (out) {
+            try { return drawPage(doc, fields(app), out[0], out[1]); }
             catch (e) {
                 if (window.console) window.console.warn("[GTI] bursary letter page skipped:", e);
                 return doc;   /* never break the scholarship letter itself */
