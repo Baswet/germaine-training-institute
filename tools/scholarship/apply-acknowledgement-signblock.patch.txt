@@ -1,0 +1,4 @@
+Live file: germaineinstitute.ac.ke/assets/js/apply-acknowledgement.js (not tracked in this repo)
+Anchor (exactly once):   doc.text(INST.signatoryName, M, y); y += sz(5);
+Replacement:             doc.text(INST.signatoryName, M, y); y += sz(12); /* GTI-SIGNBLOCK: was sz(5), which printed the name over the title */
+Reason: on page 1 of the Full Scholarship PDF the printed name overlapped "Chief Principal".
