@@ -14,12 +14,9 @@
 
   SIGNATURE - reuses the Chief Principal's existing signature asset
   (assets/images/logo/signature-chief-principal.png, the same file the
-  admission letter uses), unchanged in colour and proportion. It is drawn
-  ONLY when the document is produced through the authorised admin path
-  (letter-render.html, which renders solely on request from the admin
-  portal after an admin approves). The copy shown to an applicant at
-  submission keeps a clear space for signature and stamp instead, so a
-  bursary recommendation never appears signed before approval.
+  admission letter uses), unchanged in colour and proportion. Drawn on
+  every copy, exactly like page 1 (the institute's decision, 24 Nov 2026).
+  If the image cannot load, a clear space is left for a wet signature.
 
   "Other Funding Organizations" line: added from the institute's revised
   letter (Bursary_letter_2__2026.doc, the line marked in red).
@@ -34,8 +31,7 @@
 
     var CREST_SRC = "assets/images/logo/logo.jpg";
     var SIGNATURE_SRC = "assets/images/logo/signature-chief-principal.png";
-    /* Authorised path only: letter-render.html is the admin-approval renderer. */
-    var AUTHORISED = /\/letter-render\.html$/i.test(window.location.pathname || "");
+    var AUTHORISED = true;   /* signed on every copy, like the admission letter (owner decision) */
 
     var TEXT = {
         to: "To",
@@ -258,8 +254,8 @@
         y += 6;
         times("normal", 11.5);
         doc.text(TEXT.closing, L, y);
-        /* signature space: 62pt. The existing signature is placed in it only on the
-           authorised path, proportionally scaled (never stretched), above the name. */
+        /* signature space: 62pt. The existing signature is placed in it,
+           proportionally scaled (never stretched), above the name. */
         if (sign) {
             var sw = 102, sh = sw * sign.h / sign.w;
             if (sh > 46) { sh = 46; sw = sh * sign.w / sign.h; }
