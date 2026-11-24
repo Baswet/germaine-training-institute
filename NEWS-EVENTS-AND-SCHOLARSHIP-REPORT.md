@@ -80,3 +80,21 @@ jsPDF 2.5.1 (the version the site loads) in headless Chrome.
 - Production snapshot branch (needs the two source zips).
 - GitHub profile organisation (needs approval to create `Baswet/Baswet`).
 - Rotate the DB password, SMTP password and SECRET_KEY (exposed once earlier in the session).
+
+## 6. Update — 24 Nov 2026: signature, red-marked line, sign-block fix
+- Red-marked text found in `Bursary_letter_2__2026.doc` (red, FF0000): the line
+  "Other Funding Organizations ……" after "County Bursary Committee (County & Ward)". Added verbatim.
+  No other red text in either .doc; the photograph has none.
+- Signature: the existing asset `assets/images/logo/signature-chief-principal.png` (176×108 PNG, the
+  one the admission letter uses) is now drawn on the bursary letter above "Mr. Douglas Onsare /
+  Chief Principal", proportionally scaled, never stretched or recoloured. Owner chose to sign every copy,
+  like page 1.
+- Page 2 now carries "Bursary Recommendation Letter | GTI Application No: <ref>" so it is identifiable.
+- Page 1 fix: printed name overlapped "Chief Principal" (5pt gap → 12pt). Nothing else on page 1 changed.
+- Date stays removed (owner instruction of 22 Nov), although the official paper letter has one.
+- Editable Word template of the bursary letter: tools/scholarship/make-bursary-word-template.js
+  (blank, unsigned). The website itself produces PDF only (browser jsPDF); no Word output on the site.
+- Tested locally with the live generator (SHA-256 verified copy) and made-up data GTI-TEST-0001:
+  2-page A4 PDF, both copies signed, red line present, no overlap, no JS errors.
+- Deployed with owner approval. Backups: `_claude_backups/sig-bak-20261124__*` (4 files).
+  Rollback = copy those four files back.
