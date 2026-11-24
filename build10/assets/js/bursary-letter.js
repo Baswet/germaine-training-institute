@@ -285,8 +285,13 @@
         return doc;
     }
 
-    function addTo(doc, app) {
-        return Promise.all([crest(), signature()]).then(function (out) {
+    /* pageOneSign: the exact signature image page 1 (the admission letter) was drawn
+       with, handed over by apply-acknowledgement.js - so page 2 always carries the very
+       same pixels, and is signed whenever page 1 is. Falls back to loading the same
+       asset itself only if it was not handed over. */
+    function addTo(doc, app, pageOneSign) {
+        var signSource = (pageOneSign && pageOneSign.url) ? Promise.resolve(pageOneSign) : signature();
+        return Promise.all([crest(), signSource]).then(function (out) {
             try { return drawPage(doc, fields(app), out[0], out[1]); }
             catch (e) {
                 if (window.console) window.console.warn("[GTI] bursary letter page skipped:", e);
